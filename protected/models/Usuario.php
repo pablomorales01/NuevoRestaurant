@@ -74,16 +74,16 @@ class Usuario extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'USU_ID' => 'Usu',
-			'RESTO_ID' => 'Resto',
+			'USU_ID' => 'Usuario_id',
+			'RESTO_ID' => 'Restaurant',
 			'ROL_ID' => 'Rol',
-			'USUPASSWORD' => 'Usupassword',
-			'USUCREATE' => 'Usucreate',
-			'USUNOMBRES' => 'Usunombres',
-			'USUAPELLIDOS' => 'Usuapellidos',
-			'USURUT' => 'Usurut',
-			'USUTELEFONO' => 'Usutelefono',
-			'USUESTADO' => 'Usuestado',
+			'USUPASSWORD' => 'Password',
+			'USUCREATE' => 'Fecha de creación',
+			'USUNOMBRES' => 'Nombres',
+			'USUAPELLIDOS' => 'Apellidos',
+			'USURUT' => 'Rut',
+			'USUTELEFONO' => 'Teléfono',
+			'USUESTADO' => 'Estado',
 		);
 	}
 

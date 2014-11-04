@@ -430,3 +430,199 @@ Stack trace:
 REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
 HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
 ---
+2014/11/04 18:20:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:21:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:23:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:23:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:23:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:36:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:36:30 [error] [php] htmlspecialchars() expects parameter 1 to be string, array given (C:\xampp\htdocs\yii\framework\web\helpers\CHtml.php:103)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\helpers\CHtml.php(158): renderAttributes()
+#1 C:\xampp\htdocs\yii\framework\web\helpers\CHtml.php(465): tag()
+#2 C:\xampp\htdocs\yii\framework\web\helpers\CHtml.php(500): button()
+#3 C:\xampp\htdocs\yii\NuevoRestaurant\protected\views\site\login.php(49): submitButton()
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(869): SiteController->renderFile()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#8 C:\xampp\htdocs\yii\NuevoRestaurant\protected\controllers\SiteController.php(98): SiteController->render()
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(286): SiteController->runAction()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/NuevoRestaurant/index.php/site/login
+in C:\xampp\htdocs\yii\NuevoRestaurant\protected\views\site\login.php (49)
+in C:\xampp\htdocs\yii\NuevoRestaurant\protected\controllers\SiteController.php (98)
+in C:\xampp\htdocs\yii\NuevoRestaurant\index.php (13)
+2014/11/04 18:37:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:37:37 [error] [php] htmlspecialchars() expects parameter 1 to be string, array given (C:\xampp\htdocs\yii\framework\web\helpers\CHtml.php:103)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\helpers\CHtml.php(158): renderAttributes()
+#1 C:\xampp\htdocs\yii\framework\web\helpers\CHtml.php(465): tag()
+#2 C:\xampp\htdocs\yii\framework\web\helpers\CHtml.php(500): button()
+#3 C:\xampp\htdocs\yii\NuevoRestaurant\protected\views\site\login.php(49): submitButton()
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(869): SiteController->renderFile()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#8 C:\xampp\htdocs\yii\NuevoRestaurant\protected\controllers\SiteController.php(98): SiteController->render()
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(286): SiteController->runAction()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/NuevoRestaurant/index.php/site/login
+in C:\xampp\htdocs\yii\NuevoRestaurant\protected\views\site\login.php (49)
+in C:\xampp\htdocs\yii\NuevoRestaurant\protected\controllers\SiteController.php (98)
+in C:\xampp\htdocs\yii\NuevoRestaurant\index.php (13)
+2014/11/04 18:46:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:46:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:46:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:46:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:46:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 18:46:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "css/images/ui-bg_glass_75_ffffff_1x400.png"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('css/images/ui-b...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/NuevoRestaurant/css/images/ui-bg_glass_75_ffffff_1x400.png
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/css/jquery-ui-1.10.3.custom.css
+---
+2014/11/04 19:08:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "TipoRol" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('TipoRol')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('TipoRol')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('usuario/TipoRol...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/NuevoRestaurant/index.php/usuario/TipoRol/create
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/index.php/usuario/create
+---
+2014/11/04 19:09:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "TipoRol" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('TipoRol')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('TipoRol')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('usuario/TipoRol...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/NuevoRestaurant/index.php/usuario/TipoRol/create
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/index.php/usuario/create
+---
+2014/11/04 19:10:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "Tipo_Rol" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('Tipo_Rol')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('Tipo_Rol')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('usuario/Tipo_Ro...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\yii\NuevoRestaurant\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/NuevoRestaurant/index.php/usuario/Tipo_Rol/create
+HTTP_REFERER=http://localhost/yii/NuevoRestaurant/index.php/usuario/create
+---

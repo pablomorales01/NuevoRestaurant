@@ -4,6 +4,21 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php 
+if($roles == null){
+
+
+echo BsHtml::alert(BsHtml::ALERT_COLOR_SUCCESS, BsHtml::bold('No existen Roles en el sistema. ') . 
+	'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array(
+    'url' => '../TipoRol/create'
+)));
+
+
+}
+
+else{
+
+ ?>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -77,6 +92,9 @@
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
-<?php $this->endWidget(); ?>
+<?php $this->endWidget(); 
+
+}
+?>
 
 </div><!-- form -->

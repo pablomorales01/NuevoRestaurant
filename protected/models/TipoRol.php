@@ -28,7 +28,7 @@ class TipoRol extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ROLNOMBRE', 'length', 'max'=>15),
+			array('ROLNOMBRE', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ROL_ID, ROLNOMBRE', 'safe', 'on'=>'search'),

@@ -64,6 +64,8 @@ class UsuarioController extends Controller
 	{
 		$model=new Usuario;
 
+		$roles = TipoRol::model()->findAll();
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -74,8 +76,7 @@ class UsuarioController extends Controller
 				$this->redirect(array('view','id'=>$model->USU_ID));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
+		$this->render('create',array('model'=>$model, 'roles'=>$roles
 		));
 	}
 
@@ -101,6 +102,28 @@ class UsuarioController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionLogin()
+	{
+		$model=new LoginForm;//lamada al modelo LoginForm
+		//Validacion Mediante Ajax
+		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+		//Ingreso de Datos via Post
+		if(isset($_POST['LoginForm']))
+		{
+			$model->attributes=$_POST['LoginForm'];
+			//Se valida que los datos cumplan con las reglas exigidas y carga la variables de session puestas en useridentity
+			if($model->validate() && $model->login())
+					$this->redirect(Yii::app()->user->returnUrl);
+		}
+		//Carga Su propia Layout
+		//$this->layout='LoginLayout';
+		$this->render('admin',array('model'=>$model));
 	}
 
 	/**
