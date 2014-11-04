@@ -41,12 +41,13 @@ else{
 			<?php
 			echo $form->dropDownListControlGroup($model,'ROL_ID',array(
 				CHtml::listData(TipoRol::model()->findAll(), 'ROL_ID', 'ROLNOMBRE')),
-			array('empty' => 'Something ...')
+			array('empty' => 'Seleccionar rol')
 			);
 			echo CHtml::link('Otro Rol', array('TipoRol/create'));
 			?>			
 			</div>
 
+			
 			<!-- MOSTRAR Y CERRAR FORMULARIO OCULTO -->
 			<a href="#" id="show">Mostrar</a>
 <div id="element" style="display: none;">
@@ -60,6 +61,8 @@ else{
         <div style="margin-left: 376px;"><input name="submit" type="submit" value="enviar" id="enviar-btn" /></div>
     </form>
 </div>
+
+
 
 	<!--<div class="row">
 
