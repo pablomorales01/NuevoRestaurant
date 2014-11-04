@@ -76,7 +76,7 @@ class Usuario extends CActiveRecord
 		return array(
 			'USU_ID' => 'Usuario_id',
 			'RESTO_ID' => 'Restaurant',
-			'ROL_ID' => 'Rol',
+			'ROL_ID' => 'ROL_ID',
 			'USUPASSWORD' => 'Password',
 			'USUCREATE' => 'Fecha de creación',
 			'USUNOMBRES' => 'Nombres',

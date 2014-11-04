@@ -18,6 +18,44 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery-ui-1.10.3.custom.css">
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+    <!--formulario oculto-->
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#hide").click(function(){
+        $("#element").hide();
+      });
+      $("#show").click(function(){
+        $("#element").show();
+      });
+    });
+    </script>
+
+    <script type="text/javascript">
+
+$(document).ready(function() {
+
+    $("#enviar-btn").click(function() {
+
+        var name = $("input#name").val();
+        var message = $("textarea#message").val();
+
+        var dataString = 'name=' + name + '&message=' + message;
+
+        $.ajax({
+            type: "POST",
+            url: "addmessage.php",
+            data: dataString,
+            success: function() {
+                $("#element").hide();
+                $('#newmessage').append('<h2>Tu información ha sido recibida correctamente!</h2><table><tr><td>Nombre:</td><td>'+name+'</td></tr><tr><td>Mensaje:</td><td>'+message+'</td></tr></table>');
+            }
+        });
+        return false;
+    });
+});
+</script>
+<!-- -->
+
 </head>
 
 <body>

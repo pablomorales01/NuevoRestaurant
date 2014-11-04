@@ -53,8 +53,8 @@ class TipoRol extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ROL_ID' => 'Rol',
-			'ROLNOMBRE' => 'Rolnombre',
+			'ROL_ID' => 'ROL_ID',
+			'ROLNOMBRE' => 'ROL',
 		);
 	}
 
