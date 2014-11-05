@@ -31,11 +31,11 @@ class UsuarioController extends Controller
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			array('allow', // Permite a los usuarios autenticados ...
 				'actions'=>array('create','update'),
 				'users'=>array('@'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+			array('allow', // Permite al administrador
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
