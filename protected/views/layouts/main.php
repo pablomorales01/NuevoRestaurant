@@ -89,71 +89,34 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
             'activateParents' => true,
             'items' => array(
                 array(
-                    'label' => 'Home',
-                    'url' => array(
-                        '/site/index'
-                    ),
-                    'items' => array(
-                        //BOTON DROPDOWN
+                    'label' => 'Home', 'url' => array('/site/index'),
+                    'items' => array(//BOTON DROPDOWN
                         BsHtml::menuHeader(BsHtml::icon(BsHtml::GLYPHICON_BOOKMARK), array(
                             'class' => 'text-center',
                             'style' => 'color:#99cc32;font-size:32px;'
                         )),
-                        array(
-                            'label' => 'Home',
-                            'url' => array(
-                                '/site/index'
-                            )
+                        array('label' => 'Home', 'url' => array('/site/index')
                         ),
-                        array(
-                            'label' => 'About',
-                            'url' => array(
-                                '/site/page',
-                                'view' => 'about'
-                            )
+                        array('label' => 'About', 'url' => array('/site/page','view' => 'about')
                         ),
-                        array(
-                            'label' => 'Contact',
-                            'url' => array(
-                                '/site/contact'
-                            )
+                        array('label' => 'Contact', 'url' => array('/site/contact')
                         ),
                         BsHtml::menuDivider(),
-                        array(
-                            'label' => 'Login',
-                            'url' => array(
-                                '/site/login'
-                            ),
+                        array('label' => 'Login', 'url' => array('/site/login'),
                             'visible' => Yii::app()->user->isGuest,
                             'icon' => BsHtml::GLYPHICON_LOG_IN
                         ),
-                        array(
-                            'label' => 'Logout (' . Yii::app()->user->name . ')',
-                            'url' => array(
-                                '/site/logout'
-                            ),
+                        array('label' => 'Logout (' . Yii::app()->user->name . ')',
+                            'url' => array('/site/logout'),
                             'visible' => !Yii::app()->user->isGuest
                         ),
-                        array(
-                            'label' => 'Home',
-                            'url' => array(
-                                '/site/index'
-                            ),
+                        array('label' => 'Home','url' => array('/site/index'),
                             'icon' => BsHtml::GLYPHICON_HOME
                         ),
-                        array(
-                            'label' => 'About',
-                            'url' => array(
-                                '/site/page',
-                                'view' => 'about'
-                            ),
+                        array('label' => 'About', 'url' => array('/site/page','view' => 'about'),
                             'icon' => BsHtml::GLYPHICON_PAPERCLIP
                         ),
-                        array(
-                            'label' => 'Contact',
-                            'url' => array(
-                                '/site/contact'
-                            ),
+                        array('label' => 'Contact', 'url' => array('/site/contact'),
                             'icon' => BsHtml::GLYPHICON_FLOPPY_OPEN
                         )
                     )
@@ -161,26 +124,18 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
             )
         ),
         //FIN BOTON DROPDOWN
-        array(
-            'class' => 'bootstrap.widgets.BsNav',
-            'type' => 'navbar',
-            'activateParents' => true,
-            'items' => array(
+        array(  'class' => 'bootstrap.widgets.BsNav',
+                'type' => 'navbar',
+                'activateParents' => true,
+                'items' => array(
                 
-                array(
-                    'label' => 'Login',
-                    'url' => array(
-                        '/site/login'
-                    ),
+                array('label' => 'Login', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'visible' => Yii::app()->user->isGuest
                 ),
-                array(
-                    'label' => 'Logout (' . Yii::app()->user->name . ')',
+                array('label' => 'Logout (' . Yii::app()->user->name . ')',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
-                    'url' => array(
-                        '/site/logout'
-                    ),
+                    'url' => array('/site/logout'),
                     'visible' => !Yii::app()->user->isGuest
                 )
             ),

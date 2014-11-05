@@ -5,7 +5,7 @@
 ?>
 <?php
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
-    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'layout' => BsHtml::FORM_LAYOUT_INLINE,
     'enableAjaxValidation' => true,
     'id' => 'user_form_horizontal',
     'htmlOptions' => array(
