@@ -5,7 +5,7 @@
 ?>
 <?php
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
-    'layout' => BsHtml::FORM_LAYOUT_INLINE,
+    'layout' => BsHtml::FORM_LAYOUT_INLINE, //en linea (boton al lado)
     'enableAjaxValidation' => true,
     'id' => 'user_form_horizontal',
     'htmlOptions' => array(
@@ -13,9 +13,9 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     )
 ));
 ?>
-<div class="row">
- <div class="col-xs-12 col-sm-6 col-md-8">
 
+<div class="row" >
+<div class="col-xs-12 col-sm-2 col-md-6">
 <?php 
 if($roles == null){
 
@@ -33,19 +33,26 @@ else{
 
 <div class="form" >
 
+
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-	<div align="left">
-
+	<div >
+			
 			<?php
-			echo $form->dropDownListControlGroup($model,'ROL_ID',array(
-				CHtml::listData(TipoRol::model()->findAll(), 'ROL_ID', 'ROLNOMBRE')),
-			array('empty' => 'Something ...')
+			echo $form->dropDownListControlGroup($model,'ROL_ID',
+				CHtml::listData(TipoRol::model()->findAll(), 'ROL_ID', 'ROLNOMBRE'),
+			array('empty' => 'Seleccionar')
 			);
-			echo CHtml::link('Otro Rol', array('TipoRol/create'));
+			
+			echo BsHtml::buttonGroup(array(
+		    	array('label' => 'Nuevo Rol',
+		        'url' => array('TipoRol/create'),
+		        'color' => BsHtml::BUTTON_COLOR_SUCCESS,
+		        'type' => BsHtml::BUTTON_TYPE_LINK)));
+			
 			?>			
-			</div>
+	</div>
 
 			<!-- MOSTRAR Y CERRAR FORMULARIO OCULTO -->
 			<a href="#" id="show">Mostrar</a>

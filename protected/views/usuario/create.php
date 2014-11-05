@@ -4,16 +4,17 @@
 
 $this->breadcrumbs=array(
 	'Usuarios'=>array('index'),
-	'Create',
+	'Crear',
 );
 
-
+//Sub-Menú
 $this->menu=array(
-	array('label'=>'List Usuario', 'url'=>array('index')),
-	array('label'=>'Manage Usuario', 'url'=>array('admin')),
+	array('label'=>'Lista Usuario', 'url'=>array('index')),
+	array('label'=>'Administrar Usuario', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Usuario</h1>
+<h1>Crear un Nuevo Usuario</h1>
 
+<!-- Envia al formulario de creación de usuario -->
 <?php $this->renderPartial('_form', array('model'=>$model, 'roles'=>$roles)); ?>
