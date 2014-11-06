@@ -56,6 +56,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     							/*'success'=>'function(data) {
 	                            $("RESTO_ID").html(data.dropDownResto);
                        	 		}'*/
+                       	 		
     							)
 
     						)); 
