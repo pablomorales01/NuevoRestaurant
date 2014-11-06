@@ -20,6 +20,12 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'MESANUM'); ?>
+		<?php echo $form->textField($model,'MESANUM'); ?>
+		<?php echo $form->error($model,'MESANUM'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'MESACANTIDADPERSONA'); ?>
 		<?php echo $form->textField($model,'MESACANTIDADPERSONA'); ?>
 		<?php echo $form->error($model,'MESACANTIDADPERSONA'); ?>

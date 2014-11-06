@@ -89,6 +89,8 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                 'activateParents' => true,
                 'items' => array(array('label' => 'Bodega', 'url' => array('/Bodega/admin'), 'icon' => BsHtml::GLYPHICON_SHOPPING_CART
                         ),
+                array('label' => 'Caja', 'url' => array('/venta/admin'), 'icon' => BsHtml::GLYPHICON_USD
+                        ),
                 array('label' => 'Cocina', 'url' => array('/Cocina/admin'), 'icon' => BsHtml::GLYPHICON_GLASS
                         ),
                 array('label' => 'Restaurant', 'url' => array('/Restaurant/admin'), 'icon' => BsHtml::GLYPHICON_CUTLERY

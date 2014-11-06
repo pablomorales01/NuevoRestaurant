@@ -32,11 +32,11 @@ class UsuarioController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // Permite a los usuarios autenticados ...
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','view'),
 				'users'=>array('@'),
 			),
 			array('allow', // Permite al administrador
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','update'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -134,10 +134,10 @@ class UsuarioController extends Controller
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
-
+		
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		   $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 	/**

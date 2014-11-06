@@ -17,6 +17,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'MESANUM'); ?>
+		<?php echo $form->textField($model,'MESANUM'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'MESACANTIDADPERSONA'); ?>
 		<?php echo $form->textField($model,'MESACANTIDADPERSONA'); ?>
 	</div>
