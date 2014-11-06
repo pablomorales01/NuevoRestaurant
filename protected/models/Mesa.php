@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'mesa':
  * @property integer $MESA_ID
+ * @property integer $MESANUM
  * @property integer $MESACANTIDADPERSONA
  *
  * The followings are the available model relations:
@@ -28,10 +29,11 @@ class Mesa extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MESACANTIDADPERSONA', 'numerical', 'integerOnly'=>true),
+			array('MESANUM', 'required'),
+			array('MESANUM, MESACANTIDADPERSONA', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('MESA_ID, MESACANTIDADPERSONA', 'safe', 'on'=>'search'),
+			array('MESA_ID, MESANUM, MESACANTIDADPERSONA', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,6 +56,7 @@ class Mesa extends CActiveRecord
 	{
 		return array(
 			'MESA_ID' => 'Mesa',
+			'MESANUM' => 'Mesanum',
 			'MESACANTIDADPERSONA' => 'Mesacantidadpersona',
 		);
 	}
@@ -77,6 +80,7 @@ class Mesa extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('MESA_ID',$this->MESA_ID);
+		$criteria->compare('MESANUM',$this->MESANUM);
 		$criteria->compare('MESACANTIDADPERSONA',$this->MESACANTIDADPERSONA);
 
 		return new CActiveDataProvider($this, array(
