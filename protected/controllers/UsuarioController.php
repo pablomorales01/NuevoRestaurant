@@ -6,7 +6,7 @@ class UsuarioController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/usuarioLayout';
 
 	/**
 	 * @return array action filters
@@ -55,7 +55,18 @@ class UsuarioController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+	//ACCION QUE RECIBE EL ROL_ID DE DROPDOWN
+	public function actionDropRol()
+	{
+		$rol =  $_POST['ROL_ID'];
+		$nombre = TipoRol::model()->finByAttributes(array('ROLNOMBRE', 'ROL_ID'=>$rol));
+		 if($nombre == 'Super administrador')
+		 {
+		 	
+		 }
+		
 
+	}
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.

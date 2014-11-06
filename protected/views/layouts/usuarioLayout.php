@@ -5,11 +5,20 @@
   <?php  echo $content;?>
   </div>
   <div class="col-xs-6 col-md-4">Segundo
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="<?php echo Yii::app()->createUrl('Usuario/create'); ?>">Ingresar Usuario</a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('Usuario/admin'); ?>">Administrar Usuario</a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('Usuario/index'); ?>">Lista Usuario</a></li>
+  </ul>
+
   <?php  
-  	$this->menu=array(
-	array('label'=>'List Usuario', 'url'=>array('index')),
-	array('label'=>'Manage Usuario', 'url'=>array('admin')),
-	);
+  //Menu General
+/*
+  $this->menu=array(
+	array('label'=>'Lista Usuario', 'url'=>array('index')),
+	array('label'=>'Administrar Usuario', 'url'=>array('admin')),
+  array('label'=>'Crear Usuario', 'url'=>array('create')),
+	);*/
   ?>
   </div>
 </div>
