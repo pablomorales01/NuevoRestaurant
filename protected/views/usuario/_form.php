@@ -15,7 +15,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 ?>
 
 <div class="row" >
-<div class="col-xs-12 col-sm-2 col-md-6">
+<div>
 <?php 
 if($roles == null){
 
@@ -31,26 +31,27 @@ else{
 
  ?>
 
-<div class="form" >
+<div class="form" align="center">
 
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-	<div >
+	<div align="center">
 			
 			<?php
 			echo $form->dropDownListControlGroup($model,'ROL_ID',
 				CHtml::listData(TipoRol::model()->findAll(), 'ROL_ID', 'ROLNOMBRE'),
 			array('empty' => 'Seleccionar')
-			);
-			
-			echo BsHtml::buttonGroup(array(
+			);?>
+			 
+
+			<?php  echo BsHtml::buttonGroup(array(
 		    	array('label' => 'Nuevo Rol',
 		        'url' => array('TipoRol/create'),
 		        'color' => BsHtml::BUTTON_COLOR_SUCCESS,
 		        'type' => BsHtml::BUTTON_TYPE_LINK)));			
-			?>	
+			?>
 
 			<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
