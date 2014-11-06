@@ -63,13 +63,12 @@ $(document).ready(function() {
 <div class="container" id="page">
 <?php echo 'contenido main' ?>
 	<div id="header">
-		
 		<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logopenco.png" width="350" height="150">
 		<?php /*echo BsHtml::emphasis(Yii::app()->name, array(
     		'color' => BsHtml::TEXT_ALIGN_RIGHT
 			));
 			*/?>
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<!--<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>-->
 		
 	</div><!-- header -->
 
