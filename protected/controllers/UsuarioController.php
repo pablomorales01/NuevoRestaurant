@@ -55,7 +55,18 @@ class UsuarioController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+	//ACCION QUE RECIBE EL ROL_ID DE DROPDOWN
+	public function actionDropRol()
+	{
+		$rol =  $_POST['ROL_ID'];
+		$nombre = TipoRol::model()->finByAttributes(array('ROLNOMBRE', 'ROL_ID'=>$rol));
+		 if($nombre == 'Super administrador')
+		 {
+		 	
+		 }
+		
 
+	}
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
