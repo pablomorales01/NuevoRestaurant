@@ -9,6 +9,10 @@
 	<?php echo CHtml::link(CHtml::encode($data->MESA_ID), array('view', 'id'=>$data->MESA_ID)); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('MESANUM')); ?>:</b>
+	<?php echo CHtml::encode($data->MESANUM); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('MESACANTIDADPERSONA')); ?>:</b>
 	<?php echo CHtml::encode($data->MESACANTIDADPERSONA); ?>
 	<br />

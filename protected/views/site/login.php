@@ -9,9 +9,16 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Login</h1>
+<div class="row">
+<div class="col-xs-6 col-sm-4"></div>
 
-<p>Please fill out the following form with your login credentials:</p>
+
+
+<div class="col-xs-6 col-sm-4" align="center">
+<?php $this->beginWidget('bootstrap.widgets.BsPanel');?>
+<h1>Bienvenido</h1>
+
+<p>Por favor llene sus datos:</p>
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -22,7 +29,7 @@ $this->breadcrumbs=array(
 	),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Los items <span class="required">*</span> son requeridos.</p>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'username'); ?>
@@ -34,9 +41,7 @@ $this->breadcrumbs=array(
 		<?php echo $form->labelEx($model,'password'); ?>
 		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
-		<p class="hint">
-			Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-		</p>
+		
 	</div>
 
 	<div class="row rememberMe">
@@ -44,13 +49,15 @@ $this->breadcrumbs=array(
 		<?php echo $form->label($model,'rememberMe'); ?>
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
-
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Login'); ?>
-		
-	
-
 	</div>
 
 <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 </div><!-- form -->
+</div> <!--Termino del col-->
+<div class="col-xs-6 col-sm-4"></div>
+</div> <!--Termino del row-->
+

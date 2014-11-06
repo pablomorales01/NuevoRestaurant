@@ -7,6 +7,8 @@ $this->breadcrumbs=array(
 	$model->USU_ID,
 );
 
+//Menú de ver, editar y eliminar un usuario
+
 $this->menu=array(
 	array('label'=>'List Usuario', 'url'=>array('index')),
 	array('label'=>'Create Usuario', 'url'=>array('create')),
@@ -17,7 +19,6 @@ $this->menu=array(
 ?>
 
 <h1>View Usuario #<?php echo $model->USU_ID; ?></h1>
-
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
