@@ -14,56 +14,58 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 ));
 ?>
 
+<div class="row" >
+<div class="col-xs-12 col-sm-2 col-md-6">
 <?php 
-if($roles == null){?>
-
-<div class="row">
-<div class="col-xs-12 col-sm-6 col-md-8">
-	<?php  
-		echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen Roles en el sistema.')
-			.'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array('url' => '../TipoRol/create'))
-			);
-	?>
-</div> <!-- fin col-->
-</div> <!-- Fin row-->
-
-<?php } 
+if($roles == null){
 
 
-else { ?>
+echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen Roles en el sistema. ')
+	.'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array(
+    'url' => '../TipoRol/create'
+)));
 
-<div class="form">
+}
+
+else{
+
+ ?>
+
+<div class="form" >
+
+
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-		<div>
-				<?php
-					echo $form->dropDownListControlGroup($model,'ROL_ID',
-						CHtml::listData(TipoRol::model()->findAll(), 'ROL_ID', 'ROLNOMBRE'),
-					array('empty' => 'Seleccionar')
-					);
-					
-					echo BsHtml::buttonGroup(array(
-				    	array('label' => 'Nuevo Rol',
-				        'url' => array('TipoRol/create'),
-				        'color' => BsHtml::BUTTON_COLOR_SUCCESS,
-				        'type' => BsHtml::BUTTON_TYPE_LINK)));
-				?>			
-		</div>
+	<div >
+			
+			<?php
+			echo $form->dropDownListControlGroup($model,'ROL_ID',
+				CHtml::listData(TipoRol::model()->findAll(), 'ROL_ID', 'ROLNOMBRE'),
+			array('empty' => 'Seleccionar')
+			);
+			
+			echo BsHtml::buttonGroup(array(
+		    	array('label' => 'Nuevo Rol',
+		        'url' => array('TipoRol/create'),
+		        'color' => BsHtml::BUTTON_COLOR_SUCCESS,
+		        'type' => BsHtml::BUTTON_TYPE_LINK)));			
+			?>	
 
-			<!-- MOSTRAR Y CERRAR FORMULARIO OCULTO -->
-			<a href="#" id="show">Mostrar</a>
-			<div id="element" style="display: none;">
-			   <div id="close"><a href="#" id="hide">cerrar</a></div>
-			   <form method="post" action="">
-			        Nombre:<br/>
-			        <input type="text" id="name" name="name" size="40" /><br/><br/>
-			        Mensaje:<br/>
-			        <textarea name="message" id="message" rows="6" cols="40"></textarea>
-			        <br/><br/>
-			        <div style="margin-left: 376px;"><input name="submit" type="submit" value="enviar" id="enviar-btn" /></div>
-			    </form>
-			</div>
+			<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		  Launch demo modal
+		</button>
+				
+		
+	</div>
+
+
+
+
+
+	<!--<div class="row">
+
 
 <!-- <div class="row">
 		<?php echo $form->labelEx($model,'RESTO_ID'); ?>
@@ -114,12 +116,35 @@ else { ?>
 		<?php echo $form->error($model,'USUESTADO'); ?>
 	</div>
 
-	-->
+	
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+	</div>-->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<?php } ?>
 
 </div><!-- form -->
-<?php } ?>
+</div>
+</div>
 <?php $this->endWidget();?>
