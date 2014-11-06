@@ -83,47 +83,25 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     'brandLabel' => BsHtml::icon(BsHtml::GLYPHICON_HOME),
     'brandUrl' => Yii::app()->homeUrl,
     'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.BsNav',
-            'type' => 'navbar',
-            'activateParents' => true,
-            'items' => array(
-                array(
-                    'label' => 'Home', 'url' => array('/site/index'),
-                    'items' => array(//BOTON DROPDOWN
-                        BsHtml::menuHeader(BsHtml::icon(BsHtml::GLYPHICON_BOOKMARK), array(
-                            'class' => 'text-center',
-                            'style' => 'color:#99cc32;font-size:32px;'
-                        )),
-                        array('label' => 'Home', 'url' => array('/site/index')
+
+        //crenado botones de al lado del Home
+        array(  'class' => 'bootstrap.widgets.BsNav',
+                'type' => 'navbar',
+                'activateParents' => true,
+                'items' => array(array('label' => 'Bodega', 'url' => array('/Bodega/admin'), 'icon' => BsHtml::GLYPHICON_SHOPPING_CART
                         ),
-                        array('label' => 'About', 'url' => array('/site/page','view' => 'about')
+                array('label' => 'Cocina', 'url' => array('/Cocina/admin'), 'icon' => BsHtml::GLYPHICON_GLASS
                         ),
-                        array('label' => 'Contact', 'url' => array('/site/contact')
+                array('label' => 'Restaurant', 'url' => array('/Restaurant/admin'), 'icon' => BsHtml::GLYPHICON_CUTLERY
                         ),
-                        BsHtml::menuDivider(),
-                        array('label' => 'Login', 'url' => array('/site/login'),
-                            'visible' => Yii::app()->user->isGuest,
-                            'icon' => BsHtml::GLYPHICON_LOG_IN
+                array('label' => 'Garzón', 'url' => array('/Garzón/admin'), 'icon' => BsHtml::GLYPHICON_LIST_ALT
                         ),
-                        array('label' => 'Logout (' . Yii::app()->user->name . ')',
-                            'url' => array('/site/logout'),
-                            'visible' => !Yii::app()->user->isGuest
-                        ),
-                        array('label' => 'Home','url' => array('/site/index'),
-                            'icon' => BsHtml::GLYPHICON_HOME
-                        ),
-                        array('label' => 'About', 'url' => array('/site/page','view' => 'about'),
-                            'icon' => BsHtml::GLYPHICON_PAPERCLIP
-                        ),
-                        array('label' => 'Contact', 'url' => array('/site/contact'),
-                            'icon' => BsHtml::GLYPHICON_FLOPPY_OPEN
-                        )
-                    )
+
+                //Final del array items.
                 )
-            )
-        ),
-        //FIN BOTON DROPDOWN
+                //Final del array de crear Botones.
+                ),
+
         array(  'class' => 'bootstrap.widgets.BsNav',
                 'type' => 'navbar',
                 'activateParents' => true,
@@ -131,11 +109,13 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                 
                 array('label' => 'Login', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
+                    'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
                 ),
                 array('label' => 'Logout (' . Yii::app()->user->name . ')',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'url' => array('/site/logout'),
+                    'icon' => BsHtml::GLYPHICON_LOG_OUT,
                     'visible' => !Yii::app()->user->isGuest
                 )
             ),
