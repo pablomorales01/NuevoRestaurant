@@ -11,7 +11,12 @@ $this->breadcrumbs=array(
 
 <div class="row">
 <div class="col-xs-6 col-sm-4"></div>
-<div class="col-xs-6 col-sm-4" align="center"><h1>Bienvenido</h1>
+
+
+
+<div class="col-xs-6 col-sm-4" align="center">
+<?php $this->beginWidget('bootstrap.widgets.BsPanel');?>
+<h1>Bienvenido</h1>
 
 <p>Por favor llene sus datos:</p>
 
@@ -44,10 +49,11 @@ $this->breadcrumbs=array(
 		<?php echo $form->label($model,'No cerrar sesión'); ?>
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
-	
+	<?php $this->endWidget(); ?>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Login'); ?>
 	</div>
+
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
