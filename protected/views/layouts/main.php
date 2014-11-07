@@ -95,7 +95,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                         ),
                 array('label' => 'Restaurant', 'url' => array('/Restaurant/admin'), 'icon' => BsHtml::GLYPHICON_CUTLERY
                         ),
-                array('label' => 'Garzón', 'url' => array('/Garzón/admin'), 'icon' => BsHtml::GLYPHICON_LIST_ALT
+                array('label' => 'Garzón', 'url' => array('/comanda/admin'), 'icon' => BsHtml::GLYPHICON_LIST_ALT
                         ),
 
                 //Final del array items.
