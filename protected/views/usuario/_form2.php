@@ -51,9 +51,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
                         <?php echo $form->error($model, 'ROL_ID'); ?>
 
-
-
-      </div>
+  </div>
       <div class="col-xs-6 col-md-4">
     					<?php  
     					echo BsHtml::buttonGroup(array(
@@ -62,18 +60,25 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     							'color' => BsHtml::BUTTON_COLOR_SUCCESS,
     							'type' => BsHtml::BUTTON_TYPE_LINK)));
     							?>
+      </div>
+   </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+
+        		<?php echo CHtml::submitButton($model->isNewRecord ? 'Siguiente' : 'Save'); ?>
+            
+
+        </div>
     </div>
-   </div>
-   <div class="row">
-   <div class="col-xs-12 col-md-8">
+    <?php if($model->ROL_ID!=0){
+      //
+      if($model->ROL_ID==1) //echo "imprime formulario superadmin";
+        $this->renderPartial('formSuperAdmin', array('model'=>$model)); //solo necesito el usuario para crear
+      else //echo "iMPRIME OTRO FORMULARIO";
+        $this->renderPartial('formOtros', array('model'=>$model, 'restos'=>'$restos'));
 
-
-    		<?php echo CHtml::submitButton($model->isNewRecord ? 'Siguiente' : 'Save'); ?>
-</div></div>
-   </div>
-
-
-
+      } ?>
+</div>
 
 <?php
     $this->endWidget();

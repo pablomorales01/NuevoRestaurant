@@ -16,4 +16,4 @@ $this->menu=array(
 
 <h1 align="center">Crear un Nuevo Usuario</h1>
 <!-- Envia al formulario de creación de usuario -->
-<?php $this->renderPartial('_form2', array('model'=>$model, 'aux'=>$aux, 'roles'=>$roles)); ?>
+<?php $this->renderPartial('_form2', array('model'=>$model,'roles'=>$roles, 'restos'=>$restos)); ?>
