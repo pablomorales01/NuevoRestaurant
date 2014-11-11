@@ -14,7 +14,7 @@ class UsuarioController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
+			'accessControl' // perform access control for CRUD operations
 			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
@@ -36,7 +36,7 @@ class UsuarioController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // Permite al administrador
-				'actions'=>array('admin','delete','update'),
+				'actions'=>array('admin','delete','update','view', 'guardar'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -56,29 +56,11 @@ class UsuarioController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
-	//ACCION QUE RECIBE EL ROL_ID DE DROPDOWN
-	public function actionDropRol()
+	
+	public function actionGuardar($model)
 	{
-		$rol =  $_POST['ROL_ID'];
-		$nombre = TipoRol::model()->finByAttributes(array('ROLNOMBRE', 'ROL_ID'=>$rol));
-		 if($nombre == 'Super administrador')
-		 {
-		 	
-		 }
-		
-
-	}
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate()
-	{
-		$model=new Usuario;
-
-		$roles = TipoRol::model()->findAll();
-
-		// Uncomment the following line if AJAX validation is needed
+		//de create
+// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Usuario']))
@@ -87,9 +69,35 @@ class UsuarioController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->USU_ID));
 		}
+		else var_dump($model);
 
-		$this->render('create',array('model'=>$model, 'roles'=>$roles
-		));
+		
+	}
+
+
+
+
+
+	/**
+	 * Creates a new model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionCreate()
+	{
+		$roles = TipoRol::model()->findAll();		
+		$model = new Usuario;
+		$restos = Restaurant::model()->findAll();
+		
+
+		if(isset($_POST['Usuario']))
+		{
+			 $model->attributes= $_POST['Usuario'];
+			 $aux= $model->ROL_ID;
+			// $aux = TipoRol::model()->findByPk(array('ROL_ID',$model->ROL_ID));
+			 $this->render('_form', array('model'=>$model, 'aux'=> $aux, 'restos'=>$restos));
+		}
+
+		$this->render('create',array('model'=>$model, 'roles'=>$roles));
 	}
 
 	/**
