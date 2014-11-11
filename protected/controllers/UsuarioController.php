@@ -87,6 +87,7 @@ class UsuarioController extends Controller
 		$roles = TipoRol::model()->findAll();		
 		$model = new Usuario;
 		$restos = Restaurant::model()->findAll();
+		$aux = new Usuario;
 		
 
 		if(isset($_POST['Usuario']))
@@ -97,7 +98,7 @@ class UsuarioController extends Controller
 			 $this->render('_form', array('model'=>$model, 'aux'=> $aux, 'restos'=>$restos));
 		}
 
-		$this->render('create',array('model'=>$model, 'roles'=>$roles));
+		$this->render('create',array('model'=>$model, 'aux'=>$aux, 'roles'=>$roles));
 	}
 
 	/**
