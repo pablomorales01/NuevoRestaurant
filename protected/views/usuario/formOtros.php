@@ -19,7 +19,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
 
     <?php 
-    if(($aux != '1') &&  ($restos == null)){
+   if($restos == null){
 
 
     	echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen Restaurantes en el sistema para asignar al nuevo usuario. ')
@@ -27,21 +27,14 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     			'url' => '../Restaurant/create'
     			)));
 
-    }?>
+    }
+    else { ?> 
+  
 
-   
-  <?php
-   if(($aux != '1') && ($restos != null)) {
-             ?>
-
-    	<?php
-    	$this->beginWidget('bootstrap.widgets.BsPanel');
-    	?>
+    	<?php $this->beginWidget('bootstrap.widgets.BsPanel');?>
 
         <form>
            <div class="form" align="center">
-
-
               <p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
               <?php echo $form->errorSummary($model); ?>
@@ -58,7 +51,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
                             'prompt' => 'Seleccione',
                             ));
                             ?>
-                            <?php echo $form->error($model, 'RESTO_ID') ?>
+                    <?php echo $form->error($model, 'RESTO_ID') ?>
 
                 </div>
                 <div class="col-xs-6 col-md-4">
@@ -70,10 +63,8 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
                                  'type' => BsHtml::BUTTON_TYPE_LINK)));
                                  ?>
                  </div>
-                </div>
-
-
-                <div class="row">
+              </div>
+              <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-8">
                              <?php
                              echo $form->textFieldControlGroup($model, 'USUNOMBRES', array(
@@ -83,10 +74,10 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
                                <?php echo $form->error($model, 'USUNOMBRES') ?>
                     </div>
-                <div class="col-xs-6 col-md-4"></div>
-                </div>
+                    
+              </div>
 
-                <div class="row">
+              <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-8">
                            <?php
                            echo $form->textFieldControlGroup($model, 'USUAPELLIDOS', array(
@@ -96,8 +87,8 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
                               <?php echo $form->error($model, 'USUAPELLIDOS') ?>
                     </div>
-                    <div class="col-xs-6 col-md-4"></div>
-                </div>
+                    
+              </div>
 
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-8">
@@ -106,7 +97,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
                           ?>
                           <?php echo $form->error($model, 'USURUT') ?>
                     </div>
-                    <div class="col-xs-6 col-md-4"></div></div>
+                    </div>
 
                     <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-8">
@@ -114,7 +105,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
                         echo $form->passwordFieldControlGroup($model, 'USUPASSWORD');
                         ?>
                     </div>
-                    <div class="col-xs-6 col-md-4"></div>
+                    
                 </div>
 
                 <div class="row">
@@ -125,7 +116,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
                           <?php $form->error($model, 'USUTELEFONO') ?>
                     </div>
-                    <div class="col-xs-6 col-md-4"></div>
+                    
               </div>
 
               <div class="row">
@@ -138,118 +129,23 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
                          ?>
                         <?php $form->error($model, 'USUESTADO') ?>
                     </div>
-                    <div class="col-xs-6 col-md-4"></div>
+                    
              </div> 
 
 
-            <div class="row">
+          <div class="row">
              <?php echo CHtml::submitButton($model->isNewRecord ? 'Siguiente' : 'Save'); ?>
           </div>
 
+    </div>
+    </form>
+
+<?php $this->endWidget();
+
+} ?> 
+
+<?php $this->endWidget();?>
 
 
-          <?php
-          $this->endWidget();
-          ?>
-<?php } ?> 
-
-<?php 
-    if($aux == '1'){
-?>
-<?php
-        $this->beginWidget('bootstrap.widgets.BsPanel');
-        ?>
-
-        <form>
-           <div class="form" align="center">
-
-
-              <p class="note">Campos con <span class="required">*</span> son requeridos.</p>
-
-              <?php echo $form->errorSummary($model); ?>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-8">
-                             <?php
-                             echo $form->textFieldControlGroup($model, 'USUNOMBRES', array(
-                               'append' => BsHtml::icon(BsHtml::GLYPHICON_USER)
-                               ));
-                               ?>
-
-                               <?php echo $form->error($model, 'USUNOMBRES') ?>
-                    </div>
-                <div class="col-xs-6 col-md-4"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-8">
-                           <?php
-                           echo $form->textFieldControlGroup($model, 'USUAPELLIDOS', array(
-                              'append' => BsHtml::icon(BsHtml::GLYPHICON_USER)
-                              ));
-                              ?>
-
-                              <?php echo $form->error($model, 'USUAPELLIDOS') ?>
-                    </div>
-                    <div class="col-xs-6 col-md-4"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-8">
-                          <?php
-                          echo $form->textFieldControlGroup($model, 'USURUT');
-                          ?>
-                          <?php echo $form->error($model, 'USURUT') ?>
-                    </div>
-                    <div class="col-xs-6 col-md-4"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-8">
-                    <?php
-                        echo $form->passwordFieldControlGroup($model, 'USUPASSWORD');
-                        ?>
-                    </div>
-                    <div class="col-xs-6 col-md-4"></div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-8">
-                          <?php
-                          echo $form->textFieldControlGroup($model, 'USUTELEFONO');
-                          ?>
-
-                          <?php $form->error($model, 'USUTELEFONO') ?>
-                    </div>
-                    <div class="col-xs-6 col-md-4"></div>
-              </div>
-
-              <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-8">
-                      <?php
-                      echo $form->dropDownListControlGroup($model, 'USUESTADO', array(
-                         'Habilitado',
-                         'Deshabilitado'
-                         ));
-                         ?>
-                        <?php $form->error($model, 'USUESTADO') ?>
-                    </div>
-                    <div class="col-xs-6 col-md-4"></div>
-             </div> 
-             <div class='row'>
-              <?php echo CHtml::submitButton($model->isNewRecord ? 'Siguiente' : 'Save'); ?>            
-             </div>
-            
-
-          <?php
-          $this->endWidget();
-          ?>
-
-<?php } ?>
- 
-
-      </div>
-  </form>
-
-  <?php $this->endWidget();?>
+  
 

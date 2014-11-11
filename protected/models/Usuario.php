@@ -42,6 +42,7 @@ class Usuario extends CActiveRecord
 		return array(
 			array('RESTO_ID, ROL_ID, USUTELEFONO', 'numerical', 'integerOnly'=>true),
 			array('USUPASSWORD', 'length', 'max'=>30),
+			array('USU_ID, USUNOMBRES, USUAPELLIDOS, USURUT, USUPASSWORD', 'required'),
 			array('USUNOMBRES, USUAPELLIDOS', 'length', 'max'=>25),
 			array('USURUT', 'length', 'max'=>12),
 			array('USUESTADO', 'length', 'max'=>13),
