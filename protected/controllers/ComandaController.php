@@ -64,7 +64,9 @@ class ComandaController extends Controller
 	{
 		//yo queria hacer una vista que involucrara comanda, mesa, detale_comanda y producto_venta
 		$model=new Comanda;
-		$mesa = new mesa;
+		$mesa = Mesa::model()->findAll(); //busca todas las mesas ingresadas
+		$menu = Menu::model()->findAll();
+		$estado = DetalleComanda::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -76,7 +78,7 @@ class ComandaController extends Controller
 				$this->redirect(array('view','id'=>$model->COM_ID));
 		}
 
-		$this->render('create',array('model'=>$model,'mesa'=>$mesa));
+		$this->render('create',array('model'=>$model,'mesa'=>$mesa, 'menu'=>$menu, 'estado'=>$estado));
 	}
 
 	/**
