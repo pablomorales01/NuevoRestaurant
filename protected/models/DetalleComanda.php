@@ -10,8 +10,8 @@
  * @property string $DETALLEESTADO
  *
  * The followings are the available model relations:
- * @property ProductoVenta $pVENTA
  * @property Comanda $cOM
+ * @property ProductoVenta $pVENTA
  */
 class DetalleComanda extends CActiveRecord
 {
@@ -32,7 +32,7 @@ class DetalleComanda extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('COM_ID, PVENTA_ID', 'numerical', 'integerOnly'=>true),
-			array('DETALLEESTADO', 'length', 'max'=>15),
+			array('DETALLEESTADO', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('DETALLE_ID, COM_ID, PVENTA_ID, DETALLEESTADO', 'safe', 'on'=>'search'),
@@ -47,8 +47,8 @@ class DetalleComanda extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'pVENTA' => array(self::BELONGS_TO, 'ProductoVenta', 'PVENTA_ID'),
 			'cOM' => array(self::BELONGS_TO, 'Comanda', 'COM_ID'),
+			'pVENTA' => array(self::BELONGS_TO, 'ProductoVenta', 'PVENTA_ID'),
 		);
 	}
 

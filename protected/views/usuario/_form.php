@@ -1,3 +1,6 @@
+
+
+
 <?php
 /* @var $this UsuarioController */
 /* @var $model Usuario */
@@ -74,7 +77,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
   </div>
 
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="col-xs-12 col-sm-6 col-md-8"><!--apellidos-->
       <?php
         echo $form->textFieldControlGroup($model, 'USUAPELLIDOS', array(
         'append' => BsHtml::icon(BsHtml::GLYPHICON_USER)
@@ -85,22 +88,30 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
   </div>
 
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="col-xs-12 col-sm-6 col-md-8"><!--rut-->
       <?php
-      echo $form->textFieldControlGroup($model, 'USURUT');
+      echo $form->textFieldControlGroup($model, 'USURUT'); 
        ?>
     </div>  
     <div class="col-xs-6 col-md-4"></div>
   </div>
 
     <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="col-xs-12 col-sm-6 col-md-8"><!password-->
       <?php
        echo $form->passwordFieldControlGroup($model, 'USUPASSWORD');
        ?>
       
     </div>  
-    <div class="col-xs-6 col-md-4"></div>
+    <div class="col-xs-6 col-md-4">
+      <?php  
+              echo BsHtml::buttonGroup(array(
+                array('label' => 'Generar',
+                  'url' => array(''),
+                  'color' => BsHtml::BUTTON_COLOR_SUCCESS,
+                  'type' => BsHtml::BUTTON_TYPE_LINK)));
+                  ?>      
+    </div>
   </div>
 
 <div class="row">

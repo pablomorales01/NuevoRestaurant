@@ -105,6 +105,26 @@ class UsuarioController extends Controller
 		$this->render('create',array('model'=>$model,'roles'=>$roles));
 	}
 
+	public function generador($longitud, $letras_min, $letras_may, $numeros, $simbolos)
+	{
+		//generador(6,true,true,false);
+
+		$variacaracteres = $letras_min?'abcdefghijklmnopqrstuvwxyz':''; //si es verdadero letras : si es falso nada.
+		$variacaracteres .= $letras_may?'ABCDEFGHIJKLMNOPQRSTUVWXYX':'';
+		$variacaracteres .= $numeros?'1234567890':'';
+		$variacaracteres .= $simbolos?'!#%&=¨*?/':'';
+
+		$i=0;
+		$clave= '';
+		while($i < $longitud)
+		{
+			$numrad = rand(0, strlen($variacaracteres)-1);
+			$clave .= substr($variacaracteres, $numrad, 1);
+			$i++;
+		}
+
+		return $clave;
+	}
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -217,26 +237,5 @@ class UsuarioController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
-
-	public function generador($longitud, $letras_min, $letras_may, $numeros, $simbolos)
-	{
-		//generador(6,true,true,true);
-
-		$variacaracteres = $letras_min?'abcdefghijklmnopqrstuvwxyz':''; //si es verdadero letras : si es falso nada.
-		$variacaracteres .= $letras_may?'ABCDEFGHIJKLMNOPQRSTUVWXYX':'';
-		$variacaracteres .= $numeros?'1234567890':'';
-		$variacaracteres .= $simbolos?'!#%&=¨*?/':'';
-
-		$i=0;
-		$clave= '';
-		while($i < $longitud)
-		{
-			$numrad = rand(0, strlen($variacaracteres)-1);
-			$clave .= substr($variacaracteres, $numrad, 1);
-			$i++;
-		}
-
-		return $clave;
 	}
 }
