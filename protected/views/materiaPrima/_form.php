@@ -4,55 +4,57 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<?php
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'materia-prima-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
-)); ?>
+<?php if($bodega == null) //No existen bodegas 
+    {
+        echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen Bodegas en el sistema. ')
+            .'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array('url' => '../bodega/create')));   
+    }
+else {
+?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'BODEGA_ID'); ?>
-		<?php echo $form->textField($model,'BODEGA_ID'); ?>
-		<?php echo $form->error($model,'BODEGA_ID'); ?>
-	</div>
+	<?php  //PARA LAS BODEGAS
+                        echo $form->dropDownListControlGroup($model, 'BODEGA_ID', 
+                            CHtml::listData($bodega, 'BODEGA_ID', 'BODEGANOMBRE'),
+                             array(
+                                'prompt' => 'Seleccione')
+                             );
+    ?>
+	
+	<?php echo $form->textFieldControlGroup($model, 'MPNOMBRE', array(
+			'append' => BsHtml::icon(BsHtml::GLYPHICON_USER)));
+	?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'TMP_ID'); ?>
-		<?php echo $form->textField($model,'TMP_ID'); ?>
-		<?php echo $form->error($model,'TMP_ID'); ?>
-	</div>
+	<?php //PARA LA UNIDAD DE MEDIDA
+        echo $form->dropDownListControlGroup($model, 'MPUNIDAD_MEDIDA', array(
+        'prompt' => 'Seleccione',
+        'gr'=> 'Gramos', //lo que guarda => lo que muestro
+        'Kg'=>'Kilogramos',
+        'mL'=>'Mililitros',
+        'L'=>'Litros',
+      ));
+      ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'MPNOMBRE'); ?>
-		<?php echo $form->textField($model,'MPNOMBRE',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'MPNOMBRE'); ?>
+    <?php echo $form->textFieldControlGroup($model, 'MPSTOCK');
+	?>
+	
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'MPUNIDAD_MEDIDA'); ?>
-		<?php echo $form->textField($model,'MPUNIDAD_MEDIDA',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'MPUNIDAD_MEDIDA'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'MPSTOCK'); ?>
-		<?php echo $form->textField($model,'MPSTOCK'); ?>
-		<?php echo $form->error($model,'MPSTOCK'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
+	 
+<?php } ?>
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

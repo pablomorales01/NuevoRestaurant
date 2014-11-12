@@ -13,6 +13,8 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Comanda</h1>
+<h1>Crear Comanda</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php 
+$this->renderPartial('_form', array('model'=>$model, 'mesa'=>$mesa, 'menu'=>$menu, 'estado'=>$estado)); 
+//envio mesa, porque si no existen mesas no puedo crear una comanda?> 

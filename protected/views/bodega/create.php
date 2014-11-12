@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Bodega</h1>
+<h1>Crear Bodega</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

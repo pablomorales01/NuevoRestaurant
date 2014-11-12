@@ -2,6 +2,8 @@
 /* @var $this BodegaController */
 /* @var $model Bodega */
 
+//Aqui es donde aparecen el boton eliminar y de vista.
+
 $this->breadcrumbs=array(
 	'Bodegas'=>array('index'),
 	$model->BODEGA_ID,
@@ -16,7 +18,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Bodega #<?php echo $model->BODEGA_ID; ?></h1>
+<h1>Vista Bodega #<?php echo $model->BODEGA_ID; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

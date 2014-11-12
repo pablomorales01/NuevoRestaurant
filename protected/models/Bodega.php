@@ -55,8 +55,8 @@ class Bodega extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'BODEGA_ID' => 'Bodega',
-			'BODEGANOMBRE' => 'Bodeganombre',
+			'BODEGA_ID' => 'Bodega ID',
+			'BODEGANOMBRE' => 'Nombre Bodega',
 		);
 	}
 

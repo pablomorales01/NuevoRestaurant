@@ -13,9 +13,9 @@
 	<?php echo CHtml::encode($data->BODEGA_ID); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('TMP_ID')); ?>:</b>
+	<!--<b><?php echo CHtml::encode($data->getAttributeLabel('TMP_ID')); ?>:</b>
 	<?php echo CHtml::encode($data->TMP_ID); ?>
-	<br />
+	<br />-->
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('MPNOMBRE')); ?>:</b>
 	<?php echo CHtml::encode($data->MPNOMBRE); ?>
