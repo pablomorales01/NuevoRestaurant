@@ -36,7 +36,7 @@ class UsuarioController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // Permite al administrador
-				'actions'=>array('admin','delete','update','view'),
+				'actions'=>array('admin','delete','update','view', 'asignar'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -56,6 +56,27 @@ class UsuarioController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+
+	public function actionAsignar($id)
+	{
+		$restos= Restaurant::model()->findAll();
+		//$model =Usuario::model()->findByPk('USU_ID'=$id);
+
+		$model = $this->loadModel($id);
+		if($restos == null)
+		$model->delete();
+		else {
+		// Uncomment the following line if AJAX validation is needed
+		 $this->performAjaxValidation($model);
+		if(isset($_POST['Usuario']))
+		{
+			$model->attributes=$_POST['Usuario'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->USU_ID));
+		}
+		}
+		$this->render('asignar', array('restos'=>$restos, 'model'=>$model));
+	}
 	
 	/**
 	 * Creates a new model.
@@ -65,7 +86,6 @@ class UsuarioController extends Controller
 	{
 		$roles = TipoRol::model()->findAll();		
 		$model = new Usuario;
-		$restos = new Restaurant;
 		
 		// Uncomment the following line if AJAX validation is needed
 	    
@@ -74,15 +94,15 @@ class UsuarioController extends Controller
 		{
 			$model->attributes=$_POST['Usuario'];
 
-			if($model->save())
+			if($model->save()){
+					//$this->redirect(array('view','id'=>$model->USU_ID));
+					if($model->ROL_ID != '1') $this->redirect(array('asignar', 'id'=>$model->USU_ID));
+					else $this->redirect(array('view','id'=>$model->USU_ID));
+			}		
 
-				$this->redirect(array('view','id'=>$model->USU_ID));
+		}	
 
-		}
-
-		
-
-		$this->render('create',array('model'=>$model,'roles'=>$roles, 'restos'=>$restos));
+		$this->render('create',array('model'=>$model,'roles'=>$roles));
 	}
 
 	/**
