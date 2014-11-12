@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create MateriaPrima</h1>
+<h1>Crear Materia Prima</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'bodega'=>$bodega)); ?>
