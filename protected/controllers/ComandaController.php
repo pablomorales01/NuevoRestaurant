@@ -62,7 +62,9 @@ class ComandaController extends Controller
 	 */
 	public function actionCreate()
 	{
+		//yo queria hacer una vista que involucrara comanda, mesa, detale_comanda y producto_venta
 		$model=new Comanda;
+		$mesa = new mesa;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -74,9 +76,7 @@ class ComandaController extends Controller
 				$this->redirect(array('view','id'=>$model->COM_ID));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',array('model'=>$model,'mesa'=>$mesa));
 	}
 
 	/**

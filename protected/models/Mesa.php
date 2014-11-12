@@ -56,7 +56,7 @@ class Mesa extends CActiveRecord
 	{
 		return array(
 			'MESA_ID' => 'Mesa',
-			'MESANUM' => 'Mesanum',
+			'MESANUM' => 'N° Mesa',
 			'MESACANTIDADPERSONA' => 'Mesacantidadpersona',
 		);
 	}
