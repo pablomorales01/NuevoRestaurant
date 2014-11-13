@@ -19,18 +19,7 @@
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-   <!-- Script para rut-->
-    
-    <script type="text/javascript">
-    $(document).ready(function(){
-        //nombre del campo
-      $('#LoginForm_username').Rut({
-      on_error: function(){ alert('Rut incorrecto'); }
-    });
-    })
-    </script>
-
-<!--Fin script rut-->
+   
 
    
 
