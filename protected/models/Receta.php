@@ -11,8 +11,8 @@
  * @property integer $MP_ID
  *
  * The followings are the available model relations:
- * @property ProductoElaborado $pVENTA
  * @property MateriaPrima $mP
+ * @property ProductoElaborado $pVENTA
  */
 class Receta extends CActiveRecord
 {
@@ -33,7 +33,7 @@ class Receta extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('RECETACANTIDADPRODUCTO, PVENTA_ID, MP_ID', 'numerical', 'integerOnly'=>true),
-			array('RECETAUNIDADMEDIDA', 'length', 'max'=>10),
+			array('RECETAUNIDADMEDIDA', 'length', 'max'=>2),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('RECETA_ID, RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA, PVENTA_ID, MP_ID', 'safe', 'on'=>'search'),
@@ -48,8 +48,8 @@ class Receta extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'pVENTA' => array(self::BELONGS_TO, 'ProductoElaborado', 'PVENTA_ID'),
 			'mP' => array(self::BELONGS_TO, 'MateriaPrima', 'MP_ID'),
+			'pVENTA' => array(self::BELONGS_TO, 'ProductoElaborado', 'PVENTA_ID'),
 		);
 	}
 
@@ -59,11 +59,11 @@ class Receta extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RECETA_ID' => 'Receta',
-			'RECETACANTIDADPRODUCTO' => 'Recetacantidadproducto',
-			'RECETAUNIDADMEDIDA' => 'Recetaunidadmedida',
-			'PVENTA_ID' => 'Pventa',
-			'MP_ID' => 'Mp',
+			'RECETA_ID' => 'Receta ID',
+			'RECETACANTIDADPRODUCTO' => 'Cantidad',
+			'RECETAUNIDADMEDIDA' => 'Unidad de Medida',
+			'PVENTA_ID' => 'Pventa ID',
+			'MP_ID' => 'Nombre Materia Prima',
 		);
 	}
 

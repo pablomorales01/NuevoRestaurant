@@ -4,21 +4,47 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<?php
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'receta-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
-)); ?>
-
+<?php if($MP == null) //No existen bodegas 
+    {
+        echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existe Materia Prima en el sistema. ')
+            .'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array('url' => '../materiaPrima/create')));   
+    }
+else {
+?>
+	
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php  //PARA LA MATERIA PRIMA
+                        echo $form->dropDownListControlGroup($model, 'MP_ID', 
+                            CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
+                             array(
+                                'prompt' => 'Seleccione')
+                             );
+    ?>
 
+    <?php echo $form->textFieldControlGroup($model, 'RECETACANTIDADPRODUCTO');?>
+
+    <?php //PARA LA UNIDAD DE MEDIDA
+        echo $form->dropDownListControlGroup($model, 'RECETAUNIDADMEDIDA', array(
+        'prompt' => 'Seleccione',
+        'gr'=> 'Gramos', //lo que guarda => lo que muestro
+        'Kg'=>'Kilogramos',
+        'mL'=>'Mililitros',
+        'L'=>'Litros',
+      ));
+      ?>
+	<!--
 	<div class="row">
 		<?php echo $form->labelEx($model,'RECETACANTIDADPRODUCTO'); ?>
 		<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
@@ -42,11 +68,11 @@
 		<?php echo $form->textField($model,'MP_ID'); ?>
 		<?php echo $form->error($model,'MP_ID'); ?>
 	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	-->
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 
-<?php $this->endWidget(); ?>
+<?php } ?>
 
-</div><!-- form -->
+<?php $this->endWidget(); ?>

@@ -6,7 +6,7 @@ class RecetaController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/recetaLayout';
 
 	/**
 	 * @return array action filters
@@ -15,7 +15,7 @@ class RecetaController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -63,6 +63,7 @@ class RecetaController extends Controller
 	public function actionCreate()
 	{
 		$model=new Receta;
+		$MP= MateriaPrima::model()->findAll(); //si no hay MP, no hay receta.
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -74,9 +75,7 @@ class RecetaController extends Controller
 				$this->redirect(array('view','id'=>$model->RECETA_ID));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',array('model'=>$model, 'MP'=>$MP));
 	}
 
 	/**
