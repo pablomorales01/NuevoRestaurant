@@ -19,17 +19,20 @@
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-    <!--formulario oculto-->
+   <!-- Script para rut-->
+    
     <script type="text/javascript">
     $(document).ready(function(){
-      $("#hide").click(function(){
-        $("#element").hide();
-      });
-      $("#show").click(function(){
-        $("#element").show();
-      });
+        //nombre del campo
+      $('#LoginForm_username').Rut({
+      on_error: function(){ alert('Rut incorrecto'); }
     });
+    })
     </script>
+
+<!--Fin script rut-->
+
+   
 
     <script type="text/javascript">
 
@@ -152,5 +155,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.js" type="text/javascript"></script>
  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/demo.js" type="text/javascript"></script>
+
+ <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.Rut.min.js"></script>
 </body>
 </html>
