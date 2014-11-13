@@ -6,6 +6,20 @@
 /* @var $model Usuario */
 /* @var $form CActiveForm */
 ?>
+
+<!-- Script para rut-->
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+        //nombre del campo
+      $('#Usuario_USURUT').Rut({
+      on_error: function(){ alert('Rut incorrecto'); }
+    });
+    })
+    </script>
+
+<!--Fin script rut-->
+
 <?php
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL, //en linea (boton al lado)
