@@ -93,6 +93,7 @@ class UsuarioController extends Controller
 		if(isset($_POST['Usuario']))
 		{
 			$model->attributes=$_POST['Usuario'];
+			$model->USUCREATE = date('Y-m-d');
 
 			if($model->save()){
 					//$this->redirect(array('view','id'=>$model->USU_ID));
