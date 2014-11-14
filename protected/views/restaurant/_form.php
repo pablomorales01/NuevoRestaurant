@@ -25,11 +25,11 @@
 		<?php echo $form->error($model,'RESTONOMBRE'); ?>
 	</div>
 
-	<div class="row">
+	<!--<div class="row">
 		<?php echo $form->labelEx($model,'RESTOFECHACREACION'); ?>
 		<?php echo $form->textField($model,'RESTOFECHACREACION'); ?>
 		<?php echo $form->error($model,'RESTOFECHACREACION'); ?>
-	</div>
+	</div>-->
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
