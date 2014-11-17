@@ -12,11 +12,11 @@ $this->menu=array(
 	array('label'=>'Create Usuario', 'url'=>array('create')),
 );
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
+Yii::app()->clientScript->registerScript('search', "$('.search-button').click(function(){
 	$('.search-form').toggle();
 	return false;
 });
+
 $('.search-form form').submit(function(){
 	$('#usuario-grid').yiiGridView('update', {
 		data: $(this).serialize()

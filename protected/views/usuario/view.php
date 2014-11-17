@@ -18,19 +18,21 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Usuario #<?php echo $model->USU_ID; ?></h1>
+<h1 align="center"> Detalle usuario<!--<?php echo $model->USU_ID; ?>--></h1>
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'USU_ID',
-		'RESTO_ID',
-		'ROL_ID',
-		'USUPASSWORD',
-		'USUCREATE',
+		//'USU_ID',
+		//'RESTO_ID',
+		//'ROL_ID',
 		'USUNOMBRES',
 		'USUAPELLIDOS',
 		'USURUT',
+		'Rol.ROLNOMBRE',
 		'USUTELEFONO',
-		'USUESTADO',
+		'rESTO.RESTONOMBRE',
+		'USUESTADO',		
+		//'USUPASSWORD',
+		'USUCREATE',
 	),
 )); ?>

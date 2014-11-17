@@ -65,7 +65,7 @@ class Usuario extends CActiveRecord
 			'comandas' => array(self::HAS_MANY, 'Comanda', 'USU_USU_ID'),
 			'comandas1' => array(self::HAS_MANY, 'Comanda', 'USU_ID'),
 			'rESTO' => array(self::BELONGS_TO, 'Restaurant', 'RESTO_ID'),
-			'rOL' => array(self::BELONGS_TO, 'TipoRol', 'ROL_ID'),
+			'Rol' => array(self::BELONGS_TO, 'TipoRol', 'ROL_ID'),
 			'ventas' => array(self::HAS_MANY, 'Venta', 'USU_ID'),
 		);
 	}
@@ -78,14 +78,14 @@ class Usuario extends CActiveRecord
 		return array(
 			'USU_ID' => 'Id',
 			'RESTO_ID' => 'Restaurant',
-			'ROL_ID' => 'ROL',
-			'USUPASSWORD' => 'Password',
+			'ROL_ID' => 'Rol',
+			'USUPASSWORD' => 'Contraseña',
 			'USUCREATE' => 'Fecha de creación',
 			'USUNOMBRES' => 'Nombres',
 			'USUAPELLIDOS' => 'Apellidos',
 			'USURUT' => 'Rut',
 			'USUTELEFONO' => 'Teléfono',
-			'USUESTADO' => 'Estado',
+			'USUESTADO' => 'Estado cuenta',
 		);
 	}
 

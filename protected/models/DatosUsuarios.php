@@ -5,15 +5,14 @@
  *
  * The followings are the available columns in table 'datos_usuarios':
  * @property integer $USU_ID
- * @property string $RESTONOMBRE
- * @property string $ROLNOMBRE
+ * @property string $USURUT
  * @property string $USUNOMBRES
  * @property string $USUAPELLIDOS
- * @property string $USURUT
  * @property integer $USUTELEFONO
- * @property string $USUESTADO
+ * @property string $USU_ESTADO
+ * @property integer $RESTO_ID
  * @property string $USUCREATE
- * @property string $USUPASSWORD
+ * @property string $ROLNOMBRE
  */
 class DatosUsuarios extends CActiveRecord
 {
@@ -33,15 +32,15 @@ class DatosUsuarios extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('USU_ID, USUTELEFONO', 'numerical', 'integerOnly'=>true),
-			array('RESTONOMBRE, ROLNOMBRE, USUNOMBRES, USUAPELLIDOS', 'length', 'max'=>25),
+			array('USU_ID, USUTELEFONO, RESTO_ID', 'numerical', 'integerOnly'=>true),
 			array('USURUT', 'length', 'max'=>12),
-			array('USUESTADO', 'length', 'max'=>13),
-			array('USUPASSWORD', 'length', 'max'=>30),
+			array('USUNOMBRES, USUAPELLIDOS, ROLNOMBRE', 'length', 'max'=>25),
+			array('USU_ESTADO', 'length', 'max'=>13),
 			array('USUCREATE', 'safe'),
+			
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('USU_ID, RESTONOMBRE, ROLNOMBRE, USUNOMBRES, USUAPELLIDOS, USURUT, USUTELEFONO, USUESTADO, USUCREATE, USUPASSWORD', 'safe', 'on'=>'search'),
+			array('USU_ID, USURUT, USUNOMBRES, USUAPELLIDOS, USUTELEFONO, USU_ESTADO, RESTO_ID, USUCREATE, ROLNOMBRE', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,7 +51,9 @@ class DatosUsuarios extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
+
 		return array(
+			
 		);
 	}
 
@@ -63,15 +64,15 @@ class DatosUsuarios extends CActiveRecord
 	{
 		return array(
 			'USU_ID' => 'Usu',
-			'RESTONOMBRE' => 'Restonombre',
-			'ROLNOMBRE' => 'Rolnombre',
+			'USURUT' => 'Usurut',
 			'USUNOMBRES' => 'Usunombres',
 			'USUAPELLIDOS' => 'Usuapellidos',
-			'USURUT' => 'Usurut',
 			'USUTELEFONO' => 'Usutelefono',
-			'USUESTADO' => 'Usuestado',
+			'USU_ESTADO' => 'Usu Estado',
+			'RESTO_ID' => 'Resto',
 			'USUCREATE' => 'Usucreate',
-			'USUPASSWORD' => 'Usupassword',
+			'ROLNOMBRE' => 'Rolnombre',
+			
 		);
 	}
 
@@ -94,20 +95,20 @@ class DatosUsuarios extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('USU_ID',$this->USU_ID);
-		$criteria->compare('RESTONOMBRE',$this->RESTONOMBRE,true);
-		$criteria->compare('ROLNOMBRE',$this->ROLNOMBRE,true);
+		$criteria->compare('USURUT',$this->USURUT,true);
 		$criteria->compare('USUNOMBRES',$this->USUNOMBRES,true);
 		$criteria->compare('USUAPELLIDOS',$this->USUAPELLIDOS,true);
-		$criteria->compare('USURUT',$this->USURUT,true);
 		$criteria->compare('USUTELEFONO',$this->USUTELEFONO);
-		$criteria->compare('USUESTADO',$this->USUESTADO,true);
+		$criteria->compare('USU_ESTADO',$this->USU_ESTADO,true);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 		$criteria->compare('USUCREATE',$this->USUCREATE,true);
-		$criteria->compare('USUPASSWORD',$this->USUPASSWORD,true);
+		$criteria->compare('ROLNOMBRE',$this->ROLNOMBRE,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+
 
 	/**
 	 * Returns the static model of the specified AR class.

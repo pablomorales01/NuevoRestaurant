@@ -7,6 +7,8 @@
  * @property integer $PVENTA_ID
  * @property string $PVENTANOMBRE
  * @property integer $MENU_ID
+ * @property integer $GRAMOS
+ * @property integer $CALORIAS
  *
  * The followings are the available model relations:
  * @property ProductoVenta $pVENTA
@@ -30,11 +32,11 @@ class ProductoElaborado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MENU_ID', 'numerical', 'integerOnly'=>true),
+			array('MENU_ID, GRAMOS, CALORIAS', 'numerical', 'integerOnly'=>true),
 			array('PVENTANOMBRE', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PVENTA_ID, PVENTANOMBRE, MENU_ID', 'safe', 'on'=>'search'),
+			array('PVENTA_ID, PVENTANOMBRE, MENU_ID, GRAMOS, CALORIAS', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,6 +62,8 @@ class ProductoElaborado extends CActiveRecord
 			'PVENTA_ID' => 'Pventa',
 			'PVENTANOMBRE' => 'Pventanombre',
 			'MENU_ID' => 'Menu',
+			'GRAMOS' => 'Gramos',
+			'CALORIAS' => 'Calorias',
 		);
 	}
 
@@ -84,6 +88,8 @@ class ProductoElaborado extends CActiveRecord
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
 		$criteria->compare('PVENTANOMBRE',$this->PVENTANOMBRE,true);
 		$criteria->compare('MENU_ID',$this->MENU_ID);
+		$criteria->compare('GRAMOS',$this->GRAMOS);
+		$criteria->compare('CALORIAS',$this->CALORIAS);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

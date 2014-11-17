@@ -11,14 +11,14 @@ $this->breadcrumbs=array(
 
 <!-- Script para rut-->
     
-    <!--<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function(){
         //nombre del campo
       $('#LoginForm_username').Rut({
       on_error: function(){ alert('Rut incorrecto'); }
     });
     })
-    </script>-->
+    </script>
 
 <!--Fin script rut-->
 

@@ -37,7 +37,7 @@ class UsuarioController extends Controller
 			),
 			array('allow', // Permite al administrador
 				'actions'=>array('admin','delete','update','view', 'asignar'),
-				'users'=>array('admin'),
+				'users'=>array('Super administrador'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -52,8 +52,9 @@ class UsuarioController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
+			$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			
 		));
 	}
 
@@ -134,6 +135,7 @@ class UsuarioController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$roles = TipoRol::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -146,7 +148,7 @@ class UsuarioController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 'roles'=>$roles
 		));
 	}
 
@@ -226,6 +228,8 @@ class UsuarioController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+
+	
 
 	/**
 	 * Performs the AJAX validation.
