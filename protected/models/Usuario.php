@@ -42,6 +42,7 @@ class Usuario extends CActiveRecord
 		return array(
 			array('RESTO_ID, ROL_ID, USUTELEFONO', 'numerical', 'integerOnly'=>true),
 			array('USUPASSWORD', 'length', 'max'=>30),
+			//array('USURUT', 'validateRut'),
 			array('USUNOMBRES, USUAPELLIDOS, USURUT, USUPASSWORD, ROL_ID', 'required'),
 			array('USUNOMBRES, USUAPELLIDOS', 'length', 'max'=>25),
 			array('USURUT', 'length', 'max'=>12),
@@ -64,7 +65,7 @@ class Usuario extends CActiveRecord
 			'comandas' => array(self::HAS_MANY, 'Comanda', 'USU_USU_ID'),
 			'comandas1' => array(self::HAS_MANY, 'Comanda', 'USU_ID'),
 			'rESTO' => array(self::BELONGS_TO, 'Restaurant', 'RESTO_ID'),
-			'rOL' => array(self::BELONGS_TO, 'TipoRol', 'ROL_ID'),
+			'Rol' => array(self::BELONGS_TO, 'TipoRol', 'ROL_ID'),
 			'ventas' => array(self::HAS_MANY, 'Venta', 'USU_ID'),
 		);
 	}
@@ -77,14 +78,14 @@ class Usuario extends CActiveRecord
 		return array(
 			'USU_ID' => 'Id',
 			'RESTO_ID' => 'Restaurant',
-			'ROL_ID' => 'ROL',
-			'USUPASSWORD' => 'Password',
+			'ROL_ID' => 'Rol',
+			'USUPASSWORD' => 'Contraseña',
 			'USUCREATE' => 'Fecha de creación',
 			'USUNOMBRES' => 'Nombres',
 			'USUAPELLIDOS' => 'Apellidos',
 			'USURUT' => 'Rut',
 			'USUTELEFONO' => 'Teléfono',
-			'USUESTADO' => 'Estado',
+			'USUESTADO' => 'Estado cuenta',
 		);
 	}
 
@@ -121,6 +122,40 @@ class Usuario extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function validateRut($attribute, $params) {
+
+    if(strlen($this->$attribute)==12){
+    $rut = str_split($this->$attribute);
+	$suma=0;
+	$suma += $rut[9]*2;
+	$suma += $rut[8]*3;
+	$suma += $rut[7]*4;
+	$suma += $rut[5]*5;
+	$suma += $rut[4]*6;
+	$suma += $rut[3]*7;
+	$suma += $rut[1]*2;
+	$suma += $rut[0]*3;
+	$resto = $suma % 11;
+    $dv = 11 - $resto;
+    if($dv == 11){
+        $dv=0;
+    }else if($dv == 10){
+        $dv="k";
+    }else{
+        $dv=$dv;
+    }
+   if($dv != $rut[11]){
+		$this->addError($attribute, 'Rut inválido.');
+	}
+   }
+   else {$this->addError($attribute, 'Rut inválido.');}
+}
+
+   
+
+
+
 
 	/**
 	 * Returns the static model of the specified AR class.

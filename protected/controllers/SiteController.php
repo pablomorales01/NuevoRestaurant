@@ -25,12 +25,14 @@ class SiteController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
+
+	//envía a la página de inicio dependiendo del rol
 	public function actionIndex()
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 			
-		if(Yii::app()->user->name == 'admin')
+		if(Yii::app()->user->name == 'Super administrador')
 		{
 			$this->redirect(Yii::app()->createUrl('Usuario/admin'));
 		}

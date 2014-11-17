@@ -1,24 +1,35 @@
 <?php
 
 /**
- * This is the model class for table "restaurant".
+ * This is the model class for table "usuarios_login".
  *
- * The followings are the available columns in table 'restaurant':
- * @property integer $RESTO_ID
- * @property string $RESTONOMBRE
- * @property string $RESTOFECHACREACION
- *
- * The followings are the available model relations:
- * @property Usuario[] $usuarios
+ * The followings are the available columns in table 'usuarios_login':
+ * @property integer $USU_ID
+ * @property string $username
+ * @property string $USUNOMBRES
+ * @property string $USUAPELLIDOS
+ * @property string $ROLNOMBRE
+ * @property string $password
  */
-class Restaurant extends CActiveRecord
+class UsuariosLogin extends CActiveRecord
 {
+
+	public function validatePassword($password)
+	{
+	return $this->hashPassword($password)===$this->password;
+	}
+ 
+	public function hashPassword($password)
+	{
+		return MD5($password);
+	}
+	
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'restaurant';
+		return 'usuarios_login';
 	}
 
 	/**
@@ -29,11 +40,13 @@ class Restaurant extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('RESTONOMBRE', 'length', 'max'=>25),
-			array('RESTOFECHACREACION', 'safe'),
+			array('USU_ID', 'numerical', 'integerOnly'=>true),
+			array('username', 'length', 'max'=>12),
+			array('USUNOMBRES, USUAPELLIDOS, ROLNOMBRE', 'length', 'max'=>25),
+			array('password', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RESTO_ID, RESTONOMBRE, RESTOFECHACREACION', 'safe', 'on'=>'search'),
+			array('USU_ID, username, USUNOMBRES, USUAPELLIDOS, ROLNOMBRE, password', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,7 +58,6 @@ class Restaurant extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'usuarios' => array(self::HAS_MANY, 'Usuario', 'RESTO_ID'),
 		);
 	}
 
@@ -55,9 +67,12 @@ class Restaurant extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RESTO_ID' => 'Id restaurant',
-			'RESTONOMBRE' => 'Nombre restaurant',
-			'RESTOFECHACREACION' => 'Fecha de creación',
+			'USU_ID' => 'Id usuario',
+			'username' => 'Nombre de usuario',
+			'USUNOMBRES' => 'Nombres',
+			'USUAPELLIDOS' => 'Apellidos',
+			'ROLNOMBRE' => 'Rol',
+			'password' => 'Contraseña',
 		);
 	}
 
@@ -79,9 +94,12 @@ class Restaurant extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('RESTO_ID',$this->RESTO_ID);
-		$criteria->compare('RESTONOMBRE',$this->RESTONOMBRE,true);
-		$criteria->compare('RESTOFECHACREACION',$this->RESTOFECHACREACION,true);
+		$criteria->compare('USU_ID',$this->USU_ID);
+		$criteria->compare('username',$this->username,true);
+		$criteria->compare('USUNOMBRES',$this->USUNOMBRES,true);
+		$criteria->compare('USUAPELLIDOS',$this->USUAPELLIDOS,true);
+		$criteria->compare('ROLNOMBRE',$this->ROLNOMBRE,true);
+		$criteria->compare('password',$this->password,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -92,7 +110,7 @@ class Restaurant extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Restaurant the static model class
+	 * @return UsuariosLogin the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

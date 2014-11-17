@@ -9,10 +9,12 @@
  * @property integer $MENU_ID
  * @property integer $BODEGA_ID
  * @property integer $PFINALSTOCK
+ * @property integer $GRAMOS
+ * @property integer $CALORIAS
  *
  * The followings are the available model relations:
- * @property Bodega $bODEGA
  * @property ProductoVenta $pVENTA
+ * @property Bodega $bODEGA
  * @property RegistroComprasPf[] $registroComprasPfs
  */
 class ProductoFinal extends CActiveRecord
@@ -33,11 +35,11 @@ class ProductoFinal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MENU_ID, BODEGA_ID, PFINALSTOCK', 'numerical', 'integerOnly'=>true),
+			array('MENU_ID, BODEGA_ID, PFINALSTOCK, GRAMOS, CALORIAS', 'numerical', 'integerOnly'=>true),
 			array('PVENTANOMBRE', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PVENTA_ID, PVENTANOMBRE, MENU_ID, BODEGA_ID, PFINALSTOCK', 'safe', 'on'=>'search'),
+			array('PVENTA_ID, PVENTANOMBRE, MENU_ID, BODEGA_ID, PFINALSTOCK, GRAMOS, CALORIAS', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,8 +51,8 @@ class ProductoFinal extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bODEGA' => array(self::BELONGS_TO, 'Bodega', 'BODEGA_ID'),
 			'pVENTA' => array(self::BELONGS_TO, 'ProductoVenta', 'PVENTA_ID'),
+			'bODEGA' => array(self::BELONGS_TO, 'Bodega', 'BODEGA_ID'),
 			'registroComprasPfs' => array(self::HAS_MANY, 'RegistroComprasPf', 'PVENTA_ID'),
 		);
 	}
@@ -66,6 +68,8 @@ class ProductoFinal extends CActiveRecord
 			'MENU_ID' => 'Menu',
 			'BODEGA_ID' => 'Bodega',
 			'PFINALSTOCK' => 'Pfinalstock',
+			'GRAMOS' => 'Gramos',
+			'CALORIAS' => 'Calorias',
 		);
 	}
 
@@ -92,6 +96,8 @@ class ProductoFinal extends CActiveRecord
 		$criteria->compare('MENU_ID',$this->MENU_ID);
 		$criteria->compare('BODEGA_ID',$this->BODEGA_ID);
 		$criteria->compare('PFINALSTOCK',$this->PFINALSTOCK);
+		$criteria->compare('GRAMOS',$this->GRAMOS);
+		$criteria->compare('CALORIAS',$this->CALORIAS);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
