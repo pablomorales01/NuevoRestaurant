@@ -33,4 +33,5 @@ class UserIdentity extends CUserIdentity
     {
         return $this->_id;
     }
+    
 }
