@@ -205,13 +205,12 @@ class UsuarioController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Usuario('search');
+		$roles = TipoRol::model()->findAll();
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Usuario']))
 			$model->attributes=$_GET['Usuario'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+		$this->render('admin',array('model'=>$model,));
 	}
 
 	/**
