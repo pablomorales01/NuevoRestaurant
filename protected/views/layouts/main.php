@@ -24,7 +24,6 @@
 <body>
 
 <div class="container" id="page">
-<?php echo 'contenido main' ?>
 	<div id="header">
 		<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logopenco.png" width="350" height="150">
 		<?php /*echo BsHtml::emphasis(Yii::app()->name, array(
