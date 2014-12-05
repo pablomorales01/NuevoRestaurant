@@ -12,6 +12,13 @@ $this->menu=array(
 	array('label'=>'Create Usuario', 'url'=>array('create')),
 );
 
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/validCampoFranz.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
+  $('#usuario-grid').validCampoFranz(' abcdefghijklmnñopqrstuvwxyzáéíóú');
+
+");
+
+
 ?>
 <h1>Administrar Usuarios</h1>
 
