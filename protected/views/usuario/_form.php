@@ -1,15 +1,9 @@
-
-
-
 <?php
 /* @var $this UsuarioController */
 /* @var $model Usuario */
 /* @var $form CActiveForm */
 ?>
-
-<!-- Script para rut-->
-    
-    <script type="text/javascript">
+ <script type="text/javascript">
     $(document).ready(function(){
         //nombre del campo
       $('#Usuario_USURUT').Rut({
@@ -18,29 +12,23 @@
     })
     </script>
 
-<!--Fin script rut-->
+<?php $form=$this->beginWidget('CActiveForm', array(
+  'id'=>'usuario-_form-form',
+  // Please note: When you enable ajax validation, make sure the corresponding
+  // controller action is handling ajax validation correctly.
+  // See class documentation of CActiveForm for details on this,
+  // you need to use the performAjaxValidation()-method described there.
+  'enableAjaxValidation'=>false,
+)); ?>
 
-<?php
-$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
-    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL, //en linea (boton al lado)
-    'enableAjaxValidation' => true,
-    'id' => 'user_form_horizontal',
-    'htmlOptions' => array(
-    	'class' => 'bs-example'
-    	)
-    ));
-    ?>
-
-
-
-   <?php 
+<?php 
     if($roles == null){
 
 
-    	echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen Roles en el sistema. ')
-    		.'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array(
-    			'url' => '../TipoRol/create'
-    			)));
+      echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen Roles en el sistema. ')
+        .'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array(
+          'url' => '../TipoRol/create'
+          )));
 
     }
 
@@ -49,125 +37,93 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
    ?>
 
    <?php
-    	$this->beginWidget('bootstrap.widgets.BsPanel');
-    ?>
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
 
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/validCampoFranz.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
+  $('#Usuario_USUNOMBRES').validCampoFranz(' abcdefghijklmnñopqrstuvwxyzáéíóú');
+  $('#Usuario_USUAPELLIDOS').validCampoFranz(' abcdefghijklmnñopqrstuvwxyzáéíóú');
+  $('#Usuario_USURUT').validCampoFranz('1234567890k-.k');
+  $('#Usuario_USUTELEFONO').validCampoFranz('1234567890');
 
- 	<div class="form" align="center">
- 	<div class="row">
- 	<div class="col-xs-12 col-sm-6 col-md-8">
-  <!-- <?php echo $form->errorSummary($model); ?>--> <!-- rol -->
- 	 <?php  
-                        echo $form->dropDownListControlGroup($model, 'ROL_ID', 
+");
+?>
+
+  <p class="note">Fields with <span class="required">*</span> are required.</p>
+
+  <?php echo $form->errorSummary($model); ?>
+
+  <?php if(Yii::app()->user->hasFlash('error')):?>
+    <div class="grabado_ok">
+        <?php echo Yii::app()->user->getFlash('error'); ?>
+    </div>
+    <?php endif; ?>
+    
+  <div class="form" align="center">
+  <div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-8">formulario
+   <!-- <?php echo $form->labelEx($model,'ROL_ID'); ?>-->
+    <?php echo $form->dropDownListControlGroup($model,'ROL_ID', 
                             CHtml::listData(TipoRol::model()->findAll(), 'ROL_ID', 'ROLNOMBRE'),
                              array(
-                                'prompt' => 'Seleccione')
-                             );
-      ?>
+                                'prompt' => 'Seleccione')); ?>
+    <?php echo $form->error($model,'ROL_ID'); ?>
+    
+    <!--<?php echo $form->labelEx($model,'USUTELEFONO'); ?>-->
+    <?php echo $form->textFieldControlGroup($model,'USUTELEFONO'); ?>
+    <?php echo $form->error($model,'USUTELEFONO'); ?>
+  
 
-  </div>
-  <div class="col-xs-6 col-md-4"> <!boton para crear otro rol-->
-    					<?php  
-    					echo BsHtml::buttonGroup(array(
-    						array('label' => 'Nuevo Rol',
-    							'url' => array('TipoRol/create'),
-    							'color' => BsHtml::BUTTON_COLOR_SUCCESS,
-    							'type' => BsHtml::BUTTON_TYPE_LINK)));
-    							?>
-  </div>
-  </div>
+  
+    <!--<?php echo $form->labelEx($model,'USUPASSWORD'); ?>-->
+    <?php echo $form->passwordFieldControlGroup($model,'USUPASSWORD'); ?>
+    <?php echo $form->error($model,'USUPASSWORD'); ?>
+  
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8"> <!nombre->
-       <?php
-          echo $form->textFieldControlGroup($model, 'USUNOMBRES', array( 
-            'append' => BsHtml::icon(BsHtml::GLYPHICON_USER)
-            ));
-        ?>
-      
-    </div>  
-    <div class="col-xs-6 col-md-4">      
-  </div>
-  </div>
+  
+    <!--<?php echo $form->labelEx($model,'USUNOMBRES'); ?>-->
+    <?php echo $form->textFieldControlGroup($model,'USUNOMBRES'); ?>
+    <?php echo $form->error($model,'USUNOMBRES'); ?>
+  
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8"><!--apellidos-->
-      <?php
-        echo $form->textFieldControlGroup($model, 'USUAPELLIDOS', array(
-        'append' => BsHtml::icon(BsHtml::GLYPHICON_USER)
-        ));
-       ?>
-    </div>  
-    <div class="col-xs-6 col-md-4"></div>
-  </div>
+  
+   <!-- <?php echo $form->labelEx($model,'USUAPELLIDOS'); ?>-->
+    <?php echo $form->textFieldControlGroup($model,'USUAPELLIDOS'); ?>
+    <?php echo $form->error($model,'USUAPELLIDOS'); ?>
+  
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8"><!--rut-->
-      <?php
-      echo $form->textFieldControlGroup($model, 'USURUT'); 
-       ?>
-    </div>  
-    <div class="col-xs-6 col-md-4"></div>
-  </div>
+   <!-- <?php echo $form->labelEx($model,'USURUT'); ?>-->
+    <?php echo $form->textFieldControlGroup($model,'USURUT'); ?>
+    <?php echo $form->error($model,'USURUT'); ?>
+  
 
-    <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8"><!password-->
-      <?php
-       echo $form->passwordFieldControlGroup($model, 'USUPASSWORD');
-       ?>
-      
-    </div>  
-    <div class="col-xs-6 col-md-4">
-      <?php  
-              echo BsHtml::buttonGroup(array(
-                array('label' => 'Generar',
-                  'url' => array(''),
-                  'color' => BsHtml::BUTTON_COLOR_SUCCESS,
-                  'type' => BsHtml::BUTTON_TYPE_LINK)));
-                  ?>      
-    </div>
-  </div>
-
-<div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">
-      <?php
-        echo $form->textFieldControlGroup($model, 'USUTELEFONO');
-      ?>
-      
-    </div>  
-<div class="col-xs-6 col-md-4"></div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">
-     <?php
-        echo $form->dropDownListControlGroup($model, 'USUESTADO', array(
+    <!--<?php echo $form->labelEx($model,'USUESTADO'); ?>-->
+    <?php echo $form->dropDownListControlGroup($model,'USUESTADO', array(
         'Habilitado'=> 'Habilitado',
         'Deshabilitado'=>'Deshabilitado'
-      ));
-      ?>
-  
-    </div>
-    <div class="col-xs-6 col-md-4"></div>
+      )); ?>
+    <?php echo $form->error($model,'USUESTADO'); ?>
+  </div> <!--fin col-->
+  <div class="col-xs-6 col-md-4">botones
+
+  </div>  
+
+
+  </div> <!--Fin row-->
+  <div class="row buttons" align="center">
+    <?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS)); ?>
   </div>
 
+</div><!-- form -->
+<?php 
+  $this->endWidget();
+  }   
+  $this->endWidget(); ?>
 
-    <div class="row">
-        <div class="col-xs-12 col-md-8">
-        		<?php echo CHtml::submitButton($model->isNewRecord ? 'Siguiente' : 'Save'); ?>   
-        </div>
-    </div>
-
-
-   
-</div> <!-- fin de form -->
-
-<?php
-    $this->endWidget();
- ?>
-
- <?php  } ?>
-
- <?php
- $this->endWidget();
- ?>

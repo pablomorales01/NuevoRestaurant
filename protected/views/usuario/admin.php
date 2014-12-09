@@ -35,7 +35,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'itemsCssClass'=>"table table-striped",
 	'columns'=>array(
 		//'USU_ID',
-		'RESTO_ID',
+		//'RESTO_ID',
+		//'rESTO.RESTONOMBRE',
+		array(
+		'name'=>'RESTO_ID',
+		'value' => '$data->rESTO==null?" ":$data->rESTO->RESTONOMBRE',
+		'filter'=>CHtml::listData(Restaurant::model()->findAll(),'RESTO_ID', 'RESTONOMBRE')
+		),
 		'ROL_ID',
 		'USUPASSWORD',
 		'USUCREATE',

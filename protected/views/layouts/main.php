@@ -26,20 +26,14 @@
 <div class="container" id="page">
 	<div id="header">
 		<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logopenco.png" width="350" height="150">
-		<?php /*echo BsHtml::emphasis(Yii::app()->name, array(
-    		'color' => BsHtml::TEXT_ALIGN_RIGHT
-			));
-			*/?>
-		<!--<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>-->
 		
 	</div><!-- header -->
-
-	
 
 	<!--Nuevo Menú-->
 
 	<?php
-$this->widget('bootstrap.widgets.BsNavbar', array(
+    
+    $this->widget('bootstrap.widgets.BsNavbar', array(
     'collapse' => true,
     'brandLabel' => BsHtml::icon(BsHtml::GLYPHICON_HOME),
     'brandUrl' => Yii::app()->homeUrl,
@@ -49,7 +43,8 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
         array(  'class' => 'bootstrap.widgets.BsNav',
                 'type' => 'navbar',
                 'activateParents' => true,
-                'items' => array(array('label' => 'Bodega', 'url' => array('/Bodega/admin'), 'icon' => BsHtml::GLYPHICON_SHOPPING_CART
+                'items' => array(
+                array('label' => 'Bodega', 'url' => array('/Bodega/admin'), 'icon' => BsHtml::GLYPHICON_SHOPPING_CART
                         ),
                 array('label' => 'Caja', 'url' => array('/venta/admin'), 'icon' => BsHtml::GLYPHICON_USD
                         ),
@@ -69,7 +64,9 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                 'type' => 'navbar',
                 'activateParents' => true,
                 'items' => array(
-                
+
+                array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USD
+                        ),                
                 array('label' => 'Login', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
@@ -86,7 +83,6 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                 'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT
             )
         )
-        
     )
 ));
 ?>
@@ -103,7 +99,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by Elizabeth Marquez - Pablo Morales.<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->

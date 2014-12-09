@@ -32,7 +32,7 @@ class UsuarioController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // Permite a los usuarios autenticados ...
-				'actions'=>array('create','update','view'),
+				'actions'=>array('create','update','view','perfil'),
 				'users'=>array('@'),
 			),
 			array('allow', // Permite al administrador
@@ -87,46 +87,41 @@ class UsuarioController extends Controller
 	{
 		$roles = TipoRol::model()->findAll();		
 		$model = new Usuario;
-		
+				
 		// Uncomment the following line if AJAX validation is needed
 	    
 		$this->performAjaxValidation($model);
 		if(isset($_POST['Usuario']))
 		{
+
 			$model->attributes=$_POST['Usuario'];
 			$model->USUCREATE = date('Y-m-d');
-
-			if($model->save()){
+			if($model->USUPASSWORD == null)
+			$model->USUPASSWORD=substr($model->USURUT,0,2).substr($model->USURUT,3,3);
+			
+			if (Usuario::model()->exists($model->USURUT='USURUT'))
+				{
+					Yii::app()->user->setFlash('error','<div class="alert alert-danger">
+	  						<strong>Rut</strong> ya existe.
+							</div>');
+					$model->USURUT = null;
+				}
+			else{
+					$model->attributes = $_POST['Usuario'];
+					if($model->save()){
 					//$this->redirect(array('view','id'=>$model->USU_ID));
 					if($model->ROL_ID != '1') $this->redirect(array('asignar', 'id'=>$model->USU_ID));
-					else $this->redirect(array('view','id'=>$model->USU_ID));
-			}		
-
+					else 
+						$this->redirect(array('view','id'=>$model->USU_ID));
+				}
+			
+			}
 		}	
 
 		$this->render('create',array('model'=>$model,'roles'=>$roles));
 	}
 
-	public function generador($longitud, $letras_min, $letras_may, $numeros, $simbolos)
-	{
-		//generador(6,true,true,false);
-
-		$variacaracteres = $letras_min?'abcdefghijklmnopqrstuvwxyz':''; //si es verdadero letras : si es falso nada.
-		$variacaracteres .= $letras_may?'ABCDEFGHIJKLMNOPQRSTUVWXYX':'';
-		$variacaracteres .= $numeros?'1234567890':'';
-		$variacaracteres .= $simbolos?'!#%&=¨*?/':'';
-
-		$i=0;
-		$clave= '';
-		while($i < $longitud)
-		{
-			$numrad = rand(0, strlen($variacaracteres)-1);
-			$clave .= substr($variacaracteres, $numrad, 1);
-			$i++;
-		}
-
-		return $clave;
-	}
+	
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -228,7 +223,19 @@ class UsuarioController extends Controller
 		return $model;
 	}
 
-	
+	public function ActionPerfil($id)
+	{
+		$model=$this->loadModel($id); //carga los datos del ID de la persona para editarla
+
+		if(isset($_POST['Usuario'])) //si existen datos enviados
+		{
+			$model()->attributes= $_POST['Usuario']; //paso los datos al modelo
+			if($model()->save()) //si lo guarda
+				$this->redirect(array('view','id'=>$model->USU_ID)); //lo envia a la vista.
+		}
+
+		$this->render('perfil', array('model'=>$model));
+	}
 
 	/**
 	 * Performs the AJAX validation.
