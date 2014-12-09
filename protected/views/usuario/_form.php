@@ -64,7 +64,7 @@ Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
     
   <div class="form" align="center">
   <div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-8">formulario
+  <div class="col-xs-12 col-sm-6 col-md-12">formulario
    <!-- <?php echo $form->labelEx($model,'ROL_ID'); ?>-->
     <?php echo $form->dropDownListControlGroup($model,'ROL_ID', 
                             CHtml::listData(TipoRol::model()->findAll(), 'ROL_ID', 'ROLNOMBRE'),
@@ -106,10 +106,7 @@ Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
         'Deshabilitado'=>'Deshabilitado'
       )); ?>
     <?php echo $form->error($model,'USUESTADO'); ?>
-  </div> <!--fin col-->
-  <div class="col-xs-6 col-md-4">botones
-
-  </div>  
+  </div> <!--fin col--> 
 
 
   </div> <!--Fin row-->
