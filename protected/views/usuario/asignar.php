@@ -5,6 +5,12 @@
 //var_dump($aux);
 
 ?>
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+  'id'=>'usuario-_form-form',
+  'enableAjaxValidation'=>false,
+)); ?>
+
 <?php
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL, //en linea (boton al lado)
@@ -79,6 +85,6 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
 <?php $this->endWidget();?>
 
-
+<?php $this->endWidget();?>
   
 

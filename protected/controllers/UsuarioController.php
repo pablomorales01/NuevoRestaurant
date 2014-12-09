@@ -73,6 +73,7 @@ class UsuarioController extends Controller
 		{
 			$model->attributes=$_POST['Usuario'];
 			if($model->save())
+
 				$this->redirect(array('view','id'=>$model->USU_ID));
 		}
 		}
@@ -87,7 +88,8 @@ class UsuarioController extends Controller
 	{
 		$roles = TipoRol::model()->findAll();		
 		$model = new Usuario;
-				
+		$todos = Usuario:: model()->findAll();
+		$aux = 0;
 		// Uncomment the following line if AJAX validation is needed
 	    
 		$this->performAjaxValidation($model);
@@ -99,27 +101,25 @@ class UsuarioController extends Controller
 			if($model->USUPASSWORD == null)
 			$model->USUPASSWORD=substr($model->USURUT,0,2).substr($model->USURUT,3,3);
 			
-			if (Usuario::model()->exists($model->USURUT='USURUT'))
-				{
-					Yii::app()->user->setFlash('error','<div class="alert alert-danger">
+			foreach ($todos as $rut) {
+				if($rut->USURUT == $model->USURUT){
+				Yii::app()->user->setFlash('error','<div class="alert alert-danger">
 	  						<strong>Rut</strong> ya existe.
 							</div>');
-					$model->USURUT = null;
+					$aux = 1;
 				}
-			else{
-					$model->attributes = $_POST['Usuario'];
-					if($model->save()){
-					//$this->redirect(array('view','id'=>$model->USU_ID));
-					if($model->ROL_ID != '1') $this->redirect(array('asignar', 'id'=>$model->USU_ID));
-					else 
-						$this->redirect(array('view','id'=>$model->USU_ID));
-				}
+			}
 			
+			if($aux == 0){
+				if($model->save()){
+				if($model->ROL_ID != '1') $this->redirect(array('asignar', 'id'=>$model->USU_ID));
+				else $this->redirect(array('view','id'=>$model->USU_ID));	
+				}
 			}
 		}	
-
-		$this->render('create',array('model'=>$model,'roles'=>$roles));
-	}
+			$this->render('create',array('model'=>$model,'roles'=>$roles));
+			
+		}
 
 	
 	/**
