@@ -28,7 +28,7 @@ $this->menu=array(
 		'USUNOMBRES',
 		'USUAPELLIDOS',
 		'USURUT',
-		'Rol.ROLNOMBRE',
+		'rOL.ROLNOMBRE',
 		'USUTELEFONO',
 		'rESTO.RESTONOMBRE',
 		'USUESTADO',		

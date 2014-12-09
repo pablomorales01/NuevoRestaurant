@@ -54,7 +54,7 @@ class TipoRol extends CActiveRecord
 	{
 		return array(
 			'ROL_ID' => 'ROL_ID',
-			'ROLNOMBRE' => 'ROL',
+			'ROLNOMBRE' => 'Rol',
 		);
 	}
 

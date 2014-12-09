@@ -11,9 +11,9 @@
  * @property string $USUCREATE
  * @property string $USUNOMBRES
  * @property string $USUAPELLIDOS
- * @property string $USURUT
  * @property integer $USUTELEFONO
  * @property string $USUESTADO
+ * @property string $USURUT
  *
  * The followings are the available model relations:
  * @property Comanda[] $comandas
@@ -24,7 +24,6 @@
  */
 class Usuario extends CActiveRecord
 {
-
 	/**
 	 * @return string the associated database table name
 	 */
@@ -41,16 +40,16 @@ class Usuario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('USURUT, USUNOMBRES, USUAPELLIDOS, ROL_ID', 'required'),
 			array('RESTO_ID, ROL_ID, USUTELEFONO', 'numerical', 'integerOnly'=>true),
 			array('USUPASSWORD', 'length', 'max'=>30),
 			array('USUNOMBRES, USUAPELLIDOS', 'length', 'max'=>25),
-			array('USURUT', 'length', 'max'=>12),
 			array('USUESTADO', 'length', 'max'=>13),
+			array('USURUT', 'length', 'max'=>12),
 			array('USUCREATE', 'safe'),
-			array('USUNOMBRES, USUAPELLIDOS, USURUT, ROL_ID', 'required'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('USU_ID, RESTO_ID, ROL_ID, USUPASSWORD, USUCREATE, USUNOMBRES, USUAPELLIDOS, USURUT, USUTELEFONO, USUESTADO', 'safe', 'on'=>'search'),
+			array('USU_ID, RESTO_ID, ROL_ID, USUPASSWORD, USUCREATE, USUNOMBRES, USUAPELLIDOS, USUTELEFONO, USUESTADO, USURUT', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,16 +75,16 @@ class Usuario extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'USU_ID' => 'Id usuario',
+			'USU_ID' => 'id usuario',
 			'RESTO_ID' => 'Restaurant',
 			'ROL_ID' => 'Rol',
 			'USUPASSWORD' => 'Password',
 			'USUCREATE' => 'Fecha de creación',
 			'USUNOMBRES' => 'Nombres',
 			'USUAPELLIDOS' => 'Apellidos',
-			'USURUT' => 'Rut',
 			'USUTELEFONO' => 'Teléfono',
-			'USUESTADO' => 'Estado',
+			'USUESTADO' => 'Estado cuenta',
+			'USURUT' => 'Rut',
 		);
 	}
 
@@ -107,16 +106,16 @@ class Usuario extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('USU_ID',$this->USU_ID,true);
-		$criteria->compare('RESTO_ID',$this->RESTO_ID,true);
-		$criteria->compare('ROL_ID',$this->ROL_ID,true);
+		$criteria->compare('USU_ID',$this->USU_ID);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
+		$criteria->compare('ROL_ID',$this->ROL_ID);
 		$criteria->compare('USUPASSWORD',$this->USUPASSWORD,true);
 		$criteria->compare('USUCREATE',$this->USUCREATE,true);
 		$criteria->compare('USUNOMBRES',$this->USUNOMBRES,true);
 		$criteria->compare('USUAPELLIDOS',$this->USUAPELLIDOS,true);
-		$criteria->compare('USURUT',$this->USURUT,true);
-		$criteria->compare('USUTELEFONO',$this->USUTELEFONO,true);
+		$criteria->compare('USUTELEFONO',$this->USUTELEFONO);
 		$criteria->compare('USUESTADO',$this->USUESTADO,true);
+		$criteria->compare('USURUT',$this->USURUT,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -129,34 +128,6 @@ class Usuario extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Usuario the static model class
 	 */
-
-	public function getNombre()
-	{
-		return CHtml::ListData(Restaurant::model()->findAll(), 'RESTO_ID', 'RESTONOMBRE');
-	}
-
-	public function ifrutexists($attribute,$params)
-        {
-                $rut =$this->$attribute;
-
-                $user = new Usuario();
-
-                if($params['exists'] === 'nonexists')
-                {
-                        if ($user->findByAttributes(array('USURUT'=>$rut)))
-                                $this->addError($attribute, 'Rut existe');           
-
-                }
-                if($params['exists'] === 'exists')
-                {
-                if(!$user->findByAttributes(array('USURUT'=>$rut)))
-                        $this->addError($attribute, 'rut no existe');
-            }
-                
-        }
-
-
-
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
