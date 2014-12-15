@@ -229,9 +229,13 @@ class UsuarioController extends Controller
 
 		if(isset($_POST['Usuario'])) //si existen datos enviados
 		{
-			$model()->attributes= $_POST['Usuario']; //paso los datos al modelo
-			if($model()->save()) //si lo guarda
-				$this->redirect(array('view','id'=>$model->USU_ID)); //lo envia a la vista.
+			$model->attributes = $_POST['Usuario']; //paso los datos al modelo
+			if($model->USUPASSWORD == null)
+				{
+					$model->USUPASSWORD=substr($model->USURUT,0,2).substr($model->USURUT,3,3);
+				}
+			if($model->save()) //si lo guarda
+			 	$this->redirect(array('view','id'=>$model->USU_ID)); //lo envia a la vista.
 		}
 
 		$this->render('perfil', array('model'=>$model));

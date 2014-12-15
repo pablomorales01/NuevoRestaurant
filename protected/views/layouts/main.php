@@ -65,7 +65,7 @@
                 'activateParents' => true,
                 'items' => array(
 
-                array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USD
+                array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
                 array('label' => 'Login', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
