@@ -8,22 +8,11 @@
  * @property string $username
  * @property string $USUNOMBRES
  * @property string $USUAPELLIDOS
- * @property string $ROLNOMBRE
+ * @property string $USUROL
  * @property string $password
  */
 class UsuariosLogin extends CActiveRecord
 {
-
-	public function validatePassword($password)
-	{
-	return $this->hashPassword($password)===$this->password;
-	}
- 
-	public function hashPassword($password)
-	{
-		return MD5($password);
-	}
-	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -40,13 +29,15 @@ class UsuariosLogin extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('USUROL', 'required'),
 			array('USU_ID', 'numerical', 'integerOnly'=>true),
 			array('username', 'length', 'max'=>12),
-			array('USUNOMBRES, USUAPELLIDOS, ROLNOMBRE', 'length', 'max'=>25),
+			array('USUNOMBRES, USUAPELLIDOS', 'length', 'max'=>25),
+			array('USUROL', 'length', 'max'=>19),
 			array('password', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('USU_ID, username, USUNOMBRES, USUAPELLIDOS, ROLNOMBRE, password', 'safe', 'on'=>'search'),
+			array('USU_ID, username, USUNOMBRES, USUAPELLIDOS, USUROL, password', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,12 +58,12 @@ class UsuariosLogin extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'USU_ID' => 'Id usuario',
-			'username' => 'Nombre de usuario',
-			'USUNOMBRES' => 'Nombres',
-			'USUAPELLIDOS' => 'Apellidos',
-			'ROLNOMBRE' => 'Rol',
-			'password' => 'Contraseña',
+			'USU_ID' => 'Usu',
+			'username' => 'Username',
+			'USUNOMBRES' => 'Usunombres',
+			'USUAPELLIDOS' => 'Usuapellidos',
+			'USUROL' => 'Usurol',
+			'password' => 'Password',
 		);
 	}
 
@@ -98,7 +89,7 @@ class UsuariosLogin extends CActiveRecord
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('USUNOMBRES',$this->USUNOMBRES,true);
 		$criteria->compare('USUAPELLIDOS',$this->USUAPELLIDOS,true);
-		$criteria->compare('ROLNOMBRE',$this->ROLNOMBRE,true);
+		$criteria->compare('USUROL',$this->USUROL,true);
 		$criteria->compare('password',$this->password,true);
 
 		return new CActiveDataProvider($this, array(

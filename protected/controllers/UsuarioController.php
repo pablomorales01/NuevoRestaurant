@@ -61,8 +61,6 @@ class UsuarioController extends Controller
 	public function actionAsignar($id)
 	{
 		$restos= Restaurant::model()->findAll();
-		//$model =Usuario::model()->findByPk('USU_ID'=$id);
-
 		$model = $this->loadModel($id);
 		if($restos == null)
 		$model->delete();
@@ -86,7 +84,6 @@ class UsuarioController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$roles = TipoRol::model()->findAll();		
 		$model = new Usuario;
 		$todos = Usuario:: model()->findAll();
 		$aux = 0;
@@ -95,7 +92,6 @@ class UsuarioController extends Controller
 		$this->performAjaxValidation($model);
 		if(isset($_POST['Usuario']))
 		{
-
 			$model->attributes=$_POST['Usuario'];
 			$model->USUCREATE = date('Y-m-d');
 			if($model->USUPASSWORD == null)
@@ -112,12 +108,12 @@ class UsuarioController extends Controller
 			
 			if($aux == 0){
 				if($model->save()){
-				if($model->ROL_ID != '1') $this->redirect(array('asignar', 'id'=>$model->USU_ID));
+				if($model->USUROL != 'Super administrador') $this->redirect(array('asignar', 'id'=>$model->USU_ID));
 				else $this->redirect(array('view','id'=>$model->USU_ID));	
 				}
 			}
 		}	
-			$this->render('create',array('model'=>$model,'roles'=>$roles));
+			$this->render('create',array('model'=>$model));
 			
 		}
 
@@ -130,21 +126,19 @@ class UsuarioController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-		$roles = TipoRol::model()->findAll();
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Usuario']))
 		{
 			$model->attributes=$_POST['Usuario'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->USU_ID));
+			if($model->USUPASSWORD == null)
+			$model->USUPASSWORD=substr($model->USURUT,0,2).substr($model->USURUT,3,3);
+			if($model->save()){
+				if($model->USUROL != 'Super administrador') $this->redirect(array('asignar', 'id'=>$model->USU_ID));
+				else $this->redirect(array('view','id'=>$model->USU_ID));	
+			}
 		}
-
 		$this->render('update',array(
-			'model'=>$model, 'roles'=>$roles
-		));
+			'model'=>$model));
 	}
 
 	public function actionLogin()
@@ -200,7 +194,6 @@ class UsuarioController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Usuario('search');
-		$roles = TipoRol::model()->findAll();
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Usuario']))
 			$model->attributes=$_GET['Usuario'];
