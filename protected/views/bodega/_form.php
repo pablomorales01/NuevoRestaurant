@@ -17,6 +17,12 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 ));
 ?>
 
+<?php $form=$this->beginWidget('CActiveForm', array(
+  'id'=>'bodega-form',
+  'enableAjaxValidation'=>false,
+)); ?>
+
+
 	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -32,5 +38,5 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 	</div>
 
 <?php $this->endWidget(); ?>
-
+<?php $this->endWidget(); ?>
 </div><!-- form -->
