@@ -44,7 +44,7 @@
                 'type' => 'navbar',
                 'activateParents' => true,
                 'items' => array(
-                array('label' => 'Bodega', 'url' => array('/Bodega/admin'), 'icon' => BsHtml::GLYPHICON_SHOPPING_CART
+                array('label' => 'Bodega', 'url' => array('/Bodega/productos'), 'icon' => BsHtml::GLYPHICON_SHOPPING_CART
                         ),
                 array('label' => 'Caja', 'url' => array('/venta/admin'), 'icon' => BsHtml::GLYPHICON_USD
                         ),

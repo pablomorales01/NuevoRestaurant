@@ -36,7 +36,7 @@ class BodegaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete', 'productos'),
 				'users'=>array('Super administrador'),
 			),
 			array('deny',  // deny all users
@@ -60,6 +60,7 @@ class BodegaController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
+
 	public function actionCreate()
 	{
 		$model=new Bodega;
@@ -141,6 +142,16 @@ class BodegaController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+	public function actionProductos()
+	{
+		$model =new EnBodega('search');
+		$model->unsetAttributes();
+		if(isset($_GET['EnBodega']))
+			$model->attributes = $GET['EnBodega'];
+		
+		$this->render('productos', array(
+			'model'=>$model,));
 	}
 
 	/**

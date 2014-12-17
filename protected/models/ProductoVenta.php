@@ -33,7 +33,7 @@ class ProductoVenta extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('MENU_ID', 'numerical', 'integerOnly'=>true),
-			array('PVENTANOMBRE', 'length', 'max'=>15),
+			array('PVENTANOMBRE', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('PVENTA_ID, MENU_ID, PVENTANOMBRE', 'safe', 'on'=>'search'),
@@ -61,9 +61,9 @@ class ProductoVenta extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'PVENTA_ID' => 'Pventa',
-			'MENU_ID' => 'Menu',
-			'PVENTANOMBRE' => 'Pventanombre',
+			'PVENTA_ID' => 'producto venta id',
+			'MENU_ID' => 'Menú',
+			'PVENTANOMBRE' => 'Producto',
 		);
 	}
 
