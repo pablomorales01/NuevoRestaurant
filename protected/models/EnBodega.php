@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'en_bodega':
  * @property string $producto
  * @property string $bodega
+ * @property string $tipo
  */
 class EnBodega extends CActiveRecord
 {
@@ -26,9 +27,10 @@ class EnBodega extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('producto, bodega', 'length', 'max'=>25),
+			array('tipo', 'length', 'max'=>14),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('producto, bodega', 'safe', 'on'=>'search'),
+			array('producto, bodega, tipo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +53,7 @@ class EnBodega extends CActiveRecord
 		return array(
 			'producto' => 'Producto',
 			'bodega' => 'Bodega',
+			'tipo' => 'Tipo',
 		);
 	}
 
@@ -74,6 +77,7 @@ class EnBodega extends CActiveRecord
 
 		$criteria->compare('producto',$this->producto,true);
 		$criteria->compare('bodega',$this->bodega,true);
+		$criteria->compare('tipo',$this->tipo,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

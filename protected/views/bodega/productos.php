@@ -3,14 +3,10 @@
 /* @var $model Bodega */
 
 $this->breadcrumbs=array(
-	'Bodegas'=>array('index'),
+	'productos'=>array('index'),
 	'Manage',
 );
 
-$this->menu=array(
-	array('label'=>'List Bodega', 'url'=>array('index')),
-	array('label'=>'Create Bodega', 'url'=>array('create')),
-);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -18,7 +14,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#bodega-grid').yiiGridView('update', {
+	$('#productos-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -35,6 +31,7 @@ $('.search-form form').submit(function(){
 	'columns'=>array(
 		'producto',
 		'bodega',
+		'tipo',
 		array(
 			'class'=>'CButtonColumn',
 		),
