@@ -86,7 +86,7 @@ class ProductoFinalController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+		$bodega = Bodega::model()->findAll();
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -98,7 +98,7 @@ class ProductoFinalController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 'bodega'=>$bodega,
 		));
 	}
 

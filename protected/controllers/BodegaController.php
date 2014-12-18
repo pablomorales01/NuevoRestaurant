@@ -174,10 +174,10 @@ class BodegaController extends Controller
 		    case 'ver':
 					switch ($tipo) {
 						case 'MATERIA PRIMA':
-						$this->redirect(array(''));	
+						$this->redirect(array('materiaPrima/view', 'id'=>$id));	
 							break;
 						case 'PRODUCTO FINAL':
-						$this->redirect(array(''));
+						$this->redirect(array('productoFinal/view', 'id'=>$id));
 							break;
 						default:
 							# code...
@@ -187,10 +187,10 @@ class BodegaController extends Controller
 			case 'eliminar':
 					switch ($tipo) {
 						case 'MATERIA PRIMA':
-						$this->redirect(array(''));
+						$this->redirect(array('materiaPrima/delete', 'id'=>$id));
 							break;
 						case 'PRODUCTO FINAL':
-						$this->redirect(array(''));
+						$this->redirect(array('productoFinal/delete', 'id'=>$id));
 						    break;
 						default:
 							# code...

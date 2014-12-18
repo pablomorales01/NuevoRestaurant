@@ -88,6 +88,7 @@ class MateriaPrimaController extends Controller
 	{
 		$model=$this->loadModel($id);
 		$bodega = Bodega::model()->findAll();//todas las bodegas
+		$TMP = TipoMateriaPrima::model()->findAll();
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -99,7 +100,7 @@ class MateriaPrimaController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,'bodega'=>$bodega
+			'model'=>$model,'bodega'=>$bodega, 'TMP'=>$TMP,
 		));
 	}
 
