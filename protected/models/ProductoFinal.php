@@ -6,11 +6,10 @@
  * The followings are the available columns in table 'producto_final':
  * @property integer $PVENTA_ID
  * @property string $PVENTANOMBRE
- * @property integer $MENU_ID
  * @property integer $BODEGA_ID
  * @property integer $PFINALSTOCK
- * @property integer $GRAMOS
  * @property integer $CALORIAS
+ * @property integer $GRAMOS
  *
  * The followings are the available model relations:
  * @property ProductoVenta $pVENTA
@@ -35,11 +34,11 @@ class ProductoFinal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MENU_ID, BODEGA_ID, PFINALSTOCK, GRAMOS, CALORIAS', 'numerical', 'integerOnly'=>true),
-			array('PVENTANOMBRE', 'length', 'max'=>15),
+			array('BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'numerical', 'integerOnly'=>true),
+			array('PVENTANOMBRE', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PVENTA_ID, PVENTANOMBRE, MENU_ID, BODEGA_ID, PFINALSTOCK, GRAMOS, CALORIAS', 'safe', 'on'=>'search'),
+			array('PVENTA_ID, PVENTANOMBRE, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,13 +62,12 @@ class ProductoFinal extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'PVENTA_ID' => 'Pventa',
-			'PVENTANOMBRE' => 'Pventanombre',
-			'MENU_ID' => 'Menu',
+			'PVENTA_ID' => 'id Venta',
+			'PVENTANOMBRE' => 'Nombre',
 			'BODEGA_ID' => 'Bodega',
-			'PFINALSTOCK' => 'Pfinalstock',
-			'GRAMOS' => 'Gramos',
+			'PFINALSTOCK' => 'Stock',
 			'CALORIAS' => 'Calorias',
+			'GRAMOS' => 'Gramos',
 		);
 	}
 
@@ -93,11 +91,10 @@ class ProductoFinal extends CActiveRecord
 
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
 		$criteria->compare('PVENTANOMBRE',$this->PVENTANOMBRE,true);
-		$criteria->compare('MENU_ID',$this->MENU_ID);
 		$criteria->compare('BODEGA_ID',$this->BODEGA_ID);
 		$criteria->compare('PFINALSTOCK',$this->PFINALSTOCK);
-		$criteria->compare('GRAMOS',$this->GRAMOS);
 		$criteria->compare('CALORIAS',$this->CALORIAS);
+		$criteria->compare('GRAMOS',$this->GRAMOS);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

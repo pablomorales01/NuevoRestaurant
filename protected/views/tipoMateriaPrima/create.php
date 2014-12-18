@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create TipoMateriaPrima</h1>
+<h1>Nuevo tipo de materia prima</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

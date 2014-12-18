@@ -6,19 +6,18 @@
  * The followings are the available columns in table 'usuario':
  * @property integer $USU_ID
  * @property integer $RESTO_ID
- * @property integer $ROL_ID
+ * @property string $USUROL
  * @property string $USUPASSWORD
  * @property string $USUCREATE
  * @property string $USUNOMBRES
  * @property string $USUAPELLIDOS
+ * @property string $USURUT
  * @property integer $USUTELEFONO
  * @property string $USUESTADO
- * @property string $USURUT
  *
  * The followings are the available model relations:
  * @property Comanda[] $comandas
  * @property Comanda[] $comandas1
- * @property TipoRol $rOL
  * @property Restaurant $rESTO
  * @property Venta[] $ventas
  */
@@ -40,16 +39,17 @@ class Usuario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('USURUT, USUNOMBRES, USUAPELLIDOS, ROL_ID', 'required'),
-			array('RESTO_ID, ROL_ID, USUTELEFONO', 'numerical', 'integerOnly'=>true),
+			array('USURUT, USUNOMBRES, USUAPELLIDOS, USUROL', 'required'),
+			array('RESTO_ID, USUTELEFONO', 'numerical', 'integerOnly'=>true),
+			array('USUROL', 'length', 'max'=>19),
 			array('USUPASSWORD', 'length', 'max'=>30),
 			array('USUNOMBRES, USUAPELLIDOS', 'length', 'max'=>25),
-			array('USUESTADO', 'length', 'max'=>13),
 			array('USURUT', 'length', 'max'=>12),
+			array('USUESTADO', 'length', 'max'=>13),
 			array('USUCREATE', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('USU_ID, RESTO_ID, ROL_ID, USUPASSWORD, USUCREATE, USUNOMBRES, USUAPELLIDOS, USUTELEFONO, USUESTADO, USURUT', 'safe', 'on'=>'search'),
+			array('USU_ID, RESTO_ID, USUROL, USUPASSWORD, USUCREATE, USUNOMBRES, USUAPELLIDOS, USURUT, USUTELEFONO, USUESTADO', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,7 +63,6 @@ class Usuario extends CActiveRecord
 		return array(
 			'comandas' => array(self::HAS_MANY, 'Comanda', 'USU_USU_ID'),
 			'comandas1' => array(self::HAS_MANY, 'Comanda', 'USU_ID'),
-			'rOL' => array(self::BELONGS_TO, 'TipoRol', 'ROL_ID'),
 			'rESTO' => array(self::BELONGS_TO, 'Restaurant', 'RESTO_ID'),
 			'ventas' => array(self::HAS_MANY, 'Venta', 'USU_ID'),
 		);
@@ -75,16 +74,16 @@ class Usuario extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'USU_ID' => 'id usuario',
+			'USU_ID' => 'Id usuario',
 			'RESTO_ID' => 'Restaurant',
-			'ROL_ID' => 'Rol',
+			'USUROL' => 'Rol',
 			'USUPASSWORD' => 'Password',
 			'USUCREATE' => 'Fecha de creación',
 			'USUNOMBRES' => 'Nombres',
 			'USUAPELLIDOS' => 'Apellidos',
-			'USUTELEFONO' => 'Teléfono',
-			'USUESTADO' => 'Estado cuenta',
 			'USURUT' => 'Rut',
+			'USUTELEFONO' => 'Teléfono',
+			'USUESTADO' => 'Estado',
 		);
 	}
 
@@ -108,14 +107,14 @@ class Usuario extends CActiveRecord
 
 		$criteria->compare('USU_ID',$this->USU_ID);
 		$criteria->compare('RESTO_ID',$this->RESTO_ID);
-		$criteria->compare('ROL_ID',$this->ROL_ID);
+		$criteria->compare('USUROL',$this->USUROL,true);
 		$criteria->compare('USUPASSWORD',$this->USUPASSWORD,true);
 		$criteria->compare('USUCREATE',$this->USUCREATE,true);
 		$criteria->compare('USUNOMBRES',$this->USUNOMBRES,true);
 		$criteria->compare('USUAPELLIDOS',$this->USUAPELLIDOS,true);
+		$criteria->compare('USURUT',$this->USURUT,true);
 		$criteria->compare('USUTELEFONO',$this->USUTELEFONO);
 		$criteria->compare('USUESTADO',$this->USUESTADO,true);
-		$criteria->compare('USURUT',$this->USURUT,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

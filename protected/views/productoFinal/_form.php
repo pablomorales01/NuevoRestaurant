@@ -13,40 +13,45 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
-)); ?>
+)); 
+
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+
+?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'PVENTANOMBRE'); ?>
-		<?php echo $form->textField($model,'PVENTANOMBRE',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->textFieldControlGroup($model,'PVENTANOMBRE',array('size'=>15,'maxlength'=>15)); ?>
 		<?php echo $form->error($model,'PVENTANOMBRE'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'MENU_ID'); ?>
-		<?php echo $form->textField($model,'MENU_ID'); ?>
-		<?php echo $form->error($model,'MENU_ID'); ?>
+		<?php echo $form->dropDownListControlGroup($model, 'BODEGA_ID', 
+                            CHtml::listData($bodega, 'BODEGA_ID', 'BODEGANOMBRE'),
+                             array(
+                                'prompt' => 'Seleccione')
+                             );?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'BODEGA_ID'); ?>
-		<?php echo $form->textField($model,'BODEGA_ID'); ?>
-		<?php echo $form->error($model,'BODEGA_ID'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'PFINALSTOCK'); ?>
-		<?php echo $form->textField($model,'PFINALSTOCK'); ?>
+		<?php echo $form->textFieldControlGroup($model,'PFINALSTOCK'); ?>
 		<?php echo $form->error($model,'PFINALSTOCK'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
+<?php $this->endWidget(); ?>
 </div><!-- form -->

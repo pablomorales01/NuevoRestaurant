@@ -15,4 +15,4 @@ $this->menu=array(
 
 <h1>Crear Materia Prima</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model, 'bodega'=>$bodega)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'bodega'=>$bodega, 'TMP'=>$TMP)); ?>

@@ -37,7 +37,7 @@ class MateriaPrimaController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('Super administrador'),
+				'users'=>array('Super administrador','Administrador'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -64,6 +64,7 @@ class MateriaPrimaController extends Controller
 	{
 		$model=new MateriaPrima;
 		$bodega = Bodega::model()->findAll();//todas las bodegas
+		$TMP = TipoMateriaPrima::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -75,7 +76,7 @@ class MateriaPrimaController extends Controller
 				$this->redirect(array('view','id'=>$model->MP_ID));
 		}
 
-		$this->render('create',array('model'=>$model, 'bodega'=>$bodega));
+		$this->render('create',array('model'=>$model, 'bodega'=>$bodega, 'TMP'=>$TMP));
 	}
 
 	/**
@@ -86,7 +87,7 @@ class MateriaPrimaController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+		$bodega = Bodega::model()->findAll();//todas las bodegas
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -98,7 +99,7 @@ class MateriaPrimaController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model,'bodega'=>$bodega
 		));
 	}
 

@@ -17,22 +17,7 @@
   'enableAjaxValidation'=>false,
 )); ?>
 
-<?php 
-    if($roles == null){
-
-
-      echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen Roles en el sistema. ')
-        .'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array(
-          'url' => '../TipoRol/create'
-          )));
-
-    }
-
-    else{
-
-   ?>
-
-   <?php
+<?php
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
     'enableAjaxValidation' => true,
@@ -52,7 +37,7 @@ Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
 ");
 ?>
 
-  <p class="note">Fields with <span class="required">*</span> are required.</p>
+  <p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
   <?php echo $form->errorSummary($model); ?>
 
@@ -65,42 +50,32 @@ Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
   <div class="form" align="center">
   <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-12">formulario
-   <!-- <?php echo $form->labelEx($model,'ROL_ID'); ?>-->
-    <?php echo $form->dropDownListControlGroup($model,'ROL_ID', 
-                            CHtml::listData(TipoRol::model()->findAll(), 'ROL_ID', 'ROLNOMBRE'),
-                             array(
-                                'prompt' => 'Seleccione')); ?>
-    <?php echo $form->error($model,'ROL_ID'); ?>
-    
-    <!--<?php echo $form->labelEx($model,'USUTELEFONO'); ?>-->
-    <?php echo $form->textFieldControlGroup($model,'USUTELEFONO'); ?>
-    <?php echo $form->error($model,'USUTELEFONO'); ?>
-  
+    <?php echo $form->dropDownListControlGroup($model,'USUROL', array(
+        'Super administrador'=> 'Super administrador',
+        'Administrador'=>'Administrador',
+        'Cocina' => 'Cocina',
+        'Bodega' => 'Bodega',
+        'Garzón' => 'Garzón',
+        'Cajero' => 'Cajero'),
+      array('prompt' => 'Seleccione')      
+      ); ?>
+    <?php echo $form->error($model,'USUROL'); ?>
 
-  
-    <!--<?php echo $form->labelEx($model,'USUPASSWORD'); ?>-->
-    <?php echo $form->passwordFieldControlGroup($model,'USUPASSWORD'); ?>
-    <?php echo $form->error($model,'USUPASSWORD'); ?>
-  
-
-  
-    <!--<?php echo $form->labelEx($model,'USUNOMBRES'); ?>-->
     <?php echo $form->textFieldControlGroup($model,'USUNOMBRES'); ?>
-    <?php echo $form->error($model,'USUNOMBRES'); ?>
-  
+    <?php echo $form->error($model,'USUNOMBRES'); ?> 
 
-  
-   <!-- <?php echo $form->labelEx($model,'USUAPELLIDOS'); ?>-->
     <?php echo $form->textFieldControlGroup($model,'USUAPELLIDOS'); ?>
     <?php echo $form->error($model,'USUAPELLIDOS'); ?>
   
-
-   <!-- <?php echo $form->labelEx($model,'USURUT'); ?>-->
     <?php echo $form->textFieldControlGroup($model,'USURUT'); ?>
     <?php echo $form->error($model,'USURUT'); ?>
-  
-
-    <!--<?php echo $form->labelEx($model,'USUESTADO'); ?>-->
+   
+    <?php echo $form->textFieldControlGroup($model,'USUTELEFONO'); ?>
+    <?php echo $form->error($model,'USUTELEFONO'); ?>
+    
+    <?php echo $form->passwordFieldControlGroup($model,'USUPASSWORD'); ?>
+    <?php echo $form->error($model,'USUPASSWORD'); ?>
+    
     <?php echo $form->dropDownListControlGroup($model,'USUESTADO', array(
         'Habilitado'=> 'Habilitado',
         'Deshabilitado'=>'Deshabilitado'
@@ -117,6 +92,6 @@ Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
 </div><!-- form -->
 <?php 
   $this->endWidget();
-  }   
+ 
   $this->endWidget(); ?>
 

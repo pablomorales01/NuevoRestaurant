@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update MateriaPrima <?php echo $model->MP_ID; ?></h1>
+<h1>Editar materia prima</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'bodega'=>$bodega)); ?>

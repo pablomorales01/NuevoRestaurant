@@ -6,7 +6,7 @@ class ProductoFinalController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/producto_finalLayout';
 
 	/**
 	 * @return array action filters
@@ -37,7 +37,7 @@ class ProductoFinalController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('Super administrador'),
+				'users'=>array('Super administrador','Administrador'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -63,6 +63,7 @@ class ProductoFinalController extends Controller
 	public function actionCreate()
 	{
 		$model=new ProductoFinal;
+		$bodega = Bodega::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -74,9 +75,7 @@ class ProductoFinalController extends Controller
 				$this->redirect(array('view','id'=>$model->PVENTA_ID));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',array('model'=>$model, 'bodega'=>$bodega));
 	}
 
 	/**

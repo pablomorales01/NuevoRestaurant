@@ -42,7 +42,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'value' => '$data->rESTO==null?" ":$data->rESTO->RESTONOMBRE',
 		'filter'=>CHtml::listData(Restaurant::model()->findAll(),'RESTO_ID', 'RESTONOMBRE')
 		),
-		'ROL_ID',
+		'USUROL',
 		'USUPASSWORD',
 		'USUCREATE',
 		'USUNOMBRES',

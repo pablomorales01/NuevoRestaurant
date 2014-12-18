@@ -1,23 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "tipo_rol".
+ * This is the model class for table "en_bodega".
  *
- * The followings are the available columns in table 'tipo_rol':
- * @property integer $ROL_ID
- * @property string $ROLNOMBRE
- *
- * The followings are the available model relations:
- * @property Usuario[] $usuarios
+ * The followings are the available columns in table 'en_bodega':
+ * @property integer $id
+ * @property string $producto
+ * @property string $bodega
+ * @property string $tipo
  */
-class TipoRol extends CActiveRecord
+class EnBodega extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tipo_rol';
+		return 'en_bodega';
 	}
 
 	/**
@@ -28,10 +27,12 @@ class TipoRol extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ROLNOMBRE', 'length', 'max'=>25),
+			array('id', 'numerical', 'integerOnly'=>true),
+			array('producto, bodega', 'length', 'max'=>25),
+			array('tipo', 'length', 'max'=>14),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ROL_ID, ROLNOMBRE', 'safe', 'on'=>'search'),
+			array('id, producto, bodega, tipo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,7 +44,6 @@ class TipoRol extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'usuarios' => array(self::HAS_MANY, 'Usuario', 'ROL_ID'),
 		);
 	}
 
@@ -53,8 +53,10 @@ class TipoRol extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ROL_ID' => 'ROL_ID',
-			'ROLNOMBRE' => 'Rol',
+			'id' => 'ID',
+			'producto' => 'Producto',
+			'bodega' => 'Bodega',
+			'tipo' => 'Tipo',
 		);
 	}
 
@@ -76,8 +78,10 @@ class TipoRol extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ROL_ID',$this->ROL_ID);
-		$criteria->compare('ROLNOMBRE',$this->ROLNOMBRE,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('producto',$this->producto,true);
+		$criteria->compare('bodega',$this->bodega,true);
+		$criteria->compare('tipo',$this->tipo,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -88,7 +92,7 @@ class TipoRol extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TipoRol the static model class
+	 * @return EnBodega the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
