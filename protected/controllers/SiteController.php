@@ -32,12 +32,33 @@ class SiteController extends Controller
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 			
+		$resto = Restaurant::model()->findAll();
+			
 		if(Yii::app()->user->name == 'Super administrador')
 		{
 			$this->redirect(Yii::app()->createUrl('Usuario/admin'));
 		}
-		
-		$this->render('index');
+		else if(Yii::app()->user->name == 'Administrador')
+		{
+			$this->redirect(Yii::app()->createUrl('venta/admin'));
+		}
+		else if(Yii::app()->user->name == 'Cajero')
+		{
+			$this->redirect(Yii::app()->createUrl('venta/admin'));
+		}
+		else if(Yii::app()->user->name == 'Bodega')
+		{
+			$this->redirect(Yii::app()->createUrl('Bodega/admin'));
+		}
+		else if(Yii::app()->user->name == 'Cocina')
+		{
+			$this->redirect(Yii::app()->createUrl('receta/admin'));
+		}
+		else if(Yii::app()->user->name == 'Garzon')
+		{
+			$this->redirect(Yii::app()->createUrl('comanda/admin'));
+		}
+		$this->render('index', array('model'=> $resto));
 	}
 
 	/**
