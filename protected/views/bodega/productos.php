@@ -32,8 +32,28 @@ $('.search-form form').submit(function(){
 		'producto',
 		'bodega',
 		'tipo',
-		array(
-			'class'=>'CButtonColumn',
-		),
+         array(
+            'class' => 'CButtonColumn',
+            'template'=>'{editar} {ver} {eliminar}', // botones a mostrar
+            'buttons'=>array(
+			'editar' => array( //botón para la acción nueva
+		    'label'=>'Editar', // titulo del enlace del botón nuevo
+		    'url'=> 'Yii::app()->createUrl("bodega/redirigir",array("id"=>$data->id,"producto"=>$data->producto,"tipo"=>$data->tipo,"accion"=>"editar"))', //url de la acción nueva
+		    //'visible'=>'($data->fecha_entrega===null)?true:false;'
+		    ),
+		    'ver' => array( //botón para la acción nueva
+		    'label'=>'Ver', // titulo del enlace del botón nuevo
+		    'url'=> 'Yii::app()->createUrl("bodega/redirigir",array("id"=>$data->id,"producto"=>$data->producto,"tipo"=>$data->tipo,"accion"=>"ver"))', //url de la acción nueva
+		    //'visible'=>'($data->fecha_entrega===null)?true:false;'
+		    ),
+		    'eliminar' => array( //botón para la acción nueva
+		    'label'=>'Eliminar', // titulo del enlace del botón nuevo
+		    'url'=> 'Yii::app()->createUrl("bodega/redirigir",array("id"=>$data->id,"producto"=>$data->producto,"tipo"=>$data->tipo,"accion"=>"eliminar"))', //url de la acción nueva
+		    //'visible'=>'($data->fecha_entrega===null)?true:false;'
+		    ),
+			),
+          ),
 	),
-)); ?>
+));
+ ?>
+

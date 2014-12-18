@@ -36,7 +36,7 @@ class BodegaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'productos'),
+				'actions'=>array('admin','delete', 'productos','redirigir'),
 				'users'=>array('Super administrador'),
 			),
 			array('deny',  // deny all users
@@ -152,6 +152,55 @@ class BodegaController extends Controller
 		
 		$this->render('productos', array(
 			'model'=>$model,));
+	}
+
+	public function actionRedirigir($id,$producto,$tipo,$accion)
+	{
+		switch ($accion) {
+			case 'editar':
+					switch ($tipo) {
+						case 'MATERIA PRIMA':
+						$this->redirect(array('materiaPrima/update','id'=>$id));	
+							break;
+						case 'PRODUCTO FINAL':
+						$this->redirect(array('productoFinal/update','id'=>$id));
+							break;
+						
+						default:
+							# code...
+							break;
+					}
+				break;
+		    case 'ver':
+					switch ($tipo) {
+						case 'MATERIA PRIMA':
+						$this->redirect(array(''));	
+							break;
+						case 'PRODUCTO FINAL':
+						$this->redirect(array(''));
+							break;
+						default:
+							# code...
+							break;
+					}
+				break;
+			case 'eliminar':
+					switch ($tipo) {
+						case 'MATERIA PRIMA':
+						$this->redirect(array(''));
+							break;
+						case 'PRODUCTO FINAL':
+						$this->redirect(array(''));
+						    break;
+						default:
+							# code...
+							break;
+					}
+				break;			
+			default:
+				# code...
+				break;
+		}
 	}
 
 	/**
