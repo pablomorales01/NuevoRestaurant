@@ -4,6 +4,11 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php $form=$this->beginWidget('CActiveForm', array(
+  'id'=>'usuario-_form-form',
+  'enableAjaxValidation'=>false,
+)); ?>
+
 <?php
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
@@ -20,41 +25,51 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
         echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen Bodegas en el sistema. ')
             .'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array('url' => '../bodega/create')));   
     }
+else if($TMP == null)
+    {
+        echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen Tipos de Materia Prima en el sistema. ')
+            .'Por favor ingrese una' . BsHtml::alertLink(' Aquí.', array('url' => '../TipoMateriaPrima/create')));
+    }
 else {
 ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary($model);?> 
+    <div class="form" align="center">
+    <div class="row">
 
-	<?php  //PARA LAS BODEGAS
+	 <?php //PARA LAS BODEGAS
                         echo $form->dropDownListControlGroup($model, 'BODEGA_ID', 
                             CHtml::listData($bodega, 'BODEGA_ID', 'BODEGANOMBRE'),
                              array(
                                 'prompt' => 'Seleccione')
                              );
-    ?>
+    
 	
-	<?php echo $form->textFieldControlGroup($model, 'MPNOMBRE', array(
+	echo $form->textFieldControlGroup($model, 'MPNOMBRE', array(
 			'append' => BsHtml::icon(BsHtml::GLYPHICON_USER)));
-	?>
+	
 
-	<?php //PARA LA UNIDAD DE MEDIDA
+	 //PARA LA UNIDAD DE MEDIDA
         echo $form->dropDownListControlGroup($model, 'MPUNIDAD_MEDIDA', array(
-        'prompt' => 'Seleccione',
         'gr'=> 'Gramos', //lo que guarda => lo que muestro
         'Kg'=>'Kilogramos',
         'mL'=>'Mililitros',
-        'L'=>'Litros',
-      ));
-      ?>
+        'L'=>'Litros'),
+         array('prompt' => 'Seleccione') 
+      );
+      
 
-    <?php echo $form->textFieldControlGroup($model, 'MPSTOCK');
+     echo $form->textFieldControlGroup($model, 'MPSTOCK');
 	?>
 	
 	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
-	 
+
 <?php } ?>
+</div>
+</div>
+<?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>

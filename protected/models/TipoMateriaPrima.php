@@ -53,8 +53,8 @@ class TipoMateriaPrima extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'TMP_ID' => 'Tmp',
-			'TMPNOMBRE' => 'Tmpnombre',
+			'TMP_ID' => 'Id',
+			'TMPNOMBRE' => 'Nombre',
 		);
 	}
 

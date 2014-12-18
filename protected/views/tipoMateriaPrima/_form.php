@@ -15,20 +15,31 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
+<?php
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+?>
+
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'TMPNOMBRE'); ?>
-		<?php echo $form->textField($model,'TMPNOMBRE',array('size'=>30,'maxlength'=>30)); ?>
-		<?php echo $form->error($model,'TMPNOMBRE'); ?>
+		<?php echo $form->textFieldControlGroup($model,'TMPNOMBRE'); ?>
+    	<?php echo $form->error($model,'TMPNOMBRE'); ?> 
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 
+<?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

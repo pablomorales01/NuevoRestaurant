@@ -8,7 +8,6 @@
     <ul class="nav nav-pills nav-stacked">
         <li><a href="<?php echo Yii::app()->createUrl('materiaPrima/create'); ?>">Ingresar Materia Prima</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('materiaPrima/admin'); ?>">Administrar Materia Prima</a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('materiaPrima/index'); ?>">Lista de Materia Prima</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('tipoMateriaPrima/admin'); ?>">Tipo de materia prima</a></li>
   </ul>
   </div>
