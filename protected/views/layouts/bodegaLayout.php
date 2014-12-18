@@ -6,13 +6,10 @@
   </div>
   <div class="col-xs-6 col-md-4">Segundo
     <ul class="nav nav-pills nav-stacked">
-    <!--ingeso de bodega-->
-        <li><a href="<?php echo Yii::app()->createUrl('bodega/create'); ?>">Ingresar Bodega</a></li>
-    <!-- ingreso producto final -->
-    <!-- ingreso materia prima -->
-      <li><a href="<?php echo Yii::app()->createUrl(''); ?>">Ingresar producto</a></li>
-    <!-- ingreso tipo de materia prima -->
-    <li><a href="<?php echo Yii::app()->createUrl('tipoMateriaPrima/create'); ?>">Ingresar un tipo de materia prima</a></li>
+    <li><a href="<?php echo Yii::app()->createUrl('bodega/create'); ?>">Ingresar Bodega</a></li>
+      <li><a href="<?php echo Yii::app()->createUrl('materiaPrima/admin'); ?>">Materia prima</a></li>
+    <li><a href="<?php echo Yii::app()->createUrl('productoFinal/admin'); ?>">Producto final</a></li>
+    
     
   </ul>
   </div>
