@@ -4,6 +4,7 @@
  * This is the model class for table "en_bodega".
  *
  * The followings are the available columns in table 'en_bodega':
+ * @property integer $id
  * @property string $producto
  * @property string $bodega
  * @property string $tipo
@@ -26,11 +27,12 @@ class EnBodega extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('id', 'numerical', 'integerOnly'=>true),
 			array('producto, bodega', 'length', 'max'=>25),
 			array('tipo', 'length', 'max'=>14),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('producto, bodega, tipo', 'safe', 'on'=>'search'),
+			array('id, producto, bodega, tipo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +53,7 @@ class EnBodega extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'id' => 'ID',
 			'producto' => 'Producto',
 			'bodega' => 'Bodega',
 			'tipo' => 'Tipo',
@@ -75,6 +78,7 @@ class EnBodega extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('id',$this->id);
 		$criteria->compare('producto',$this->producto,true);
 		$criteria->compare('bodega',$this->bodega,true);
 		$criteria->compare('tipo',$this->tipo,true);
