@@ -22,7 +22,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'PVENTA_ID',
-		'MENU_ID',
+		//'MENU_ID',
 		'PVENTANOMBRE',
 	),
 )); ?>

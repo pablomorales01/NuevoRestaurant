@@ -64,12 +64,12 @@ class ProductoFinalController extends Controller
 	{
 		$model=new ProductoFinal;
 		$bodega = Bodega::model()->findAll();
-
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['ProductoFinal']))
 		{
+
 			$model->attributes=$_POST['ProductoFinal'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->PVENTA_ID));

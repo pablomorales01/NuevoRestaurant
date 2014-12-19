@@ -1,27 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "datos_usuarios".
+ * This is the model class for table "precio_producto".
  *
- * The followings are the available columns in table 'datos_usuarios':
- * @property integer $USU_ID
- * @property string $USURUT
- * @property string $USUNOMBRES
- * @property string $USUAPELLIDOS
- * @property integer $USUTELEFONO
- * @property string $USU_ESTADO
- * @property integer $RESTO_ID
- * @property string $USUCREATE
- * @property string $ROLNOMBRE
+ * The followings are the available columns in table 'precio_producto':
+ * @property integer $MENU_ID
+ * @property integer $PVENTA_ID
  */
-class DatosUsuarios extends CActiveRecord
+class PrecioProducto extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'datos_usuarios';
+		return 'precio_producto';
 	}
 
 	/**
@@ -32,15 +25,11 @@ class DatosUsuarios extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('USU_ID, USUTELEFONO, RESTO_ID', 'numerical', 'integerOnly'=>true),
-			array('USURUT', 'length', 'max'=>12),
-			array('USUNOMBRES, USUAPELLIDOS, ROLNOMBRE', 'length', 'max'=>25),
-			array('USU_ESTADO', 'length', 'max'=>13),
-			array('USUCREATE', 'safe'),
-			
+			array('MENU_ID, PVENTA_ID', 'required'),
+			array('MENU_ID, PVENTA_ID', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('USU_ID, USURUT, USUNOMBRES, USUAPELLIDOS, USUTELEFONO, USU_ESTADO, RESTO_ID, USUCREATE, ROLNOMBRE', 'safe', 'on'=>'search'),
+			array('MENU_ID, PVENTA_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,9 +40,7 @@ class DatosUsuarios extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-
 		return array(
-			
 		);
 	}
 
@@ -63,16 +50,8 @@ class DatosUsuarios extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'USU_ID' => 'Usu',
-			'USURUT' => 'Usurut',
-			'USUNOMBRES' => 'Usunombres',
-			'USUAPELLIDOS' => 'Usuapellidos',
-			'USUTELEFONO' => 'Usutelefono',
-			'USU_ESTADO' => 'Usu Estado',
-			'RESTO_ID' => 'Resto',
-			'USUCREATE' => 'Usucreate',
-			'ROLNOMBRE' => 'Rolnombre',
-			
+			'MENU_ID' => 'Menu',
+			'PVENTA_ID' => 'Pventa',
 		);
 	}
 
@@ -94,27 +73,19 @@ class DatosUsuarios extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('USU_ID',$this->USU_ID);
-		$criteria->compare('USURUT',$this->USURUT,true);
-		$criteria->compare('USUNOMBRES',$this->USUNOMBRES,true);
-		$criteria->compare('USUAPELLIDOS',$this->USUAPELLIDOS,true);
-		$criteria->compare('USUTELEFONO',$this->USUTELEFONO);
-		$criteria->compare('USU_ESTADO',$this->USU_ESTADO,true);
-		$criteria->compare('RESTO_ID',$this->RESTO_ID);
-		$criteria->compare('USUCREATE',$this->USUCREATE,true);
-		$criteria->compare('ROLNOMBRE',$this->ROLNOMBRE,true);
+		$criteria->compare('MENU_ID',$this->MENU_ID);
+		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return DatosUsuarios the static model class
+	 * @return PrecioProducto the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

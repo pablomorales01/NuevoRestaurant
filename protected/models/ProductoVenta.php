@@ -5,14 +5,13 @@
  *
  * The followings are the available columns in table 'producto_venta':
  * @property integer $PVENTA_ID
- * @property integer $MENU_ID
  * @property string $PVENTANOMBRE
  *
  * The followings are the available model relations:
  * @property DetalleComanda[] $detalleComandas
+ * @property ListaDePrecios[] $listaDePrecioses
  * @property ProductoElaborado $productoElaborado
  * @property ProductoFinal $productoFinal
- * @property Menu $mENU
  */
 class ProductoVenta extends CActiveRecord
 {
@@ -32,11 +31,10 @@ class ProductoVenta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MENU_ID', 'numerical', 'integerOnly'=>true),
-			array('PVENTANOMBRE', 'length', 'max'=>25),
+			array('PVENTANOMBRE', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PVENTA_ID, MENU_ID, PVENTANOMBRE', 'safe', 'on'=>'search'),
+			array('PVENTA_ID, PVENTANOMBRE', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,9 +47,9 @@ class ProductoVenta extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'detalleComandas' => array(self::HAS_MANY, 'DetalleComanda', 'PVENTA_ID'),
+			'listaDePrecioses' => array(self::MANY_MANY, 'ListaDePrecios', 'precio_producto(PVENTA_ID, MENU_ID)'),
 			'productoElaborado' => array(self::HAS_ONE, 'ProductoElaborado', 'PVENTA_ID'),
 			'productoFinal' => array(self::HAS_ONE, 'ProductoFinal', 'PVENTA_ID'),
-			'mENU' => array(self::BELONGS_TO, 'Menu', 'MENU_ID'),
 		);
 	}
 
@@ -61,9 +59,8 @@ class ProductoVenta extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'PVENTA_ID' => 'producto venta id',
-			'MENU_ID' => 'Menú',
-			'PVENTANOMBRE' => 'Producto',
+			'PVENTA_ID' => 'Pventa',
+			'PVENTANOMBRE' => 'Pventanombre',
 		);
 	}
 
@@ -86,7 +83,6 @@ class ProductoVenta extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
-		$criteria->compare('MENU_ID',$this->MENU_ID);
 		$criteria->compare('PVENTANOMBRE',$this->PVENTANOMBRE,true);
 
 		return new CActiveDataProvider($this, array(

@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Restaurant #<?php echo $model->RESTO_ID; ?></h1>
+<h1>Ver restaurant</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

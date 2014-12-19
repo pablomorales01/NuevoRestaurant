@@ -164,10 +164,8 @@ class BodegaController extends Controller
 							break;
 						case 'PRODUCTO FINAL':
 						$this->redirect(array('productoFinal/update','id'=>$id));
-							break;
-						
+							break;						
 						default:
-							# code...
 							break;
 					}
 				break;
@@ -180,7 +178,6 @@ class BodegaController extends Controller
 						$this->redirect(array('productoFinal/view', 'id'=>$id));
 							break;
 						default:
-							# code...
 							break;
 					}
 				break;
@@ -190,7 +187,7 @@ class BodegaController extends Controller
 						$this->redirect(array('materiaPrima/delete', 'id'=>$id));
 							break;
 						case 'PRODUCTO FINAL':
-						$this->redirect(array('productoFinal/delete', 'id'=>$id));
+						$this->redirect(array('productoVenta/delete', 'id'=>$id, 'tipo'=>$tipo));
 						    break;
 						default:
 							# code...
@@ -198,7 +195,6 @@ class BodegaController extends Controller
 					}
 				break;			
 			default:
-				# code...
 				break;
 		}
 	}

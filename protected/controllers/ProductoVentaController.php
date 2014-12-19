@@ -6,7 +6,7 @@ class ProductoVentaController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/productoVentaLayout';
 
 	/**
 	 * @return array action filters
@@ -36,7 +36,7 @@ class ProductoVentaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete', 'asignar'),
 				'users'=>array('Super administrador'),
 			),
 			array('deny',  // deny all users
@@ -56,6 +56,17 @@ class ProductoVentaController extends Controller
 		));
 	}
 
+	public function actionAsignar()
+	{
+		$tipo='';
+		if(isset($_POST['']))
+		{
+			$tipo = $_POST;
+			var_dump($tipo);
+		}
+
+		$this->render('asignar', array('tipo'=>$tipo,));
+	}
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -108,9 +119,14 @@ class ProductoVentaController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+
+	//preguntar si el producto es final o elaborado
+	public function actionDelete($id, $tipo)
 	{
 		$this->loadModel($id)->delete();
+
+		if($tipo == 'PRODUCTO FINAL')
+			$this->redirect(array('productoFinal/delete','id'=>$id));
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

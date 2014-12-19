@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Restaurant <?php echo $model->RESTO_ID; ?></h1>
+<h1>Actualizar restaurant </h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

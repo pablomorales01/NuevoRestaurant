@@ -8,7 +8,7 @@
     <ul class="nav nav-pills nav-stacked">
         <li><a href="<?php echo Yii::app()->createUrl('restaurant/create'); ?>">Ingresar Restaurant</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('restaurant/admin'); ?>">Administrar Restaurant</a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('restaurant/index'); ?>">Lista de Restaurantes</a></li>
+       <!-- <li><a href="<?php echo Yii::app()->createUrl('restaurant/index'); ?>">Lista de Restaurantes</a></li>-->
   </ul>
   </div>
 </div>

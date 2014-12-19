@@ -1,26 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "menu".
+ * This is the model class for table "lista_de_precios".
  *
- * The followings are the available columns in table 'menu':
+ * The followings are the available columns in table 'lista_de_precios':
  * @property integer $MENU_ID
  * @property string $MENUNOMBRE
  * @property integer $MENUPRECIO
  * @property integer $MENUCANTIDADPERSONAS
+ * @property integer $CALORIASTOTAL
  *
  * The followings are the available model relations:
  * @property Comanda[] $comandas
  * @property ProductoVenta[] $productoVentas
  */
-class Menu extends CActiveRecord
+class ListaDePrecios extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'menu';
+		return 'lista_de_precios';
 	}
 
 	/**
@@ -31,11 +32,11 @@ class Menu extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MENUPRECIO, MENUCANTIDADPERSONAS', 'numerical', 'integerOnly'=>true),
+			array('MENUPRECIO, MENUCANTIDADPERSONAS, CALORIASTOTAL', 'numerical', 'integerOnly'=>true),
 			array('MENUNOMBRE', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('MENU_ID, MENUNOMBRE, MENUPRECIO, MENUCANTIDADPERSONAS', 'safe', 'on'=>'search'),
+			array('MENU_ID, MENUNOMBRE, MENUPRECIO, MENUCANTIDADPERSONAS, CALORIASTOTAL', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,7 +49,7 @@ class Menu extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'comandas' => array(self::HAS_MANY, 'Comanda', 'MENU_ID'),
-			'productoVentas' => array(self::HAS_MANY, 'ProductoVenta', 'MENU_ID'),
+			'productoVentas' => array(self::MANY_MANY, 'ProductoVenta', 'precio_producto(MENU_ID, PVENTA_ID)'),
 		);
 	}
 
@@ -62,6 +63,7 @@ class Menu extends CActiveRecord
 			'MENUNOMBRE' => 'Menunombre',
 			'MENUPRECIO' => 'Menuprecio',
 			'MENUCANTIDADPERSONAS' => 'Menucantidadpersonas',
+			'CALORIASTOTAL' => 'Caloriastotal',
 		);
 	}
 
@@ -87,6 +89,7 @@ class Menu extends CActiveRecord
 		$criteria->compare('MENUNOMBRE',$this->MENUNOMBRE,true);
 		$criteria->compare('MENUPRECIO',$this->MENUPRECIO);
 		$criteria->compare('MENUCANTIDADPERSONAS',$this->MENUCANTIDADPERSONAS);
+		$criteria->compare('CALORIASTOTAL',$this->CALORIASTOTAL);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -97,7 +100,7 @@ class Menu extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Menu the static model class
+	 * @return ListaDePrecios the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

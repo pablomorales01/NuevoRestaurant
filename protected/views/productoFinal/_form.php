@@ -48,6 +48,17 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		<?php echo $form->error($model,'PFINALSTOCK'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->textFieldControlGroup($model, 'CALORIAS'); ?>
+		<?php echo $form->error($model,'CALORIAS'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->textFieldControlGroup($model, 'GRAMOS'); ?>
+		<?php echo $form->error($model,'GRAMOS'); ?>
+	</div>
+
+
 	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>

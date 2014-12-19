@@ -1,6 +1,6 @@
 <?php
-/* @var $this ProductoVentaController */
-/* @var $model ProductoVenta */
+/* @var $this ProductoFinalController */
+/* @var $model ProductoFinal */
 /* @var $form CActiveForm */
 ?>
 
@@ -13,28 +13,43 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
-)); ?>
+)); 
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+
+?>
+
+	<p class="note">Campos con  <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'MENU_ID'); ?>
-		<?php echo $form->textField($model,'MENU_ID'); ?>
-		<?php echo $form->error($model,'MENU_ID'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'PVENTANOMBRE'); ?>
-		<?php echo $form->textField($model,'PVENTANOMBRE',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->textFieldControlGroup($model,'PVENTANOMBRE'); ?>
 		<?php echo $form->error($model,'PVENTANOMBRE'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row">
+		<?php echo $form->textFieldControlGroup($model, 'CALORIAS'); ?>
+		<?php echo $form->error($model,'CALORIAS'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->textFieldControlGroup($model, 'GRAMOS'); ?>
+		<?php echo $form->error($model,'GRAMOS'); ?>
+	</div>
+
+
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
+<?php $this->endWidget(); ?>
 </div><!-- form -->
