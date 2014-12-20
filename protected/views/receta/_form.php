@@ -25,6 +25,28 @@ else {
 	
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
+	<!--Deberia meter una tabla con todos los valores de materia prima-->
+	<div class="col-xs-12 col-sm-6 col-md-5">Primero
+  
+	<table>
+	<thead>
+            <tr>
+              <th>Materia Prima</th>
+            </tr>
+    </thead>
+    <tbody>
+	<?php foreach ($MP as $producto): 
+	?>
+		<tr>
+		<td><?php echo $producto->MPNOMBRE; ?></td>
+		</tr>
+	<?php
+	endforeach;
+	?>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-xs-6 col-md-7">Segundo
 	<?php  //PARA LA MATERIA PRIMA
                         echo $form->dropDownListControlGroup($model, 'MP_ID', 
                             CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
@@ -44,6 +66,7 @@ else {
         'L'=>'Litros',
       ));
       ?>
+    </div>
 	<!--
 	<div class="row">
 		<?php echo $form->labelEx($model,'RECETACANTIDADPRODUCTO'); ?>
@@ -73,6 +96,5 @@ else {
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 
-<?php } ?>
-
+<?php }?>
 <?php $this->endWidget(); ?>

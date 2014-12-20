@@ -23,7 +23,7 @@
 		<?php echo $form->labelEx($model,'MENU_ID'); ?>
 		<?php echo $form->textField($model,'MENU_ID'); ?>
 		<?php echo $form->error($model,'MENU_ID'); ?>
-	</div>
+	</div> 
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'PVENTANOMBRE'); ?>

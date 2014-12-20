@@ -68,9 +68,3 @@ $this->pageTitle=Yii::app()->name;
 	    </section>
 	    </div>
 </div>
-
-	    
-
-	    
-
-    </div>

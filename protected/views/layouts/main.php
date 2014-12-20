@@ -277,7 +277,7 @@
         )
     ));
     }
-    else if(Yii::app()->user->name == 'Garzon')
+    else if(Yii::app()->user->name == 'Garzón')
     {
         $this->widget('bootstrap.widgets.BsNavbar', array(
     'collapse' => true,

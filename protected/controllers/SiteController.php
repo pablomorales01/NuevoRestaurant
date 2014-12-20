@@ -54,7 +54,7 @@ class SiteController extends Controller
 		{
 			$this->redirect(Yii::app()->createUrl('receta/admin'));
 		}
-		else if(Yii::app()->user->name == 'Garzon')
+		else if(Yii::app()->user->name == 'Garzón')
 		{
 			$this->redirect(Yii::app()->createUrl('comanda/admin'));
 		}

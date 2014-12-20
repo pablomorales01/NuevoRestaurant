@@ -37,7 +37,7 @@ class ProductoFinalController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('Super administrador','Administrador'),
+				'users'=>array('Super administrador','Administrador','bodega'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -86,6 +86,7 @@ class ProductoFinalController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$bodega = Bodega::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -97,8 +98,7 @@ class ProductoFinalController extends Controller
 				$this->redirect(array('view','id'=>$model->PVENTA_ID));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
+		$this->render('update',array('model'=>$model, 'bodega'=>$bodega
 		));
 	}
 
