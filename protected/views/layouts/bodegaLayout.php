@@ -9,7 +9,7 @@
     <li><a href="<?php echo Yii::app()->createUrl('bodega/create'); ?>">Ingresar bodega</a></li>
     <li><a href="<?php echo Yii::app()->createUrl('bodega/admin'); ?>">Administrar bodegas</a></li>
       <li><a href="<?php echo Yii::app()->createUrl('materiaPrima/admin'); ?>">Materia prima</a></li>
-    <li><a href="<?php echo Yii::app()->createUrl('productoVenta/admin'); ?>">Productos</a></li>
+    <li><a href="<?php echo Yii::app()->createUrl('productoFinal/admin'); ?>">Producto final</a></li>
     
     
   </ul>

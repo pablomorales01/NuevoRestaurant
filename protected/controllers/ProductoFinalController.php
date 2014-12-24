@@ -62,21 +62,37 @@ class ProductoFinalController extends Controller
 	 */
 	public function actionCreate()
 	{
+		//donde van los datos por $_POST
 		$model=new ProductoFinal;
+	
+		//si existen bodegas se crea
 		$bodega = Bodega::model()->findAll();
+		$pv = new ProductoVenta;
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 $this->performAjaxValidation($model);
+
+
 
 		if(isset($_POST['ProductoFinal']))
-		{
-
+		{		
+			//recibo en model los datos por $_POST
 			$model->attributes=$_POST['ProductoFinal'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->PVENTA_ID));
+
+			$pv->PVENTANOMBRE = $model->attributes;
+			if($pv->save)
+			{
+				$id = Yii::app()->db->getLastInsertID('ProductoVenta'); 
+				$model->PVENTA_ID = $id;
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->PVENTA_ID));
+			}
+
 		}
 
 		$this->render('create',array('model'=>$model, 'bodega'=>$bodega));
 	}
+
+	
 
 	/**
 	 * Updates a particular model.
@@ -87,14 +103,23 @@ class ProductoFinalController extends Controller
 	{
 		$model=$this->loadModel($id);
 		$bodega = Bodega::model()->findAll();
+
+		$pv = ProductoVenta::model()->findByPk($id);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['ProductoFinal']))
 		{
 			$model->attributes=$_POST['ProductoFinal'];
+
+			$pv->PVENTA_ID = $model->PVENTA_ID;
+			$pv->PVENTANOMBRE ='fuck';
+
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->PVENTA_ID));
+			{
+				if($pv->save())
+					$this->redirect(array('view','id'=>$model->PVENTA_ID));
+			}	
 		}
 
 		$this->render('update',array(

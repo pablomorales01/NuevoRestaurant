@@ -28,7 +28,8 @@ class EnBodega extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'numerical', 'integerOnly'=>true),
-			array('producto, bodega', 'length', 'max'=>25),
+			array('producto', 'length', 'max'=>20),
+			array('bodega', 'length', 'max'=>25),
 			array('tipo', 'length', 'max'=>14),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

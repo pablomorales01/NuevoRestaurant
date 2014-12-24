@@ -8,10 +8,8 @@
  * @property string $PVENTANOMBRE
  *
  * The followings are the available model relations:
- * @property DetalleComanda[] $detalleComandas
- * @property ListaDePrecios[] $listaDePrecioses
- * @property ProductoElaborado $productoElaborado
- * @property ProductoFinal $productoFinal
+ * @property ProductoElaborado[] $productoElaborados
+ * @property ProductoFinal[] $productoFinals
  */
 class ProductoVenta extends CActiveRecord
 {
@@ -31,7 +29,8 @@ class ProductoVenta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PVENTANOMBRE', 'length', 'max'=>15),
+			array('PVENTA_ID, PVENTANOMBRE','required'),
+			array('PVENTANOMBRE', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('PVENTA_ID, PVENTANOMBRE', 'safe', 'on'=>'search'),
@@ -46,10 +45,8 @@ class ProductoVenta extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'detalleComandas' => array(self::HAS_MANY, 'DetalleComanda', 'PVENTA_ID'),
-			'listaDePrecioses' => array(self::MANY_MANY, 'ListaDePrecios', 'precio_producto(PVENTA_ID, MENU_ID)'),
-			'productoElaborado' => array(self::HAS_ONE, 'ProductoElaborado', 'PVENTA_ID'),
-			'productoFinal' => array(self::HAS_ONE, 'ProductoFinal', 'PVENTA_ID'),
+			'productoElaborados' => array(self::HAS_MANY, 'ProductoElaborado', 'PVENTA_ID'),
+			'productoFinals' => array(self::HAS_MANY, 'ProductoFinal', 'PVENTA_ID'),
 		);
 	}
 

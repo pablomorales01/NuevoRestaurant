@@ -1,41 +1,26 @@
-<?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-/* @var $form CActiveForm */
-?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-  'id'=>'usuario-_form-form',
+
+    <?php $form=$this->beginWidget('CActiveForm', array(
+  'id'=>'asignar-form',
+  // Please note: When you enable ajax validation, make sure the corresponding
+  // controller action is handling ajax validation correctly.
+  // There is a call to performAjaxValidation() commented in generated controller code.
+  // See class documentation of CActiveForm for details on this.
   'enableAjaxValidation'=>false,
-)); ?>
-
-<?php
-$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
-    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
-    'enableAjaxValidation' => true,
-    'id' => 'asignar_form_horizontal',
-    'htmlOptions' => array(
-        'class' => 'bs-example'
-    )
-));
+)); 
 
 ?>
-
-  <p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
-
-
-
-    
-  <div class="form" align="center">
+  <div class="form" align="center" id='formulario'>
   <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-12">formulario
-    <?php echo $form->dropDownListControlGroup($tipo,array(
-        'Producto final'=> 'Producto final',
-        'Producto elaborado'=>'Producto elaborado',
-      array('prompt' => 'Seleccione')      
-      )); ?>
+<br> <br>
+    <?php echo CHtml::dropDownList('listname', $select, 
+              array('PRODUCTO ELABORADO' => 'PRODUCTO ELABORADO', 
+                'PRODUCTO FINAL' => 'PRODUCTO FINAL'),
+              array('prompt' => 'Seleccione'));
+    ?>
     
-    </div> <!--fin col--> 
+  </div> <!--fin col--> 
 
 
   </div> <!--Fin row-->
@@ -44,8 +29,5 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
   </div>
 
 </div><!-- form -->
-<?php 
-  $this->endWidget();
- 
-  $this->endWidget(); ?>
 
+<?php $this->endWidget(); ?>

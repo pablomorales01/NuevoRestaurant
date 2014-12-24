@@ -13,8 +13,6 @@
  *
  * The followings are the available model relations:
  * @property ProductoVenta $pVENTA
- * @property Bodega $bODEGA
- * @property RegistroComprasPf[] $registroComprasPfs
  */
 class ProductoFinal extends CActiveRecord
 {
@@ -34,8 +32,9 @@ class ProductoFinal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'numerical', 'integerOnly'=>true),
-			array('PVENTANOMBRE', 'length', 'max'=>25),
+			array('PVENTA_ID, PVENTANOMBRE, BODEGA_ID', 'required'),
+			array('PVENTA_ID, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'numerical', 'integerOnly'=>true),
+			array('PVENTANOMBRE', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('PVENTA_ID, PVENTANOMBRE, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'safe', 'on'=>'search'),
@@ -51,8 +50,6 @@ class ProductoFinal extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'pVENTA' => array(self::BELONGS_TO, 'ProductoVenta', 'PVENTA_ID'),
-			'bODEGA' => array(self::BELONGS_TO, 'Bodega', 'BODEGA_ID'),
-			'registroComprasPfs' => array(self::HAS_MANY, 'RegistroComprasPf', 'PVENTA_ID'),
 		);
 	}
 
@@ -62,7 +59,7 @@ class ProductoFinal extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'PVENTA_ID' => 'id Venta',
+			'PVENTA_ID' => 'Id',
 			'PVENTANOMBRE' => 'Nombre',
 			'BODEGA_ID' => 'Bodega',
 			'PFINALSTOCK' => 'Stock',

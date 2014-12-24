@@ -24,11 +24,12 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     )
 ));
 
+
 ?>
 
 	<p class="note">Campos con  <span class="required">*</span> son requeridos.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
 		<?php echo $form->textFieldControlGroup($model,'PVENTANOMBRE',array('size'=>15,'maxlength'=>15)); ?>

@@ -6,13 +6,11 @@
  * The followings are the available columns in table 'producto_elaborado':
  * @property integer $PVENTA_ID
  * @property string $PVENTANOMBRE
- * @property integer $MENU_ID
- * @property integer $GRAMOS
  * @property integer $CALORIAS
+ * @property integer $GRAMOS
  *
  * The followings are the available model relations:
  * @property ProductoVenta $pVENTA
- * @property Receta[] $recetas
  */
 class ProductoElaborado extends CActiveRecord
 {
@@ -32,11 +30,12 @@ class ProductoElaborado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MENU_ID, GRAMOS, CALORIAS', 'numerical', 'integerOnly'=>true),
-			array('PVENTANOMBRE', 'length', 'max'=>25),
+			array('PVENTA_ID, PVENTANOMBRE, CALORIAS, GRAMOS', 'required'),
+			array('PVENTA_ID, CALORIAS, GRAMOS', 'numerical', 'integerOnly'=>true),
+			array('PVENTANOMBRE', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PVENTA_ID, PVENTANOMBRE, MENU_ID, GRAMOS, CALORIAS', 'safe', 'on'=>'search'),
+			array('PVENTA_ID, PVENTANOMBRE, CALORIAS, GRAMOS', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,7 +48,6 @@ class ProductoElaborado extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'pVENTA' => array(self::BELONGS_TO, 'ProductoVenta', 'PVENTA_ID'),
-			'recetas' => array(self::HAS_MANY, 'Receta', 'PVENTA_ID'),
 		);
 	}
 
@@ -59,11 +57,10 @@ class ProductoElaborado extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'PVENTA_ID' => 'producto venta id',
-			'PVENTANOMBRE' => 'Producto',
-			'MENU_ID' => 'Menú',
-			'GRAMOS' => 'Gramos',
+			'PVENTA_ID' => 'Pventa',
+			'PVENTANOMBRE' => 'Pventanombre',
 			'CALORIAS' => 'Calorias',
+			'GRAMOS' => 'Gramos',
 		);
 	}
 
@@ -87,9 +84,8 @@ class ProductoElaborado extends CActiveRecord
 
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
 		$criteria->compare('PVENTANOMBRE',$this->PVENTANOMBRE,true);
-		$criteria->compare('MENU_ID',$this->MENU_ID);
-		$criteria->compare('GRAMOS',$this->GRAMOS);
 		$criteria->compare('CALORIAS',$this->CALORIAS);
+		$criteria->compare('GRAMOS',$this->GRAMOS);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

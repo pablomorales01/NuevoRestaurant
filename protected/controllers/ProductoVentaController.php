@@ -58,27 +58,32 @@ class ProductoVentaController extends Controller
 
 	public function actionAsignar()
 	{
-		$tipo='';
-		if(isset($_POST['']))
-		{
-			$tipo = $_POST;
-			var_dump($tipo);
-		}
+		$select = null;
 
-		$this->render('asignar', array('tipo'=>$tipo,));
+		if(isset($_POST['listname']))
+		{
+			$select = $_POST['listname'];
+			if($select == 'PRODUCTO ELABORADO')
+				$this->redirect(array('productoElaborado/create', 'select'=>$select));
+			if($select == 'PRODUCTO FINAL')
+				$this->redirect(array('productoFinal/create', 'select'=>$select));	
+		}
+		
+		$this->render('asignar', array('select'=>$select));
 	}
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	/*public function actionCreate($select)
 	{
 		$model=new ProductoVenta;
 
+		var_dump($select);
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
-		if(isset($_POST['ProductoVenta']))
+		/*if(isset($_POST['ProductoVenta']))
 		{
 			$model->attributes=$_POST['ProductoVenta'];
 			if($model->save())
@@ -88,7 +93,7 @@ class ProductoVentaController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 		));
-	}
+	}*/
 
 	/**
 	 * Updates a particular model.

@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create ProductoElaborado</h1>
+<h1>Crear producto elaborado</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'mp'=>$mp, 'pv'=>$pv)); ?>

@@ -63,19 +63,28 @@ class ProductoElaboradoController extends Controller
 	public function actionCreate()
 	{
 		$model=new ProductoElaborado;
-
+		$pv = new ProductoVenta;
+		$mp = MateriaPrima::model()->findAll();
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['ProductoElaborado']))
 		{
 			$model->attributes=$_POST['ProductoElaborado'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->PVENTA_ID));
+
+			$pv->PVENTANOMBRE = $model->PVENTANOMBRE;
+			$model->PVENTA_ID = $pv->PVENTA_ID;
+			
+			if($pv->save())
+			{
+				if($model->save())
+					$this->redirect(array('receta/create', 'id'=>$model->PVENTA_ID));
+			}
+
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$model, 'mp'=>$mp
 		));
 	}
 
