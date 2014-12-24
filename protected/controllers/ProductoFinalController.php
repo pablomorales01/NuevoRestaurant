@@ -71,20 +71,19 @@ class ProductoFinalController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		 $this->performAjaxValidation($model);
 
-
-
 		if(isset($_POST['ProductoFinal']))
 		{		
 			//recibo en model los datos por $_POST
 			$model->attributes=$_POST['ProductoFinal'];
+			$pv->PVENTANOMBRE = $model->PVENTANOMBRE;
 
-			$pv->PVENTANOMBRE = $model->attributes;
-			if($pv->save)
+
+			if($pv->save())
 			{
 				$id = Yii::app()->db->getLastInsertID('ProductoVenta'); 
 				$model->PVENTA_ID = $id;
 				if($model->save())
-					$this->redirect(array('view','id'=>$model->PVENTA_ID));
+					$this->redirect(array('view','id'=>$pv->PVENTA_ID));
 			}
 
 		}

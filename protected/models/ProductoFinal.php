@@ -59,10 +59,10 @@ class ProductoFinal extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'PVENTA_ID' => 'Id',
-			'PVENTANOMBRE' => 'Nombre',
+			'PVENTA_ID' => 'Pventa',
+			'PVENTANOMBRE' => 'Pventanombre',
 			'BODEGA_ID' => 'Bodega',
-			'PFINALSTOCK' => 'Stock',
+			'PFINALSTOCK' => 'Pfinalstock',
 			'CALORIAS' => 'Calorias',
 			'GRAMOS' => 'Gramos',
 		);

@@ -9,7 +9,7 @@
  *
  * The followings are the available model relations:
  * @property ProductoElaborado[] $productoElaborados
- * @property ProductoFinal[] $productoFinals
+ * @property ProductoFinal $productoFinal
  */
 class ProductoVenta extends CActiveRecord
 {
@@ -29,7 +29,6 @@ class ProductoVenta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PVENTA_ID, PVENTANOMBRE','required'),
 			array('PVENTANOMBRE', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -46,7 +45,7 @@ class ProductoVenta extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'productoElaborados' => array(self::HAS_MANY, 'ProductoElaborado', 'PVENTA_ID'),
-			'productoFinals' => array(self::HAS_MANY, 'ProductoFinal', 'PVENTA_ID'),
+			'productoFinal' => array(self::HAS_ONE, 'ProductoFinal', 'PVENTA_ID'),
 		);
 	}
 
