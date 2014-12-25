@@ -7,9 +7,9 @@
  * @property integer $RESTO_ID
  * @property string $RESTONOMBRE
  * @property string $RESTOFECHACREACION
- *
- * The followings are the available model relations:
- * @property Usuario[] $usuarios
+ * @property string $RESTODETALLE
+ * @property string $RESTOIMAGEN
+ * @property integer $RESTOIMAGENNOMBRE
  */
 class Restaurant extends CActiveRecord
 {
@@ -29,11 +29,13 @@ class Restaurant extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('RESTOIMAGENNOMBRE', 'numerical', 'integerOnly'=>true),
 			array('RESTONOMBRE', 'length', 'max'=>25),
-			array('RESTOFECHACREACION', 'safe'),
+			array('RESTOFECHACREACION, RESTODETALLE, RESTOIMAGEN', 'safe'),
+			array('RESTOIMAGEN', 'file','types'=>'jpg, gif, png', 'allowEmpty'=>true, 'on'=>'update'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RESTO_ID, RESTONOMBRE, RESTOFECHACREACION', 'safe', 'on'=>'search'),
+			array('RESTO_ID, RESTONOMBRE, RESTOFECHACREACION, RESTODETALLE, RESTOIMAGEN, RESTOIMAGENNOMBRE', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,7 +47,6 @@ class Restaurant extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'usuarios' => array(self::HAS_MANY, 'Usuario', 'RESTO_ID'),
 		);
 	}
 
@@ -55,9 +56,12 @@ class Restaurant extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RESTO_ID' => 'Id restaurant',
-			'RESTONOMBRE' => 'Nombre restaurant',
-			'RESTOFECHACREACION' => 'Fecha de creación',
+			'RESTO_ID' => 'Resto',
+			'RESTONOMBRE' => 'Restonombre',
+			'RESTOFECHACREACION' => 'Restofechacreacion',
+			'RESTODETALLE' => 'Restodetalle',
+			'RESTOIMAGEN' => 'Restoimagen',
+			'RESTOIMAGENNOMBRE' => 'Restoimagennombre',
 		);
 	}
 
@@ -82,6 +86,9 @@ class Restaurant extends CActiveRecord
 		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 		$criteria->compare('RESTONOMBRE',$this->RESTONOMBRE,true);
 		$criteria->compare('RESTOFECHACREACION',$this->RESTOFECHACREACION,true);
+		$criteria->compare('RESTODETALLE',$this->RESTODETALLE,true);
+		$criteria->compare('RESTOIMAGEN',$this->RESTOIMAGEN,true);
+		$criteria->compare('RESTOIMAGENNOMBRE',$this->RESTOIMAGENNOMBRE);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

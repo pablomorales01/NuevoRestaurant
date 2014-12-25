@@ -61,12 +61,12 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Login', 'url' => array('/site/login'),
+                array('label' => 'Inicio', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
                 ),
-                array('label' => 'Logout (' . Yii::app()->user->name . ')',
+                array('label' => 'Salir (' . Yii::app()->user->name . ')',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'url' => array('/site/logout'),
                     'icon' => BsHtml::GLYPHICON_LOG_OUT,
@@ -99,9 +99,9 @@
                         ),
                 array('label' => 'Cocina', 'url' => array('/receta/admin'), 'icon' => BsHtml::GLYPHICON_GLASS
                         ),
-                array('label' => 'Restaurant', 'url' => array('/Restaurant/admin'), 'icon' => BsHtml::GLYPHICON_CUTLERY
-                        ),
                 array('label' => 'Garzón', 'url' => array('/comanda/admin'), 'icon' => BsHtml::GLYPHICON_LIST_ALT
+                        ),
+                array('label' => 'Proveedor', 'url' => array('/registroComprasMp/admin'), 'icon' => BsHtml::GLYPHICON_BRIEFCASE
                         ),
 
                 //Final del array items.
@@ -116,12 +116,12 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Login', 'url' => array('/site/login'),
+                array('label' => 'Inicio', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
                 ),
-                array('label' => 'Logout (' . Yii::app()->user->name . ')',
+                array('label' => 'Salir (' . Yii::app()->user->name . ')',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'url' => array('/site/logout'),
                     'icon' => BsHtml::GLYPHICON_LOG_OUT,
@@ -163,12 +163,12 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Login', 'url' => array('/site/login'),
+                array('label' => 'Inicio', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
                 ),
-                array('label' => 'Logout (' . Yii::app()->user->name . ')',
+                array('label' => 'Salir (' . Yii::app()->user->name . ')',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'url' => array('/site/logout'),
                     'icon' => BsHtml::GLYPHICON_LOG_OUT,
@@ -211,12 +211,12 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Login', 'url' => array('/site/login'),
+                array('label' => 'Inicio', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
                 ),
-                array('label' => 'Logout (' . Yii::app()->user->name . ')',
+                array('label' => 'Salir (' . Yii::app()->user->name . ')',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'url' => array('/site/logout'),
                     'icon' => BsHtml::GLYPHICON_LOG_OUT,
@@ -258,12 +258,12 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Login', 'url' => array('/site/login'),
+                array('label' => 'Inicio', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
                 ),
-                array('label' => 'Logout (' . Yii::app()->user->name . ')',
+                array('label' => 'Salir (' . Yii::app()->user->name . ')',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'url' => array('/site/logout'),
                     'icon' => BsHtml::GLYPHICON_LOG_OUT,
@@ -305,12 +305,12 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Login', 'url' => array('/site/login'),
+                array('label' => 'Inicio', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
                 ),
-                array('label' => 'Logout (' . Yii::app()->user->name . ')',
+                array('label' => 'Salir (' . Yii::app()->user->name . ')',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'url' => array('/site/logout'),
                     'icon' => BsHtml::GLYPHICON_LOG_OUT,
@@ -347,12 +347,12 @@
                 'activateParents' => true,
                 'items' => array(
                 
-                array('label' => 'Login', 'url' => array('/site/login'),
+                array('label' => 'Inicio', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
                 ),
-                array('label' => 'Logout (' . Yii::app()->user->name . ')',
+                array('label' => 'Salir (' . Yii::app()->user->name . ')',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'url' => array('/site/logout'),
                     'icon' => BsHtml::GLYPHICON_LOG_OUT,

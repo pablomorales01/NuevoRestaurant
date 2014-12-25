@@ -5,6 +5,7 @@
   <?php  echo $content;?>
   </div>
   <div class="col-xs-6 col-md-3">
+  <br>
     <ul class="nav nav-pills nav-stacked">
         <li><a href="<?php echo Yii::app()->createUrl('Usuario/create'); ?>">Ingresar Usuario</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('Usuario/admin'); ?>">Administrar Usuario</a></li>

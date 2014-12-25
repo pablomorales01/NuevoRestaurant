@@ -6,7 +6,7 @@ $this->pageTitle=Yii::app()->name;
 
 <!--<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>-->
 <div class="row">
-  <div class="col-xs-12 col-sm-2 col-md-3">	<!--Menú -->
+  <div class="col-xs-12 col-sm-2 col-md-2">	<!--Menú -->
 	<div class="clearfix">
 
 <ul id="menu" class="ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" tabindex="0" aria-activedescendant="ui-id-18">
@@ -20,7 +20,7 @@ $this->pageTitle=Yii::app()->name;
 	    </div>
 	    <!--FIN Menú -->
 	    </div>
-  <div class="col-xs-12 col-sm-8 col-md-8"><section>
+  <div class="col-xs-12 col-sm-8 col-md-10"><section>
 	    
 	    <article>
 	    <!--Slides-->

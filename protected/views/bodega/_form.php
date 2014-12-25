@@ -6,9 +6,14 @@
 
 <div class="form">
 
+<?php $form=$this->beginWidget('CActiveForm', array(
+  'id'=>'bodega-form',
+  'enableAjaxValidation'=>false,
+)); ?>
+
 <?php
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
-    'layout' => BsHtml::FORM_LAYOUT_INLINE,
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
     'enableAjaxValidation' => true,
     'id' => 'user_form_inline',
     'htmlOptions' => array(
@@ -17,23 +22,17 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 ));
 ?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-  'id'=>'bodega-form',
-  'enableAjaxValidation'=>false,
-)); ?>
-
-
-	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
+	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'BODEGANOMBRE'); ?>
-		<?php echo $form->textField($model,'BODEGANOMBRE',array('size'=>25,'maxlength'=>25)); ?>
+		<?php //echo $form->labelEx($model,'BODEGANOMBRE'); ?>
+		<?php echo $form->textFieldControlGroup($model,'BODEGANOMBRE',array('size'=>25,'maxlength'=>25)); ?>
 		<?php echo $form->error($model,'BODEGANOMBRE'); ?>
 	</div>
 
-	<div class="row buttons">
+	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 

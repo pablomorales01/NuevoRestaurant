@@ -13,6 +13,19 @@ html {
 body {
   margin: 0;
 }
+
+#div1 {
+  overflow:scroll;
+  height:200px;
+  width:200px;
+}
+
+#div1 table { 
+  /*scroll de abajo*/
+  width:200px;
+  background-color:lightgray;
+}
+
 aside,
 details,
 figcaption,
@@ -2339,6 +2352,7 @@ input[type="range"] {
 select[multiple],
 select[size] {
   height: auto;
+  width: 250px;
 }
 input[type="file"]:focus,
 input[type="radio"]:focus,

@@ -2,14 +2,6 @@
 /* @var $this UsuarioController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Usuarios',
-);
-
-$this->menu=array(
-	array('label'=>'Crer usuario', 'url'=>array('create')),
-	array('label'=>'Manage Usuario', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Usuarios</h1>

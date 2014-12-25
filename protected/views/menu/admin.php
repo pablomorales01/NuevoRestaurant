@@ -1,32 +1,9 @@
 <?php
 /* @var $this MenuController */
 /* @var $model Menu */
-
-$this->breadcrumbs=array(
-	'Menus'=>array('index'),
-	'Manage',
-);
-
-$this->menu=array(
-	array('label'=>'List Menu', 'url'=>array('index')),
-	array('label'=>'Create Menu', 'url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#menu-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
-<h1>Manage Menus</h1>
+<h1>Administrar Menus</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

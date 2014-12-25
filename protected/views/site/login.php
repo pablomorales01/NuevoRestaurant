@@ -2,11 +2,6 @@
 /* @var $this SiteController */
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
-
-$this->pageTitle=Yii::app()->name . ' - Login';
-$this->breadcrumbs=array(
-	'Login',
-);
 ?>
 
 <!-- Script para rut-->
@@ -23,11 +18,11 @@ $this->breadcrumbs=array(
 <!--Fin script rut-->
 
 <div class="row">
-<div class="col-xs-6 col-sm-4"></div>
+<div class="col-xs-6 col-sm-3"></div>
 
 
 
-<div class="col-xs-6 col-sm-4" align="center">
+<div class="col-xs-6 col-sm-6" align="center">
 <?php $this->beginWidget('bootstrap.widgets.BsPanel');?>
 <h1>Bienvenido</h1>
 
@@ -40,37 +35,48 @@ $this->breadcrumbs=array(
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
-)); ?>
+)); 
 
-	<p class="note">Los items <span class="required">*</span> son requeridos.</p>
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_inline',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+?>
+
+	<p class="note">Los items <span class="required">*</span> son requeridos.</p><br>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'Rut'); ?>
-		<?php echo $form->textField($model,'username'); ?>
+		<?php //echo $form->labelEx($model,'username'); ?>
+		<?php echo $form->textFieldControlGroup($model,'username'); ?>
 		<?php echo $form->error($model,'username'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'Contraseña'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
+		<?php //echo $form->labelEx($model,'password'); ?>
+		<?php echo $form->passwordFieldControlGroup($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
 		
 	</div>
 
 	<div class="row rememberMe">
-		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'Recuerdame'); ?>
+		<?php echo $form->checkBoxControlGroup($model,'rememberMe'); ?>
+		<?php //echo $form->label($model,'Recuérdame'); ?>
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 	
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Ingresar'); ?>
+		<?php echo BsHtml::submitButton('Ingresar', array('color' => BsHtml::BUTTON_COLOR_INFO));?>
 	</div>
 
 <?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 </div><!-- form -->
 </div> <!--Termino del col-->
-<div class="col-xs-6 col-sm-4"></div>
+<div class="col-xs-6 col-sm-3"></div>
 </div> <!--Termino del row-->
 

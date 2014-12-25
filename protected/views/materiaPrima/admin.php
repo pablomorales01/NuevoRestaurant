@@ -2,16 +2,9 @@
 /* @var $this MateriaPrimaController */
 /* @var $model MateriaPrima */
 
-$this->breadcrumbs=array(
-	'Materia Primas'=>array('index'),
-	'Manage',
-);
-
-
-
 ?>
 
-<h1>Administrar Materia Prima</h1>
+<h1 align="center">Administrar Materia Prima</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'materia-prima-grid',

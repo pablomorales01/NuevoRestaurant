@@ -2,13 +2,9 @@
 /* @var $this ProductoFinalController */
 /* @var $model ProductoFinal */
 
-$this->breadcrumbs=array(
-	'Producto Final'=>array('index'),
-	'Manage',
-);
 ?>
 
-<h1>Administrar Producto Final</h1>
+<h1 align="center">Administrar Producto Final</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'producto-final-grid',

@@ -2,16 +2,6 @@
 /* @var $this BodegaController */
 /* @var $model Bodega */
 
-$this->breadcrumbs=array(
-	'Bodegas'=>array('index'),
-	'Manage',
-);
-
-$this->menu=array(
-	array('label'=>'List Bodega', 'url'=>array('index')),
-	array('label'=>'Create Bodega', 'url'=>array('create')),
-);
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -26,7 +16,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Administrar Bodegas</h1>
+<h1 align="center">Administrar Bodegas</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'bodega-grid',

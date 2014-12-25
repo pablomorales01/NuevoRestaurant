@@ -10,7 +10,7 @@
       on_error: function(){ alert('Rut incorrecto'); }
     });
     })
-    </script>
+ </script>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
   'id'=>'usuario-_form-form',
@@ -49,7 +49,7 @@ Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
     
   <div class="form" align="center">
   <div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-12">formulario
+  <div class="col-xs-12 col-sm-6 col-md-12">
     <?php echo $form->dropDownListControlGroup($model,'USUROL', array(
         'Super administrador'=> 'Super administrador',
         'Administrador'=>'Administrador',

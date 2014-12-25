@@ -7,9 +7,8 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
   'id'=>'usuario-_form-form',
   'enableAjaxValidation'=>false,
-)); ?>
+)); 
 
-<?php
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
     'enableAjaxValidation' => true,
@@ -33,7 +32,7 @@ else if($TMP == null)
 else {
 ?>
 
-	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
+	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model);?> 
     <div class="form" align="center">

@@ -65,7 +65,7 @@ class ComandaController extends Controller
 		//yo queria hacer una vista que involucrara comanda, mesa, detale_comanda y producto_venta
 		$model=new Comanda;
 		$mesa = Mesa::model()->findAll(); //busca todas las mesas ingresadas
-		$menu = Menu::model()->findAll();
+		$menu = ListaDePrecios::model()->findAll();
 		$estado = DetalleComanda::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed

@@ -2,11 +2,6 @@
 /* @var $this UsuarioController */
 /* @var $model Usuario */
 
-$this->breadcrumbs=array(
-	'Usuarios'=>array('index'),
-	'Crear',
-);
-
 ?>
 
 <h1 align="center">Crear un Nuevo Usuario</h1>

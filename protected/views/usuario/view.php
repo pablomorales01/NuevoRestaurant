@@ -2,10 +2,6 @@
 /* @var $this UsuarioController */
 /* @var $model Usuario */
 
-$this->breadcrumbs=array(
-	'Usuarios'=>array('index'),
-	$model->USU_ID,
-);
 
 //Menú de ver, editar y eliminar un usuario
 

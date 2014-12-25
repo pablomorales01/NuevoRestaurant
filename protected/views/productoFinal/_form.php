@@ -26,7 +26,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
 ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note" align="center">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 

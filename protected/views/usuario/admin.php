@@ -2,15 +2,6 @@
 /* @var $this UsuarioController */
 /* @var $model Usuario */
 
-$this->breadcrumbs=array(
-	'Usuarios'=>array('index'),
-	'Manage',
-);
-
-$this->menu=array(
-	array('label'=>'List Usuario', 'url'=>array('index')),
-	array('label'=>'Create Usuario', 'url'=>array('create')),
-);
 
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/validCampoFranz.js',CClientScript::POS_END);
 Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
@@ -20,7 +11,8 @@ Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
 
 
 ?>
-<h1>Administrar Usuarios</h1>
+<br>
+<h1 align="center">Administrar Usuarios</h1>
 
 <!--<p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

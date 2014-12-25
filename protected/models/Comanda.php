@@ -11,14 +11,7 @@
  * @property integer $USU_ID
  * @property integer $USU_USU_ID
  * @property string $COMFECHA
- *
- * The followings are the available model relations:
- * @property Menu $mENU
- * @property Mesa $mESA
- * @property Venta $vENTA
- * @property Usuario $uSUUSU
- * @property Usuario $uSU
- * @property DetalleComanda[] $detalleComandas
+ * @property string $COM_ESTADO
  */
 class Comanda extends CActiveRecord
 {
@@ -39,10 +32,11 @@ class Comanda extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('VENTA_ID, MENU_ID, MESA_ID, USU_ID, USU_USU_ID', 'numerical', 'integerOnly'=>true),
+			array('COM_ESTADO', 'length', 'max'=>30),
 			array('COMFECHA', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('COM_ID, VENTA_ID, MENU_ID, MESA_ID, USU_ID, USU_USU_ID, COMFECHA', 'safe', 'on'=>'search'),
+			array('COM_ID, VENTA_ID, MENU_ID, MESA_ID, USU_ID, USU_USU_ID, COMFECHA, COM_ESTADO', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,12 +48,6 @@ class Comanda extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'mENU' => array(self::BELONGS_TO, 'Menu', 'MENU_ID'),
-			'mESA' => array(self::BELONGS_TO, 'Mesa', 'MESA_ID'),
-			'vENTA' => array(self::BELONGS_TO, 'Venta', 'VENTA_ID'),
-			'uSUUSU' => array(self::BELONGS_TO, 'Usuario', 'USU_USU_ID'),
-			'uSU' => array(self::BELONGS_TO, 'Usuario', 'USU_ID'),
-			'detalleComandas' => array(self::HAS_MANY, 'DetalleComanda', 'COM_ID'),
 		);
 	}
 
@@ -76,6 +64,7 @@ class Comanda extends CActiveRecord
 			'USU_ID' => 'Usu',
 			'USU_USU_ID' => 'Usu Usu',
 			'COMFECHA' => 'Comfecha',
+			'COM_ESTADO' => 'Com Estado',
 		);
 	}
 
@@ -104,6 +93,7 @@ class Comanda extends CActiveRecord
 		$criteria->compare('USU_ID',$this->USU_ID);
 		$criteria->compare('USU_USU_ID',$this->USU_USU_ID);
 		$criteria->compare('COMFECHA',$this->COMFECHA,true);
+		$criteria->compare('COM_ESTADO',$this->COM_ESTADO,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

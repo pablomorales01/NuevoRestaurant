@@ -72,8 +72,8 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
               </div>
              
 
-          <div class="row">
-             <?php echo CHtml::submitButton($model->isNewRecord ? 'Siguiente' : 'Save'); ?>
+          <div class="row buttons" align="center">
+            <?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS)); ?>
           </div>
 
     </div>

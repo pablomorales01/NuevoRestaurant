@@ -2,11 +2,6 @@
 /* @var $this UsuarioController */
 /* @var $model Usuario */
 
-$this->breadcrumbs=array(
-	'Usuarios'=>array('index'),
-	$model->USU_ID=>array('view','id'=>$model->USU_ID),
-	'Update',
-);
 
 $this->menu=array(
 	array('label'=>'List Usuario', 'url'=>array('index')),

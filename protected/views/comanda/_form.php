@@ -11,6 +11,12 @@
 <div class="form">
 
 <?php
+
+$form=$this->beginWidget('CActiveForm', array(
+  'id'=>'bodega-form',
+  'enableAjaxValidation'=>false,
+));
+
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_INLINE, //en linea (boton al lado)
     'enableAjaxValidation' => true,
@@ -35,7 +41,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 	}
 	else {?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 	 <?php  //PARA LAS MESAS
                         echo $form->dropDownListControlGroup($model, 'MESA_ID', 
@@ -59,11 +65,13 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
                              );*/
       ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+	<div class="row buttons" align="center">
+    <?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
+  </div>
+  
 	<?php } ?>
 
+<?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

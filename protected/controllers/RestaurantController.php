@@ -69,9 +69,18 @@ class RestaurantController extends Controller
 
 		if(isset($_POST['Restaurant']))
 		{
+			 $rnd = rand(0,9999);
+
 			$model->attributes=$_POST['Restaurant'];
 			$model->RESTOFECHACREACION= date('Y-m-d');
+
+			$model->RESTOIMAGEN=CUploadedFile::getInstance($model,'RESTOIMAGEN');
+
 			if($model->save())
+				if(!empty($uploadedFile))  // check if uploaded file is set or not
+            {
+                $model->RESTOIMAGEN->saveAs(Yii::getPathOfAlias('webroot')."/images/subidas/".$model->RESTOIMAGEN);
+            }
 				$this->redirect(array('view','id'=>$model->RESTO_ID));
 		}
 
@@ -95,7 +104,13 @@ class RestaurantController extends Controller
 		if(isset($_POST['Restaurant']))
 		{
 			$model->attributes=$_POST['Restaurant'];
+
+			$model->RESTOIMAGEN=CUploadedFile::getInstance($model,'RESTOIMAGEN');
 			if($model->save())
+				 if(!empty($uploadedFile))  // checkeamos si el archivo subido esta seteado o no
+	                {
+	                    $model->RESTOIMAGEN->saveAs(Yii::app()->basePath.'/images/subidas'.$model->RESTOIMAGENNOMBRE);
+	                }
 				$this->redirect(array('view','id'=>$model->RESTO_ID));
 		}
 

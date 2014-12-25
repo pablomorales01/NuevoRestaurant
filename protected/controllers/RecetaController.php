@@ -36,7 +36,7 @@ class RecetaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','receta'),
 				'users'=>array('Super administrador', 'administrador', 'cocina'),
 			),
 			array('deny',  // deny all users
@@ -68,11 +68,16 @@ class RecetaController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Receta']))
+		if(isset($_POST['destino']))
 		{
-			$model->attributes=$_POST['Receta'];
+			$elementos = $_POST['destino']; //recuperamos los elementos de destino
+			//for($i = 0; $i < sizeof($elementos);$i++)
+				//echo $elementos[$i]."<br>";
+				$this->redirect('receta',array('elementos'=>$elementos));
+
+			/*$model->attributes=$_POST['Receta'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->RECETA_ID));
+				$this->redirect(array('view','id'=>$model->RECETA_ID));*/
 		}
 
 		$this->render('create',array('model'=>$model, 'MP'=>$MP));
@@ -86,6 +91,7 @@ class RecetaController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$MP= MateriaPrima::model()->findAll(); //si no hay MP, no hay receta.
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -97,9 +103,7 @@ class RecetaController extends Controller
 				$this->redirect(array('view','id'=>$model->RECETA_ID));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update',array('model'=>$model, 'MP'=>$MP));
 	}
 
 	/**
