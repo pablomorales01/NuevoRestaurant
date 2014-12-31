@@ -91,8 +91,6 @@ class ProductoFinalController extends Controller
 		$this->render('create',array('model'=>$model, 'bodega'=>$bodega));
 	}
 
-	
-
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -105,14 +103,12 @@ class ProductoFinalController extends Controller
 
 		$pv = ProductoVenta::model()->findByPk($id);
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['ProductoFinal']))
 		{
 			$model->attributes=$_POST['ProductoFinal'];
-
-			$pv->PVENTA_ID = $model->PVENTA_ID;
-			$pv->PVENTANOMBRE ='fuck';
+			$pv->PVENTANOMBRE = $model->PVENTANOMBRE;
 
 			if($model->save())
 			{

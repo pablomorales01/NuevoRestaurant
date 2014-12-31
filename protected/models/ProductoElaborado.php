@@ -30,7 +30,7 @@ class ProductoElaborado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PVENTA_ID, PVENTANOMBRE, CALORIAS, GRAMOS', 'required'),
+			array('PVENTA_ID, PVENTANOMBRE', 'required'),
 			array('PVENTA_ID, CALORIAS, GRAMOS', 'numerical', 'integerOnly'=>true),
 			array('PVENTANOMBRE', 'length', 'max'=>20),
 			// The following rule is used by search().

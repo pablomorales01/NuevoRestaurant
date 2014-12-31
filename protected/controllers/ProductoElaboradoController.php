@@ -36,7 +36,7 @@ class ProductoElaboradoController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete, update'),
 				'users'=>array('Super administrador'),
 			),
 			array('deny',  // deny all users
@@ -71,12 +71,12 @@ class ProductoElaboradoController extends Controller
 		if(isset($_POST['ProductoElaborado']))
 		{
 			$model->attributes=$_POST['ProductoElaborado'];
-
-			$pv->PVENTANOMBRE = $model->PVENTANOMBRE;
-			$model->PVENTA_ID = $pv->PVENTA_ID;
+			$pv->PVENTANOMBRE = $model->PVENTANOMBRE;			
 			
 			if($pv->save())
 			{
+				$id = Yii::app()->db->getLastInsertID('ProductoVenta'); 
+				$model->PVENTA_ID = $id;
 				if($model->save())
 					$this->redirect(array('receta/create', 'id'=>$model->PVENTA_ID));
 			}
@@ -84,7 +84,7 @@ class ProductoElaboradoController extends Controller
 		}
 
 		$this->render('create',array(
-			'model'=>$model, 'mp'=>$mp
+			'model'=>$model, 'mp'=>$mp, 'pv'=>$pv
 		));
 	}
 
@@ -96,15 +96,20 @@ class ProductoElaboradoController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+		$pv = ProductoVenta::model()->findByPk($id);
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['ProductoElaborado']))
 		{
 			$model->attributes=$_POST['ProductoElaborado'];
+			$pv->PVENTANOMBRE = $model->PVENTANOMBRE;
+
 			if($model->save())
+			{
+				if($pv->save())
 				$this->redirect(array('view','id'=>$model->PVENTA_ID));
+			}
 		}
 
 		$this->render('update',array(
