@@ -13,9 +13,7 @@
 	<?php echo CHtml::encode($data->PVENTANOMBRE); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('MENU_ID')); ?>:</b>
-	<?php echo CHtml::encode($data->MENU_ID); ?>
-	<br />
+
 
 
 </div>

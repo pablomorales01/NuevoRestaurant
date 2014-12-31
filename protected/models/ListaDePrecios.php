@@ -9,6 +9,10 @@
  * @property integer $MENUPRECIO
  * @property integer $MENUCANTIDADPERSONAS
  * @property integer $CALORIASTOTAL
+ *
+ * The followings are the available model relations:
+ * @property Comanda[] $comandas
+ * @property ProductoVenta[] $productoVentas
  */
 class ListaDePrecios extends CActiveRecord
 {
@@ -44,6 +48,8 @@ class ListaDePrecios extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'comandas' => array(self::HAS_MANY, 'Comanda', 'MENU_ID'),
+			'productoVentas' => array(self::MANY_MANY, 'ProductoVenta', 'precio_producto(MENU_ID, PVENTA_ID)'),
 		);
 	}
 

@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update ProductoElaborado <?php echo $model->PVENTA_ID; ?></h1>
+<h1>Actualizar producto elaborado</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

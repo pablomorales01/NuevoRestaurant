@@ -16,10 +16,6 @@
 		<?php echo $form->textField($model,'PVENTA_ID'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'MENU_ID'); ?>
-		<?php echo $form->textField($model,'MENU_ID'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'PVENTANOMBRE'); ?>

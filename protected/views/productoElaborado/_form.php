@@ -1,10 +1,4 @@
-<?php
-/* @var $this ProductoElaboradoController */
-/* @var $model ProductoElaborado */
-/* @var $form CActiveForm */
-?>
 
-<div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'producto-elaborado-form',
@@ -15,26 +9,60 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+<?php
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+?>
 
-	<?php echo $form->errorSummary($model); ?>
+<?php 
+	if($mp == null)
+	{
+		echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existen regristo de materia prima para elaborar un producto ')
+    		.'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array(
+    			'url' => '../../materiaPrima/create'
+    			)));
+	}
+	else{
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'PVENTANOMBRE'); ?>
-		<?php echo $form->textField($model,'PVENTANOMBRE',array('size'=>15,'maxlength'=>15)); ?>
-		<?php echo $form->error($model,'PVENTANOMBRE'); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'MENU_ID'); ?>
-		<?php echo $form->textField($model,'MENU_ID'); ?>
-		<?php echo $form->error($model,'MENU_ID'); ?>
-	</div>
+?>
+	
+	
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
+
+	<?php    echo $form->errorSummary($model); ?>
+
+	 <div class="form" align="center">
+		  <div class="row">
+		  <div class="col-xs-12 col-sm-6 col-md-12">
+  	<?php 
+  		echo $form->textFieldControlGroup($model, 'PVENTANOMBRE');
+  		echo $form->error($model,'PVENTANOMBRE'); 
+  	 ?>
+  	 <?php 
+  		echo $form->textFieldControlGroup($model, 'CALORIAS');
+  		echo $form->error($model,'CALORIAS'); 
+  	 ?>
+  	 <?php 
+  		echo $form->textFieldControlGroup($model, 'GRAMOS');
+  		echo $form->error($model,'GRAMOS'); 
+  	 ?>
+		  </div>
+		  </div>
+  </div>
+
+	<div class="row buttons" align="center">
+    <?php echo BsHtml::submitButton('Siguiente', array('color' => BsHtml::BUTTON_COLOR_SUCCESS)); ?>
+  </div>
+<?php } ?>
+
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->
+<?php $this->endWidget(); ?>
