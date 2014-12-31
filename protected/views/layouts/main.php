@@ -47,8 +47,9 @@
                 'items' => array(
                 
                 array('label' => 'Restaurant', 'url' => array('/Restaurant/admin'), 'icon' => BsHtml::GLYPHICON_CUTLERY
-                        )
-
+                        ),
+                array('label' => 'Imagen', 'url' => array('/imagen/create'), 'icon' => BsHtml::GLYPHICON_PICTURE
+                    )
                 //Final del array items.
                 )
                 //Final del array de crear Botones.

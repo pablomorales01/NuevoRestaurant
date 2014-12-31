@@ -1,22 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "restaurant".
+ * This is the model class for table "imagen".
  *
- * The followings are the available columns in table 'restaurant':
+ * The followings are the available columns in table 'imagen':
+ * @property integer $IMAGEN_ID
  * @property integer $RESTO_ID
- * @property string $RESTONOMBRE
- * @property string $RESTOFECHACREACION
- * @property string $RESTODETALLE
+ * @property string $IMAGENNOMBRE
+ * @property string $IMAGEN
+ *
+ * The followings are the available model relations:
+ * @property Restaurant $rESTO
  */
-class Restaurant extends CActiveRecord
+class Imagen extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'restaurant';
+		return 'imagen';
 	}
 
 	/**
@@ -27,11 +30,13 @@ class Restaurant extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('RESTONOMBRE', 'length', 'max'=>25),
-			array('RESTOFECHACREACION, RESTODETALLE', 'safe'),
+			array('RESTO_ID', 'required'),
+			array('RESTO_ID', 'numerical', 'integerOnly'=>true),
+			array('IMAGENNOMBRE', 'length', 'max'=>50),
+			array('IMAGEN', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RESTO_ID, RESTONOMBRE, RESTOFECHACREACION, RESTODETALLE', 'safe', 'on'=>'search'),
+			array('IMAGEN_ID, RESTO_ID, IMAGENNOMBRE, IMAGEN', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,6 +48,7 @@ class Restaurant extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'rESTO' => array(self::BELONGS_TO, 'Restaurant', 'RESTO_ID'),
 		);
 	}
 
@@ -52,10 +58,10 @@ class Restaurant extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RESTO_ID' => 'Resto',
-			'RESTONOMBRE' => 'Nombre Restaurant',
-			'RESTOFECHACREACION' => 'Restofechacreacion',
-			'RESTODETALLE' => 'Descripción',
+			'IMAGEN_ID' => 'Imagen',
+			'RESTO_ID' => 'Restaurant',
+			'IMAGENNOMBRE' => 'Nombre Imagen',
+			'IMAGEN' => 'Imagen',
 		);
 	}
 
@@ -77,10 +83,10 @@ class Restaurant extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('IMAGEN_ID',$this->IMAGEN_ID);
 		$criteria->compare('RESTO_ID',$this->RESTO_ID);
-		$criteria->compare('RESTONOMBRE',$this->RESTONOMBRE,true);
-		$criteria->compare('RESTOFECHACREACION',$this->RESTOFECHACREACION,true);
-		$criteria->compare('RESTODETALLE',$this->RESTODETALLE,true);
+		$criteria->compare('IMAGENNOMBRE',$this->IMAGENNOMBRE,true);
+		$criteria->compare('IMAGEN',$this->IMAGEN,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -91,7 +97,7 @@ class Restaurant extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Restaurant the static model class
+	 * @return Imagen the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

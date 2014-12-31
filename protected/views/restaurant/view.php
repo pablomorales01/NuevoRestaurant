@@ -11,6 +11,5 @@
 		'RESTO_ID',
 		'RESTONOMBRE',
 		'RESTOFECHACREACION',
-		'RESTOIMAGEN',
 	),
 )); ?>

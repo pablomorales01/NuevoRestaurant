@@ -40,18 +40,13 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		<?php echo $form->error($model,'RESTODETALLE'); ?>
 	</div>
 
+	<!--
 	<div class="row">
 		<?php echo $form->labelEx($model,'RESTOIMAGEN'); ?>
 		<?php //echo $form->textFieldControlGroup($model,'RESTOIMAGEN'); ?>
 		<?php echo CHtml::activeFileField($model, 'RESTOIMAGEN') ?>
 		<?php echo $form->error($model,'RESTOIMAGEN'); ?>
-	</div>
-
-	<?php if($model->isNewRecord!='1'){ ?>
-	<div class="row">
-	     <?php echo CHtml::Restaurant(Yii::app()->request->baseUrl.'/images/subidas'.$model->RESTOIMAGEN,"image",array("width"=>200)); ?>
-	</div>
-	<?php } ?>
+	</div>-->
 
 	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>

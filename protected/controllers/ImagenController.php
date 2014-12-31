@@ -1,12 +1,12 @@
 <?php
 
-class RestaurantController extends Controller
+class ImagenController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/restaurantLayout';
+	public $layout='//layouts/imagenLayout';
 
 	/**
 	 * @return array action filters
@@ -37,7 +37,7 @@ class RestaurantController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('Super administrador'),
+				'users'=>array('Super Administrador'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,22 +62,20 @@ class RestaurantController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Restaurant;
+		$model=new Imagen;
+		$resto = Restaurant::model()->findAll(); //todos los resto ingresados
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Restaurant']))
+		if(isset($_POST['Imagen']))
 		{
-			
-			$model->attributes=$_POST['Restaurant'];
-			$model->RESTOFECHACREACION= date('Y-m-d');
-
+			$model->attributes=$_POST['Imagen'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->RESTO_ID));
+				$this->redirect(array('view','id'=>$model->IMAGEN_ID));
 		}
 
-		$this->render('create',array('model'=>$model));
+		$this->render('create',array('model'=>$model, 'resto' => $resto));
 	}
 
 	/**
@@ -88,20 +86,19 @@ class RestaurantController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$resto = Restaurant::model()->findAll(); //todos los resto ingresados
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Restaurant']))
+		if(isset($_POST['Imagen']))
 		{
-			$model->attributes=$_POST['Restaurant'];
-
+			$model->attributes=$_POST['Imagen'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->RESTO_ID));
+				$this->redirect(array('view','id'=>$model->IMAGEN_ID));
 		}
 
-		$this->render('update',array('model'=>$model,
-		));
+		$this->render('update',array('model'=>$model, 'resto'=>$resto));
 	}
 
 	/**
@@ -123,7 +120,7 @@ class RestaurantController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Restaurant');
+		$dataProvider=new CActiveDataProvider('Imagen');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -134,10 +131,10 @@ class RestaurantController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Restaurant('search');
+		$model=new Imagen('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Restaurant']))
-			$model->attributes=$_GET['Restaurant'];
+		if(isset($_GET['Imagen']))
+			$model->attributes=$_GET['Imagen'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -148,12 +145,12 @@ class RestaurantController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Restaurant the loaded model
+	 * @return Imagen the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Restaurant::model()->findByPk($id);
+		$model=Imagen::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -161,11 +158,11 @@ class RestaurantController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Restaurant $model the model to be validated
+	 * @param Imagen $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='restaurant-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='imagen-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
