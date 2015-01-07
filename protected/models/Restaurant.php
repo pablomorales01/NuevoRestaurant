@@ -7,7 +7,9 @@
  * @property integer $RESTO_ID
  * @property string $RESTONOMBRE
  * @property string $RESTOFECHACREACION
- * @property string $RESTODETALLE
+ *
+ * The followings are the available model relations:
+ * @property Usuario[] $usuarios
  */
 class Restaurant extends CActiveRecord
 {
@@ -28,10 +30,10 @@ class Restaurant extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('RESTONOMBRE', 'length', 'max'=>25),
-			array('RESTOFECHACREACION, RESTODETALLE', 'safe'),
+			array('RESTOFECHACREACION', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RESTO_ID, RESTONOMBRE, RESTOFECHACREACION, RESTODETALLE', 'safe', 'on'=>'search'),
+			array('RESTO_ID, RESTONOMBRE, RESTOFECHACREACION', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,6 +45,7 @@ class Restaurant extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'usuarios' => array(self::HAS_MANY, 'Usuario', 'RESTO_ID'),
 		);
 	}
 
@@ -52,10 +55,9 @@ class Restaurant extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RESTO_ID' => 'Resto',
-			'RESTONOMBRE' => 'Nombre Restaurant',
-			'RESTOFECHACREACION' => 'Restofechacreacion',
-			'RESTODETALLE' => 'Descripción',
+			'RESTO_ID' => 'Id restaurant',
+			'RESTONOMBRE' => 'Nombre restaurant',
+			'RESTOFECHACREACION' => 'Fecha de creación',
 		);
 	}
 
@@ -80,7 +82,6 @@ class Restaurant extends CActiveRecord
 		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 		$criteria->compare('RESTONOMBRE',$this->RESTONOMBRE,true);
 		$criteria->compare('RESTOFECHACREACION',$this->RESTOFECHACREACION,true);
-		$criteria->compare('RESTODETALLE',$this->RESTODETALLE,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

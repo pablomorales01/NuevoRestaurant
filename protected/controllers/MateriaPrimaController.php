@@ -100,7 +100,8 @@ class MateriaPrimaController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,'bodega'=>$bodega, 'TMP'=>$TMP));
+			'model'=>$model,'bodega'=>$bodega, 'TMP'=>$TMP
+			));
 	}
 
 	/**

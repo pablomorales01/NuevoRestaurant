@@ -95,12 +95,12 @@ class RestaurantController extends Controller
 		if(isset($_POST['Restaurant']))
 		{
 			$model->attributes=$_POST['Restaurant'];
-
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->RESTO_ID));
 		}
 
-		$this->render('update',array('model'=>$model,
+		$this->render('update',array(
+			'model'=>$model,
 		));
 	}
 

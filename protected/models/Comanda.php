@@ -12,6 +12,14 @@
  * @property integer $USU_USU_ID
  * @property string $COMFECHA
  * @property string $COM_ESTADO
+ *
+ * The followings are the available model relations:
+ * @property ListaDePrecios $mENU
+ * @property Mesa $mESA
+ * @property Venta $vENTA
+ * @property Usuario $uSUUSU
+ * @property Usuario $uSU
+ * @property DetalleComanda[] $detalleComandas
  */
 class Comanda extends CActiveRecord
 {
@@ -48,6 +56,12 @@ class Comanda extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'mENU' => array(self::BELONGS_TO, 'ListaDePrecios', 'MENU_ID'),
+			'mESA' => array(self::BELONGS_TO, 'Mesa', 'MESA_ID'),
+			'vENTA' => array(self::BELONGS_TO, 'Venta', 'VENTA_ID'),
+			'uSUUSU' => array(self::BELONGS_TO, 'Usuario', 'USU_USU_ID'),
+			'uSU' => array(self::BELONGS_TO, 'Usuario', 'USU_ID'),
+			'detalleComandas' => array(self::HAS_MANY, 'DetalleComanda', 'COM_ID'),
 		);
 	}
 
