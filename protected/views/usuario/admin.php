@@ -35,15 +35,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'filter'=>CHtml::listData(Restaurant::model()->findAll(),'RESTO_ID', 'RESTONOMBRE')
 		),
 		'USUROL',
-		'USUPASSWORD',
-		'USUCREATE',
-		'USUNOMBRES',
-		/*
-		'USUAPELLIDOS',
 		'USURUT',
-		'USUTELEFONO',
+		'USUNOMBRES',
+		'USUAPELLIDOS',
+		//'USUTELEFONO',
 		'USUESTADO',
-		*/
+		//'USUCREATE',
 		array(
 			'class'=>'CButtonColumn',
 		),

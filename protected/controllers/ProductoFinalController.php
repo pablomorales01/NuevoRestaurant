@@ -129,7 +129,11 @@ class ProductoFinalController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		//1ero eliminar en el registro de compras
+		//2do eliminar en producto final
+		//3ro eliminar en producto venta
+
+		 $this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
