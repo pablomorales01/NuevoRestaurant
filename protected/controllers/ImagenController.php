@@ -61,48 +61,7 @@ class ImagenController extends Controller
 	 */
 	public function actionCreate()
 	{
-		 $connection = Yii::app()->db;
-		 $model = new Imagen();
-		 $resto = Restaurant::model()->findAll();
-        // VARIABLES PARA EL GUARDADO DE LA IMAGEN
-              $rnd = rand(0,99999);  // generate random number between 0-9999
-        // OTRAS ACCIONES
-        if (! isset($_POST['Imagen'])) {
-            $this->render('create', array('model' => $model, 'resto'=>$resto));
-            return;
-        }
-        if (isset($_POST['Imagen']['IMAGEN_ID']) && $_POST['Imagen']['IMAGEN_ID'] == "0") $_POST['Imagen']['IMAGEN_ID'] = null;
-        // GUARDAR FOTO
-        $uploadedFile=CUploadedFile::getInstance($model,'IMAGEN');
-        $fileName = "";
-        // SI SE CARGO
-        $uploadTemporal = "{$uploadedFile}";
-        if(strlen($uploadTemporal) != 0)
-        {
-            $fileName = "{$rnd}-{$uploadedFile}";
-        } 
-        $model->IMAGEN = $fileName;
-        $model->setAttributes($_POST['Imagen']);
-            // OTRAS ACCIONES
-        $transaction = $connection->beginTransaction();
-        try {
-            if ($model->save()) {
-                // OTRAS ACCIONES
-                // IMAGEN
-                $uploadedFile->saveAs(Yii::app()->basePath.'/images/subidas'.$fileName);  // la imagen se subirá a la carpeta raiz /images/moviles/
-                $transaction->commit();
-                // OTRAS ACCIONES
-            } else {
-                Yii::app()->user->setFlash('error', "Error intentando crear el movil");
-                $transaction->rollback();
-            }
-        } catch (Exception $e) {
-            $transaction->rollback();
-            throw $e;
-        }
-        $this->render('create', array('model' => $model, 'resto'=>$resto));
-
-		/*$model=new Imagen;
+		$model=new Imagen;
 		$resto = Restaurant::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
@@ -111,16 +70,16 @@ class ImagenController extends Controller
 		if(isset($_POST['Imagen']))
 		{
 			$model->attributes=$_POST['Imagen'];
-			//$model->IMAGEN = CUploadedFile::getInstance($model, 'IMAGEN'); //equivalente a Yii PHP de Array $ _FILES
+			$model->IMAGEN = CUploadedFile::getInstance($model, 'IMAGEN'); //equivalente a Yii PHP de Array $ _FILES
 
 			if($model->save())
-				//$model->avatar->saveAs('/images/subidas'); //guarda el archivo fisico en el servidor ('destino')
+			    $model->IMAGEN->saveAs(Yii::getPathOfAlias('webroot').'../images/subidas/'.$model->IMAGEN->getName()); //guarda el archivo fisico en el servidor ('destino')
 				$this->redirect(array('view','id'=>$model->IMAGEN_ID));
 		}
 
 		$this->render('create',array(
 			'model'=>$model, 'resto'=>$resto,
-		));*/
+		));
 	}
 
 	/**
@@ -143,6 +102,7 @@ class ImagenController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$resto = Restaurant::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -155,7 +115,7 @@ class ImagenController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 'resto' =>$resto
 		));
 	}
 
