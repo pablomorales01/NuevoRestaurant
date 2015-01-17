@@ -8,6 +8,7 @@
  * @property integer $RESTO_ID
  * @property string $IMAGENNOMBRE
  * @property string $IMAGEN
+ * @property string $IMAGENTIPO
  *
  * The followings are the available model relations:
  * @property Restaurant $rESTO
@@ -32,11 +33,17 @@ class Imagen extends CActiveRecord
 		return array(
 			array('RESTO_ID', 'required'),
 			array('RESTO_ID', 'numerical', 'integerOnly'=>true),
-			array('IMAGENNOMBRE', 'length', 'max'=>50),
-			array('IMAGEN', 'safe'),
+			array('IMAGENNOMBRE, IMAGENTIPO', 'length', 'max'=>50),
+			array('IMAGEN', 'file', 
+        			'types'=>'jpg, gif, png, bmp, jpeg',
+            		'maxSize'=>1024 * 1024 * 10, // 10MB
+                	'tooLarge'=>'10MB.', //comentario de maximo de largo
+            		'allowEmpty' => true,
+            		'on' => 'insert, update'
+         	),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('IMAGEN_ID, RESTO_ID, IMAGENNOMBRE, IMAGEN', 'safe', 'on'=>'search'),
+			array('IMAGEN_ID, RESTO_ID, IMAGENNOMBRE, IMAGEN, IMAGENTIPO', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,9 +66,10 @@ class Imagen extends CActiveRecord
 	{
 		return array(
 			'IMAGEN_ID' => 'Imagen',
-			'RESTO_ID' => 'Restaurant',
-			'IMAGENNOMBRE' => 'Nombre Imagen',
+			'RESTO_ID' => 'Resto',
+			'IMAGENNOMBRE' => 'Imagennombre',
 			'IMAGEN' => 'Imagen',
+			'IMAGENTIPO' => 'Imagentipo',
 		);
 	}
 
@@ -87,6 +95,7 @@ class Imagen extends CActiveRecord
 		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 		$criteria->compare('IMAGENNOMBRE',$this->IMAGENNOMBRE,true);
 		$criteria->compare('IMAGEN',$this->IMAGEN,true);
+		$criteria->compare('IMAGENTIPO',$this->IMAGENTIPO,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

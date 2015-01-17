@@ -13,14 +13,14 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
+	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); 
 
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
-    'enableAjaxValidation' => true,
-    'id' => 'user_form_inline',
+    'enableAjaxValidation' => false,
     'htmlOptions' => array(
-        'class' => 'bs-example'
+        'enctype' => 'multipart/form-data'
     )
 ));
 
@@ -48,15 +48,23 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     </div>
 	<div class="row">
 		<?php //echo $form->labelEx($model,'IMAGENNOMBRE'); ?>
-		<?php echo $form->textFieldControlGroup($model,'IMAGENNOMBRE',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'IMAGENNOMBRE'); ?>
+		<?php //echo $form->textFieldControlGroup($model,'IMAGENNOMBRE',array('size'=>50,'maxlength'=>50)); ?>
+		<?php //echo $form->error($model,'IMAGENNOMBRE'); ?>
 	</div>
 
 	<div class="row">
 		<?php //echo $form->labelEx($model,'IMAGEN'); ?>
-		<?php echo $form->fileFieldControlGroup($model,'IMAGEN',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->fileField($model,'IMAGEN'); ?>
 		<?php echo $form->error($model,'IMAGEN'); ?>
 	</div>
+
+	<?php if(!$model->isNewRecord && $model->IMAGEN!="" && strlen($model->IMAGEN)!=0){ ?>
+	<div class="row">
+	<?php echo CHtml::image(Yii::app()->request->baseUrl.'/protected/images/subidas/'.$model->IMAGEN,"imagen", array("width"=>200, "height"=>200)); ?>
+	<?php // La Imagen se muestra aquí si la página es la página de actualización ?>
+	</div>
+	<?php } ?>
+
 
 	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
