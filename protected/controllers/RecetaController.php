@@ -37,7 +37,7 @@ class RecetaController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete','receta'),
-				'users'=>array('Super administrador', 'administrador', 'cocina'),
+				'users'=>array('Administrador', 'cocina'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -60,7 +60,7 @@ class RecetaController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($id)
+	public function actionCreate()
 	{
 		$model=new Receta;
 		$MP= MateriaPrima::model()->findAll(); //si no hay MP, no hay receta.
@@ -70,9 +70,10 @@ class RecetaController extends Controller
 
 		if(isset($_POST['destino']))
 		{
+			die('Hola');
 			$elementos = $_POST['destino']; //recuperamos los elementos de destino
-			//for($i = 0; $i < sizeof($elementos);$i++)
-				//echo $elementos[$i]."<br>";
+			for($i = 0; $i < sizeof($elementos);$i++)
+				echo $elementos[$i]."<br>";
 				$this->redirect('receta',array('elementos'=>$elementos));
 
 			/*$model->attributes=$_POST['Receta'];
