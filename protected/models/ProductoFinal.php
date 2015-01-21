@@ -10,6 +10,7 @@
  * @property integer $PFINALSTOCK
  * @property integer $CALORIAS
  * @property integer $GRAMOS
+ * @property string $ESTADO
  *
  * The followings are the available model relations:
  * @property ProductoVenta $pVENTA
@@ -32,12 +33,13 @@ class ProductoFinal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PVENTA_ID, PVENTANOMBRE, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'required'),
+			array('PVENTA_ID, PVENTANOMBRE, BODEGA_ID, ESTADO', 'required'),
 			array('PVENTA_ID, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'numerical', 'integerOnly'=>true),
 			array('PVENTANOMBRE', 'length', 'max'=>20),
+			array('ESTADO', 'length', 'max'=>13),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PVENTA_ID, PVENTANOMBRE, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'safe', 'on'=>'search'),
+			array('PVENTA_ID, PVENTANOMBRE, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS, ESTADO', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,6 +67,7 @@ class ProductoFinal extends CActiveRecord
 			'PFINALSTOCK' => 'Pfinalstock',
 			'CALORIAS' => 'Calorias',
 			'GRAMOS' => 'Gramos',
+			'ESTADO' => 'Estado',
 		);
 	}
 
@@ -92,6 +95,7 @@ class ProductoFinal extends CActiveRecord
 		$criteria->compare('PFINALSTOCK',$this->PFINALSTOCK);
 		$criteria->compare('CALORIAS',$this->CALORIAS);
 		$criteria->compare('GRAMOS',$this->GRAMOS);
+		$criteria->compare('ESTADO',$this->ESTADO,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
