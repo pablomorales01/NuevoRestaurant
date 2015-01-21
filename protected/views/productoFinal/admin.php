@@ -11,6 +11,7 @@
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
+
 		'PVENTA_ID',
 		'PVENTANOMBRE',
 		//'MENU_ID',
@@ -18,6 +19,7 @@
 		'PFINALSTOCK',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view}{update}',
 		),
 	),
 )); ?>
