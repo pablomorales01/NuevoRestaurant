@@ -51,8 +51,6 @@ $(function(){
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-	<?php echo $form->textFieldControlGroup($model,'RECETANOMBRE'); ?>
-	<?php echo $form->error($model,'RECETANOMBRE'); ?>
 
 	<table id="tabla">
 	<!-- Cabecera de la tabla -->

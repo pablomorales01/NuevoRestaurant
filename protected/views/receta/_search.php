@@ -27,11 +27,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'RECETANOMBRE'); ?>
-		<?php echo $form->textField($model,'RECETANOMBRE',array('size'=>50,'maxlength'=>50)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'RECETACANTIDADPRODUCTO'); ?>
 		<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
 	</div>

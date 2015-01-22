@@ -17,10 +17,6 @@
 	<?php echo CHtml::encode($data->MP_ID); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('RECETANOMBRE')); ?>:</b>
-	<?php echo CHtml::encode($data->RECETANOMBRE); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('RECETACANTIDADPRODUCTO')); ?>:</b>
 	<?php echo CHtml::encode($data->RECETACANTIDADPRODUCTO); ?>
 	<br />

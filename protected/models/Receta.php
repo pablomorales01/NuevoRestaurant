@@ -7,7 +7,6 @@
  * @property integer $RECETA_ID
  * @property integer $PVENTA_ID
  * @property integer $MP_ID
- * @property string $RECETANOMBRE
  * @property integer $RECETACANTIDADPRODUCTO
  * @property string $RECETAUNIDADMEDIDA
  */
@@ -29,13 +28,11 @@ class Receta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('RECETANOMBRE', 'required'),
 			array('PVENTA_ID, MP_ID, RECETACANTIDADPRODUCTO', 'numerical', 'integerOnly'=>true),
-			array('RECETANOMBRE', 'length', 'max'=>50),
 			array('RECETAUNIDADMEDIDA', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RECETA_ID, PVENTA_ID, MP_ID, RECETANOMBRE, RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA', 'safe', 'on'=>'search'),
+			array('RECETA_ID, PVENTA_ID, MP_ID, RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,11 +54,10 @@ class Receta extends CActiveRecord
 	{
 		return array(
 			'RECETA_ID' => 'Receta',
-			'PVENTA_ID' => 'Prod. Elaborado',
-			'MP_ID' => 'Materia Prima',
-			'RECETANOMBRE' => 'Nombre Receta',
-			'RECETACANTIDADPRODUCTO' => 'Cantidad',
-			'RECETAUNIDADMEDIDA' => 'Unidad de Medida',
+			'PVENTA_ID' => 'Pventa',
+			'MP_ID' => 'Mp',
+			'RECETACANTIDADPRODUCTO' => 'Recetacantidadproducto',
+			'RECETAUNIDADMEDIDA' => 'Recetaunidadmedida',
 		);
 	}
 
@@ -86,7 +82,6 @@ class Receta extends CActiveRecord
 		$criteria->compare('RECETA_ID',$this->RECETA_ID);
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
 		$criteria->compare('MP_ID',$this->MP_ID);
-		$criteria->compare('RECETANOMBRE',$this->RECETANOMBRE,true);
 		$criteria->compare('RECETACANTIDADPRODUCTO',$this->RECETACANTIDADPRODUCTO);
 		$criteria->compare('RECETAUNIDADMEDIDA',$this->RECETAUNIDADMEDIDA,true);
 
