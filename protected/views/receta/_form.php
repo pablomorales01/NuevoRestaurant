@@ -12,12 +12,12 @@
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,)); 
+	'enableAjaxValidation'=>true,)); 
 
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
     'enableAjaxValidation' => true,
-    'id' => 'user_form_horizontal',
+    'id' => 'user_form',
     'htmlOptions' => array(
         'class' => 'bs-example'
     )
@@ -42,17 +42,16 @@ $(function(){
 </script>
 
 <style type="text/css">
- 
 .fila-base{ display: none; } /* fila base oculta */
 .eliminar{ cursor: pointer; color: #000; }
-input[type="text"]{ width: 80px; } /* ancho a los elementos input="text" */
- 
 </style>
+
 	<p class="note" align="center">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldControlGroup($model,'RECETANOMBRE',array('size'=>50,'maxlength'=>50)); ?>
+	<div class="row">
+	<?php echo $form->textFieldControlGroup($model,'RECETANOMBRE'); ?>
 	<?php echo $form->error($model,'RECETANOMBRE'); ?>
 
 	<table id="tabla">
@@ -73,65 +72,60 @@ input[type="text"]{ width: 80px; } /* ancho a los elementos input="text" */
 		<tr class="fila-base">
 			<td>
 				<?php 
-                        echo $form->dropDownListControlGroup($model, 'MP_ID', 
+                        echo $form->dropDownList($model, 'MP_ID', 
+                            CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
+                             array(
+                                'prompt' => 'Seleccione',
+                                )
+                             );
+      			?>
+			</td>
+			<br>
+			<td>
+				<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
+				<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
+      		</td>
+			<td>
+				<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
+				<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
+			</td>
+			<td class="eliminar"><?php echo BsHtml::Button('x', array('color' => BsHtml::BUTTON_COLOR_WARNING)) ?></td>
+		</tr>
+		<!-- fin de código: fila base -->
+
+		<!-- Fila de ejemplo -->
+		<tr>
+			<td>
+				<?php 
+                        echo $form->dropDownList($model, 'MP_ID', 
                             CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
                              array(
                                 'prompt' => 'Seleccione')
                              );
 
       			?>
-			</td>
-			<td>
-				<?php echo $form->textFieldControlGroup($model,'RECETACANTIDADPRODUCTO'); ?>
-				<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
       		</td>
 			<td>
-				<?php echo $form->textFieldControlGroup($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
+				<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
+				<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
+			</td>
+			<td>
+				<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
 				<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
 			</td>
-			<td class="eliminar">Eliminar</td>
+			<td class="eliminar"><?php echo BsHtml::Button('x', array('color' => BsHtml::BUTTON_COLOR_WARNING)) ?></td>
 		</tr>
-		<!-- fin de código: fila base -->
+		<!-- fin de código: fila de ejemplo -->
  
 	</tbody>
 </table>
-<!-- Botón para agregar filas -->
-<input type="button" id="agregar" value="Agregar fila" />
-
-<?php  /*
-	<div class="fila-base">
-		<?php //echo $form->labelEx($model,'RECETANOMBRE'); ?>
-		<?php echo $form->textFieldControlGroup($model,'RECETANOMBRE',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'RECETANOMBRE'); ?>
-	
-
-		<?php //echo $form->labelEx($model,'MP_ID'); ?>
-		<?php //echo $form->textFieldControlGroup($model,'MP_ID'); ?>
-		<?php //echo $form->error($model,'MP_ID'); ?>
-		<?php 
-                        echo $form->dropDownListControlGroup($model, 'MP_ID', 
-                            CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
-                             array(
-                                'prompt' => 'Seleccione')
-                             );
-
-      ?>
-
-		<?php //echo $form->labelEx($model,'RECETACANTIDADPRODUCTO'); ?>
-		<?php echo $form->textFieldControlGroup($model,'RECETACANTIDADPRODUCTO'); ?>
-		<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
-	
-
-		<?php //echo $form->labelEx($model,'RECETAUNIDADMEDIDA'); ?>
-		<?php echo $form->textFieldControlGroup($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
+	<!-- Botón para agregar filas -->
+	<!--<input type="button" id="agregar" value="+" />-->
+	<div id="agregar">
+			<?php echo BsHtml::Button('+', array('color' => BsHtml::BUTTON_COLOR_INFO)) ?>
 	</div>
+	</div> <!-- fin div row-->
 
-	*/?>
-
-	<div>
-		<?php echo BsHtml::Button('+', array('color' => BsHtml::BUTTON_COLOR_INFO)) ?>
-	</div>
 	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
