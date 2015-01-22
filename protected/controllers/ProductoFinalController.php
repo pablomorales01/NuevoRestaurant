@@ -75,13 +75,17 @@ class ProductoFinalController extends Controller
 		{		
 			//recibo en model los datos por $_POST
 			$model->attributes=$_POST['ProductoFinal'];
+			//saco el nombre y lo mando a producto venta
 			$pv->PVENTANOMBRE = $model->PVENTANOMBRE;
 
 
 			if($pv->save())
 			{
+				//el ultimo id insertado
 				$id = Yii::app()->db->getLastInsertID('ProductoVenta'); 
+				//copio el id en producto final
 				$model->PVENTA_ID = $id;
+				//guardo
 				if($model->save())
 					$this->redirect(array('view','id'=>$pv->PVENTA_ID));
 			}
