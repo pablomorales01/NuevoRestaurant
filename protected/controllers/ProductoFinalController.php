@@ -15,7 +15,6 @@ class ProductoFinalController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -129,8 +128,18 @@ class ProductoFinalController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		//1ero eliminar en el registro de compras
+		//2do eliminar en producto final
+		//3ro eliminar en producto venta
+		
+		ProductoVenta::model()->deleteByPk($id);
+		die("estamos aqui");		
 
+		$this->loadModel($id)->delete(); //producto final
+
+		$registros = RegistroComprasPf::model()->findAllByAttributes(array("PVENTA_ID"=>$id));
+		$registros->detele();
+		
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));

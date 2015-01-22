@@ -5,14 +5,11 @@
  *
  * The followings are the available columns in table 'receta':
  * @property integer $RECETA_ID
- * @property integer $RECETACANTIDADPRODUCTO
- * @property string $RECETAUNIDADMEDIDA
  * @property integer $PVENTA_ID
  * @property integer $MP_ID
- *
- * The followings are the available model relations:
- * @property MateriaPrima $mP
- * @property ProductoElaborado $pVENTA
+ * @property string $RECETANOMBRE
+ * @property integer $RECETACANTIDADPRODUCTO
+ * @property string $RECETAUNIDADMEDIDA
  */
 class Receta extends CActiveRecord
 {
@@ -32,11 +29,13 @@ class Receta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('RECETACANTIDADPRODUCTO, PVENTA_ID, MP_ID', 'numerical', 'integerOnly'=>true),
-			array('RECETAUNIDADMEDIDA', 'length', 'max'=>2),
+			array('RECETANOMBRE', 'required'),
+			array('PVENTA_ID, MP_ID, RECETACANTIDADPRODUCTO', 'numerical', 'integerOnly'=>true),
+			array('RECETANOMBRE', 'length', 'max'=>50),
+			array('RECETAUNIDADMEDIDA', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RECETA_ID, RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA, PVENTA_ID, MP_ID', 'safe', 'on'=>'search'),
+			array('RECETA_ID, PVENTA_ID, MP_ID, RECETANOMBRE, RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,8 +47,6 @@ class Receta extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'mP' => array(self::BELONGS_TO, 'MateriaPrima', 'MP_ID'),
-			'pVENTA' => array(self::BELONGS_TO, 'ProductoElaborado', 'PVENTA_ID'),
 		);
 	}
 
@@ -59,11 +56,12 @@ class Receta extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RECETA_ID' => 'Receta ID',
+			'RECETA_ID' => 'Receta',
+			'PVENTA_ID' => 'Prod. Elaborado',
+			'MP_ID' => 'Materia Prima',
+			'RECETANOMBRE' => 'Nombre Receta',
 			'RECETACANTIDADPRODUCTO' => 'Cantidad',
 			'RECETAUNIDADMEDIDA' => 'Unidad de Medida',
-			'PVENTA_ID' => 'Pventa ID',
-			'MP_ID' => 'Nombre Materia Prima',
 		);
 	}
 
@@ -86,10 +84,11 @@ class Receta extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('RECETA_ID',$this->RECETA_ID);
-		$criteria->compare('RECETACANTIDADPRODUCTO',$this->RECETACANTIDADPRODUCTO);
-		$criteria->compare('RECETAUNIDADMEDIDA',$this->RECETAUNIDADMEDIDA,true);
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
 		$criteria->compare('MP_ID',$this->MP_ID);
+		$criteria->compare('RECETANOMBRE',$this->RECETANOMBRE,true);
+		$criteria->compare('RECETACANTIDADPRODUCTO',$this->RECETACANTIDADPRODUCTO);
+		$criteria->compare('RECETAUNIDADMEDIDA',$this->RECETAUNIDADMEDIDA,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
