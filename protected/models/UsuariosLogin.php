@@ -10,6 +10,7 @@
  * @property string $USUAPELLIDOS
  * @property string $USUROL
  * @property string $password
+ * @property integer $RESTO_ID
  */
 class UsuariosLogin extends CActiveRecord
 {
@@ -29,15 +30,14 @@ class UsuariosLogin extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('USUROL', 'required'),
-			array('USU_ID', 'numerical', 'integerOnly'=>true),
+			array('USU_ID, RESTO_ID', 'numerical', 'integerOnly'=>true),
 			array('username', 'length', 'max'=>12),
 			array('USUNOMBRES, USUAPELLIDOS', 'length', 'max'=>25),
 			array('USUROL', 'length', 'max'=>19),
 			array('password', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('USU_ID, username, USUNOMBRES, USUAPELLIDOS, USUROL, password', 'safe', 'on'=>'search'),
+			array('USU_ID, username, USUNOMBRES, USUAPELLIDOS, USUROL, password, RESTO_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +64,7 @@ class UsuariosLogin extends CActiveRecord
 			'USUAPELLIDOS' => 'Usuapellidos',
 			'USUROL' => 'Usurol',
 			'password' => 'Password',
+			'RESTO_ID' => 'Resto',
 		);
 	}
 
@@ -91,6 +92,7 @@ class UsuariosLogin extends CActiveRecord
 		$criteria->compare('USUAPELLIDOS',$this->USUAPELLIDOS,true);
 		$criteria->compare('USUROL',$this->USUROL,true);
 		$criteria->compare('password',$this->password,true);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -24,6 +24,7 @@ class UserIdentity extends CUserIdentity
             $this->setState('NOMBRES',$user->USUNOMBRES);
             $this->setState('APELLIDOS', $user->USUAPELLIDOS);
             $this->setState('ID', $user->USU_ID);
+            $this->setState('RESTAURANT', $user->RESTO_ID);
             $this->errorCode=self::ERROR_NONE;
         }
         return $this->errorCode==self::ERROR_NONE;

@@ -5,11 +5,9 @@
  *
  * The followings are the available columns in table 'mesa':
  * @property integer $MESA_ID
- * @property integer $MESANUM
  * @property integer $MESACANTIDADPERSONA
- *
- * The followings are the available model relations:
- * @property Comanda[] $comandas
+ * @property integer $MESANUM
+ * @property integer $RESTO_ID
  */
 class Mesa extends CActiveRecord
 {
@@ -29,11 +27,11 @@ class Mesa extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MESANUM', 'required'),
-			array('MESANUM, MESACANTIDADPERSONA', 'numerical', 'integerOnly'=>true),
+			array('MESANUM, MESACANTIDADPERSONA', 'required'),
+			array('MESACANTIDADPERSONA, MESANUM, RESTO_ID', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('MESA_ID, MESANUM, MESACANTIDADPERSONA', 'safe', 'on'=>'search'),
+			array('MESA_ID, MESACANTIDADPERSONA, MESANUM, RESTO_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,7 +43,6 @@ class Mesa extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'comandas' => array(self::HAS_MANY, 'Comanda', 'MESA_ID'),
 		);
 	}
 
@@ -55,9 +52,10 @@ class Mesa extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'MESA_ID' => 'Mesa',
-			'MESANUM' => 'N° Mesa',
-			'MESACANTIDADPERSONA' => 'Mesacantidadpersona',
+			'MESA_ID' => 'Mesa id',
+			'MESACANTIDADPERSONA' => 'Cantidad de personas',
+			'MESANUM' => 'Número',
+			'RESTO_ID' => 'Restaurant',
 		);
 	}
 
@@ -80,8 +78,9 @@ class Mesa extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('MESA_ID',$this->MESA_ID);
-		$criteria->compare('MESANUM',$this->MESANUM);
 		$criteria->compare('MESACANTIDADPERSONA',$this->MESACANTIDADPERSONA);
+		$criteria->compare('MESANUM',$this->MESANUM);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
