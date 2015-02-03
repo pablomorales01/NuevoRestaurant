@@ -98,7 +98,6 @@ class MateriaPrima extends CActiveRecord
 		$criteria->compare('MPNOMBRE',$this->MPNOMBRE,true);
 		$criteria->compare('MPUNIDAD_MEDIDA',$this->MPUNIDAD_MEDIDA,true);
 		$criteria->compare('MPSTOCK',$this->MPSTOCK);
-
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

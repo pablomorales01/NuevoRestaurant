@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'producto_final':
  * @property integer $PVENTA_ID
  * @property string $PVENTANOMBRE
+ * @property integer $RESTO_ID
  * @property integer $BODEGA_ID
  * @property integer $PFINALSTOCK
  * @property integer $CALORIAS
@@ -14,6 +15,7 @@
  *
  * The followings are the available model relations:
  * @property ProductoVenta $pVENTA
+ * @property Bodega $bODEGA
  */
 class ProductoFinal extends CActiveRecord
 {
@@ -33,13 +35,12 @@ class ProductoFinal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PVENTA_ID, PVENTANOMBRE, BODEGA_ID, ESTADO', 'required'),
-			array('PVENTA_ID, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'numerical', 'integerOnly'=>true),
-			array('PVENTANOMBRE', 'length', 'max'=>20),
+			array('RESTO_ID, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS', 'numerical', 'integerOnly'=>true),
+			array('PVENTANOMBRE', 'length', 'max'=>15),
 			array('ESTADO', 'length', 'max'=>13),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PVENTA_ID, PVENTANOMBRE, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS, ESTADO', 'safe', 'on'=>'search'),
+			array('PVENTA_ID, PVENTANOMBRE, RESTO_ID, BODEGA_ID, PFINALSTOCK, CALORIAS, GRAMOS, ESTADO', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,6 +53,7 @@ class ProductoFinal extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'pVENTA' => array(self::BELONGS_TO, 'ProductoVenta', 'PVENTA_ID'),
+			'bODEGA' => array(self::BELONGS_TO, 'Bodega', 'BODEGA_ID'),
 		);
 	}
 
@@ -61,10 +63,11 @@ class ProductoFinal extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'PVENTA_ID' => 'Pventa',
-			'PVENTANOMBRE' => 'Pventanombre',
-			'BODEGA_ID' => 'Bodega',
-			'PFINALSTOCK' => 'Pfinalstock',
+			'PVENTA_ID' => 'Pventa id',
+			'PVENTANOMBRE' => 'Nombre',
+			'RESTO_ID' => 'Restaurant id',
+			'BODEGA_ID' => 'Bodega id',
+			'PFINALSTOCK' => 'Stock',
 			'CALORIAS' => 'Calorias',
 			'GRAMOS' => 'Gramos',
 			'ESTADO' => 'Estado',
@@ -91,6 +94,7 @@ class ProductoFinal extends CActiveRecord
 
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
 		$criteria->compare('PVENTANOMBRE',$this->PVENTANOMBRE,true);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 		$criteria->compare('BODEGA_ID',$this->BODEGA_ID);
 		$criteria->compare('PFINALSTOCK',$this->PFINALSTOCK);
 		$criteria->compare('CALORIAS',$this->CALORIAS);

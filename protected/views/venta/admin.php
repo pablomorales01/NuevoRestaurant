@@ -12,7 +12,7 @@
 	'filter'=>$model,
 	'columns'=>array(
 		'VENTA_ID',
-		'USU_ID',
+		'uSU.USURUT',
 		'VENTAFECHA',
 		'VENTATOTAL',
 		'VENTAFORMADEPAGO',

@@ -11,15 +11,14 @@
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		//'MP_ID',
+		'MPNOMBRE',
+		'tMP.TMPNOMBRE',
 		array(
 		'name'=>'BODEGA_ID',
 		'value' => '$data->bODEGA==null?" ":$data->bODEGA->BODEGANOMBRE',
 		'filter'=>CHtml::listData(Bodega::model()->findAll(),'BODEGA_ID', 'BODEGANOMBRE')
 		),
-		//'TMP_ID',
-		'MPNOMBRE',
-		'MPUNIDAD_MEDIDA',
+		
 		'MPSTOCK',
 		array(
 			'class'=>'CButtonColumn',

@@ -54,7 +54,7 @@ class TipoMateriaPrima extends CActiveRecord
 	{
 		return array(
 			'TMP_ID' => 'Id',
-			'TMPNOMBRE' => 'Nombre',
+			'TMPNOMBRE' => 'Tipo',
 		);
 	}
 

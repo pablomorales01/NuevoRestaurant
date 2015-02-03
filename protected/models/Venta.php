@@ -60,8 +60,8 @@ class Venta extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'VENTA_ID' => 'Venta',
-			'USU_ID' => 'id_usuario',
+			'VENTA_ID' => 'Id de venta',
+			'USU_ID' => 'Trabajador',
 			'VENTAFECHA' => 'Fecha',
 			'VENTATOTAL' => 'Total',
 			'VENTAFORMADEPAGO' => 'Forma de Pago',
