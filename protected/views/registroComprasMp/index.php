@@ -2,9 +2,6 @@
 /* @var $this RegistroComprasMpController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Registro Compras Mps',
-);
 
 $this->menu=array(
 	array('label'=>'Create RegistroComprasMp', 'url'=>array('create')),

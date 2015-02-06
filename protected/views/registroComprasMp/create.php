@@ -2,10 +2,6 @@
 /* @var $this RegistroComprasMpController */
 /* @var $model RegistroComprasMp */
 
-$this->breadcrumbs=array(
-	'Registro Compras Mps'=>array('index'),
-	'Create',
-);
 
 $this->menu=array(
 	array('label'=>'List RegistroComprasMp', 'url'=>array('index')),

@@ -2,11 +2,6 @@
 /* @var $this ProveedorController */
 /* @var $model Proveedor */
 
-$this->breadcrumbs=array(
-	'Proveedors'=>array('index'),
-	$model->PROV_ID=>array('view','id'=>$model->PROV_ID),
-	'Update',
-);
 
 $this->menu=array(
 	array('label'=>'List Proveedor', 'url'=>array('index')),

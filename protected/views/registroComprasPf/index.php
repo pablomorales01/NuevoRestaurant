@@ -2,9 +2,6 @@
 /* @var $this RegistroComprasPfController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Registro Compras Pfs',
-);
 
 $this->menu=array(
 	array('label'=>'Create RegistroComprasPf', 'url'=>array('create')),

@@ -2,11 +2,6 @@
 /* @var $this RegistroComprasPfController */
 /* @var $model RegistroComprasPf */
 
-$this->breadcrumbs=array(
-	'Registro Compras Pfs'=>array('index'),
-	$model->RPF_ID=>array('view','id'=>$model->RPF_ID),
-	'Update',
-);
 
 $this->menu=array(
 	array('label'=>'List RegistroComprasPf', 'url'=>array('index')),

@@ -2,11 +2,6 @@
 /* @var $this RegistroComprasMpController */
 /* @var $model RegistroComprasMp */
 
-$this->breadcrumbs=array(
-	'Registro Compras Mps'=>array('index'),
-	$model->RCMP_ID=>array('view','id'=>$model->RCMP_ID),
-	'Update',
-);
 
 $this->menu=array(
 	array('label'=>'List RegistroComprasMp', 'url'=>array('index')),
