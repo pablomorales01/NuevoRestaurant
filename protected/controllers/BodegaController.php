@@ -71,6 +71,7 @@ class BodegaController extends Controller
 		if(isset($_POST['Bodega']))
 		{
 			$model->attributes=$_POST['Bodega'];
+			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->BODEGA_ID));
 		}
@@ -134,6 +135,7 @@ class BodegaController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		
 		$model=new Bodega('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Bodega']))
