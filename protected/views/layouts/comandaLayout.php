@@ -9,7 +9,7 @@
     <ul class="nav nav-pills nav-stacked">
         <li><a href="<?php echo Yii::app()->createUrl('comanda/create'); ?>">Ingresar Comanda</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('comanda/admin'); ?>">Administrar comanda</a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('comanda/index'); ?>">Lista de comanda</a></li>
+
   </ul>
   </div>
 </div>

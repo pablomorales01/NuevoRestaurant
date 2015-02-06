@@ -59,10 +59,10 @@ class Proveedor extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'PROV_ID' => 'Prov',
-			'PROVNOMBRE' => 'Provnombre',
-			'PROVRUT' => 'Provrut',
-			'PROVTELEFONO' => 'Provtelefono',
+			'PROV_ID' => 'ID proveedor',
+			'PROVNOMBRE' => 'Proveedor',
+			'PROVRUT' => 'Rut',
+			'PROVTELEFONO' => 'Teléfono',
 		);
 	}
 

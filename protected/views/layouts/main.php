@@ -102,7 +102,7 @@
                         ),
                 array('label' => 'Garzón', 'url' => array('/comanda/admin'), 'icon' => BsHtml::GLYPHICON_LIST_ALT
                         ),
-                array('label' => 'Proveedor', 'url' => array('/registroComprasMp/admin'), 'icon' => BsHtml::GLYPHICON_BRIEFCASE
+                array('label' => 'Proveedor', 'url' => array('/proveedor/admin'), 'icon' => BsHtml::GLYPHICON_BRIEFCASE
                         ),
 
                 //Final del array items.

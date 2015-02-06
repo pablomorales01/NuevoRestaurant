@@ -62,8 +62,8 @@ class Receta extends CActiveRecord
 			'RECETA_ID' => 'Receta ID',
 			'RECETACANTIDADPRODUCTO' => 'Cantidad',
 			'RECETAUNIDADMEDIDA' => 'Unidad de Medida',
-			'PVENTA_ID' => 'Pventa ID',
-			'MP_ID' => 'Nombre Materia Prima',
+			'PVENTA_ID' => 'ID producto',
+			'MP_ID' => 'Materia Prima',
 		);
 	}
 

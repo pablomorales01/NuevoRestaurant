@@ -11,7 +11,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Registro compras de Materia Prima</h1>
+<h1>Compras de Materia Prima</h1>
 
 
 
@@ -21,8 +21,8 @@ $this->menu=array(
 	'filter'=>$model,
 	'columns'=>array(
 		'RCMP_ID',
-		'PROV_ID',
-		'MP_ID',
+		'pROV.PROVNOMBRE',
+		'mP.MPNOMBRE',
 		'RCMPPRECIO_COMPRA',
 		'RCMPCANTIDAD',
 		'RCMPFECHA',

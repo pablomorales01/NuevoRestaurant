@@ -64,7 +64,7 @@ class ProductoFinal extends CActiveRecord
 	{
 		return array(
 			'PVENTA_ID' => 'Pventa id',
-			'PVENTANOMBRE' => 'Nombre',
+			'PVENTANOMBRE' => 'Producto',
 			'RESTO_ID' => 'Restaurant id',
 			'BODEGA_ID' => 'Bodega id',
 			'PFINALSTOCK' => 'Stock',

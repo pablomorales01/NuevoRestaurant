@@ -71,14 +71,14 @@ class Comanda extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'COM_ID' => 'Com',
-			'VENTA_ID' => 'Venta',
-			'MENU_ID' => 'Menu',
-			'MESA_ID' => 'Mesa',
-			'USU_ID' => 'Usu',
-			'USU_USU_ID' => 'Usu Usu',
-			'COMFECHA' => 'Comfecha',
-			'COM_ESTADO' => 'Com Estado',
+			'COM_ID' => 'ID Comanda',
+			'VENTA_ID' => 'Venta ID',
+			'MENU_ID' => 'Menu ID',
+			'MESA_ID' => 'Mesa ID',
+			'USU_ID' => 'Usuario que ingresa',
+			'USU_USU_ID' => 'Usuario que entrega',
+			'COMFECHA' => 'Fecha',
+			'COM_ESTADO' => 'Estado',
 		);
 	}
 

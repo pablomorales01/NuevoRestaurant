@@ -60,12 +60,12 @@ class RegistroComprasPf extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RPF_ID' => 'Rpf',
-			'PVENTA_ID' => 'Pventa',
-			'PROV_ID' => 'Prov',
-			'RVTASFECHA' => 'Rvtasfecha',
-			'RPFPRECIO_COMPRA' => 'Rpfprecio Compra',
-			'RPFPCANTIDAD' => 'Rpfpcantidad',
+			'RPF_ID' => 'ID registro',
+			'PVENTA_ID' => 'ID PRODUCTO',
+			'PROV_ID' => 'Proveedor id',
+			'RVTASFECHA' => 'Fecha',
+			'RPFPRECIO_COMPRA' => 'Precio Compra',
+			'RPFPCANTIDAD' => 'Cantidad',
 		);
 	}
 

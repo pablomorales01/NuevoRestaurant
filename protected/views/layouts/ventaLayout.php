@@ -9,7 +9,6 @@
     <ul class="nav nav-pills nav-stacked">
         <li><a href="<?php echo Yii::app()->createUrl('venta/create'); ?>">Ingresar Venta</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('venta/admin'); ?>">Administrar Venta</a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('venta/index'); ?>">Lista de ventas</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('mesa/admin'); ?>">Mesas</a></li>
 
         <!-- prueba de bitches-->

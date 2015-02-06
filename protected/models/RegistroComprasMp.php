@@ -60,12 +60,12 @@ class RegistroComprasMp extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RCMP_ID' => 'Rcmp',
-			'PROV_ID' => 'Prov',
-			'MP_ID' => 'Mp',
-			'RCMPPRECIO_COMPRA' => 'Rcmpprecio Compra',
-			'RCMPCANTIDAD' => 'Rcmpcantidad',
-			'RCMPFECHA' => 'Rcmpfecha',
+			'RCMP_ID' => 'ID registro',
+			'PROV_ID' => 'Proveedor id',
+			'MP_ID' => 'id materia prima',
+			'RCMPPRECIO_COMPRA' => 'Precio Compra',
+			'RCMPCANTIDAD' => 'Cantidad',
+			'RCMPFECHA' => 'Fecha',
 		);
 	}
 

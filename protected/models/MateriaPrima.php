@@ -68,7 +68,7 @@ class MateriaPrima extends CActiveRecord
 			'MP_ID' => 'Materia Prima ID',
 			'BODEGA_ID' => 'Bodega',
 			'TMP_ID' => 'Tipo',
-			'MPNOMBRE' => 'Nombre',
+			'MPNOMBRE' => 'Materia prima',
 			'MPUNIDAD_MEDIDA' => 'Unidad de Medida',
 			'MPSTOCK' => 'Stock',
 		);
