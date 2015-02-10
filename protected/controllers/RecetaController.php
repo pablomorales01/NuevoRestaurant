@@ -32,7 +32,7 @@ class RecetaController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','crear','add'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -44,7 +44,21 @@ class RecetaController extends Controller
 			),
 		);
 	}
-
+	public function actionAdd()
+	{
+		/**Prosesamiento de Datos*/
+		$recetas=array();
+		//Agregar Valores de Tabla si es que existen
+		if(isset($_POST['Recetas']))$recetas+=$_POST['Recetas'];
+		//agrega el valor de select a la cabezera del arreglo
+		array_unshift($recetas,array(
+			'MP_ID'=>$_POST['Receta']['MP_ID'],
+			'RECETACANTIDADPRODUCTO'=>"",
+			'RECETAUNIDADMEDIDA'=>""
+			));
+		//var_dump($recetas);
+		$this->renderPartial('recetas',array('recetas'=>$recetas));
+	}
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -76,6 +90,14 @@ class RecetaController extends Controller
 		}
 
 		$this->render('create',array('model'=>$model, 'PE'=>$PE, 'MP'=>$MP));
+	}
+
+	public function actionCrear(){
+		$model=new Receta;
+		$recetas=array();
+		$this->render('crearReceta',array(
+			'model'=>$model,
+		));
 	}
 
 	/**
