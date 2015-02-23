@@ -26,33 +26,11 @@ else {
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<!--Deberia meter una tabla con todos los valores de materia prima-->
-	<div class="col-xs-12 col-sm-6 col-md-4">Primero
-  	<div id="div1" align="center">
-	<table>
-	<thead>
-            <tr>
-              <th>Materia Prima</th>
-            </tr>
-    </thead>
-    <tbody>
-	<?php foreach ($MP as $producto): 
-	?>
-		<tr>
-			<td><?php echo $producto->MPNOMBRE; ?></td>
-		</tr>
-	<?php
-	endforeach;
-	?>
-	</tbody>
-	</table>
-	</div> 
+	<div class="col-xs-12 col-sm-6 col-md-4">primero
+
 	</div>
 	<div class="col-xs-6 col-md-3">Botones
-		<div class="row buttons" align="center">
-			<?php echo BsHtml::Button('Agregar', array('color' => BsHtml::BUTTON_COLOR_INFO));?>
-			<br><br>
-			<?php echo BsHtml::Button('Eliminar', array('color' => BsHtml::BUTTON_COLOR_DANGER));?>
-		</div>
+		
 	</div>
 	<div class="col-xs-6 col-md-5">Tercero
 	<?php  //PARA LA MATERIA PRIMA

@@ -1,84 +1,134 @@
-<?php $form=$this->beginWidget('CActiveForm', array(
-  'id'=>'receta-form',
-  'enableAjaxValidation'=>false,
-)); ?>
+<?php
+/* @var $this RecetaController */
+/* @var $model Receta */
+/* @var $form CActiveForm */
+?>
 
-<?php $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'receta-form',
+	// Please note: When you enable ajax validation, make sure the corresponding
+	// controller action is handling ajax validation correctly.
+	// There is a call to performAjaxValidation() commented in generated controller code.
+	// See class documentation of CActiveForm for details on this.
+	'enableAjaxValidation'=>true,)); 
+
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
     'enableAjaxValidation' => true,
-    'id' => 'user_form_horizontal',
+    'id' => 'user_form',
     'htmlOptions' => array(
         'class' => 'bs-example'
     )
 ));
 ?>
 
-<script language="javascript" type="text/javascript">
-$(function()
-{
-    $("#add").click(function()
-    {
-        mover("origen", "destino");
-    }); 
-    
-    $("#remove").click(function()
-    {
-        mover("destino","origen");
-    });           
+<script type="text/javascript">
+ 
+$(function(){
+	// Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+	$("#agregar").on('click', function(){
+		$("#tabla tbody tr:eq(0)").clone().removeClass('fila-base').appendTo("#tabla tbody");
+	});
+ 
+	// Evento que selecciona la fila y la elimina 
+	$(document).on("click",".eliminar",function(){
+		var parent = $(this).parents().get(0);
+		$(parent).remove();
+	});
 });
-
-function mover(origen, destino)
-{
-    $("#" + origen + " option:selected").remove().appendTo("#" + destino);
-}
+ 
 </script>
 
-<div class="col-xs-12 col-sm-6 col-md-4">Primero
-	<table>
-		<thead>
-            <tr>
-              <th>Materia Prima</th>
-            </tr>
-    	</thead>
-        <td>
-            <select id="origen" multiple="multiple" size="5">
-             <?php foreach ($MP as $MP): ?>
-             <option value="<?php $MP->MP_ID ?>"><?php echo $MP->MPNOMBRE ?></option>
-             <?php  endforeach;?>
-            </select>
-            
-        </td>
-    </table>
-</div>
-<div class="col-xs-6 col-md-4">Botones
-	<table>
-        <td>
-        	<div class="row buttons" align="center">
-        	<!--<input type="button" id="add" value=">" /><br />-->
-        	<?php echo BsHtml::Button('Agregar', array('id'=>'add', 'color' => BsHtml::BUTTON_COLOR_INFO));?><br></br>
-        	<?php echo BsHtml::Button('Eliminar', array('id'=>'remove', 'color' => BsHtml::BUTTON_COLOR_DANGER));?>
-        	<!--<input type="button" id="remove" value="<" />-->
-        	</div>
-    	</td>
-    </table>
-</div>
-<div class="col-xs-6 col-md-4">Tercero
-	<table width="200px">
-		<thead>
-            <tr>
-              <th>Receta</th>
-            </tr>
-    	</thead>
-		<td>
-			<select id="destino" size="5">
-                <!--<option value="<?php $MP->MP_ID ?>"></option>-->
-    		</select>
-    	</td>
-    </table>
-</div>
+<style type="text/css">
+.fila-base{ display: none; } /* fila base oculta */
+.eliminar{ cursor: pointer; color: #000; }
+</style>
 
-<div class="row buttons" align="right">
-		<?php echo BsHtml::submitButton('Crear Receta', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
-</div>
+	<p class="note" align="center">Fields with <span class="required">*</span> are required.</p>
+
+	<?php echo $form->errorSummary($model); ?>
+
+	<div class="row">
+
+	<table id="tabla">
+	<!-- Cabecera de la tabla -->
+	<thead>
+		<tr>
+			<th>Producto</th>
+			<th>Cantidad</th>
+			<th>Unidad de Medida</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+ 
+	<!-- Cuerpo de la tabla con los campos -->
+	<tbody>
+ 
+		<!-- fila base para clonar y agregar al final -->
+		<tr class="fila-base">
+			<td>
+				<?php 
+                        echo $form->dropDownList($model, 'MP_ID', 
+                            CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
+                             array(
+                                'prompt' => 'Seleccione',
+                                )
+                             );
+      			?>
+			</td>
+			<br>
+			<td>
+				<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
+				<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
+      		</td>
+			<td>
+				<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
+				<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
+			</td>
+			<td class="eliminar"><?php echo BsHtml::Button('x', array('color' => BsHtml::BUTTON_COLOR_WARNING)) ?></td>
+		</tr>
+		<!-- fin de código: fila base -->
+
+		<!-- Fila de ejemplo -->
+		<tr>
+			<td>
+				<?php 
+                        echo $form->dropDownList($model, 'MP_ID', 
+                            CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
+                             array(
+                                'prompt' => 'Seleccione')
+                             );
+
+      			?>
+      		</td>
+			<td>
+				<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
+				<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
+			</td>
+			<td>
+				<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
+				<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
+			</td>
+			<td class="eliminar"><?php echo BsHtml::Button('x', array('color' => BsHtml::BUTTON_COLOR_WARNING)) ?></td>
+		</tr>
+		<!-- fin de código: fila de ejemplo -->
+ 
+	</tbody>
+</table>
+	<!-- Botón para agregar filas -->
+	<!--<input type="button" id="agregar" value="+" />-->
+	<div id="agregar">
+			<?php echo BsHtml::Button('+', array('color' => BsHtml::BUTTON_COLOR_INFO)) ?>
+	</div>
+	</div> <!-- fin div row-->
+
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
+	</div>
+
 <?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>
+
+</div><!-- form -->

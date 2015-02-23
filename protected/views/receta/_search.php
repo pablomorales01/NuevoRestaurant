@@ -17,16 +17,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'RECETACANTIDADPRODUCTO'); ?>
-		<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'RECETAUNIDADMEDIDA'); ?>
-		<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'PVENTA_ID'); ?>
 		<?php echo $form->textField($model,'PVENTA_ID'); ?>
 	</div>
@@ -34,6 +24,16 @@
 	<div class="row">
 		<?php echo $form->label($model,'MP_ID'); ?>
 		<?php echo $form->textField($model,'MP_ID'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'RECETACANTIDADPRODUCTO'); ?>
+		<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'RECETAUNIDADMEDIDA'); ?>
+		<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row buttons">
