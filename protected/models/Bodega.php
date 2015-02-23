@@ -80,6 +80,7 @@ class Bodega extends CActiveRecord
 
 		$criteria->compare('BODEGA_ID',$this->BODEGA_ID);
 		$criteria->compare('BODEGANOMBRE',$this->BODEGANOMBRE,true);
+		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

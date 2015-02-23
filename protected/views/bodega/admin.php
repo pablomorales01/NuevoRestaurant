@@ -2,18 +2,7 @@
 /* @var $this BodegaController */
 /* @var $model Bodega */
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#bodega-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
+
 ?>
 
 <h1 align="center">Administrar Bodegas</h1>
