@@ -66,7 +66,8 @@ class ProductoFinalController extends Controller
 		$model=new ProductoFinal;
 	
 		//si existen bodegas se crea
-		$bodega = Bodega::model()->findAll();
+		//muestra las bodegas correspondiente al restauraqnt del usuario
+		$bodega = Bodega::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
 		$pv = new ProductoVenta;
 		// Uncomment the following line if AJAX validation is needed
 		 $this->performAjaxValidation($model);
@@ -75,9 +76,12 @@ class ProductoFinalController extends Controller
 		{		
 			//recibo en model los datos por $_POST
 			$model->attributes=$_POST['ProductoFinal'];
+			//ingresar el resto_id del usuario
+			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
 			//saco el nombre y lo mando a producto venta
 			$pv->PVENTANOMBRE = $model->PVENTANOMBRE;
-
+			//ingresar el resto_id del usuario
+			$pv->RESTO_ID = Yii::app()->user->RESTAURANT;
 
 			if($pv->save())
 			{

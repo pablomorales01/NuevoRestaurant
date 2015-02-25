@@ -98,6 +98,9 @@ class MateriaPrima extends CActiveRecord
 		$criteria->compare('MPNOMBRE',$this->MPNOMBRE,true);
 		$criteria->compare('MPUNIDAD_MEDIDA',$this->MPUNIDAD_MEDIDA,true);
 		$criteria->compare('MPSTOCK',$this->MPSTOCK);
+		//CRITERIO DE BUSQUEDA QUE VERIFICA QUE LA MATERIA PRIMA CORRESPONDA AL RESTAURANT
+		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

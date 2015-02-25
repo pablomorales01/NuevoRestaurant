@@ -70,6 +70,7 @@ class TipoMateriaPrimaController extends Controller
 		if(isset($_POST['TipoMateriaPrima']))
 		{
 			$model->attributes=$_POST['TipoMateriaPrima'];
+			$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->TMP_ID));
 		}

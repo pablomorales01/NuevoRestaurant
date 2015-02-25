@@ -100,6 +100,8 @@ class ProductoFinal extends CActiveRecord
 		$criteria->compare('CALORIAS',$this->CALORIAS);
 		$criteria->compare('GRAMOS',$this->GRAMOS);
 		$criteria->compare('ESTADO',$this->ESTADO,true);
+		//compara el resto id del usuario con el de producto final
+		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

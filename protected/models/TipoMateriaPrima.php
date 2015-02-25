@@ -78,6 +78,8 @@ class TipoMateriaPrima extends CActiveRecord
 
 		$criteria->compare('TMP_ID',$this->TMP_ID);
 		$criteria->compare('TMPNOMBRE',$this->TMPNOMBRE,true);
+		//CRITERIO DE COMPARACION QUE VERIFICA QUE EL ID DEL RESTAURANT SEA EL DEL USUARIO
+		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

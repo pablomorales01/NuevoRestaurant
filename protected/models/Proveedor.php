@@ -89,6 +89,10 @@ class Proveedor extends CActiveRecord
 		$criteria->compare('PROVRUT',$this->PROVRUT,true);
 		$criteria->compare('PROVTELEFONO',$this->PROVTELEFONO);
 
+		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
+
+
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

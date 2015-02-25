@@ -62,8 +62,8 @@ class MateriaPrimaController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new MateriaPrima;
-		$bodega = Bodega::model()->findAll();//todas las bodegas
+		$model= new MateriaPrima;
+		$bodega = Bodega::model()->findAllByAttributes(array('RESTO_ID' => Yii::app()->user->RESTAURANT));//todas las bodegas
 		$TMP = TipoMateriaPrima::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
@@ -72,6 +72,8 @@ class MateriaPrimaController extends Controller
 		if(isset($_POST['MateriaPrima']))
 		{
 			$model->attributes=$_POST['MateriaPrima'];
+			//INGRESA EL ID DEL RESTAURANT DE LA MATERIA PRIMA
+			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->MP_ID));
 		}

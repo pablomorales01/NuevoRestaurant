@@ -70,6 +70,7 @@ class ProveedorController extends Controller
 		if(isset($_POST['Proveedor']))
 		{
 			$model->attributes=$_POST['Proveedor'];
+			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->PROV_ID));
 		}
