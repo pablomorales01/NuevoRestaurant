@@ -13,17 +13,34 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
-)); ?>
+)); 
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+
+?>
+
+	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'PVENTA_ID'); ?>
-		<?php echo $form->textField($model,'PVENTA_ID'); ?>
-		<?php echo $form->error($model,'PVENTA_ID'); ?>
-	</div>
+	<div class="form" align="center">
+    <div class="row">
+  		<?php echo $form->dropDownListControlGroup($model,'PVENTA_ID',
+  			CHtml::listData($productos, 'PVENTA_ID', 'PVENTANOMBRE'),
+      array('prompt' => 'Seleccione')      
+      ); ?>
+
+
+  
+  
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'PROV_ID'); ?>
@@ -52,7 +69,9 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
-
+	
+</div>
+  </div>
 <?php $this->endWidget(); ?>
-
+<?php $this->endWidget(); ?>
 </div><!-- form -->

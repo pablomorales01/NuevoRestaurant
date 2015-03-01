@@ -70,6 +70,7 @@ class RegistroComprasMpController extends Controller
 		if(isset($_POST['RegistroComprasMp']))
 		{
 			$model->attributes=$_POST['RegistroComprasMp'];
+			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->RCMP_ID));
 		}

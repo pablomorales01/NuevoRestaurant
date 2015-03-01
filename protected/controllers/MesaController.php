@@ -70,6 +70,7 @@ class MesaController extends Controller
 		if(isset($_POST['Mesa']))
 		{
 			$model->attributes=$_POST['Mesa'];
+			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->MESA_ID));
 		}

@@ -61,7 +61,7 @@ class RegistroComprasPf extends CActiveRecord
 	{
 		return array(
 			'RPF_ID' => 'ID registro',
-			'PVENTA_ID' => 'ID PRODUCTO',
+			'PVENTA_ID' => 'Producto',
 			'PROV_ID' => 'Proveedor id',
 			'RVTASFECHA' => 'Fecha',
 			'RPFPRECIO_COMPRA' => 'Precio Compra',
@@ -93,6 +93,7 @@ class RegistroComprasPf extends CActiveRecord
 		$criteria->compare('RVTASFECHA',$this->RVTASFECHA,true);
 		$criteria->compare('RPFPRECIO_COMPRA',$this->RPFPRECIO_COMPRA);
 		$criteria->compare('RPFPCANTIDAD',$this->RPFPCANTIDAD);
+		
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

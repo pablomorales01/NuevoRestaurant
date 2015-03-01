@@ -81,6 +81,7 @@ class Mesa extends CActiveRecord
 		$criteria->compare('MESACANTIDADPERSONA',$this->MESACANTIDADPERSONA);
 		$criteria->compare('MESANUM',$this->MESANUM);
 		$criteria->compare('RESTO_ID',$this->RESTO_ID);
+		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
