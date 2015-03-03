@@ -9,6 +9,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create RegistroComprasPf</h1>
+<h1 align="center">Compras productos finales</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model, 'productos'=>$productos)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'productos'=>$productos, 'prov' => $prov)); ?>

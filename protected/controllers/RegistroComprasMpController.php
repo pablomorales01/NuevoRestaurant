@@ -63,9 +63,10 @@ class RegistroComprasMpController extends Controller
 	public function actionCreate()
 	{
 		$model=new RegistroComprasMp;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$prov = Proveedor::model()->findAllByAttributes(
+			array('RESTO_ID' => Yii::app()->user->RESTAURANT));
+		$productos = MateriaPrima::model()->findAllByAttributes(
+			array('RESTO_ID' => Yii::app()->user->RESTAURANT));
 
 		if(isset($_POST['RegistroComprasMp']))
 		{
@@ -76,7 +77,7 @@ class RegistroComprasMpController extends Controller
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$model, 'prov'=>$prov, 'productos' => $productos
 		));
 	}
 

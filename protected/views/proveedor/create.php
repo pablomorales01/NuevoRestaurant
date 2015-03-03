@@ -9,6 +9,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Proveedor</h1>
+<h1 align="center">Create Proveedor</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -62,7 +62,7 @@ class RegistroComprasPf extends CActiveRecord
 		return array(
 			'RPF_ID' => 'ID registro',
 			'PVENTA_ID' => 'Producto',
-			'PROV_ID' => 'Proveedor id',
+			'PROV_ID' => 'Proveedor',
 			'RVTASFECHA' => 'Fecha',
 			'RPFPRECIO_COMPRA' => 'Precio Compra',
 			'RPFPCANTIDAD' => 'Cantidad',

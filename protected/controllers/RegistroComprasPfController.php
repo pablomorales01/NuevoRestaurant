@@ -64,6 +64,8 @@ class RegistroComprasPfController extends Controller
 	{
 		$model=new RegistroComprasPf;
 		$productos = ProductoFinal::model()->findAllByAttributes(array('RESTO_ID' => Yii::app()->user->RESTAURANT));
+		$prov = Proveedor::model()->findAllByAttributes(
+			array('RESTO_ID' => Yii::app()->user->RESTAURANT));
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -75,7 +77,7 @@ class RegistroComprasPfController extends Controller
 		}
 
 		$this->render('create',array(
-			'model'=>$model, 'productos'=>$productos,
+			'model'=>$model, 'productos'=>$productos, 'prov' => $prov
 		));
 	}
 

@@ -8,51 +8,47 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'registro-compras-mp-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
-)); ?>
+));
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+ ?>
+
+	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'PROV_ID'); ?>
-		<?php echo $form->textField($model,'PROV_ID'); ?>
-		<?php echo $form->error($model,'PROV_ID'); ?>
+	
+		<?php echo $form->dropDownListControlGroup($model, 'PROV_ID', 
+      	CHtml::listData($prov, 'PROV_ID', 'PROVNOMBRE'),
+      	array('prompt'=>'Seleccione')
+      	); ?>
+
+      	<?php echo $form->dropDownListControlGroup($model,'MP_ID',
+  			CHtml::listData($productos, 'MP_ID', 'MPNOMBRE'),
+      array('prompt' => 'Seleccione')      
+      ); ?> 
+		
+		<?php echo $form->textFieldControlGroup($model,'RCMPPRECIO_COMPRA'); ?>
+		
+		<?php echo $form->textFieldControlGroup($model,'RCMPCANTIDAD'); ?>
+		
+		<?php echo $form->textFieldControlGroup($model,'RCMPFECHA'); ?>
+		
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'MP_ID'); ?>
-		<?php echo $form->textField($model,'MP_ID'); ?>
-		<?php echo $form->error($model,'MP_ID'); ?>
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'RCMPPRECIO_COMPRA'); ?>
-		<?php echo $form->textField($model,'RCMPPRECIO_COMPRA'); ?>
-		<?php echo $form->error($model,'RCMPPRECIO_COMPRA'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'RCMPCANTIDAD'); ?>
-		<?php echo $form->textField($model,'RCMPCANTIDAD'); ?>
-		<?php echo $form->error($model,'RCMPCANTIDAD'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'RCMPFECHA'); ?>
-		<?php echo $form->textField($model,'RCMPFECHA'); ?>
-		<?php echo $form->error($model,'RCMPFECHA'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
+	
 <?php $this->endWidget(); ?>
-
+<?php $this->endWidget(); ?>
 </div><!-- form -->

@@ -27,7 +27,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
 ?>
 
-	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
+	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -36,38 +36,23 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
   		<?php echo $form->dropDownListControlGroup($model,'PVENTA_ID',
   			CHtml::listData($productos, 'PVENTA_ID', 'PVENTANOMBRE'),
       array('prompt' => 'Seleccione')      
-      ); ?>
+      ); ?> 
+
+      <?php echo $form->dropDownListControlGroup($model, 'PROV_ID', 
+      	CHtml::listData($prov, 'PROV_ID', 'PROVNOMBRE'),
+      	array('prompt'=>'Seleccione')
+      	); ?>
 
 
-  
-  
+		<?php echo $form->textFieldControlGroup($model,'RVTASFECHA'); ?>	 
+		
+		<?php echo $form->textFieldControlGroup($model,'RPFPRECIO_COMPRA'); ?>
+		
+		<?php echo $form->textFieldControlGroup($model,'RPFPCANTIDAD'); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'PROV_ID'); ?>
-		<?php echo $form->textField($model,'PROV_ID'); ?>
-		<?php echo $form->error($model,'PROV_ID'); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'RVTASFECHA'); ?>
-		<?php echo $form->textField($model,'RVTASFECHA'); ?>
-		<?php echo $form->error($model,'RVTASFECHA'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'RPFPRECIO_COMPRA'); ?>
-		<?php echo $form->textField($model,'RPFPRECIO_COMPRA'); ?>
-		<?php echo $form->error($model,'RPFPRECIO_COMPRA'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'RPFPCANTIDAD'); ?>
-		<?php echo $form->textField($model,'RPFPCANTIDAD'); ?>
-		<?php echo $form->error($model,'RPFPCANTIDAD'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 	
 </div>

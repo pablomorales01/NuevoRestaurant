@@ -8,39 +8,35 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'proveedor-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
-)); ?>
+)); 
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_horizontal',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));?>
+
+	<p class="note" align="center">Campos con<span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'PROVNOMBRE'); ?>
-		<?php echo $form->textField($model,'PROVNOMBRE',array('size'=>30,'maxlength'=>30)); ?>
-		<?php echo $form->error($model,'PROVNOMBRE'); ?>
+		<?php echo $form->textFieldControlGroup($model,'PROVNOMBRE'); ?>	 
+	
+		<?php echo $form->textFieldControlGroup($model,'PROVRUT'); ?>
+
+		<?php echo $form->textFieldControlGroup($model,'PROVTELEFONO'); ?>
+
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'PROVRUT'); ?>
-		<?php echo $form->textField($model,'PROVRUT',array('size'=>12,'maxlength'=>12)); ?>
-		<?php echo $form->error($model,'PROVRUT'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'PROVTELEFONO'); ?>
-		<?php echo $form->textField($model,'PROVTELEFONO'); ?>
-		<?php echo $form->error($model,'PROVTELEFONO'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
+<?php $this->endWidget(); ?>
 </div><!-- form -->
