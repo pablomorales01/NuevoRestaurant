@@ -19,7 +19,9 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
         'class' => 'bs-example'
     )
 ));
- ?>
+
+?>
+
 
 	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
@@ -41,8 +43,29 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		
 		<?php echo $form->textFieldControlGroup($model,'RCMPCANTIDAD'); ?>
 		
-		<?php echo $form->textFieldControlGroup($model,'RCMPFECHA'); ?>
+		<?php echo $form->textFieldControlGroup($model,'RCMPFECHA'); 
 		
+		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+			 'model'=>$model,
+			 'attribute'=>'RCMPFECHA',
+			 'value'=>$model->RCMPFECHA,
+			 'language' => 'es',
+			 'htmlOptions' => array('readonly'=>"readonly"),		 
+			 'options'=>array(
+			 'autoSize'=>true,
+			 'defaultDate'=>$model->RCMPFECHA,
+			 'dateFormat'=>'yy-mm-dd',
+
+			 'selectOtherMonths'=>true,
+			 'showAnim'=>'slide',
+			 'showButtonPanel'=>true,
+
+			 'showOtherMonths'=>true,
+			 'changeMonth' => 'true',
+			 'changeYear' => 'true',
+			 )
+			 )); 
+			  ?>
 	</div>
 
 	<div class="row buttons" align="center">

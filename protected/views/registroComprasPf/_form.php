@@ -43,8 +43,29 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
       	array('prompt'=>'Seleccione')
       	); ?>
 
+      <?php echo $form->textFieldControlGroup($model,'RVTASFECHA'); 
+		
+		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+			 'model'=>$model,
+			 'attribute'=>'RVTASFECHA',
+			 'value'=>$model->RVTASFECHA,
+			 'language' => 'es',
+			 'htmlOptions' => array('readonly'=>"readonly"),		 
+			 'options'=>array(
+			 'autoSize'=>true,
+			 'defaultDate'=>$model->RVTASFECHA,
+			 'dateFormat'=>'yy-mm-dd',
 
-		<?php echo $form->textFieldControlGroup($model,'RVTASFECHA'); ?>	 
+			 'selectOtherMonths'=>true,
+			 'showAnim'=>'slide',
+			 'showButtonPanel'=>true,
+
+			 'showOtherMonths'=>true,
+			 'changeMonth' => 'true',
+			 'changeYear' => 'true',
+			 )
+			 )); 
+			  ?>
 		
 		<?php echo $form->textFieldControlGroup($model,'RPFPRECIO_COMPRA'); ?>
 		
