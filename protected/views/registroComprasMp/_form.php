@@ -20,12 +20,17 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     )
 ));
 
+ $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+		'attribute'=>'RCMPFECHA',
+		'model' => $model
+		));
+
 ?>
 
 
 	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary($model); ?> 
 
 	<div class="row">
 	
@@ -45,27 +50,9 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		
 		<?php echo $form->textFieldControlGroup($model,'RCMPFECHA'); 
 		
-		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
-			 'model'=>$model,
-			 'attribute'=>'RCMPFECHA',
-			 'value'=>$model->RCMPFECHA,
-			 'language' => 'es',
-			 'htmlOptions' => array('readonly'=>"readonly"),		 
-			 'options'=>array(
-			 'autoSize'=>true,
-			 'defaultDate'=>$model->RCMPFECHA,
-			 'dateFormat'=>'yy-mm-dd',
 
-			 'selectOtherMonths'=>true,
-			 'showAnim'=>'slide',
-			 'showButtonPanel'=>true,
-
-			 'showOtherMonths'=>true,
-			 'changeMonth' => 'true',
-			 'changeYear' => 'true',
-			 )
-			 )); 
-			  ?>
+		
+		?> 
 	</div>
 
 	<div class="row buttons" align="center">
@@ -74,4 +61,5 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 	
 <?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>
+
 </div><!-- form -->

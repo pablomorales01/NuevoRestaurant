@@ -93,7 +93,8 @@ class RegistroComprasMp extends CActiveRecord
 		$criteria->compare('RCMPPRECIO_COMPRA',$this->RCMPPRECIO_COMPRA);
 		$criteria->compare('RCMPCANTIDAD',$this->RCMPCANTIDAD);
 		$criteria->compare('RCMPFECHA',$this->RCMPFECHA,true);
-
+		
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
