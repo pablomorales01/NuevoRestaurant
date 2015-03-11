@@ -71,17 +71,6 @@ class RecetaController extends Controller
 		if(isset($_POST['Receta']))
 		{
 			$model->attributes=$_POST['Receta'];
-			/*
-				// Obtener la referencia a la lista
-				var lista = document.getElementById("opciones");
-				 
-				// Obtener el valor de la opción seleccionada
-				var valorSeleccionado = lista.options[lista.selectedIndex].value;
-				 
-				// Obtener el texto que muestra la opción seleccionada
-				var valorSeleccionado = lista.options[lista.selectedIndex].text;
-
-			*/
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->RECETA_ID));
 		}
