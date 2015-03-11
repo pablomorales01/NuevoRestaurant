@@ -82,6 +82,9 @@ class RecetaController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		//print_r($_POST);
+		//exit();
+
 		if(isset($_POST['Receta']))
 		{
 			$model->attributes=$_POST['Receta'];

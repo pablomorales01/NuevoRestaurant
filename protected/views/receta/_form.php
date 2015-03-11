@@ -28,8 +28,13 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
  
 $(function(){
 	// Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+	var i=0;
 	$("#agregar").on('click', function(){
-		$("#tabla tbody tr:eq(0)").clone().removeClass('fila-base').appendTo("#tabla tbody");
+		$("#tabla tbody tr:eq(0)").clone().removeClass('fila-base').appendTo("#tabla tbody").slideDown(500,function(){
+			var ele = $(this).children().children().attr('name').split("[");
+			$(this).children().children().attr('name',ele[0]+'['+i+']['+ele[1]);
+			i++;
+		});
 	});
  
 	// Evento que selecciona la fila y la elimina 
