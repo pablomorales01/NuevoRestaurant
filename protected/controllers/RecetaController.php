@@ -44,9 +44,10 @@ class RecetaController extends Controller
 			),
 		);
 	}
+	/*
 	public function actionAdd()
 	{
-		/**Prosesamiento de Datos*/
+	
 		$recetas=array();
 		//Agregar Valores de Tabla si es que existen
 		if(isset($_POST['Recetas']))$recetas+=$_POST['Recetas'];
@@ -59,6 +60,7 @@ class RecetaController extends Controller
 		//var_dump($recetas);
 		$this->renderPartial('recetas',array('recetas'=>$recetas));
 	}
+	*/
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -76,32 +78,56 @@ class RecetaController extends Controller
 	 */
 	public function actionCreate()
 	{
+		Yii::import('ext.multimodelform.MultiModelForm');
+
 		$model=new Receta;
 		$PE = ProductoElaborado::model()->findAll();
-		$MP = MateriaPrima::model()->findAll();
+		//$MP = MateriaPrima::model()->findAll();
+		$MP = new MateriaPrima;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		//print_r($_POST);
 		//exit();
+		$validatedMembers = array();  //garantiza matriz vacia
 
 		if(isset($_POST['Receta']))
 		{
 			$model->attributes=$_POST['Receta'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->RECETA_ID));
+			
+			//validate detail before saving the master
+			$detailOK = MultiModelForm::validate($MP,$validatedMembers,$deleteItems);
+
+			if ($detailOK && empty($validatedMembers))
+			{
+				Yii::app()->user->setFlash('error','No detail submitted'); //ningun detalle presentado
+				$detailOK = false;
+			}
+
+			if(
+			    $detailOK &&
+				$model->save()
+				)
+
+			{
+				//the value for the foreign key 'groupid'
+				$masterValues = array ('PVENTA_ID'=>$model->id);
+
+				if (MultiModelForm::save($member,$validatedMembers,$deleteItems,$masterValues))
+					$this->redirect(array('admin','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array('model'=>$model, 'PE'=>$PE, 'MP'=>$MP));
 	}
-
+	/*
 	public function actionCrear(){
 		$model=new Receta;
 		$recetas=array();
 		$this->render('crearReceta',array(
 			'model'=>$model,
 		));
-	}
+	}*/
 
 	/**
 	 * Updates a particular model.
