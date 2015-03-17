@@ -11,7 +11,7 @@
 	'attributes'=>array(
 		'IMAGEN_ID',
 		'IMAGENNOMBRE',
-		'IMAGENTIPO',
+		//'IMAGENTIPO',
 		array(
 			'label' => 'Imagen',
 			'type' => 'raw',
