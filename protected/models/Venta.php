@@ -9,9 +9,9 @@
  * @property string $VENTAFECHA
  * @property integer $VENTATOTAL
  * @property string $VENTAFORMADEPAGO
+ * @property integer $RESTO_ID
  *
  * The followings are the available model relations:
- * @property Comanda[] $comandas
  * @property Usuario $uSU
  */
 class Venta extends CActiveRecord
@@ -32,12 +32,12 @@ class Venta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('USU_ID, VENTATOTAL', 'numerical', 'integerOnly'=>true),
+			array('USU_ID, VENTATOTAL, RESTO_ID', 'numerical', 'integerOnly'=>true),
 			array('VENTAFORMADEPAGO', 'length', 'max'=>15),
 			array('VENTAFECHA', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('VENTA_ID, USU_ID, VENTAFECHA, VENTATOTAL, VENTAFORMADEPAGO', 'safe', 'on'=>'search'),
+			array('VENTA_ID, USU_ID, VENTAFECHA, VENTATOTAL, VENTAFORMADEPAGO, RESTO_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,7 +49,6 @@ class Venta extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'comandas' => array(self::HAS_MANY, 'Comanda', 'VENTA_ID'),
 			'uSU' => array(self::BELONGS_TO, 'Usuario', 'USU_ID'),
 		);
 	}
@@ -60,11 +59,12 @@ class Venta extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'VENTA_ID' => 'Id de venta',
-			'USU_ID' => 'Trabajador',
+			'VENTA_ID' => 'id venta',
+			'USU_ID' => 'id usuario',
 			'VENTAFECHA' => 'Fecha',
 			'VENTATOTAL' => 'Total',
-			'VENTAFORMADEPAGO' => 'Forma de Pago',
+			'VENTAFORMADEPAGO' => 'Forma de pago',
+			'RESTO_ID' => 'Resto id',
 		);
 	}
 
@@ -91,6 +91,8 @@ class Venta extends CActiveRecord
 		$criteria->compare('VENTAFECHA',$this->VENTAFECHA,true);
 		$criteria->compare('VENTATOTAL',$this->VENTATOTAL);
 		$criteria->compare('VENTAFORMADEPAGO',$this->VENTAFORMADEPAGO,true);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
+		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

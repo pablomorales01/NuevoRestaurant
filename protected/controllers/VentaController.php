@@ -70,6 +70,7 @@ class VentaController extends Controller
 		if(isset($_POST['Venta']))
 		{
 			$model->attributes=$_POST['Venta'];
+			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->VENTA_ID));
 		}

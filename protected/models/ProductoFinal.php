@@ -66,7 +66,7 @@ class ProductoFinal extends CActiveRecord
 			'PVENTA_ID' => 'Pventa id',
 			'PVENTANOMBRE' => 'Producto',
 			'RESTO_ID' => 'Restaurant id',
-			'BODEGA_ID' => 'Bodega id',
+			'BODEGA_ID' => 'Bodega',
 			'PFINALSTOCK' => 'Stock',
 			'CALORIAS' => 'Calorias',
 			'GRAMOS' => 'Gramos',

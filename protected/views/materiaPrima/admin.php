@@ -12,7 +12,10 @@
 	'filter'=>$model,
 	'columns'=>array(
 		'MPNOMBRE',
-		'tMP.TMPNOMBRE',
+		array(
+			'name'=>'TMP_ID',
+			'value'=>'$data->tMP==null?" ":$data->tMP->TMPNOMBRE',
+			'filter'=>CHtml::listData(TipoMateriaPrima::model()->findAll(),'TMP_ID', 'TMPNOMBRE')),
 		array(
 		'name'=>'BODEGA_ID',
 		'value' => '$data->bODEGA==null?" ":$data->bODEGA->BODEGANOMBRE',
