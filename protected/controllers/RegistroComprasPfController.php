@@ -63,7 +63,8 @@ class RegistroComprasPfController extends Controller
 	public function actionCreate()
 	{
 		$model=new RegistroComprasPf;
-		$productos = ProductoFinal::model()->findAllByAttributes(array('RESTO_ID' => Yii::app()->user->RESTAURANT));
+		$productos = ProductoFinal::model()->findAllByAttributes(array('RESTO_ID' => Yii::app()->user->RESTAURANT,
+			'ESTADO'=>'disponible'));
 		$prov = Proveedor::model()->findAllByAttributes(
 			array('RESTO_ID' => Yii::app()->user->RESTAURANT));
 		// Uncomment the following line if AJAX validation is needed
@@ -72,6 +73,7 @@ class RegistroComprasPfController extends Controller
 		if(isset($_POST['RegistroComprasPf']))
 		{
 			$model->attributes=$_POST['RegistroComprasPf'];
+			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->RPF_ID));
 		}

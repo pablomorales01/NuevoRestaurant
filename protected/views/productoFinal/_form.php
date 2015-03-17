@@ -48,6 +48,13 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		<?php echo $form->error($model,'PFINALSTOCK'); ?>
 	</div>
 
+
+		<?php echo $form->dropDownListControlGroup($model,'ESTADO', array(
+        'disponible'=> 'Disponible',
+        'no disponible'=>'No disponible'),
+      array('prompt' => 'Seleccione')      
+      ); ?> 
+
 	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>

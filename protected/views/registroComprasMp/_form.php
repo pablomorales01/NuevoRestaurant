@@ -20,8 +20,6 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     )
 ));
 
- 
-
 ?>
 
 
@@ -45,8 +43,8 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		
 		<?php echo $form->textFieldControlGroup($model,'RCMPCANTIDAD'); ?>
 		
-
-		<?php echo $form->textFieldControlGroup($model,'RCMPFECHA');?>  <!--DATE PICKER->
+		<?php echo $form->textFieldControlGroup($model,'RCMPFECHA');?>  
+		
 		
 
 		
