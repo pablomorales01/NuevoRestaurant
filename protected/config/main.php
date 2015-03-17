@@ -98,7 +98,7 @@ return array(
 		),
 		//Yii-Bootstrap
 			'bootstrap' => array(
-            'class' => 'bootstrap.components.BsApi')
+            'class' => 'bootstrap.components.BsApi'),
 	),
 
 	// application-level parameters that can be accessed
