@@ -10,10 +10,7 @@
  * @property string $RVTASFECHA
  * @property integer $RPFPRECIO_COMPRA
  * @property integer $RPFPCANTIDAD
- *
- * The followings are the available model relations:
- * @property Proveedor $pROV
- * @property ProductoFinal $pVENTA
+ * @property integer $RESTO_ID
  */
 class RegistroComprasPf extends CActiveRecord
 {
@@ -33,11 +30,12 @@ class RegistroComprasPf extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PVENTA_ID, PROV_ID, RPFPRECIO_COMPRA, RPFPCANTIDAD', 'numerical', 'integerOnly'=>true),
-			array('RVTASFECHA', 'safe'),
+			array('RESTO_ID', 'required'),
+			array('PVENTA_ID, PROV_ID, RPFPRECIO_COMPRA, RPFPCANTIDAD, RESTO_ID', 'numerical', 'integerOnly'=>true),
+			array('RVTASFECHA', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RPF_ID, PVENTA_ID, PROV_ID, RVTASFECHA, RPFPRECIO_COMPRA, RPFPCANTIDAD', 'safe', 'on'=>'search'),
+			array('RPF_ID, PVENTA_ID, PROV_ID, RVTASFECHA, RPFPRECIO_COMPRA, RPFPCANTIDAD, RESTO_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,8 +47,6 @@ class RegistroComprasPf extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'pROV' => array(self::BELONGS_TO, 'Proveedor', 'PROV_ID'),
-			'pVENTA' => array(self::BELONGS_TO, 'ProductoFinal', 'PVENTA_ID'),
 		);
 	}
 
@@ -60,12 +56,13 @@ class RegistroComprasPf extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RPF_ID' => 'ID registro',
-			'PVENTA_ID' => 'Producto',
-			'PROV_ID' => 'Proveedor',
+			'RPF_ID' => 'id registro',
+			'PVENTA_ID' => 'id producto',
+			'PROV_ID' => 'Id proveedor',
 			'RVTASFECHA' => 'Fecha',
-			'RPFPRECIO_COMPRA' => 'Precio Compra',
+			'RPFPRECIO_COMPRA' => 'Precio Compra ($)',
 			'RPFPCANTIDAD' => 'Cantidad',
+			'RESTO_ID' => 'Resto',
 		);
 	}
 
@@ -93,7 +90,8 @@ class RegistroComprasPf extends CActiveRecord
 		$criteria->compare('RVTASFECHA',$this->RVTASFECHA,true);
 		$criteria->compare('RPFPRECIO_COMPRA',$this->RPFPRECIO_COMPRA);
 		$criteria->compare('RPFPCANTIDAD',$this->RPFPCANTIDAD);
-		
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
+		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

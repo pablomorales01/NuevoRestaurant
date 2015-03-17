@@ -20,10 +20,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     )
 ));
 
- $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-		'attribute'=>'RCMPFECHA',
-		'model' => $model
-		));
+ 
 
 ?>
 
@@ -48,11 +45,12 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		
 		<?php echo $form->textFieldControlGroup($model,'RCMPCANTIDAD'); ?>
 		
-		<?php echo $form->textFieldControlGroup($model,'RCMPFECHA'); 
+
+		<?php echo $form->textFieldControlGroup($model,'RCMPFECHA');?>  <!--DATE PICKER->
 		
 
 		
-		?> 
+		
 	</div>
 
 	<div class="row buttons" align="center">

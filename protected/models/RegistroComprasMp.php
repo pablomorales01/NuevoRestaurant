@@ -10,6 +10,7 @@
  * @property integer $RCMPPRECIO_COMPRA
  * @property integer $RCMPCANTIDAD
  * @property string $RCMPFECHA
+ * @property integer $RESTO_ID
  *
  * The followings are the available model relations:
  * @property MateriaPrima $mP
@@ -33,11 +34,11 @@ class RegistroComprasMp extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PROV_ID, MP_ID, RCMPPRECIO_COMPRA, RCMPCANTIDAD', 'numerical', 'integerOnly'=>true),
+			array('PROV_ID, MP_ID, RCMPPRECIO_COMPRA, RCMPCANTIDAD, RESTO_ID', 'numerical', 'integerOnly'=>true),
 			array('RCMPFECHA', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RCMP_ID, PROV_ID, MP_ID, RCMPPRECIO_COMPRA, RCMPCANTIDAD, RCMPFECHA', 'safe', 'on'=>'search'),
+			array('RCMP_ID, PROV_ID, MP_ID, RCMPPRECIO_COMPRA, RCMPCANTIDAD, RCMPFECHA, RESTO_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,12 +61,13 @@ class RegistroComprasMp extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RCMP_ID' => 'ID registro',
-			'PROV_ID' => 'Proveedor id',
-			'MP_ID' => 'Materia prima',
-			'RCMPPRECIO_COMPRA' => 'Precio',
+			'RCMP_ID' => 'id registro',
+			'PROV_ID' => 'id proveedor',
+			'MP_ID' => 'id materia prima',
+			'RCMPPRECIO_COMPRA' => 'Precio Compra',
 			'RCMPCANTIDAD' => 'Cantidad',
 			'RCMPFECHA' => 'Fecha',
+			'RESTO_ID' => 'Resto id',
 		);
 	}
 
@@ -93,8 +95,9 @@ class RegistroComprasMp extends CActiveRecord
 		$criteria->compare('RCMPPRECIO_COMPRA',$this->RCMPPRECIO_COMPRA);
 		$criteria->compare('RCMPCANTIDAD',$this->RCMPCANTIDAD);
 		$criteria->compare('RCMPFECHA',$this->RCMPFECHA,true);
-		
-		
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
+		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

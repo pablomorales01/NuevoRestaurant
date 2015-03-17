@@ -68,10 +68,12 @@ class RegistroComprasMpController extends Controller
 		$productos = MateriaPrima::model()->findAllByAttributes(
 			array('RESTO_ID' => Yii::app()->user->RESTAURANT));
 
+
 		if(isset($_POST['RegistroComprasMp']))
 		{
 			$model->attributes=$_POST['RegistroComprasMp'];
-			
+			//guardo el restaurant
+			$model->RESTO_ID = Yii::app()->user->RESTAURANT;			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->RCMP_ID));
 		}
