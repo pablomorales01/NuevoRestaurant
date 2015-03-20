@@ -73,6 +73,15 @@ $(function(){
               'MP_ID'=>array(
 				'type'=>'text',
 				'maxlength'=>40,
+
+				'elements'=>array(
+ 
+		        /*'physician_id'=>array(
+		            'type'=>'dropdownlist',
+		            'empty'=>'  ',
+		            //it is important to add an empty item because of new records
+		            'items'=>CHtml::listData( Physician::model()->findAll(), 'id', 'first_name'),
+		        )),*/
 			),
 
 		  	'RECETACANTIDADPRODUCTO'=>array(

@@ -13,7 +13,17 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
-)); ?>
+)); 
+
+$form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_inline',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
+));
+?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
@@ -45,7 +55,29 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'RCMPFECHA'); ?>
-		<?php echo $form->textField($model,'RCMPFECHA'); ?>
+		<?php 
+		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+			 'model'=>$model,
+			 'attribute'=>'RCMPFECHA',
+			 'value'=>$model->RCMPFECHA,
+			 'language' => 'es',
+			 'htmlOptions' => array('readonly'=>"readonly"),		 
+			 'options'=>array(
+			 	//'showAnim'=>'fold',
+			 'autoSize'=>true,
+			 'defaultDate'=>$model->RCMPFECHA,
+			 'dateFormat'=>'yy-mm-dd',
+
+			 'selectOtherMonths'=>true,
+			 'showAnim'=>'slide',
+			 'showButtonPanel'=>true,
+
+			 'showOtherMonths'=>true,
+			 'changeMonth' => 'true',
+			 'changeYear' => 'true',
+			 )
+			 )); 
+		  	?>
 		<?php echo $form->error($model,'RCMPFECHA'); ?>
 	</div>
 
@@ -53,6 +85,7 @@
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
+<?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

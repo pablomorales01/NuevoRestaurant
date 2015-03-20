@@ -99,6 +99,10 @@ return array(
 		//Yii-Bootstrap
 			'bootstrap' => array(
             'class' => 'bootstrap.components.BsApi'),
+
+        //Booster
+			//'booster' => array(
+			//'class' => 'path.alias.to.booster.components.Booster'),
 	),
 
 	// application-level parameters that can be accessed
