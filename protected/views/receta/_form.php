@@ -73,16 +73,9 @@ $(function(){
               'MP_ID'=>array(
 				'type'=>'dropdownlist',
 				//'value'=>$model()->MP_ID,
-				'items'=>CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'), //buscar relacion con model y MP
+				'items'=>CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
 				'prompt'=>'seleccione',
-				'placeholder'=>'Producto',
- 
-		        /*'physician_id'=>array(
-		            'type'=>'dropdownlist',
-		            'empty'=>'  ',
-		            //it is important to add an empty item because of new records
-		            'items'=>CHtml::listData( Physician::model()->findAll(), 'id', 'first_name'),
-		        )),*/
+				//'placeholder'=>'Producto',
 			),
 
 		  	'RECETACANTIDADPRODUCTO'=>array(
@@ -142,74 +135,6 @@ $(function(){
 ?>
 </table>
 
-<!--
-	<thead>
-		<tr>
-			<th>Producto</th>
-			<th>Cantidad</th>
-			<th>Unidad de Medida</th>
-			<th>&nbsp;</th>
-		</tr>
-	</thead>
- 
-	<tbody>
- 
-		<tr class="fila-base">
-			<td>
-				<?php 
-                        echo $form->dropDownList($model, 'MP_ID', 
-                            CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
-                             array(
-                                'prompt' => 'Seleccione',
-                                )
-                             );
-      			?>
-			</td>
-			<br>
-			<td>
-				<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
-				<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
-      		</td>
-			<td>
-				<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
-				<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
-			</td>
-			<td class="eliminar"><?php echo BsHtml::Button('x', array('color' => BsHtml::BUTTON_COLOR_WARNING)) ?></td>
-		</tr>
--->
-		<!-- Fila de ejemplo -->
-		<!--
-		<tr>
-			<td>
-				<?php 
-                        echo $form->dropDownList($model, 'MP_ID', 
-                            CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
-                             array(
-                                'prompt' => 'Seleccione')
-                             );
-
-      			?>
-      		</td>
-			<td>
-				<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
-				<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
-			</td>
-			<td>
-				<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
-				<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
-			</td>
-			<td class="eliminar"><?php echo BsHtml::Button('x', array('color' => BsHtml::BUTTON_COLOR_WARNING)) ?></td>
-		</tr>-->
-		<!-- fin de código: fila de ejemplo -->
- <!--
-	</tbody>
-</table>-->
-	<!-- Botón para agregar filas -->
-	<!--<input type="button" id="agregar" value="+" />-->
-	<!--
-	<div id="agregar">
-			<?php echo BsHtml::Button('+', array('color' => BsHtml::BUTTON_COLOR_INFO)) ?>
-	</div>-->
 	</div> <!-- fin div row-->
 
 

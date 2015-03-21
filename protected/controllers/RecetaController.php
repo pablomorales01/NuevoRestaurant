@@ -32,7 +32,7 @@ class RecetaController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','crear','add'),
+				'actions'=>array('create','update'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -96,7 +96,7 @@ class RecetaController extends Controller
 			$model->attributes=$_POST['Receta'];
 			
 			//validate detail before saving the master
-			$detailOK = MultiModelForm::validate($MP,$validatedMembers,$deleteItems);
+			$detailOK = MultiModelForm::validate($model,$validatedMembers,$deleteItems);
 
 			if ($detailOK && empty($validatedMembers))
 			{
