@@ -83,7 +83,7 @@ class RecetaController extends Controller
 		$model=new Receta;
 		$PE = ProductoElaborado::model()->findAll();
 		//$MP = MateriaPrima::model()->findAll();
-		$MP = new MateriaPrima;
+		$MP = MateriaPrima::model()->findAll();
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
