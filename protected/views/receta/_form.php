@@ -71,10 +71,11 @@ $(function(){
 		  'elements'=>array(
 
               'MP_ID'=>array(
-				'type'=>'text',
-				'maxlength'=>40,
-
-				'elements'=>array(
+				'type'=>'dropdownlist',
+				//'value'=>$model()->MP_ID,
+				'items'=>CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'), //buscar relacion con model y MP
+				'prompt'=>'seleccione',
+				'placeholder'=>'Producto',
  
 		        /*'physician_id'=>array(
 		            'type'=>'dropdownlist',
@@ -87,11 +88,13 @@ $(function(){
 		  	'RECETACANTIDADPRODUCTO'=>array(
 		  		'type'=>'text',
 		  		'maxlength'=>40,
+		  		'placeholder'=>'Cantidad',
 		  	),
 
 		  	'RECETAUNIDADMEDIDA'=>array(
 		  		'type'=>'text',
 		  		'maxlength'=>40,
+		  		'placeholder'=>'Unidad de Medida',
 		  	),
 			
 		));
@@ -206,8 +209,8 @@ $(function(){
 	<!--
 	<div id="agregar">
 			<?php echo BsHtml::Button('+', array('color' => BsHtml::BUTTON_COLOR_INFO)) ?>
-	</div>
-	</div> --><!-- fin div row-->
+	</div>-->
+	</div> <!-- fin div row-->
 
 
 	<div class="row buttons" align="center">
@@ -216,5 +219,6 @@ $(function(){
 
 <?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>
+
 
 </div><!-- form -->

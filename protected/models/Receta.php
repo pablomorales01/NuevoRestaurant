@@ -55,9 +55,9 @@ class Receta extends CActiveRecord
 		return array(
 			'RECETA_ID' => 'Receta',
 			'PVENTA_ID' => 'Pventa',
-			'MP_ID' => 'Mp',
-			'RECETACANTIDADPRODUCTO' => 'Recetacantidadproducto',
-			'RECETAUNIDADMEDIDA' => 'Recetaunidadmedida',
+			'MP_ID' => 'Producto',
+			'RECETACANTIDADPRODUCTO' => 'Cantidad',
+			'RECETAUNIDADMEDIDA' => 'Unidad de Medida',
 		);
 	}
 
