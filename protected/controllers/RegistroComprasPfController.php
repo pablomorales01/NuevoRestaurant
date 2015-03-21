@@ -91,6 +91,10 @@ class RegistroComprasPfController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$productos = ProductoFinal::model()->findAllByAttributes(array('RESTO_ID' => Yii::app()->user->RESTAURANT,
+			'ESTADO'=>'disponible'));
+		$prov = Proveedor::model()->findAllByAttributes(
+			array('RESTO_ID' => Yii::app()->user->RESTAURANT));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -103,7 +107,7 @@ class RegistroComprasPfController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 'productos'=>$productos, 'prov'=>$prov
 		));
 	}
 

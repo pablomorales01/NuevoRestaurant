@@ -20,6 +20,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     )
 ));
 
+
 ?>
 
 
@@ -43,7 +44,23 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		
 		<?php echo $form->textFieldControlGroup($model,'RCMPCANTIDAD'); ?>
 		
-		<?php echo $form->textFieldControlGroup($model,'RCMPFECHA');?>  
+	
+
+		<div class="row"> 
+		<div class="column">
+		<?php echo $form->labelEx($model,'RCMPFECHA'); ?></div>
+		<div class="column">
+		 <?php $this->widget('zii.widgets.jui.CJuiDatePicker', 
+		 array( 'model'=>$model, 'attribute'=>'RCMPFECHA', 
+		 'value'=>$model->RCMPFECHA, 'language' => 'es', 
+		 'htmlOptions' => array('readonly'=>"readonly"),
+		 'options'=>array( //'showAnim'=>'fold', 'autoSize'=>true, 'defaultDate'=>$model->RCMPFECHA, 'dateFormat'=>'yy-mm-dd',
+
+'selectOtherMonths'=>true, 'showAnim'=>'slide', 'showButtonPanel'=>true,
+
+'showOtherMonths'=>true, 'changeMonth' => 'true', 'changeYear' => 'true', ) )); ?>
+</div>
+ <?php echo $form->error($model,'RCMPFECHA'); ?> </div>
 		
 		
 

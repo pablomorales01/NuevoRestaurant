@@ -13,4 +13,4 @@ $this->menu=array(
 
 <h1>Update RegistroComprasPf <?php echo $model->RPF_ID; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'productos'=>$productos, 'prov'=>$prov)); ?>

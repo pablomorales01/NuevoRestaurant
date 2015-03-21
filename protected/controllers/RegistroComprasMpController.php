@@ -91,6 +91,10 @@ class RegistroComprasMpController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$prov = Proveedor::model()->findAllByAttributes(
+			array('RESTO_ID' => Yii::app()->user->RESTAURANT));
+		$productos = MateriaPrima::model()->findAllByAttributes(
+			array('RESTO_ID' => Yii::app()->user->RESTAURANT));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -103,7 +107,7 @@ class RegistroComprasMpController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 'prov'=>$prov, 'productos'=>$productos
 		));
 	}
 

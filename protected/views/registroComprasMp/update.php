@@ -13,4 +13,4 @@ $this->menu=array(
 
 <h1>Update RegistroComprasMp <?php echo $model->RCMP_ID; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'prov'=>$prov, 'productos'=>$productos)); ?>
