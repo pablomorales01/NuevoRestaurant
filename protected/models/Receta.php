@@ -4,11 +4,10 @@
  * This is the model class for table "receta".
  *
  * The followings are the available columns in table 'receta':
- * @property integer $RECETA_ID
- * @property integer $PVENTA_ID
- * @property integer $MP_ID
  * @property integer $RECETACANTIDADPRODUCTO
  * @property string $RECETAUNIDADMEDIDA
+ * @property integer $PVENTA_ID
+ * @property integer $MP_ID
  */
 class Receta extends CActiveRecord
 {
@@ -28,11 +27,11 @@ class Receta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PVENTA_ID, MP_ID, RECETACANTIDADPRODUCTO', 'numerical', 'integerOnly'=>true),
+			array('RECETACANTIDADPRODUCTO, PVENTA_ID, MP_ID', 'numerical', 'integerOnly'=>true),
 			array('RECETAUNIDADMEDIDA', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RECETA_ID, PVENTA_ID, MP_ID, RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA', 'safe', 'on'=>'search'),
+			array('RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA, PVENTA_ID, MP_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,11 +52,10 @@ class Receta extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RECETA_ID' => 'Receta',
+			'RECETACANTIDADPRODUCTO' => 'Recetacantidadproducto',
+			'RECETAUNIDADMEDIDA' => 'Recetaunidadmedida',
 			'PVENTA_ID' => 'Pventa',
-			'MP_ID' => 'Producto',
-			'RECETACANTIDADPRODUCTO' => 'Cantidad',
-			'RECETAUNIDADMEDIDA' => 'Unidad de Medida',
+			'MP_ID' => 'Mp',
 		);
 	}
 
@@ -79,11 +77,10 @@ class Receta extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('RECETA_ID',$this->RECETA_ID);
-		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
-		$criteria->compare('MP_ID',$this->MP_ID);
 		$criteria->compare('RECETACANTIDADPRODUCTO',$this->RECETACANTIDADPRODUCTO);
 		$criteria->compare('RECETAUNIDADMEDIDA',$this->RECETAUNIDADMEDIDA,true);
+		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
+		$criteria->compare('MP_ID',$this->MP_ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -4,6 +4,8 @@
 /* @var $form CActiveForm */
 ?>
 
+<div class="form">
+
 <?php
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
@@ -15,72 +17,119 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 ));
 ?>
 
-<?php if($MP == null) //No existen bodegas 
-    {
-        echo BsHtml::alert(BsHtml::ALERT_COLOR_DANGER, BsHtml::bold('No existe Materia Prima en el sistema. ')
-            .'Por favor ingresa uno' . BsHtml::alertLink(' Aquí.', array('url' => '../materiaPrima/create')));   
-    }
-else {
-?>
+
+<script type="text/javascript">
+ 
+$(function(){
+	// Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+	var i=0;
+	$("#agregar").on('click', function(){
+		$("#tabla tbody tr:eq(0)").clone().removeClass('fila-base').appendTo("#tabla tbody").slideDown(500,function(){
+			var ele = $(this).children().children().attr('name').split("[");
+			$(this).children().children().attr('name',ele[0]+'['+i+']['+ele[1]);
+			i++;
+		});
+	});
+ 
+	// Evento que selecciona la fila y la elimina 
+	$(document).on("click",".eliminar",function(){
+		var parent = $(this).parents().get(0);
+		$(parent).remove();
+	});
+});
+ 
+</script>
+
+<style type="text/css">
+.fila-base{ display: none; } /* fila base oculta */
+.eliminar{ cursor: pointer; color: #000; }
+</style>
+
 	
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note" align="center">Fields with <span class="required">*</span> are required.</p>
 
-	<!--Deberia meter una tabla con todos los valores de materia prima-->
-	<div class="col-xs-12 col-sm-6 col-md-4">primero
+	<?php echo $form->errorSummary($model); ?>
 
-	</div>
-	<div class="col-xs-6 col-md-3">Botones
-		
-	</div>
-	<div class="col-xs-6 col-md-5">Tercero
-	<?php  //PARA LA MATERIA PRIMA
-                        echo $form->dropDownListControlGroup($model, 'MP_ID', 
+	<div class="row">
+
+	<?php echo $form->textFieldControlGroup($model, 'PVENTA_ID') ?>
+
+	<table id="tabla">
+	<!-- Cabecera de la tabla -->
+	<thead>
+		<tr>
+			<th>Producto</th>
+			<th>Cantidad</th>
+			<th>Unidad de Medida</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+ 
+	<!-- Cuerpo de la tabla con los campos -->
+	<tbody>
+ 
+		<!-- fila base para clonar y agregar al final -->
+		<tr class="fila-base">
+			<td>
+				<?php 
+                        echo $form->dropDownList($model, 'MP_ID', 
+                            CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
+                             array(
+                                'prompt' => 'Seleccione',
+                                )
+                             );
+      			?>
+			</td>
+			<br>
+			<td>
+				<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
+				<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
+      		</td>
+			<td>
+				<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
+				<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
+			</td>
+			<td class="eliminar"><?php echo BsHtml::Button('x', array('color' => BsHtml::BUTTON_COLOR_WARNING)) ?></td>
+		</tr>
+		<!-- fin de código: fila base -->
+
+		<!-- Fila de ejemplo -->
+		<tr>
+			<td>
+				<?php 
+                        echo $form->dropDownList($model, 'MP_ID', 
                             CHtml::listData($MP, 'MP_ID', 'MPNOMBRE'),
                              array(
                                 'prompt' => 'Seleccione')
                              );
-    ?>
 
-    <?php echo $form->textFieldControlGroup($model, 'RECETACANTIDADPRODUCTO');?>
-
-    <?php //PARA LA UNIDAD DE MEDIDA
-        echo $form->dropDownListControlGroup($model, 'RECETAUNIDADMEDIDA', array(
-        'prompt' => 'Seleccione',
-        'gr'=> 'Gramos', //lo que guarda => lo que muestro
-        'Kg'=>'Kilogramos',
-        'mL'=>'Mililitros',
-        'L'=>'Litros',
-      ));
-      ?>
-    </div>
-	<!--
-	<div class="row">
-		<?php echo $form->labelEx($model,'RECETACANTIDADPRODUCTO'); ?>
-		<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
-		<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
+      			?>
+      		</td>
+			<td>
+				<?php echo $form->textField($model,'RECETACANTIDADPRODUCTO'); ?>
+				<?php echo $form->error($model,'RECETACANTIDADPRODUCTO'); ?>
+			</td>
+			<td>
+				<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
+				<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
+			</td>
+			<td class="eliminar"><?php echo BsHtml::Button('x', array('color' => BsHtml::BUTTON_COLOR_WARNING)) ?></td>
+		</tr>
+		<!-- fin de código: fila de ejemplo -->
+ 
+	</tbody>
+</table>
+	<!-- Botón para agregar filas -->
+	<!--<input type="button" id="agregar" value="+" />-->
+	<div id="agregar">
+			<?php echo BsHtml::Button('+', array('color' => BsHtml::BUTTON_COLOR_INFO)) ?>
 	</div>
+	</div> <!-- fin div row-->
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'RECETAUNIDADMEDIDA'); ?>
-		<?php echo $form->textField($model,'RECETAUNIDADMEDIDA',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'RECETAUNIDADMEDIDA'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'PVENTA_ID'); ?>
-		<?php echo $form->textField($model,'PVENTA_ID'); ?>
-		<?php echo $form->error($model,'PVENTA_ID'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'MP_ID'); ?>
-		<?php echo $form->textField($model,'MP_ID'); ?>
-		<?php echo $form->error($model,'MP_ID'); ?>
-	</div>
-	-->
 	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 
-<?php }?>
 <?php $this->endWidget(); ?>
+
+</div><!-- form -->

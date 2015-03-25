@@ -23,37 +23,14 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     )
 ));
 ?>
-<!--
-<script type="text/javascript">
- 
-$(function(){
-	// Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-	var i=0;
-	$("#agregar").on('click', function(){
-		$("#tabla tbody tr:eq(0)").clone().removeClass('fila-base').appendTo("#tabla tbody").slideDown(500,function(){
-			var ele = $(this).children().children().attr('name').split("[");
-			$(this).children().children().attr('name',ele[0]+'['+i+']['+ele[1]);
-			i++;
-		});
-	});
- 
-	// Evento que selecciona la fila y la elimina 
-	$(document).on("click",".eliminar",function(){
-		var parent = $(this).parents().get(0);
-		$(parent).remove();
-	});
-});
- 
-</script>
-
-<style type="text/css">
-.fila-base{ display: none; } /* fila base oculta */
-.eliminar{ cursor: pointer; color: #000; }
-</style>
-
--->
 
 	<p class="note" align="center">Fields with <span class="required">*</span> are required.</p>
+
+	<div class="row">
+		<?php echo $form->labelEx($PE,'PVENTANOMBRE'); ?>
+		<?php echo $form->textField($PE,'PVENTANOMBRE',array('size'=>60,'maxlength'=>120)); ?>
+		<?php echo $form->error($model,'PVENTANOMBRE'); ?>
+	</div>
 
 	<?php echo $form->errorSummary($model); ?>
 

@@ -11,7 +11,6 @@
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'RECETA_ID',
 		'PVENTA_ID',
 		'MP_ID',
 		'RECETACANTIDADPRODUCTO',

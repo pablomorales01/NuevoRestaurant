@@ -76,50 +76,94 @@ class RecetaController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
+	
 	public function actionCreate()
 	{
 		Yii::import('ext.multimodelform.MultiModelForm');
 
-		$model=new Receta;
-		$PE = ProductoElaborado::model()->findAll();
-		//$MP = MateriaPrima::model()->findAll();
+		$model = new Receta;
+		$PE = new ProductoElaborado;
 		$MP = MateriaPrima::model()->findAll();
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
 
-		//print_r($_POST);
-		//exit();
+		//para crear un PE necessito crear un Producto de venta
+		$pv = new ProductoVenta;
+
+		/*echo '<pre>';
+		var_dump($_POST);
+		echo '</pre>';
+		foreach ($_POST['Receta'] as $key => $value) {
+
+			if ($key == 'MP_ID') {
+				foreach ($value as $key => $value) {
+					$model->MP_ID = $value;
+				}
+			}
+			if ($key == 'RECETACANTIDADPRODUCTO') {
+				foreach ($value as $key => $value) {
+					$model->RECETACANTIDADPRODUCTO = $value;
+				}
+			}
+			if ($key == 'RECETAUNIDADMEDIDA') {
+				$model->RECETAUNIDADMEDIDA = $value;
+			}
+			var_dump($key);
+			echo '<br>';
+			var_dump($value);
+		}*/
+
 		$validatedMembers = array();  //garantiza matriz vacia
 
 		if(isset($_POST['Receta']))
 		{
-			$model->attributes=$_POST['Receta'];
+			$PE->attributes = $_POST['ProductoElaborado'];
+			//$model->RESTO_ID = Yii::app()->user->RESTAURANT;
+
+			$pv->PVENTANOMBRE = $PE->PVENTANOMBRE;
+			//$pv->RESTO_ID = Yii::app()->user->RESTAURANT;
+
+			if($pv->save())
+			{
+				$id = Yii::app()->db->getLastInsertID('ProductoVenta'); //guarde el id
+				$PE->PVENTA_ID = $id;
+
+				if($PE->save())
+				{
+					$model->attributes = $_POST['Receta'];
+
+					//validate detail before saving the master
+					$detailOK = MultiModelForm::validate($model,$validatedMembers,$deleteItems);
+
+					if ($detailOK && empty($validatedMembers))
+					{
+						Yii::app()->user->setFlash('error','No detail submitted'); //ningun detalle presentado
+						$detailOK = false;
+					}
+
+					if(
+					    $detailOK &&
+						$model->save()
+						)
+
+					{
+						//the value for the foreign key 'groupid'
+						$masterValues = array ('PVENTA_ID'=>$model->id);
+
+						if (MultiModelForm::save($member,$validatedMembers,$deleteItems,$masterValues))
+							$this->redirect(array('admin','id'=>$model->id));
+					}
+				} //save del producto elaborado
+
+			} //$pv->save o producto de venta.
 			
-			//validate detail before saving the master
-			$detailOK = MultiModelForm::validate($model,$validatedMembers,$deleteItems);
-
-			if ($detailOK && empty($validatedMembers))
-			{
-				Yii::app()->user->setFlash('error','No detail submitted'); //ningun detalle presentado
-				$detailOK = false;
-			}
-
-			if(
-			    $detailOK &&
-				$model->save()
-				)
-
-			{
-				//the value for the foreign key 'groupid'
-				$masterValues = array ('PVENTA_ID'=>$model->id);
-
-				if (MultiModelForm::save($member,$validatedMembers,$deleteItems,$masterValues))
-					$this->redirect(array('admin','id'=>$model->id));
-			}
 		}
 
 		$this->render('create',array('model'=>$model, 'PE'=>$PE, 'MP'=>$MP));
+
 	}
+
+
+
+	
 	/*
 	public function actionCrear(){
 		$model=new Receta;
