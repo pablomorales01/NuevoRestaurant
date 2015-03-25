@@ -90,7 +90,7 @@ class ImagenController extends Controller
 
 	public function actionUpdate($id)
 	{
-		$model=new Imagen;
+		$model=$this->loadModel($id);
 		$resto = Restaurant::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
@@ -118,8 +118,10 @@ class ImagenController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		//$this->loadModel($id)->delete();
-		unlink(Yii::app()->basePath.'/images/subidas/'.$model->IMAGEN);
+		
+		$model = $this->loadModel($id);
+		unlink(Yii::app()->basePath.'/../images/subidas/'.$model->IMAGEN);
+		$this->loadModel($id)->delete();
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));

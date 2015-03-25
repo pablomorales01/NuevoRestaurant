@@ -11,8 +11,14 @@
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'IMAGEN_ID',
-		'IMAGENNOMBRE',
+		array(
+			'name'=> 'RESTO_ID',
+			'value' => '$data->rESTO->RESTONOMBRE',
+		),
+
+		'RESTO_ID',
+		//'IMAGEN_ID',
+		//'IMAGENNOMBRE',
 		'IMAGEN',
 		array(
 			'class'=>'CButtonColumn',

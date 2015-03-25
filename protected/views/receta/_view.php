@@ -5,9 +5,7 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('RECETA_ID')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->RECETA_ID), array('view', 'id'=>$data->RECETA_ID)); ?>
-	<br />
+	<!-- En alguna parte hay que agrupar las recetas-->
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('PVENTA_ID')); ?>:</b>
 	<?php echo CHtml::encode($data->PVENTA_ID); ?>

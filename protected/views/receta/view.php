@@ -9,7 +9,7 @@
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'RECETA_ID',
+		//'RECETA_ID',
 		'PVENTA_ID',
 		'MP_ID',
 		'RECETACANTIDADPRODUCTO',
