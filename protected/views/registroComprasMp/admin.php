@@ -12,7 +12,7 @@ $this->menu=array(
 ?>
 
 <h1>Compras de Materia Prima</h1>
-
+<?php echo CHtml::link("Descargar", array("admin", "excel"=>1)); ?>
 
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(

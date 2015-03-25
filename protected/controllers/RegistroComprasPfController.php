@@ -142,6 +142,13 @@ class RegistroComprasPfController extends Controller
 	public function actionAdmin()
 	{
 		$model=new RegistroComprasPf('search');
+		if(isset($_GET["excel"]))
+		{
+			$compras = RegistroComprasPf::model()->findAllByAttributes(array('RESTO_ID' => Yii::app()->user->RESTAURANT));
+			$content=$this->renderPartial("excel", array("compras"=>$compras), true);
+			Yii::app()->request->sendFile("compras PF.xls", $content);
+		}
+
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['RegistroComprasPf']))
 			$model->attributes=$_GET['RegistroComprasPf'];

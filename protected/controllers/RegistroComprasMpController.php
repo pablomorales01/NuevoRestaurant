@@ -142,6 +142,13 @@ class RegistroComprasMpController extends Controller
 	public function actionAdmin()
 	{
 		$model=new RegistroComprasMp('search');
+		
+		if(isset($_GET["excel"]))
+		{
+			$compras = RegistroComprasMp::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
+			$content=$this->renderPartial("excel", array("compras"=>$compras), true);
+			Yii::app()->request->sendFile("compras MP.xls", $content);
+		}
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['RegistroComprasMp']))
 			$model->attributes=$_GET['RegistroComprasMp'];

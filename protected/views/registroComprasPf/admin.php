@@ -22,7 +22,8 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Compras producto final</h1>
+<h1 align="center">Compras producto final</h1>
+<?php echo CHtml::link("Descargar", array("admin", "excel"=>1)); ?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'registro-compras-pf-grid',
