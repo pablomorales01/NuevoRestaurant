@@ -16,10 +16,14 @@
 		<?php echo $form->textField($model,'PVENTA_ID'); ?>
 	</div>
 
-
 	<div class="row">
 		<?php echo $form->label($model,'PVENTANOMBRE'); ?>
-		<?php echo $form->textField($model,'PVENTANOMBRE',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->textField($model,'PVENTANOMBRE',array('size'=>20,'maxlength'=>20)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'RESTO_ID'); ?>
+		<?php echo $form->textField($model,'RESTO_ID'); ?>
 	</div>
 
 	<div class="row buttons">

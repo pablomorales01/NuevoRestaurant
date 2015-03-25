@@ -115,20 +115,33 @@ class RecetaController extends Controller
 
 		if(isset($_POST['Receta']))
 		{
+
 			$PE->attributes = $_POST['ProductoElaborado'];
 			//$model->RESTO_ID = Yii::app()->user->RESTAURANT;
 
 			$pv->PVENTANOMBRE = $PE->PVENTANOMBRE;
-			//$pv->RESTO_ID = Yii::app()->user->RESTAURANT;
+			$pv->RESTO_ID = 0;
 
 			if($pv->save())
 			{
 				$id = Yii::app()->db->getLastInsertID('ProductoVenta'); //guarde el id
 				$PE->PVENTA_ID = $id;
 
+
 				if($PE->save())
 				{
-					$model->attributes = $_POST['Receta'];
+
+					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+						$model = new Receta;
+						$model->PVENTA_ID = $id;
+						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
+						$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
+						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
+						$model->save();
+					}
+
+									
+					/*$model->attributes = $_POST['Receta'];
 
 					//validate detail before saving the master
 					$detailOK = MultiModelForm::validate($model,$validatedMembers,$deleteItems);
@@ -145,12 +158,13 @@ class RecetaController extends Controller
 						)
 
 					{
-						//the value for the foreign key 'groupid'
+						//the value for the foreign key 'groupid' 
+						//quizas sea PVENTA_ID y MP_ID
 						$masterValues = array ('PVENTA_ID'=>$model->id);
 
 						if (MultiModelForm::save($member,$validatedMembers,$deleteItems,$masterValues))
 							$this->redirect(array('admin','id'=>$model->id));
-					}
+					}*/
 				} //save del producto elaborado
 
 			} //$pv->save o producto de venta.

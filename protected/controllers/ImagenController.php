@@ -87,21 +87,10 @@ class ImagenController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	
-	/*public function actionloadImage($id)
-	    {
-	        $model=$this->loadModel($id);
-	        header('Content-Type: ' . $model->IMAGENTIPO);
-	        print $model->IMAGEN;
-
-	        $this->renderPartial('image', array(
-            'model'=>$model
-        ));
-	    }*/
 
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$model=new Imagen;
 		$resto = Restaurant::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
@@ -110,12 +99,15 @@ class ImagenController extends Controller
 		if(isset($_POST['Imagen']))
 		{
 			$model->attributes=$_POST['Imagen'];
+			$model->IMAGEN = CUploadedFile::getInstance($model, 'IMAGEN'); //equivalente a Yii PHP de Array $ _FILES
+
 			if($model->save())
+			    $model->IMAGEN->saveAs(Yii::getPathOfAlias('webroot').'../images/subidas/'.$model->IMAGEN->getName()); //guarda el archivo fisico en el servidor ('destino')
 				$this->redirect(array('view','id'=>$model->IMAGEN_ID));
 		}
 
-		$this->render('update',array(
-			'model'=>$model, 'resto' =>$resto
+		$this->render('create',array(
+			'model'=>$model, 'resto'=>$resto,
 		));
 	}
 

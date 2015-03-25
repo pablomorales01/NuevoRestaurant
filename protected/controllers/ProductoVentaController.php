@@ -6,7 +6,7 @@ class ProductoVentaController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/productoVentaLayout';
+	public $layout='//layouts/column2';
 
 	/**
 	 * @return array action filters
@@ -15,7 +15,7 @@ class ProductoVentaController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			//'postOnly + delete', // we only allow deletion via POST request
+			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -37,7 +37,7 @@ class ProductoVentaController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('Super administrador','Administrador'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -56,32 +56,16 @@ class ProductoVentaController extends Controller
 		));
 	}
 
-	public function actionAsignar()
-	{
-		$select = null;
-
-		if(isset($_POST['listname']))
-		{
-			$select = $_POST['listname'];
-			if($select == 'PRODUCTO ELABORADO')
-				$this->redirect(array('productoElaborado/create', 'select'=>$select));
-			if($select == 'PRODUCTO FINAL')
-				$this->redirect(array('productoFinal/create', 'select'=>$select));	
-		}
-		
-		$this->render('asignar', array('select'=>$select));
-	}
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	/*public function actionCreate($select)
+	public function actionCreate()
 	{
 		$model=new ProductoVenta;
 
-		var_dum($select);
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['ProductoVenta']))
 		{
@@ -93,7 +77,7 @@ class ProductoVentaController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 		));
-	}*/
+	}
 
 	/**
 	 * Updates a particular model.
@@ -124,14 +108,9 @@ class ProductoVentaController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-
-	//preguntar si el producto es final o elaborado
-	public function actionDelete($id, $tipo)
+	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
-
-		if($tipo == 'PRODUCTO FINAL')
-			$this->redirect(array('productoFinal/delete','id'=>$id));
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
