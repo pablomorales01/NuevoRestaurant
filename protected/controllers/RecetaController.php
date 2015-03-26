@@ -137,6 +137,7 @@ class RecetaController extends Controller
 						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
 						$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
 						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
+						//$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 						$model->save();
 					}
 
@@ -241,14 +242,16 @@ class RecetaController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Receta('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Receta']))
-			$model->attributes=$_GET['Receta'];
+		//$model=new Receta('search');
+		//$model->unsetAttributes();  // clear any default values
+		//if(isset($_GET['Receta']))
+			//$model->attributes=$_GET['Receta'];
+		$receta = Receta::model()->findAll();
+		$pe = ProductoElaborado::model()->findAll();
 
 		$this->render('admin',array(
-			'model'=>$model,
-		));
+			'receta'=>$receta, 'pe'=>$pe,
+		));		
 	}
 
 	/**

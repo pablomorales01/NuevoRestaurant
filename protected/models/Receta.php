@@ -8,6 +8,11 @@
  * @property string $RECETAUNIDADMEDIDA
  * @property integer $PVENTA_ID
  * @property integer $MP_ID
+ * @property integer $RESTO_ID
+ *
+ * The followings are the available model relations:
+ * @property MateriaPrima $mP
+ * @property ProductoElaborado $pVENTA
  */
 class Receta extends CActiveRecord
 {
@@ -27,11 +32,12 @@ class Receta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('RECETACANTIDADPRODUCTO, PVENTA_ID, MP_ID', 'numerical', 'integerOnly'=>true),
+			array('PVENTA_ID, MP_ID, RESTO_ID', 'required'),
+			array('RECETACANTIDADPRODUCTO, PVENTA_ID, MP_ID, RESTO_ID', 'numerical', 'integerOnly'=>true),
 			array('RECETAUNIDADMEDIDA', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA, PVENTA_ID, MP_ID', 'safe', 'on'=>'search'),
+			array('RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA, PVENTA_ID, MP_ID, RESTO_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,6 +49,8 @@ class Receta extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'mP' => array(self::BELONGS_TO, 'MateriaPrima', 'MP_ID'),
+			'pVENTA' => array(self::BELONGS_TO, 'ProductoElaborado', 'PVENTA_ID'),
 		);
 	}
 
@@ -56,6 +64,7 @@ class Receta extends CActiveRecord
 			'RECETAUNIDADMEDIDA' => 'Recetaunidadmedida',
 			'PVENTA_ID' => 'Pventa',
 			'MP_ID' => 'Mp',
+			'RESTO_ID' => 'Resto',
 		);
 	}
 
@@ -81,6 +90,7 @@ class Receta extends CActiveRecord
 		$criteria->compare('RECETAUNIDADMEDIDA',$this->RECETAUNIDADMEDIDA,true);
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
 		$criteria->compare('MP_ID',$this->MP_ID);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
