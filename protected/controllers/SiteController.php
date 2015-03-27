@@ -61,6 +61,13 @@ class SiteController extends Controller
 		$this->render('index', array('model'=> $resto));
 	}
 
+	public function actionResto()
+	{
+		$resto = Restaurant::model()->findAll();
+		$imagen = Imagen::model()->findAll();
+		$this->render('resto', array('resto' => $resto, 'imagen' => $imagen));
+	}
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */

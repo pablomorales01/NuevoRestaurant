@@ -87,17 +87,6 @@ class ImagenController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	
-	/*public function actionloadImage($id)
-	    {
-	        $model=$this->loadModel($id);
-	        header('Content-Type: ' . $model->IMAGENTIPO);
-	        print $model->IMAGEN;
-
-	        $this->renderPartial('image', array(
-            'model'=>$model
-        ));
-	    }*/
 
 	public function actionUpdate($id)
 	{
@@ -110,12 +99,15 @@ class ImagenController extends Controller
 		if(isset($_POST['Imagen']))
 		{
 			$model->attributes=$_POST['Imagen'];
+			$model->IMAGEN = CUploadedFile::getInstance($model, 'IMAGEN'); //equivalente a Yii PHP de Array $ _FILES
+
 			if($model->save())
+			    $model->IMAGEN->saveAs(Yii::getPathOfAlias('webroot').'../images/subidas/'.$model->IMAGEN->getName()); //guarda el archivo fisico en el servidor ('destino')
 				$this->redirect(array('view','id'=>$model->IMAGEN_ID));
 		}
 
-		$this->render('update',array(
-			'model'=>$model, 'resto' =>$resto
+		$this->render('create',array(
+			'model'=>$model, 'resto'=>$resto,
 		));
 	}
 
@@ -126,8 +118,10 @@ class ImagenController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		//$this->loadModel($id)->delete();
-		unlink(Yii::app()->basePath.'/images/subidas/'.$model->IMAGEN);
+		
+		$model = $this->loadModel($id);
+		unlink(Yii::app()->basePath.'/../images/subidas/'.$model->IMAGEN);
+		$this->loadModel($id)->delete();
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));

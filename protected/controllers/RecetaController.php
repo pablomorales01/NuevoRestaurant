@@ -44,7 +44,23 @@ class RecetaController extends Controller
 			),
 		);
 	}
-
+	/*
+	public function actionAdd()
+	{
+	
+		$recetas=array();
+		//Agregar Valores de Tabla si es que existen
+		if(isset($_POST['Recetas']))$recetas+=$_POST['Recetas'];
+		//agrega el valor de select a la cabezera del arreglo
+		array_unshift($recetas,array(
+			'MP_ID'=>$_POST['Receta']['MP_ID'],
+			'RECETACANTIDADPRODUCTO'=>"",
+			'RECETAUNIDADMEDIDA'=>""
+			));
+		//var_dump($recetas);
+		$this->renderPartial('recetas',array('recetas'=>$recetas));
+	}
+	*/
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -60,34 +76,117 @@ class RecetaController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
+	
 	public function actionCreate()
 	{
-		$model=new Receta;
-		$PE = ProductoElaborado::model()->findAll();
+		Yii::import('ext.multimodelform.MultiModelForm');
+
+		$model = new Receta;
+		$PE = new ProductoElaborado;
 		$MP = MateriaPrima::model()->findAll();
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+
+		//para crear un PE necessito crear un Producto de venta
+		$pv = new ProductoVenta;
+
+		/*echo '<pre>';
+		var_dump($_POST);
+		echo '</pre>';
+		foreach ($_POST['Receta'] as $key => $value) {
+
+			if ($key == 'MP_ID') {
+				foreach ($value as $key => $value) {
+					$model->MP_ID = $value;
+				}
+			}
+			if ($key == 'RECETACANTIDADPRODUCTO') {
+				foreach ($value as $key => $value) {
+					$model->RECETACANTIDADPRODUCTO = $value;
+				}
+			}
+			if ($key == 'RECETAUNIDADMEDIDA') {
+				$model->RECETAUNIDADMEDIDA = $value;
+			}
+			var_dump($key);
+			echo '<br>';
+			var_dump($value);
+		}*/
+
+		$validatedMembers = array();  //garantiza matriz vacia
 
 		if(isset($_POST['Receta']))
 		{
-			$model->attributes=$_POST['Receta'];
-			/*
-				// Obtener la referencia a la lista
-				var lista = document.getElementById("opciones");
-				 
-				// Obtener el valor de la opción seleccionada
-				var valorSeleccionado = lista.options[lista.selectedIndex].value;
-				 
-				// Obtener el texto que muestra la opción seleccionada
-				var valorSeleccionado = lista.options[lista.selectedIndex].text;
 
-			*/
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->RECETA_ID));
+			$PE->attributes = $_POST['ProductoElaborado'];
+			//$model->RESTO_ID = Yii::app()->user->RESTAURANT;
+
+			$pv->PVENTANOMBRE = $PE->PVENTANOMBRE;
+			$pv->RESTO_ID = 0;
+
+			if($pv->save())
+			{
+				$id = Yii::app()->db->getLastInsertID('ProductoVenta'); //guarde el id
+				$PE->PVENTA_ID = $id;
+
+
+				if($PE->save())
+				{
+
+					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+						$model = new Receta;
+						$model->PVENTA_ID = $id;
+						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
+						$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
+						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
+						//$model->RESTO_ID= Yii::app()->user->RESTAURANT;
+						$model->save();
+					}
+
+									
+					/*$model->attributes = $_POST['Receta'];
+
+					//validate detail before saving the master
+					$detailOK = MultiModelForm::validate($model,$validatedMembers,$deleteItems);
+
+					if ($detailOK && empty($validatedMembers))
+					{
+						Yii::app()->user->setFlash('error','No detail submitted'); //ningun detalle presentado
+						$detailOK = false;
+					}
+
+					if(
+					    $detailOK &&
+						$model->save()
+						)
+
+					{
+						//the value for the foreign key 'groupid' 
+						//quizas sea PVENTA_ID y MP_ID
+						$masterValues = array ('PVENTA_ID'=>$model->id);
+
+						if (MultiModelForm::save($member,$validatedMembers,$deleteItems,$masterValues))
+							$this->redirect(array('admin','id'=>$model->id));
+					}*/
+				} //save del producto elaborado
+
+			} //$pv->save o producto de venta.
+			
 		}
 
 		$this->render('create',array('model'=>$model, 'PE'=>$PE, 'MP'=>$MP));
+
 	}
+
+
+
+	
+	/*
+	public function actionCrear(){
+		$model=new Receta;
+		$recetas=array();
+		$this->render('crearReceta',array(
+			'model'=>$model,
+		));
+	}*/
 
 	/**
 	 * Updates a particular model.
@@ -143,14 +242,16 @@ class RecetaController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Receta('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Receta']))
-			$model->attributes=$_GET['Receta'];
+		//$model=new Receta('search');
+		//$model->unsetAttributes();  // clear any default values
+		//if(isset($_GET['Receta']))
+			//$model->attributes=$_GET['Receta'];
+		$receta = Receta::model()->findAll();
+		$pe = ProductoElaborado::model()->findAll();
 
 		$this->render('admin',array(
-			'model'=>$model,
-		));
+			'receta'=>$receta, 'pe'=>$pe,
+		));		
 	}
 
 	/**

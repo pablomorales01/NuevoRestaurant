@@ -15,6 +15,6 @@
 		array(
 			'label' => 'Imagen',
 			'type' => 'raw',
-			'value' => CHtml::image(Yii::app()->baseUrl.'/images/subidas/'.$model->IMAGEN)),
+			'value' => CHtml::image(Yii::app()->baseUrl.'/images/subidas/'.$model->IMAGEN, 'imagen',array('width'=>200))),
 	),
 )); ?>

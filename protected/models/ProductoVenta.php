@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'producto_venta':
  * @property integer $PVENTA_ID
  * @property string $PVENTANOMBRE
+ * @property integer $RESTO_ID
  *
  * The followings are the available model relations:
  * @property ProductoElaborado[] $productoElaborados
@@ -26,13 +27,15 @@ class ProductoVenta extends CActiveRecord
 	 */
 	public function rules()
 	{
+		echo "rules!";
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('RESTO_ID', 'numerical', 'integerOnly'=>true),
 			array('PVENTANOMBRE', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PVENTA_ID, PVENTANOMBRE', 'safe', 'on'=>'search'),
+			array('PVENTA_ID, PVENTANOMBRE, RESTO_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,6 +60,7 @@ class ProductoVenta extends CActiveRecord
 		return array(
 			'PVENTA_ID' => 'Pventa',
 			'PVENTANOMBRE' => 'Pventanombre',
+			'RESTO_ID' => 'Resto',
 		);
 	}
 
@@ -80,6 +84,7 @@ class ProductoVenta extends CActiveRecord
 
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
 		$criteria->compare('PVENTANOMBRE',$this->PVENTANOMBRE,true);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

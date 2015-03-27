@@ -16,13 +16,13 @@ $this->menu=array(
 );
 ?>
 
-<h1>Producto Venta #<?php echo $model->PVENTA_ID; ?></h1>
+<h1>View ProductoVenta #<?php echo $model->PVENTA_ID; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'PVENTA_ID',
-		//'MENU_ID',
 		'PVENTANOMBRE',
+		'RESTO_ID',
 	),
 )); ?>

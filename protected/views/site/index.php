@@ -11,8 +11,7 @@ $this->pageTitle=Yii::app()->name;
 
 <ul id="menu" class="ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" tabindex="0" aria-activedescendant="ui-id-18">
 	            <?php foreach ($model as $resto) {  				  	
-  				echo'
-	            <li class="ui-menu-item" role="presentation"><a href="#" id="ui-id-17" class="ui-corner-all" tabindex="-1" role="menuitem">';
+  				echo '<li><a href="site/resto?nombre='.$resto->RESTONOMBRE.'">';
 	            echo $resto->RESTONOMBRE; echo '</a></li>';
 	            }
 	            ?>

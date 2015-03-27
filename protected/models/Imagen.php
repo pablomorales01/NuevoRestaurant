@@ -8,7 +8,6 @@
  * @property integer $RESTO_ID
  * @property string $IMAGENNOMBRE
  * @property string $IMAGEN
- * @property string $IMAGENTIPO
  *
  * The followings are the available model relations:
  * @property Restaurant $rESTO
