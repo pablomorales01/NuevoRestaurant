@@ -247,8 +247,8 @@ class RecetaController extends Controller
 		//$model->unsetAttributes();  // clear any default values
 		//if(isset($_GET['Receta']))
 			//$model->attributes=$_GET['Receta'];
-		$receta = Receta::model()->findAll(array('RESTO_ID'=> Yii::app()->user->RESTAURANT));
-		$pe = ProductoElaborado::model()->findAll(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
+		$receta = Receta::model()->findAllByAttributes(array('RESTO_ID'=> Yii::app()->user->RESTAURANT));
+		$pe = ProductoElaborado::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
 
 		$this->render('admin',array(
 			'receta'=>$receta, 'pe'=>$pe,
