@@ -27,7 +27,6 @@ class ProductoVenta extends CActiveRecord
 	 */
 	public function rules()
 	{
-		echo "rules!";
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(

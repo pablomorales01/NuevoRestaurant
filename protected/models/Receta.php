@@ -32,7 +32,7 @@ class Receta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PVENTA_ID, MP_ID, RESTO_ID', 'required'),
+			array('PVENTA_ID, MP_ID', 'required'),
 			array('RECETACANTIDADPRODUCTO, PVENTA_ID, MP_ID, RESTO_ID', 'numerical', 'integerOnly'=>true),
 			array('RECETAUNIDADMEDIDA', 'length', 'max'=>10),
 			// The following rule is used by search().

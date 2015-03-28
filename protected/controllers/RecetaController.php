@@ -117,10 +117,11 @@ class RecetaController extends Controller
 		{
 
 			$PE->attributes = $_POST['ProductoElaborado'];
-			//$model->RESTO_ID = Yii::app()->user->RESTAURANT;
+			$PE->RESTO_ID = Yii::app()->user->RESTAURANT;
 
 			$pv->PVENTANOMBRE = $PE->PVENTANOMBRE;
 			$pv->RESTO_ID = 0;
+			$pv->RESTO_ID = Yii::app()->user->RESTAURANT;
 
 			if($pv->save())
 			{
@@ -137,7 +138,7 @@ class RecetaController extends Controller
 						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
 						$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
 						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
-						//$model->RESTO_ID= Yii::app()->user->RESTAURANT;
+						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 						$model->save();
 					}
 
