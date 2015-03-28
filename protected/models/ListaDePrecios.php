@@ -60,10 +60,10 @@ class ListaDePrecios extends CActiveRecord
 	{
 		return array(
 			'MENU_ID' => 'Menu',
-			'MENUNOMBRE' => 'Menunombre',
-			'MENUPRECIO' => 'Menuprecio',
-			'MENUCANTIDADPERSONAS' => 'Menucantidadpersonas',
-			'CALORIASTOTAL' => 'Caloriastotal',
+			'MENUNOMBRE' => 'Nombre',
+			'MENUPRECIO' => 'Precio',
+			'MENUCANTIDADPERSONAS' => '# Personas',
+			'CALORIASTOTAL' => 'Calorias',
 		);
 	}
 

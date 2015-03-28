@@ -6,7 +6,7 @@ class PrecioProductoController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/menulayout';
 
 	/**
 	 * @return array action filters
@@ -62,20 +62,41 @@ class PrecioProductoController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new PrecioProducto;
+		Yii::import('ext.multimodelform.MultiModelForm');
 
+		$pv = Productos::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));		
+		$model = new PrecioProducto;
+		$lp = new ListaDePrecios;
+		//el total de calorias del menu
+		$totalKcal;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['PrecioProducto']))
+		if(isset($_POST['ListaDePrecios']))
 		{
-			$model->attributes=$_POST['PrecioProducto'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->PP_ID));
+			$lp->attributes = $_POST['ListaDePrecios'];
+			$lp->RESTO_ID = Yii::app()->user->RESTAURANT;
+			if($lp->save())
+			{
+				$id = Yii::app()->db->getLastInsertID('ListaDePrecios');
+				if(isset($_POST['PrecioProducto']))
+				{
+				for ($i=0; $i < count($_POST['PrecioProducto']['PVENTA_ID']); $i++) { 
+						$model = new PrecioProducto;
+						$model->MENU_ID = $id;
+						$model->PVENTA_ID = $_POST['PrecioProducto']['PVENTA_ID'][$i];
+						//$model->RESTO_ID= Yii::app()->user->RESTAURANT;
+						$model->save();
+					}
+				}
+			}
 		}
+
+		
 
 		$this->render('create',array(
 			'model'=>$model,
+			'lp' => $lp,
+			'pv' => $pv
 		));
 	}
 

@@ -9,6 +9,7 @@
     <ul class="nav nav-pills nav-stacked">
         <li><a href="<?php echo Yii::app()->createUrl('receta/create'); ?>">Nuevo plato preparado</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('receta/admin'); ?>">Administrar preparaciones</a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('precioProducto/create'); ?>">Nuevo menú</a></li>
   </div>
 </div>
 

@@ -21,11 +21,6 @@
 		<?php echo $form->textField($model,'PVENTA_ID'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'PP_ID'); ?>
-		<?php echo $form->textField($model,'PP_ID'); ?>
-	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

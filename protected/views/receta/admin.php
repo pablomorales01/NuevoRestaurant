@@ -24,26 +24,26 @@
 <br></br>
  <table style="width:90%">
  <tr>
-  <td>
     <th>Producto elaborado</th>
     <th>Ingrediente</th>
     <th>Cantidad</th>
     <th>Medida</th>
     <th>Opciones</th>
-   </td>
 </tr>
     	<?php foreach ($pe as $key) {  ?> 
-
-    	<td>
-    	<?php  
-    		$ID = $key->PVENTA_ID;
-    		$numero = Receta::model()->countByAttributes(array('PVENTA_ID'=>$ID));
-    	?>
-
-		</td>
-    	<?php  } ?>    		
-    
-  
+    <tr>
+    	<td><?php echo $key->PVENTANOMBRE ?></td> 
+        <td><?php foreach ($receta as $re) {
+            if($re->PVENTA_ID == $key->PVENTA_ID)
+                {
+                    echo $re->MP_ID;
+                }
+        } ?></td> 	
+        <td></td>	
+        <td></td>
+        <td></td>
+    </tr>
+  <?php } ?>
 
  
 </table> 

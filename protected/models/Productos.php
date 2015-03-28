@@ -1,24 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "precio_producto".
+ * This is the model class for table "productos".
  *
- * The followings are the available columns in table 'precio_producto':
- * @property integer $MENU_ID
+ * The followings are the available columns in table 'productos':
  * @property integer $PVENTA_ID
- *
- * The followings are the available model relations:
- * @property ListaDePrecios $mENU
- * @property ProductoVenta $pVENTA
+ * @property string $PVENTANOMBRE
+ * @property integer $CALORIAS
+ * @property integer $GRAMOS
+ * @property integer $RESTO_ID
  */
-class PrecioProducto extends CActiveRecord
+class Productos extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'precio_producto';
+		return 'productos';
 	}
 
 	/**
@@ -29,11 +28,11 @@ class PrecioProducto extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MENU_ID, PVENTA_ID', 'required'),
-			array('MENU_ID, PVENTA_ID', 'numerical', 'integerOnly'=>true),
+			array('PVENTA_ID, CALORIAS, GRAMOS, RESTO_ID', 'numerical', 'integerOnly'=>true),
+			array('PVENTANOMBRE', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('MENU_ID, PVENTA_ID', 'safe', 'on'=>'search'),
+			array('PVENTA_ID, PVENTANOMBRE, CALORIAS, GRAMOS, RESTO_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,8 +44,6 @@ class PrecioProducto extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'mENU' => array(self::BELONGS_TO, 'ListaDePrecios', 'MENU_ID'),
-			'pVENTA' => array(self::BELONGS_TO, 'ProductoVenta', 'PVENTA_ID'),
 		);
 	}
 
@@ -56,8 +53,11 @@ class PrecioProducto extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'MENU_ID' => 'Menu',
 			'PVENTA_ID' => 'Pventa',
+			'PVENTANOMBRE' => 'Pventanombre',
+			'CALORIAS' => 'Calorias',
+			'GRAMOS' => 'Gramos',
+			'RESTO_ID' => 'Resto',
 		);
 	}
 
@@ -79,8 +79,11 @@ class PrecioProducto extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('MENU_ID',$this->MENU_ID);
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
+		$criteria->compare('PVENTANOMBRE',$this->PVENTANOMBRE,true);
+		$criteria->compare('CALORIAS',$this->CALORIAS);
+		$criteria->compare('GRAMOS',$this->GRAMOS);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -91,7 +94,7 @@ class PrecioProducto extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return PrecioProducto the static model class
+	 * @return Productos the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
