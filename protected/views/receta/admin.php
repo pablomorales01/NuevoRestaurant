@@ -23,19 +23,27 @@
 
 <br></br>
  <table style="width:90%">
+ <tr>
   <td>
     <th>Producto elaborado</th>
     <th>Ingrediente</th>
     <th>Cantidad</th>
     <th>Medida</th>
     <th>Opciones</th>
-    <td>
-    	<?php foreach ($pe as $key) { 
-    		
+   </td>
+</tr>
+    	<?php foreach ($pe as $key) {  ?> 
 
-    	}?>      		
-    </td>
-  </td>
+    	<td>
+    	<?php  
+    		$ID = $key->PVENTA_ID;
+    		$numero = Receta::model()->countByAttributes(array('PVENTA_ID'=>$ID));
+    	?>
+
+		</td>
+    	<?php  } ?>    		
+    
+  
 
  
 </table> 
