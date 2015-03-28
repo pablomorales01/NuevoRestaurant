@@ -6,6 +6,11 @@
  * The followings are the available columns in table 'precio_producto':
  * @property integer $MENU_ID
  * @property integer $PVENTA_ID
+ * @property integer $PP_ID
+ *
+ * The followings are the available model relations:
+ * @property ProductoVenta $pVENTA
+ * @property ListaDePrecios $mENU
  */
 class PrecioProducto extends CActiveRecord
 {
@@ -25,11 +30,11 @@ class PrecioProducto extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MENU_ID, PVENTA_ID', 'required'),
-			array('MENU_ID, PVENTA_ID', 'numerical', 'integerOnly'=>true),
+			array('MENU_ID, PVENTA_ID, PP_ID', 'required'),
+			array('MENU_ID, PVENTA_ID, PP_ID', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('MENU_ID, PVENTA_ID', 'safe', 'on'=>'search'),
+			array('MENU_ID, PVENTA_ID, PP_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -41,6 +46,8 @@ class PrecioProducto extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'pVENTA' => array(self::BELONGS_TO, 'ProductoVenta', 'PVENTA_ID'),
+			'mENU' => array(self::BELONGS_TO, 'ListaDePrecios', 'MENU_ID'),
 		);
 	}
 
@@ -52,6 +59,7 @@ class PrecioProducto extends CActiveRecord
 		return array(
 			'MENU_ID' => 'Menu',
 			'PVENTA_ID' => 'Pventa',
+			'PP_ID' => 'Pp',
 		);
 	}
 
@@ -75,6 +83,7 @@ class PrecioProducto extends CActiveRecord
 
 		$criteria->compare('MENU_ID',$this->MENU_ID);
 		$criteria->compare('PVENTA_ID',$this->PVENTA_ID);
+		$criteria->compare('PP_ID',$this->PP_ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
