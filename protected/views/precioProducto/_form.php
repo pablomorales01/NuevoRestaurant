@@ -31,6 +31,13 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
 	<?php echo $form->errorSummary($model); ?>
 
+	
+
+    <?php if(Yii::app()->user->hasFlash('success')):?>
+    <script>alert('<?php echo Yii::app()->user->getFlash('success'); ?>');</script>
+    <?php endif; ?>
+
+
 	<div class="row">
 		<?php echo $form->textFieldControlGroup($lp,'MENUNOMBRE'); ?>
 		<?php echo $form->error($lp,'MENUNOMBRE'); ?>

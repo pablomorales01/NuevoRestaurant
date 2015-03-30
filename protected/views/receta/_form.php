@@ -24,7 +24,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 ));
 ?>
 
-	<p class="note" align="center">Fields with <span class="required">*</span> are required.</p>
+	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<div class="row">
 		<?php echo $form->labelEx($PE,'PVENTANOMBRE'); ?>

@@ -37,7 +37,7 @@ class PrecioProductoController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('Administrador', 'cocina'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -89,9 +89,8 @@ class PrecioProductoController extends Controller
 					}
 				}
 			}
+			Yii::app()->user->setFlash('success', "Menú Ingresado!");
 		}
-
-		
 
 		$this->render('create',array(
 			'model'=>$model,
