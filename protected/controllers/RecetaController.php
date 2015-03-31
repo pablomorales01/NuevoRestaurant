@@ -88,29 +88,6 @@ class RecetaController extends Controller
 		//para crear un PE necessito crear un Producto de venta
 		$pv = new ProductoVenta;
 
-		/*echo '<pre>';
-		var_dump($_POST);
-		echo '</pre>';
-		foreach ($_POST['Receta'] as $key => $value) {
-
-			if ($key == 'MP_ID') {
-				foreach ($value as $key => $value) {
-					$model->MP_ID = $value;
-				}
-			}
-			if ($key == 'RECETACANTIDADPRODUCTO') {
-				foreach ($value as $key => $value) {
-					$model->RECETACANTIDADPRODUCTO = $value;
-				}
-			}
-			if ($key == 'RECETAUNIDADMEDIDA') {
-				$model->RECETAUNIDADMEDIDA = $value;
-			}
-			var_dump($key);
-			echo '<br>';
-			var_dump($value);
-		}*/
-
 		$validatedMembers = array();  //garantiza matriz vacia
 
 		if(isset($_POST['Receta']))
@@ -141,32 +118,6 @@ class RecetaController extends Controller
 						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 						$model->save();
 					}
-
-									
-					/*$model->attributes = $_POST['Receta'];
-
-					//validate detail before saving the master
-					$detailOK = MultiModelForm::validate($model,$validatedMembers,$deleteItems);
-
-					if ($detailOK && empty($validatedMembers))
-					{
-						Yii::app()->user->setFlash('error','No detail submitted'); //ningun detalle presentado
-						$detailOK = false;
-					}
-
-					if(
-					    $detailOK &&
-						$model->save()
-						)
-
-					{
-						//the value for the foreign key 'groupid' 
-						//quizas sea PVENTA_ID y MP_ID
-						$masterValues = array ('PVENTA_ID'=>$model->id);
-
-						if (MultiModelForm::save($member,$validatedMembers,$deleteItems,$masterValues))
-							$this->redirect(array('admin','id'=>$model->id));
-					}*/
 				} //save del producto elaborado
 
 			} //$pv->save o producto de venta.
@@ -196,24 +147,50 @@ class RecetaController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$PE = new ProductoElaborado;
+		//Yii::import('ext.multimodelform.MultiModelForm');
+
+		//$PE = new ProductoElaborado;
 		$MP = MateriaPrima::model()->findAll();
 
-		$model=$this->loadModel($id);
+		$PE = ProductoElaborado::model()->findByAttributes(array('PVENTA_ID'=>$id));
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$recetas = Receta::model()->findAllByAttributes(array('PVENTA_ID'=>$id));
+		$pv = ProductoVenta::model()->findByAttributes(array('PVENTA_ID'=>$id));
 
 		if(isset($_POST['Receta']))
 		{
-			$model->attributes=$_POST['Receta'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->RECETA_ID));
+
+			$PE->attributes = $_POST['ProductoElaborado'];
+			//$PE->RESTO_ID = Yii::app()->user->RESTAURANT;
+			$pv->PVENTANOMBRE = $PE->PVENTANOMBRE;
+			//$pv->RESTO_ID = 0;
+			//$pv->RESTO_ID = Yii::app()->user->RESTAURANT;
+
+			if($pv->save())
+			{
+				//$id = Yii::app()->db->getLastInsertID('ProductoVenta'); //guarde el id
+				//$PE->PVENTA_ID = $id;
+
+
+				if($PE->save())
+				{
+
+					/*for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+						$model = new Receta;
+						$model->PVENTA_ID = $id;
+						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
+						$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
+						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
+						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
+						$model->save();
+					}*/
+				} //save del producto elaborado
+
+			} //$pv->save o producto de venta.
 		}
 
-		$this->render('update',array(
-			'model'=>$model, 'PE'=>$PE, 'MP'=>$MP
-		));
+		
+		$this->render('editar',array('recetas'=>$recetas,'MP'=>$MP,'PE'=>$PE, 'pv'=>$pv));
 	}
 
 	/**
@@ -223,7 +200,12 @@ class RecetaController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+
 		$this->loadModel($id)->delete();
+		$pe = ProductoElaborado::model()->findAllByAttributes(array('PVENTA_ID'=>$id));
+		$pe->delete();
+		$pv = ProductoVenta::model()->findAllByAttributes(array('PVENTA_ID'=>$id));
+		$pv->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -267,7 +249,9 @@ class RecetaController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Receta::model()->findByPk($id);
+		//$model=Receta::model()->findByPk($id);
+		$model = Receta::model()->findAllByAttributes(array('PVENTA_ID'=>$id));
+
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
