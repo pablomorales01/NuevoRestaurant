@@ -36,7 +36,7 @@ class RecetaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete', 'update'),
 				'users'=>array('Administrador', 'cocina'),
 			),
 			array('deny',  // deny all users
@@ -196,6 +196,9 @@ class RecetaController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$PE = new ProductoElaborado;
+		$MP = MateriaPrima::model()->findAll();
+
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -209,7 +212,7 @@ class RecetaController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 'PE'=>$PE, 'MP'=>$MP
 		));
 	}
 

@@ -58,7 +58,7 @@ class ProductoElaborado extends CActiveRecord
 	{
 		return array(
 			'PVENTA_ID' => 'Pventa',
-			'PVENTANOMBRE' => 'Pventanombre',
+			'PVENTANOMBRE' => 'Nombre',
 			'CALORIAS' => 'Calorias',
 			'GRAMOS' => 'Gramos',
 		);
