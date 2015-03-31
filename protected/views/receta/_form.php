@@ -27,9 +27,13 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<div class="row">
-		<?php echo $form->labelEx($PE,'PVENTANOMBRE'); ?>
-		<?php echo $form->textField($PE,'PVENTANOMBRE',array('size'=>60,'maxlength'=>120)); ?>
+		<?php echo $form->textFieldControlGroup($PE,'PVENTANOMBRE',array('size'=>60,'maxlength'=>120)); ?>
 		<?php echo $form->error($model,'PVENTANOMBRE'); ?>
+		<?php echo $form->textFieldControlGroup($PE,'CALORIAS');?>
+		<?php echo $form->error($model,'CALORIAS'); ?>
+		<?php echo $form->textFieldControlGroup($PE,'GRAMOS');?>
+		<?php echo $form->error($model,'GRAMOS'); ?>
+
 	</div>
 
 	<?php echo $form->errorSummary($model); ?>
