@@ -84,7 +84,8 @@ class PrecioProductoController extends Controller
 						$model = new PrecioProducto;
 						$model->MENU_ID = $id;
 						$model->PVENTA_ID = $_POST['PrecioProducto']['PVENTA_ID'][$i];
-						//$model->RESTO_ID= Yii::app()->user->RESTAURANT;
+						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
+						$model->PPCANTIDAD= $_POST['PrecioProducto']['PPCANTIDAD'];
 						$model->save();
 					}
 				}
@@ -153,13 +154,17 @@ class PrecioProductoController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new PrecioProducto('search');
+		/*$model=new PrecioProducto('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['PrecioProducto']))
-			$model->attributes=$_GET['PrecioProducto'];
+			$model->attributes=$_GET['PrecioProducto'];*/
 
+		$PP = PrecioProducto::model()->findAllByAttributes(array('RESTO_ID'=> Yii::app()->user->RESTAURANT));
+		$LP = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=> Yii::app()->user->RESTAURANT));
 		$this->render('admin',array(
-			'model'=>$model,
+			//'model'=>$model,
+			'PP' => $PP,
+			'LP' => $LP,
 		));
 	}
 

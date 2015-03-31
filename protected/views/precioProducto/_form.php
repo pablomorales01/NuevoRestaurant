@@ -50,15 +50,12 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		<?php echo $form->textFieldControlGroup($lp, 'MENUCANTIDADPERSONAS'); ?>
 		<?php echo $form->error($lp,'MENUCANTIDADPERSONAS'); ?>
 	</div>
-<!--
+	
 	<div class="row">
-		<?php echo $form->labelEx($model,'PVENTA_ID'); ?>
-		<?php echo $form->textField($model,'PVENTA_ID'); ?>
-		<?php echo $form->error($model,'PVENTA_ID'); ?>
+		<?php echo $form->textFieldControlGroup($model,'PPCANTIDAD'); ?>
+		<?php echo $form->error($model,'PPCANTIDAD'); ?>
 	</div>
 
-	
--->
 	<div class="row">
 
 	<table class="linear" cellspacing="0" >
