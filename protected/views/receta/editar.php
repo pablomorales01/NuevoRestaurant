@@ -1,16 +1,3 @@
-<?php
-
-	foreach ($recetas as $key => $value) {
-		foreach ($value as $key => $value) {
-			echo $key;
-			echo '<br><br>';
-			echo $value;
-		}
-	}
-
-
-?>
-
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -87,25 +74,32 @@ $html_ = '<thead><tr><th class="required">Mp <span class="required">*</span></th
 echo $html_;
 foreach ($recetas as $receta) {
 //cada receta del producto elab
-foreach ($MP as $materia) {
-						
+$prima = $receta->MP_ID;
+$prima = MateriaPrima::model()->findAllByAttributes(array('MP_ID'=>$prima));
+
 $variable= '<td class="mmf_cell">
-<select name="Receta[MP_ID][]" id="Receta_MP_ID"> 
-	  foreach ($ as $) {
-	  	# code...
-	  }<option value="'.$materia->MP_ID.'">'.$materia->MPNOMBRE.'</option>
-</select>
+<select name="Receta[MP_ID][]" id="Receta_MP_ID">
+';
+foreach ($MP as $materia) {
+		if($materia->MP_ID == $receta->MP_ID){
+			$variable.='<option value="'.$materia->MP_ID.'" selected>'.$materia->MPNOMBRE.'</option>';}
+		
+		else{
+$variable.='<option value="'.$materia->MP_ID.'">'.$materia->MPNOMBRE.'</option>';}}
+ 
+
+$variable.='</select>
 </td><td class="mmf_cell">
-<input maxlength="40" placeholder="Cantidad" name="Receta[RECETACANTIDADPRODUCTO][]" id="Receta_RECETACANTIDADPRODUCTO" type="text">
+<input maxlength="40" placeholder="Cantidad" name="Receta[RECETACANTIDADPRODUCTO][]" id="Receta_RECETACANTIDADPRODUCTO" type="text" value= '.$receta->RECETACANTIDADPRODUCTO.'>
 
 </td><td class="mmf_cell">
-<input maxlength="40" placeholder="Unidad de Medida" name="Receta[RECETAUNIDADMEDIDA][]" id="Receta_RECETAUNIDADMEDIDA" type="text">
+<input maxlength="40" placeholder="Unidad de Medida" name="Receta[RECETAUNIDADMEDIDA][]" id="Receta_RECETAUNIDADMEDIDA" type="text" value= '.$receta->RECETAUNIDADMEDIDA.'>
 
 </td><td class="mmf_cell"><a onclick="if(confirm("Quiere Eliminar?")) if($(this).parent().parent().attr(&quot;id&quot;)==&quot;id_member_copytemplate&quot;) {clearAllInputs($(&quot;#id_member_copytemplate&quot;));$(this).parent().parent().hide()} else $(this).parent().parent().remove(); mmfRecordCount--; return false;" class="mmf_removelink" href="#">Eliminar</a></td></tr><script type="text/javascript">
 /*<![CDATA[*/
 mmfRecordCount=0
 /*]]>*/
-</script></tbody>';}
+</script></tbody>';
  echo $variable;
 	
 }
@@ -116,7 +110,7 @@ mmfRecordCount=0
 
 
 	<div class="row buttons" align="center">
-		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
+		<?php echo BsHtml::submitButton('Editar', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 
 <?php $this->endWidget(); ?>

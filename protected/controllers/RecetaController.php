@@ -155,20 +155,9 @@ class RecetaController extends Controller
 		$PE = ProductoElaborado::model()->findByAttributes(array('PVENTA_ID'=>$id));
 
 		$recetas = Receta::model()->findAllByAttributes(array('PVENTA_ID'=>$id));
-		//$MP = MateriaPrima::model()->findAll();
-		/*echo '<pre>';
-		var_dump($recetas);
-		echo '</pre>';
-		Yii::app()->end();*/
-		$this->render('editar',array('recetas'=>$recetas,'MP'=>$MP,'PE'=>$PE));
-		/*
-		$model= $this->loadModel($id);
-
 		$pv = ProductoVenta::model()->findByAttributes(array('PVENTA_ID'=>$id));
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
 
-		/*if(isset($_POST['Receta']))
+		if(isset($_POST['Receta']))
 		{
 
 			$PE->attributes = $_POST['ProductoElaborado'];
@@ -179,14 +168,14 @@ class RecetaController extends Controller
 
 			if($pv->save())
 			{
-				$id = Yii::app()->db->getLastInsertID('ProductoVenta'); //guarde el id
-				$PE->PVENTA_ID = $id;
+				//$id = Yii::app()->db->getLastInsertID('ProductoVenta'); //guarde el id
+				//$PE->PVENTA_ID = $id;
 
 
 				if($PE->save())
 				{
 
-					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+					/*for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
 						$model = new Receta;
 						$model->PVENTA_ID = $id;
 						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
@@ -194,15 +183,14 @@ class RecetaController extends Controller
 						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
 						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 						$model->save();
-					}
+					}*/
 				} //save del producto elaborado
 
 			} //$pv->save o producto de venta.
 		}
 
-		$this->render('update',array(
-			'model'=>$model, 'PE'=>$PE, 'MP'=>$MP
-		));*/
+		
+		$this->render('editar',array('recetas'=>$recetas,'MP'=>$MP,'PE'=>$PE, 'pv'=>$pv));
 	}
 
 	/**
