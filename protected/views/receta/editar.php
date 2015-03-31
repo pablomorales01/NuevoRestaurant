@@ -1,7 +1,14 @@
 <?php
-/* @var $this RecetaController */
-/* @var $model Receta */
-/* @var $form CActiveForm */
+
+	foreach ($recetas as $key => $value) {
+		foreach ($value as $key => $value) {
+			echo $key;
+			echo '<br><br>';
+			echo $value;
+		}
+	}
+
+
 ?>
 
 <div class="form">
@@ -36,7 +43,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
 	</div>
 
-	<?php echo $form->errorSummary($model); ?>
+	
 
 	<div class="row">
 
@@ -75,44 +82,33 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
    echo CHtml::script('function alertIds(newElem,sourceElem){alert(newElem.attr("id"));alert(sourceElem.attr("id"));}');
 
-	$this->widget('ext.multimodelform.MultiModelForm',array(
-			'id' => 'id_member', //the unique widget id
-			'formConfig' => $memberFormConfig, //the form configuration array
-			'model' => $model, //instance of the form model
+ //n <td class = "mmf_cell" respecto a la cantidad de recetas que vengan
+$html_ = '<thead><tr><th class="required">Mp <span class="required">*</span></th><th>Recetacantidadproducto</th><th>Recetaunidadmedida</th><th>&nbsp;</th></tr></thead><tbody><tr class="mmf_row id_member_copy" id="id_member_copytemplate" style="">';
+echo $html_;
+foreach ($recetas as $receta) {
+//cada receta del producto elab
+foreach ($MP as $materia) {
+						
+$variable= '<td class="mmf_cell">
+<select name="Receta[MP_ID][]" id="Receta_MP_ID"> 
+	  foreach ($ as $) {
+	  	# code...
+	  }<option value="'.$materia->MP_ID.'">'.$materia->MPNOMBRE.'</option>
+</select>
+</td><td class="mmf_cell">
+<input maxlength="40" placeholder="Cantidad" name="Receta[RECETACANTIDADPRODUCTO][]" id="Receta_RECETACANTIDADPRODUCTO" type="text">
 
-			//if submitted (not empty) from the controller,
-			//the form will be rendered with validation errors
-			//'validatedItems' => $validatedMembers,
+</td><td class="mmf_cell">
+<input maxlength="40" placeholder="Unidad de Medida" name="Receta[RECETAUNIDADMEDIDA][]" id="Receta_RECETAUNIDADMEDIDA" type="text">
 
-	        //array of member instances loaded from db
-            //only needed if validatedItems are empty (not in displaying validation errors mode)
-			/*'data' => empty($validatedItems) ? $model->findAll(
-                                             array('condition'=>'groupid=:groupId',
-                                                   'params'=>array(':groupId'=>$model->id),
-                                                   'order'=>'position', //see 'sortAttribute' below
-                                                   )) : null,*/
-
-            'sortAttribute' => 'position', //if assigned: sortable fieldsets is enabled
-            //'removeOnClick' => 'alert("test")',
-            'hideCopyTemplate'=>true,
-            'clearInputs'=>false,
-            'tableView' => true, //sortable will not work
-            //'jsAfterCloneCallback'=>'alertIds',
-            'showAddItemOnError' => false, //not allow add items when in validation error mode (default = true)
-
-            //------------ output style ----------------------
-           //'tableView' => true, //sortable will not work
-
-            //add position:relative because of embedded removeLinkWrapper with style position:absolute
-            'fieldsetWrapper' => array('tag' => 'div',
-                'htmlOptions' => array('class' => 'view','style'=>'position:relative;background:#EFEFEF;')
-            ),
-
-            'removeLinkWrapper' => array('tag' => 'div',
-                'htmlOptions' => array('style'=>'position:absolute; top:1em; right:1em;')
-            ),
-
-		));
+</td><td class="mmf_cell"><a onclick="if(confirm("Quiere Eliminar?")) if($(this).parent().parent().attr(&quot;id&quot;)==&quot;id_member_copytemplate&quot;) {clearAllInputs($(&quot;#id_member_copytemplate&quot;));$(this).parent().parent().hide()} else $(this).parent().parent().remove(); mmfRecordCount--; return false;" class="mmf_removelink" href="#">Eliminar</a></td></tr><script type="text/javascript">
+/*<![CDATA[*/
+mmfRecordCount=0
+/*]]>*/
+</script></tbody>';}
+ echo $variable;
+	
+}
 ?>
 </table>
 
@@ -128,3 +124,4 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
 
 </div><!-- form -->
+<!--<option value="'.$materia->MP_ID.'">'.$materia->MPNOMBRE.'</option>-->

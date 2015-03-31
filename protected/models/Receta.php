@@ -9,10 +9,6 @@
  * @property integer $PVENTA_ID
  * @property integer $MP_ID
  * @property integer $RESTO_ID
- *
- * The followings are the available model relations:
- * @property MateriaPrima $mP
- * @property ProductoElaborado $pVENTA
  */
 class Receta extends CActiveRecord
 {
@@ -32,7 +28,7 @@ class Receta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PVENTA_ID, MP_ID', 'required'),
+			array('PVENTA_ID, MP_ID, RESTO_ID', 'required'),
 			array('RECETACANTIDADPRODUCTO, PVENTA_ID, MP_ID, RESTO_ID', 'numerical', 'integerOnly'=>true),
 			array('RECETAUNIDADMEDIDA', 'length', 'max'=>10),
 			// The following rule is used by search().
@@ -54,7 +50,7 @@ class Receta extends CActiveRecord
 		);
 	}
 
-	/**
+		/**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
