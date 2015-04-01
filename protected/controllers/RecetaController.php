@@ -44,23 +44,7 @@ class RecetaController extends Controller
 			),
 		);
 	}
-	/*
-	public function actionAdd()
-	{
-	
-		$recetas=array();
-		//Agregar Valores de Tabla si es que existen
-		if(isset($_POST['Recetas']))$recetas+=$_POST['Recetas'];
-		//agrega el valor de select a la cabezera del arreglo
-		array_unshift($recetas,array(
-			'MP_ID'=>$_POST['Receta']['MP_ID'],
-			'RECETACANTIDADPRODUCTO'=>"",
-			'RECETAUNIDADMEDIDA'=>""
-			));
-		//var_dump($recetas);
-		$this->renderPartial('recetas',array('recetas'=>$recetas));
-	}
-	*/
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -147,15 +131,16 @@ class RecetaController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		//Yii::import('ext.multimodelform.MultiModelForm');
+		Yii::import('ext.multimodelform.MultiModelForm');
 
 		//$PE = new ProductoElaborado;
 		$MP = MateriaPrima::model()->findAll();
-
 		$PE = ProductoElaborado::model()->findByAttributes(array('PVENTA_ID'=>$id));
-
 		$recetas = Receta::model()->findAllByAttributes(array('PVENTA_ID'=>$id));
 		$pv = ProductoVenta::model()->findByAttributes(array('PVENTA_ID'=>$id));
+
+		//modelo para multimodel
+		$model= Receta::model()->findByAttributes(array('PVENTA_ID'=>$id));
 
 		if(isset($_POST['Receta']))
 		{
@@ -175,7 +160,7 @@ class RecetaController extends Controller
 				if($PE->save())
 				{
 
-					/*for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
 						$model = new Receta;
 						$model->PVENTA_ID = $id;
 						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
@@ -183,14 +168,14 @@ class RecetaController extends Controller
 						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
 						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 						$model->save();
-					}*/
+					}
 				} //save del producto elaborado
 
 			} //$pv->save o producto de venta.
 		}
 
 		
-		$this->render('editar',array('recetas'=>$recetas,'MP'=>$MP,'PE'=>$PE, 'pv'=>$pv));
+		$this->render('editar',array('recetas'=>$recetas,'MP'=>$MP,'PE'=>$PE, 'pv'=>$pv, 'model'=>$model));
 	}
 
 	/**
