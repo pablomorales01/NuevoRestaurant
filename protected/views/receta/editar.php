@@ -1,3 +1,11 @@
+<script>
+function eliminar(div){
+	if(confirm('Quiere Eliminar?'))
+		// console.log($(div).parent().parent().parent().html()); 
+		$(div).parent().parent().parent().remove();
+}
+</script>
+
 <h1 align="center">Modificar Receta </h1>
 
 <div class="form">
@@ -109,7 +117,7 @@ $this->widget('ext.multimodelform.MultiModelForm',array(
 //$html_ = '<thead><tr><th class="required">Mp <span class="required">*</span></th><th>Recetacantidadproducto</th><th>Recetaunidadmedida</th><th>&nbsp;</th></tr></thead><tbody><tr class="mmf_row id_member_copy" id="id_member_copytemplate" style="">';
 //echo $html_;
 
-$html_ = '<thead><tr></tr><tbody>';
+$html_ = '<table><tbody><tr>';
 echo $html_;
 foreach ($recetas as $receta) {
 //cada receta del producto elab
@@ -134,11 +142,7 @@ $variable.='</select>
 </td><td class="mmf_cell">
 <input maxlength="40" placeholder="Unidad de Medida" name="Receta[RECETAUNIDADMEDIDA][]" id="Receta_RECETAUNIDADMEDIDA" type="text" value= '.$receta->RECETAUNIDADMEDIDA.'>
 
-</td><td class="mmf_cell"><a onclick="if(confirm("Quiere Eliminar?")) if($(this).parent().parent().attr(&quot;id&quot;)==&quot;id_member_copytemplate&quot;) {clearAllInputs($(&quot;#id_member_copytemplate&quot;));$(this).parent().parent().hide()} else $(this).parent().parent().remove(); mmfRecordCount--; return false;" class="mmf_removelink" href="#">Eliminar</a></td></tr><script type="text/javascript">
-/*<![CDATA[*/
-mmfRecordCount=0
-/*]]>*/
-</script><br></tbody>';
+</td><td class="mmf_cell"><a onclick="eliminar(this);" class="mmf_removelink" style="cursor: pointer">Eliminar</a></td></tr></tbody>';
  echo $variable;
 	
 }
