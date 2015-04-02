@@ -161,6 +161,31 @@ class RecetaController extends Controller
 				{
 
 					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+						$ban = 0;
+						foreach ($recetas as $receta) {
+
+							//VERIFICAR QUE NO EXISTA EN LA BD
+							if($_POST['Receta']['MP_ID'][$i] == $receta->MP_ID)
+							{
+									$ban = 1;
+							}
+							//SI TIENEN EL MISMO NOMBRE PERO DIFERENTE LA CANTIDAD
+							else if($_POST['Receta']['MP_ID'][$i] == $receta->MP_ID && 
+								$_POST['Receta']['RECETACANTIDADPRODUCTO'][$i] != $receta->RECETACANTIDADPRODUCTO)
+							{
+
+							}
+							//SI TIENEN MISMO NOMBRE Y CANTIDAD PERO NO UNIDAD DE MEDIDA
+							else if($_POST['Receta']['MP_ID'][$i] == $receta->MP_ID && 
+								$_POST['Receta']['RECETACANTIDADPRODUCTO'][$i] == $receta->RECETACANTIDADPRODUCTO &&
+								$_POST['Receta']['RECETAUNIDADMEDIDA'][$i] != $receta->RECETAUNIDADMEDIDA)
+							{
+
+							}
+							//TODOS DISTINTOS (FILA NUEVA)	
+							else 
+						}
+						
 						$model = new Receta;
 						$model->PVENTA_ID = $id;
 						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
