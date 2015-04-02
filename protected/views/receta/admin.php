@@ -75,8 +75,8 @@ $ban = 0;
                   <li> 
                     <a href="<?php echo Yii::app()->createUrl("receta/update/$re->PVENTA_ID"); ?>">Editar</a>
                   </li>
-                  <li> 
-                    <a href="<?php echo Yii::app()->createUrl("receta/delete/$re->PVENTA_ID");?>
+                  <li > 
+                    <a class="msg" href="<?php echo Yii::app()->createUrl("receta/delete/$re->PVENTA_ID");?>
                     ">Eliminar</a>
                   </li>
                 </ul>

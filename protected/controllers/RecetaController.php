@@ -185,7 +185,9 @@ class RecetaController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-
+		//eliminar todas las recetas
+		//eliminar el producto elaborado
+		//eliminar producto ventaa
 		$this->loadModel($id)->delete();
 		$pe = ProductoElaborado::model()->findAllByAttributes(array('PVENTA_ID'=>$id));
 		$pe->delete();
