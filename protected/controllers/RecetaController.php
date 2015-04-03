@@ -155,49 +155,68 @@ class RecetaController extends Controller
 			{
 				//$id = Yii::app()->db->getLastInsertID('ProductoVenta'); //guarde el id
 				//$PE->PVENTA_ID = $id;
-
-
 				if($PE->save())
-				{
-
-					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+				{//DESDE AQUI RECETAS
+				//ver si se eliminó alguna receta
+					foreach($_POST['Receta'] as $rec){
 						$ban = 0;
+						//si aún existe
 						foreach ($recetas as $receta) {
-
-							//VERIFICAR QUE NO EXISTA EN LA BD
-							if($_POST['Receta']['MP_ID'][$i] == $receta->MP_ID)
-							{
-									$ban = 1;
-							}
-							//SI TIENEN EL MISMO NOMBRE PERO DIFERENTE LA CANTIDAD
-							else if($_POST['Receta']['MP_ID'][$i] == $receta->MP_ID && 
-								$_POST['Receta']['RECETACANTIDADPRODUCTO'][$i] != $receta->RECETACANTIDADPRODUCTO)
-							{
-
-							}
-							//SI TIENEN MISMO NOMBRE Y CANTIDAD PERO NO UNIDAD DE MEDIDA
-							else if($_POST['Receta']['MP_ID'][$i] == $receta->MP_ID && 
-								$_POST['Receta']['RECETACANTIDADPRODUCTO'][$i] == $receta->RECETACANTIDADPRODUCTO &&
-								$_POST['Receta']['RECETAUNIDADMEDIDA'][$i] != $receta->RECETAUNIDADMEDIDA)
-							{
-
-							}
-							//TODOS DISTINTOS (FILA NUEVA)	
-							else 
+							if( $rec == $receta) $ban = 1;
 						}
-						
+						//si llegó al final de $_post y no la encontro la elimina de la bd
+							if($ban = 0)
+								$receta->delete();
+					}
+
+
+
+
+					//añadir o editar
+					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+						//ban = 0 no existe
+						//ban = 1 existe o actualizada
+						$ban =0;
+						foreach ($recetas as $receta) {
+							//preguntar si MP_ID coinciden
+							if($_POST['Receta']['MP_ID'] == $receta->MP_ID)
+							{
+								//preguntar si los demás atributos son iguales
+								if($_POST['Receta']['RECETACANTIDADPRODUCTO'] == $receta->RECETACANTIDADPRODUCTO
+									AND $_POST['Receta']['RECETAUNIDADMEDIDA'] == $receta->RECETAUNIDADMEDIDA)
+								{
+									//NO HAGO NADA Y PASO AL SIGUIENTE $_POST
+									$ban = 1;
+								}
+								//preguntar si los atributos son distintos a bd
+								if($_POST['Receta']['RECETACANTIDADPRODUCTO'] != $receta->RECETACANTIDADPRODUCTO
+									|| $_POST['Receta']['RECETAUNIDADMEDIDA'] != $receta->RECETAUNIDADMEDIDA)
+								{
+									//ACTUALIZO LA COSA
+									$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
+									$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
+									$model->save();
+									$ban = 1;
+								}
+							}
+
+						}
+						//si no existe en bd guarda
+						if($ban == 0)
+						{						
 						$model = new Receta;
-						$model->PVENTA_ID = $id;
+						$model->PVENTA_ID = $PE->PVENTA_ID;
 						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
 						$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
 						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
 						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 						$model->save();
+						}
 					}
 				} //save del producto elaborado
 
 			} //$pv->save o producto de venta.
-		}
+		}//IF $_POST
 
 		
 		$this->render('editar',array('recetas'=>$recetas,'MP'=>$MP,'PE'=>$PE, 'pv'=>$pv, 'model'=>$model));
