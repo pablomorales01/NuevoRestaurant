@@ -105,7 +105,7 @@ class RecetaController extends Controller
 				} //save del producto elaborado
 
 			} //$pv->save o producto de venta.
-			
+			$this->redirect(array('admin'));
 		}
 
 		$this->render('create',array('model'=>$model, 'PE'=>$PE, 'MP'=>$MP));
@@ -144,7 +144,6 @@ class RecetaController extends Controller
 
 		if(isset($_POST['Receta']))
 		{
-
 			$PE->attributes = $_POST['ProductoElaborado'];
 			//$PE->RESTO_ID = Yii::app()->user->RESTAURANT;
 			$pv->PVENTANOMBRE = $PE->PVENTANOMBRE;
@@ -158,45 +157,51 @@ class RecetaController extends Controller
 				if($PE->save())
 				{//DESDE AQUI RECETAS
 				//ver si se eliminó alguna receta
-					foreach($_POST['Receta'] as $rec){
-						$ban = 0;
+				foreach ($recetas as $receta) {
+					$ban = 0;
+					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+						
 						//si aún existe
-						foreach ($recetas as $receta) {
-							if( $rec == $receta) $ban = 1;
+						if( $receta->MP_ID == $_POST['Receta']['MP_ID'][$i]) $ban = 1;
 						}
 						//si llegó al final de $_post y no la encontro la elimina de la bd
-							if($ban = 0)
-								$receta->delete();
+						if($ban == 0)
+							$aux =Receta::model()->deleteAllByAttributes(array('PVENTA_ID'=>$receta->PVENTA_ID, 'MP_ID'=>$receta->MP_ID));
+							
 					}
-
-
-
 
 					//añadir o editar
 					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
+					
 						//ban = 0 no existe
 						//ban = 1 existe o actualizada
 						$ban =0;
 						foreach ($recetas as $receta) {
 							//preguntar si MP_ID coinciden
-							if($_POST['Receta']['MP_ID'] == $receta->MP_ID)
+							if($_POST['Receta']['MP_ID'][$i] == $receta->MP_ID)
 							{
 								//preguntar si los demás atributos son iguales
-								if($_POST['Receta']['RECETACANTIDADPRODUCTO'] == $receta->RECETACANTIDADPRODUCTO
-									AND $_POST['Receta']['RECETAUNIDADMEDIDA'] == $receta->RECETAUNIDADMEDIDA)
+								if($_POST['Receta']['RECETACANTIDADPRODUCTO'][$i]== $receta->RECETACANTIDADPRODUCTO
+									AND $_POST['Receta']['RECETAUNIDADMEDIDA'][$i] == $receta->RECETAUNIDADMEDIDA)
 								{
 									//NO HAGO NADA Y PASO AL SIGUIENTE $_POST
 									$ban = 1;
 								}
 								//preguntar si los atributos son distintos a bd
-								if($_POST['Receta']['RECETACANTIDADPRODUCTO'] != $receta->RECETACANTIDADPRODUCTO
-									|| $_POST['Receta']['RECETAUNIDADMEDIDA'] != $receta->RECETAUNIDADMEDIDA)
+								if($_POST['Receta']['RECETACANTIDADPRODUCTO'][$i] != $receta->RECETACANTIDADPRODUCTO
+									|| $_POST['Receta']['RECETAUNIDADMEDIDA'][$i] != $receta->RECETAUNIDADMEDIDA)
 								{
 									//ACTUALIZO LA COSA
+									$aux =Receta::model()->deleteAllByAttributes(array('PVENTA_ID'=>$receta->PVENTA_ID, 'MP_ID'=>$receta->MP_ID));
+									$model = new Receta;
+									$model->PVENTA_ID = $PE->PVENTA_ID;
+									$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
 									$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
 									$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
+									$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 									$model->save();
-									$ban = 1;
+									$ban=1;
+									
 								}
 							}
 
@@ -216,6 +221,7 @@ class RecetaController extends Controller
 				} //save del producto elaborado
 
 			} //$pv->save o producto de venta.
+			$this->redirect(array('admin'));
 		}//IF $_POST
 
 		
