@@ -238,15 +238,16 @@ class RecetaController extends Controller
 		//eliminar todas las recetas
 		//eliminar el producto elaborado
 		//eliminar producto ventaa
-		$this->loadModel($id)->delete();
-		$pe = ProductoElaborado::model()->findAllByAttributes(array('PVENTA_ID'=>$id));
-		$pe->delete();
-		$pv = ProductoVenta::model()->findAllByAttributes(array('PVENTA_ID'=>$id));
-		$pv->delete();
-
+		$recetas = Receta::model()->deleteAll(array('PVENTA_ID'=>$id));
+		$pe = ProductoElaborado::model()->deleteAllByAttributes(array('PVENTA_ID'=>$id));
+		$pv = ProductoVenta::model()->deleteAllByAttributes(array('PVENTA_ID'=>$id));
+		
+		//NO SE A DONDE REDIRIGIR 
+		$this->redirect(array('admin'));
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	/*if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));*/
+
 	}
 
 	/**
