@@ -68,31 +68,34 @@ class PrecioProductoController extends Controller
 		$model = new PrecioProducto;
 		$lp = new ListaDePrecios;
 		//el total de calorias del menu
-		$totalKcal;
+		//$totalKcal;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		if(isset($_POST['ListaDePrecios']))
 		{
 			//sumar todos los $_post de pp
 			for ($i=0; $i < count($_POST['PrecioProducto']['PVENTA_ID']); $i++){
-				$producto = $_POST['PrecioProducto']['PVENTA_ID'];
+				$producto = $_POST['PrecioProducto']['PVENTA_ID'][$i];
 				//si el producto es producto elaborado
-				if(ProductoElaborado::model()->exists("PVENTA_ID = '".$_POST['PrecioProducto']['PVENTA_ID'][$i]."'"))
+				if(ProductoElaborado::model()->exists("PVENTA_ID ='".$producto."'"))
 				{
 					//busca por sql las calorias
-					$calorias = ProductoElaborado::model()->findByAttributes(array('PVENTA_ID'=>$_POST['PrecioProducto']['PVENTA_ID'][$i]));
+					$calorias = ProductoElaborado::model()->findByAttributes(array('PVENTA_ID'=>$producto));
 				}
 				//si el producto es final
-				elseif(ProductoFinal::model()->exists("PVENTA_ID = '".$_POST['PrecioProducto']['PVENTA_ID'][$i]."'"))
+				elseif(ProductoFinal::model()->exists("PVENTA_ID = '".$producto."'"))
 				{
 					//busca por sql las calorias
-					$calorias = ProductoFinal::model()->findByAttributes(array('PVENTA_ID'=>$_POST['PrecioProducto']['PVENTA_ID'][$i]));
+					$calorias = ProductoFinal::model()->findByAttributes(array('PVENTA_ID'=>$producto));
 				}
 				//acumula y multiplica por la cantidad 
-				$totalKcal = ($calorias->CALORIAS) * ($_POST['PrecioProducto']['PPCANTIDAD'][$i]);
+				$totalKcal = $calorias->CALORIAS + $totalKcal; //falta multiplicar pero no se puede ACUMULAR
 			}
+
+
 			//GUARDAR POST DE LISTA DE PRECIOS
 			$lp->attributes = $_POST['ListaDePrecios'];
+			$lp->CALORIASTOTAL = $totalKcal;
 			//RESTO ID DE LISTA DE PRECIOS
 			$lp->RESTO_ID = Yii::app()->user->RESTAURANT;
 
@@ -109,7 +112,7 @@ class PrecioProductoController extends Controller
 						//$model->MENU_ID = $id;
 						$model->PVENTA_ID = $_POST['PrecioProducto']['PVENTA_ID'][$i];
 						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
-						$model->PPCANTIDAD= $_POST['PrecioProducto']['PPCANTIDAD'];
+						$model->PPCANTIDAD= $_POST['PrecioProducto']['PPCANTIDAD'][$i];
 						$model->save();
 					}
 				}
