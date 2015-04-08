@@ -73,16 +73,40 @@ class PrecioProductoController extends Controller
 		// $this->performAjaxValidation($model);
 		if(isset($_POST['ListaDePrecios']))
 		{
+			//sumar todos los $_post de pp
+			for ($i=0; $i < count($_POST['PrecioProducto']['PVENTA_ID']); $i++){
+				$producto = $_POST['PrecioProducto']['PVENTA_ID'];
+				//si el producto es producto elaborado
+				if(ProductoElaborado::model()->exists("PVENTA_ID = '".$_POST['PrecioProducto']['PVENTA_ID'][$i]."'"))
+				{
+					//busca por sql las calorias
+					$calorias = ProductoElaborado::model()->findByAttributes(array('PVENTA_ID'=>$_POST['PrecioProducto']['PVENTA_ID'][$i]));
+				}
+				//si el producto es final
+				elseif(ProductoFinal::model()->exists("PVENTA_ID = '".$_POST['PrecioProducto']['PVENTA_ID'][$i]."'"))
+				{
+					//busca por sql las calorias
+					$calorias = ProductoFinal::model()->findByAttributes(array('PVENTA_ID'=>$_POST['PrecioProducto']['PVENTA_ID'][$i]));
+				}
+				//acumula y multiplica por la cantidad 
+				$totalKcal = ($calorias->CALORIAS) * ($_POST['PrecioProducto']['PPCANTIDAD'][$i]);
+			}
+			//GUARDAR POST DE LISTA DE PRECIOS
 			$lp->attributes = $_POST['ListaDePrecios'];
+			//RESTO ID DE LISTA DE PRECIOS
 			$lp->RESTO_ID = Yii::app()->user->RESTAURANT;
+
 			if($lp->save())
 			{
-				$id = Yii::app()->db->getLastInsertID('ListaDePrecios');
+				//$id = Yii::app()->db->getLastInsertID('ListaDePrecios');
 				if(isset($_POST['PrecioProducto']))
 				{
 				for ($i=0; $i < count($_POST['PrecioProducto']['PVENTA_ID']); $i++) { 
+						
 						$model = new PrecioProducto;
-						$model->MENU_ID = $id;
+						//MENU_ID
+						$model->MENU_ID = $lp->MENU_ID;
+						//$model->MENU_ID = $id;
 						$model->PVENTA_ID = $_POST['PrecioProducto']['PVENTA_ID'][$i];
 						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 						$model->PPCANTIDAD= $_POST['PrecioProducto']['PPCANTIDAD'];

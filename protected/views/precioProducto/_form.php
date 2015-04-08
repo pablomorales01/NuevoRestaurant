@@ -51,10 +51,6 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		<?php echo $form->error($lp,'MENUCANTIDADPERSONAS'); ?>
 	</div>
 	
-	<div class="row">
-		<?php echo $form->textFieldControlGroup($model,'PPCANTIDAD'); ?>
-		<?php echo $form->error($model,'PPCANTIDAD'); ?>
-	</div>
 
 	<div class="row">
 
@@ -76,6 +72,11 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 				'prompt'=>'seleccione',
 				//'placeholder'=>'Producto',
 			),
+              'PPCANTIDAD'=>array(
+              	'type'=>'text',
+		  		'maxlength'=>40,
+		  		'placeholder'=>'Cantidad',
+              	),
 
 			
 		));
