@@ -14,10 +14,11 @@ $ban=0;
 		<th># Personas</th>
 		<th>Calorias</th>
 		<th>Productos</th>
+		<th>Cantidad</th>
 		<th>Opciones</th>
 	</tr>
 		<?php 
-		foreach ($LP as $lista) {
+		foreach ($LP as $lista) { //menu uno por uno
 			//nombre del Meú
 			//Precio
 			//Personas?>
@@ -25,11 +26,13 @@ $ban=0;
 					<td><?php  echo $lista->MENUPRECIO;?></td>
 					<td><?php echo $lista->MENUCANTIDADPERSONAS;?></td>
 					<td><?php echo $lista->CALORIASTOTAL;?></td>
-					<?php foreach ($PP as $precio) {
+
+					<?php foreach ($PP as $precio) { //precio producto
 						$producto = ProductoVenta::model()->findByAttributes(array('PVENTA_ID'=>$precio->PVENTA_ID));
-						if($lista->MENU_ID == $precio->MENU_ID){
-						?><td> <?php  echo $producto->PVENTANOMBRE;?></td>
-						<?php ?><td><?php  
+						if($lista->MENU_ID == $precio->MENU_ID){ //cuando esten en el mismo menu
+						?><td><?php echo $producto->PVENTANOMBRE;?></td>
+						<td><?php echo $precio->PPCANTIDAD;?></td>
+						 <td><?php  
 							if($ban==0)
 							{?>
 							<div class="btn-group">
