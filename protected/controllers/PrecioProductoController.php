@@ -68,7 +68,7 @@ class PrecioProductoController extends Controller
 		$model = new PrecioProducto;
 		$lp = new ListaDePrecios;
 		//el total de calorias del menu
-		//$totalKcal;
+		$totalKcal=0;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		if(isset($_POST['ListaDePrecios']))
@@ -89,7 +89,7 @@ class PrecioProductoController extends Controller
 					$calorias = ProductoFinal::model()->findByAttributes(array('PVENTA_ID'=>$producto));
 				}
 				//acumula y multiplica por la cantidad 
-				$totalKcal = $calorias->CALORIAS + $totalKcal; //falta multiplicar pero no se puede ACUMULAR
+				$totalKcal = $totalKcal+($calorias->CALORIAS * $_POST['PrecioProducto']['PPCANTIDAD'][$i]); //falta multiplicar pero no se puede ACUMULAR
 			}
 
 
