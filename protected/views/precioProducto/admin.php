@@ -43,7 +43,7 @@ $ban=0;
 
 				                <ul class="dropdown-menu pull-right">
 				                  <li> 
-				                    <a href="<?php echo Yii::app()->createUrl(""); ?>">Editar</a>
+				                    <a href="<?php echo Yii::app()->createUrl("PrecioProducto/update/$lista->MENU_ID"); ?>">Editar</a>
 				                  </li>
 				                  <li> 
 				                    <a href="<?php echo Yii::app()->createUrl("");?>

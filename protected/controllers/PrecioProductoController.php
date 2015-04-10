@@ -134,20 +134,86 @@ class PrecioProductoController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		Yii::import('ext.multimodelform.MultiModelForm');
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$lp = ListaDePrecios::model()->findByAttributes(array('MENU_ID'=>$id));
+		$pps = PrecioProducto::model()->findAllByAttributes(array('MENU_ID'=>$id));
+		$pv = Productos::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
 
-		if(isset($_POST['PrecioProducto']))
+		$model = PrecioProducto::model()->findByAttributes(array('MENU_ID'=>$id));
+		
+		$totalKcal =0;
+
+		if(isset($_POST['ListaDePrecios']))
 		{
-			$model->attributes=$_POST['PrecioProducto'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->PP_ID));
-		}
+			$lp->attributes = $_POST['ListaDePrecios'];
+			if($lp->save())
+			{
+				//ver si eliminó un precio producto
+				foreach ($pps as $pp) { //por cada precio producto en la bd...
+					$ban =0;
+					for ($i=0; $i < count($_POST['PrecioProducto']['PVENTA_ID']); $i++) { //verifico si existe en post
+						if($pp->PVENTA_ID == $_POST['PrecioProducto']['PVENTA_ID'][$i]){
+							$ban =1;
+						}
+					}
+					if($ban == 0){
+					 //ELIMINA SI NO ESTA
+					$aux =PrecioProducto::model()->deleteAllByAttributes(array('PVENTA_ID'=>$pp->PVENTA_ID, 'MENU_ID'=>$pp->MENU_ID));
+					}
+			}
+				//añadir o editar
+				for($i=0; $i < count($_POST['PrecioProducto']['PVENTA_ID']); $i++) { 
+					//ban = 0 no existe
+					//ban = 1 existe o actualizada
+					$ban =0;
+					//busca de que tipo es el producto
+					if(ProductoElaborado::model()->exists("PVENTA_ID ='".$_POST['PrecioProducto']['PVENTA_ID'][$i]."'")){
+						$calorias = ProductoElaborado::model()->findByAttributes(array('PVENTA_ID'=>$_POST['PrecioProducto']['PVENTA_ID'][$i]));
+					}
+					elseif(ProductoFinal::model()->exists("PVENTA_ID ='".$_POST['PrecioProducto']['PVENTA_ID'][$i]."'"))
+					{
+						$calorias = ProductoFinal::model()->findByAttributes(array('PVENTA_ID'=>$producto));
+					}
+					$totalKcal = $totalKcal+($calorias->CALORIAS * $_POST['PrecioProducto']['PPCANTIDAD'][$i]);
 
-		$this->render('update',array(
-			'model'=>$model,
+					foreach ($pps as $pp) {
+						if($_POST['PrecioProducto']['PVENTA_ID'][$i] == $pp->PVENTA_ID){
+								if($_POST['PrecioProducto']['PPCANTIDAD'][$i] == $pp->PPCANTIDAD)
+									//NO HAGO NADA Y PASO AL SIGUIENTE $_POST
+									$ban = 1;
+								if($_POST['PrecioProducto']['PPCANTIDAD'][$i] != $pp->PPCANTIDAD)
+								{
+									$menu = $pp->MENU_ID;
+									$aux =PrecioProducto::model()->deleteAllByAttributes(array('PVENTA_ID'=>$pp->PVENTA_ID, 'MENU_ID'=>$pp->MENU_ID));
+									$model = new PrecioProducto;
+									$model->PVENTA_ID = $_POST['PrecioProducto']['PVENTA_ID'][$i];
+									$model->PPCANTIDAD = $_POST['PrecioProducto']['PPCANTIDAD'][$i];
+									$model->RESTO_ID = Yii::app()->user->RESTAURANT;
+									$model->MENU_ID = $menu;
+									$model->save();
+									$ban = 1;
+								}
+						}
+					}
+					if($ban== 0){
+						$model = new PrecioProducto;
+						$model->PVENTA_ID = $_POST['PrecioProducto']['PVENTA_ID'][$i];
+						$model->PPCANTIDAD = $_POST['PrecioProducto']['PPCANTIDAD'][$i];
+						$model->RESTO_ID = Yii::app()->user->RESTAURANT;
+						$model->MENU_ID = $lp->MENU_ID;
+						$model->save();
+					}//if
+				}//for
+				//guardar las calorias total
+				$lp->CALORIASTOTAL = $calorias;
+				$lp->save();
+		}//if lp save
+		$this->redirect(array('admin'));
+	}//if post
+
+		$this->render('editar',array(
+			'model'=>$model, 'lp'=>$lp, 'pps'=>$pps, 'pv'=>$pv
 		));
 	}
 
