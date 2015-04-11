@@ -6,33 +6,36 @@
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'mesa-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+<?php $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    'enableAjaxValidation' => true,
+    'id' => 'user_form_inline',
+    'htmlOptions' => array(
+        'class' => 'bs-example'
+    )
 )); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	
+	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+	<?php if(Yii::app()->user->hasFlash('error')):?>
+    <div class="grabado_ok">
+        <?php echo Yii::app()->user->getFlash('error'); ?>
+    </div>
+    <?php endif; ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'MESANUM'); ?>
-		<?php echo $form->textField($model,'MESANUM'); ?>
+		<?php echo $form->textFieldControlGroup($model,'MESANUM'); ?>
 		<?php echo $form->error($model,'MESANUM'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'MESACANTIDADPERSONA'); ?>
-		<?php echo $form->textField($model,'MESACANTIDADPERSONA'); ?>
-		<?php echo $form->error($model,'MESACANTIDADPERSONA'); ?>
+		<?php echo $form->textFieldControlGroup($model,'MESAPERSONAS'); ?>
+		<?php echo $form->error($model,'MESAPERSONAS'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row buttons" align="center">
+		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>
 	</div>
 
 <?php $this->endWidget(); ?>

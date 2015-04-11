@@ -15,7 +15,7 @@ class RecetaController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -238,15 +238,15 @@ class RecetaController extends Controller
 		//eliminar todas las recetas
 		//eliminar el producto elaborado
 		//eliminar producto ventaa
-		$recetas = Receta::model()->deleteAll(array('PVENTA_ID'=>$id));
+		$recetas = Receta::model()->deleteAllByAttributes(array('PVENTA_ID'=>$id));
 		$pe = ProductoElaborado::model()->deleteAllByAttributes(array('PVENTA_ID'=>$id));
 		$pv = ProductoVenta::model()->deleteAllByAttributes(array('PVENTA_ID'=>$id));
 		
 		//NO SE A DONDE REDIRIGIR 
-		$this->redirect(array('admin'));
+		//$this->redirect(array('admin'));
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-	/*if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));*/
+	if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 
 	}
 

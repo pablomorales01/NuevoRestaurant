@@ -5,16 +5,20 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('MESA_ID')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->MESA_ID), array('view', 'id'=>$data->MESA_ID)); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('MESANUM')); ?>:</b>
-	<?php echo CHtml::encode($data->MESANUM); ?>
+	<?php echo CHtml::link(CHtml::encode($data->MESANUM), array('view', 'id'=>$data->MESANUM)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('MESACANTIDADPERSONA')); ?>:</b>
-	<?php echo CHtml::encode($data->MESACANTIDADPERSONA); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('RESTO_ID')); ?>:</b>
+	<?php echo CHtml::encode($data->RESTO_ID); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('MESAPERSONAS')); ?>:</b>
+	<?php echo CHtml::encode($data->MESAPERSONAS); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('ESTADO')); ?>:</b>
+	<?php echo CHtml::encode($data->ESTADO); ?>
 	<br />
 
 

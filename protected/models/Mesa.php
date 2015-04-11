@@ -4,10 +4,10 @@
  * This is the model class for table "mesa".
  *
  * The followings are the available columns in table 'mesa':
- * @property integer $MESA_ID
- * @property integer $MESACANTIDADPERSONA
- * @property integer $MESANUM
  * @property integer $RESTO_ID
+ * @property integer $MESANUM
+ * @property integer $MESAPERSONAS
+ * @property string $ESTADO
  */
 class Mesa extends CActiveRecord
 {
@@ -27,11 +27,12 @@ class Mesa extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('MESANUM, MESACANTIDADPERSONA', 'required'),
-			array('MESACANTIDADPERSONA, MESANUM, RESTO_ID', 'numerical', 'integerOnly'=>true),
+			array('RESTO_ID, MESANUM, MESAPERSONAS, ESTADO', 'required'),
+			array('RESTO_ID, MESANUM, MESAPERSONAS', 'numerical', 'integerOnly'=>true),
+			array('ESTADO', 'length', 'max'=>13),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('MESA_ID, MESACANTIDADPERSONA, MESANUM, RESTO_ID', 'safe', 'on'=>'search'),
+			array('RESTO_ID, MESANUM, MESAPERSONAS, ESTADO', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,10 +53,10 @@ class Mesa extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'MESA_ID' => 'Mesa id',
-			'MESACANTIDADPERSONA' => 'Cantidad de personas',
-			'MESANUM' => 'Número',
-			'RESTO_ID' => 'Restaurant',
+			'RESTO_ID' => 'Resto',
+			'MESANUM' => 'N° Mesa',
+			'MESAPERSONAS' => '# Personas',
+			'ESTADO' => 'Estado',
 		);
 	}
 
@@ -77,10 +78,10 @@ class Mesa extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('MESA_ID',$this->MESA_ID);
-		$criteria->compare('MESACANTIDADPERSONA',$this->MESACANTIDADPERSONA);
-		$criteria->compare('MESANUM',$this->MESANUM);
 		$criteria->compare('RESTO_ID',$this->RESTO_ID);
+		$criteria->compare('MESANUM',$this->MESANUM);
+		$criteria->compare('MESAPERSONAS',$this->MESAPERSONAS);
+		$criteria->compare('ESTADO',$this->ESTADO,true);
 		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
 
 		return new CActiveDataProvider($this, array(

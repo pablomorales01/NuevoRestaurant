@@ -15,7 +15,7 @@ class PrecioProductoController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -170,12 +170,15 @@ class PrecioProductoController extends Controller
 					//busca de que tipo es el producto
 					if(ProductoElaborado::model()->exists("PVENTA_ID ='".$_POST['PrecioProducto']['PVENTA_ID'][$i]."'")){
 						$calorias = ProductoElaborado::model()->findByAttributes(array('PVENTA_ID'=>$_POST['PrecioProducto']['PVENTA_ID'][$i]));
+						$totalKcal = $totalKcal+($calorias->CALORIAS * $_POST['PrecioProducto']['PPCANTIDAD'][$i]);
 					}
 					elseif(ProductoFinal::model()->exists("PVENTA_ID ='".$_POST['PrecioProducto']['PVENTA_ID'][$i]."'"))
 					{
-						$calorias = ProductoFinal::model()->findByAttributes(array('PVENTA_ID'=>$producto));
+						$calorias = ProductoFinal::model()->findByAttributes(array('PVENTA_ID'=>$_POST['PrecioProducto']['PVENTA_ID'][$i]));
+						$totalKcal = $totalKcal+($calorias->CALORIAS * $_POST['PrecioProducto']['PPCANTIDAD'][$i]);
 					}
-					$totalKcal = $totalKcal+($calorias->CALORIAS * $_POST['PrecioProducto']['PPCANTIDAD'][$i]);
+					
+
 
 					foreach ($pps as $pp) {
 						if($_POST['PrecioProducto']['PVENTA_ID'][$i] == $pp->PVENTA_ID){
@@ -206,7 +209,7 @@ class PrecioProductoController extends Controller
 					}//if
 				}//for
 				//guardar las calorias total
-				$lp->CALORIASTOTAL = $calorias;
+				$lp->CALORIASTOTAL = $totalKcal;
 				$lp->save();
 		}//if lp save
 		$this->redirect(array('admin'));
@@ -224,7 +227,14 @@ class PrecioProductoController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		//Eliminar precio producto
+		//eliminar Lista de Precio
+		$pp = PrecioProducto::model()->deleteAllByAttributes(array('MENU_ID'=>$id));
+		$lp = ListaDePrecios::model()->deleteAllByAttributes(array('MENU_ID'=>$id));
+
+		//$this->redirect(array('admin'));
+
+		//$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

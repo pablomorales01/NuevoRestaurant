@@ -12,8 +12,8 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'MESA_ID'); ?>
-		<?php echo $form->textField($model,'MESA_ID'); ?>
+		<?php echo $form->label($model,'RESTO_ID'); ?>
+		<?php echo $form->textField($model,'RESTO_ID'); ?>
 	</div>
 
 	<div class="row">
@@ -22,8 +22,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'MESACANTIDADPERSONA'); ?>
-		<?php echo $form->textField($model,'MESACANTIDADPERSONA'); ?>
+		<?php echo $form->label($model,'MESAPERSONAS'); ?>
+		<?php echo $form->textField($model,'MESAPERSONAS'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'ESTADO'); ?>
+		<?php echo $form->textField($model,'ESTADO',array('size'=>13,'maxlength'=>13)); ?>
 	</div>
 
 	<div class="row buttons">

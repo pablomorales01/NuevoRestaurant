@@ -6,7 +6,7 @@ class MesaController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/mesaLayout';
 
 	/**
 	 * @return array action filters
@@ -15,7 +15,7 @@ class MesaController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -37,7 +37,7 @@ class MesaController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('Super administrador', 'Administrador', 'Cajero'),
+				'users'=>array('Administrador','Caja'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -71,8 +71,18 @@ class MesaController extends Controller
 		{
 			$model->attributes=$_POST['Mesa'];
 			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->MESA_ID));
+			$model->ESTADO = "Disponible";
+
+			if(Mesa::model()->find("MESANUM ='".$_POST['Mesa']['MESANUM']."'"))
+			{
+				Yii::app()->user->setFlash('error','<div class="alert alert-danger">
+	  						<strong>N° de Mesa</strong> Ya existe!.
+							</div>');
+				
+			}
+			else if($model->save())
+				$this->redirect(array('view','id'=>$model->MESANUM));
+
 		}
 
 		$this->render('create',array(
@@ -96,7 +106,7 @@ class MesaController extends Controller
 		{
 			$model->attributes=$_POST['Mesa'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->MESA_ID));
+				$this->redirect(array('view','id'=>$model->MESANUM));
 		}
 
 		$this->render('update',array(
