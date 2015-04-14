@@ -19,6 +19,13 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
+	<!--//NOMBRE DEL RESTAURANT
+	//NOMBRE DEL GARZÓN
+	//MESA (DROPDOWN)
+	//TABLA (PRODUCTO[DROPDOWN], CANTIDAD, PRECIO)
+	//ESTADO (DROPDOWN)
+	//TOTAL.-->
+
 	<div class="row">
 		<?php echo $form->textFieldControlGroup($model,'VENTA_ID'); ?>
 		<?php echo $form->error($model,'VENTA_ID'); ?>
