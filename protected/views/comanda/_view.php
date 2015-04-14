@@ -17,8 +17,8 @@
 	<?php echo CHtml::encode($data->MENU_ID); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('MESA_ID')); ?>:</b>
-	<?php echo CHtml::encode($data->MESA_ID); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('MESANUM')); ?>:</b>
+	<?php echo CHtml::encode($data->MESANUM); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('USU_ID')); ?>:</b>
@@ -33,5 +33,11 @@
 	<?php echo CHtml::encode($data->COMFECHA); ?>
 	<br />
 
+	<?php /*
+	<b><?php echo CHtml::encode($data->getAttributeLabel('COM_ESTADO')); ?>:</b>
+	<?php echo CHtml::encode($data->COM_ESTADO); ?>
+	<br />
+
+	*/ ?>
 
 </div>

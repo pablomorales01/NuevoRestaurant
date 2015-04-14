@@ -37,7 +37,7 @@ class ComandaController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('Super administrador','Administrador','Garzón'),
+				'users'=>array('Administrador','Caja', 'Garzón'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,11 +62,7 @@ class ComandaController extends Controller
 	 */
 	public function actionCreate()
 	{
-		//yo queria hacer una vista que involucrara comanda, mesa, detale_comanda y producto_venta
 		$model=new Comanda;
-		$mesa = Mesa::model()->findAll(); //busca todas las mesas ingresadas
-		$menu = ListaDePrecios::model()->findAll();
-		$estado = DetalleComanda::model()->findAll();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -78,7 +74,9 @@ class ComandaController extends Controller
 				$this->redirect(array('view','id'=>$model->COM_ID));
 		}
 
-		$this->render('create',array('model'=>$model,'mesa'=>$mesa, 'menu'=>$menu, 'estado'=>$estado));
+		$this->render('create',array(
+			'model'=>$model,
+		));
 	}
 
 	/**

@@ -7,19 +7,11 @@
  * @property integer $COM_ID
  * @property integer $VENTA_ID
  * @property integer $MENU_ID
- * @property integer $MESA_ID
+ * @property integer $MESANUM
  * @property integer $USU_ID
  * @property integer $USU_USU_ID
  * @property string $COMFECHA
  * @property string $COM_ESTADO
- *
- * The followings are the available model relations:
- * @property ListaDePrecios $mENU
- * @property Mesa $mESA
- * @property Venta $vENTA
- * @property Usuario $uSUUSU
- * @property Usuario $uSU
- * @property DetalleComanda[] $detalleComandas
  */
 class Comanda extends CActiveRecord
 {
@@ -39,12 +31,12 @@ class Comanda extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('VENTA_ID, MENU_ID, MESA_ID, USU_ID, USU_USU_ID', 'numerical', 'integerOnly'=>true),
+			array('VENTA_ID, MENU_ID, MESANUM, USU_ID, USU_USU_ID', 'numerical', 'integerOnly'=>true),
 			array('COM_ESTADO', 'length', 'max'=>30),
 			array('COMFECHA', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('COM_ID, VENTA_ID, MENU_ID, MESA_ID, USU_ID, USU_USU_ID, COMFECHA, COM_ESTADO', 'safe', 'on'=>'search'),
+			array('COM_ID, VENTA_ID, MENU_ID, MESANUM, USU_ID, USU_USU_ID, COMFECHA, COM_ESTADO', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,12 +48,6 @@ class Comanda extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'mENU' => array(self::BELONGS_TO, 'ListaDePrecios', 'MENU_ID'),
-			'mESA' => array(self::BELONGS_TO, 'Mesa', 'MESA_ID'),
-			'vENTA' => array(self::BELONGS_TO, 'Venta', 'VENTA_ID'),
-			'uSUUSU' => array(self::BELONGS_TO, 'Usuario', 'USU_USU_ID'),
-			'uSU' => array(self::BELONGS_TO, 'Usuario', 'USU_ID'),
-			'detalleComandas' => array(self::HAS_MANY, 'DetalleComanda', 'COM_ID'),
 		);
 	}
 
@@ -71,12 +57,12 @@ class Comanda extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'COM_ID' => 'ID Comanda',
-			'VENTA_ID' => 'Venta ID',
-			'MENU_ID' => 'Menu ID',
-			'MESA_ID' => 'Mesa ID',
-			'USU_ID' => 'Usuario que ingresa',
-			'USU_USU_ID' => 'Usuario que entrega',
+			'COM_ID' => 'id_comanda',
+			'VENTA_ID' => 'Venta_id',
+			'MENU_ID' => 'Menu_id',
+			'MESANUM' => 'N° Mesa',
+			'USU_ID' => 'Usu_id',
+			'USU_USU_ID' => 'Usu Usu',
 			'COMFECHA' => 'Fecha',
 			'COM_ESTADO' => 'Estado',
 		);
@@ -103,7 +89,7 @@ class Comanda extends CActiveRecord
 		$criteria->compare('COM_ID',$this->COM_ID);
 		$criteria->compare('VENTA_ID',$this->VENTA_ID);
 		$criteria->compare('MENU_ID',$this->MENU_ID);
-		$criteria->compare('MESA_ID',$this->MESA_ID);
+		$criteria->compare('MESANUM',$this->MESANUM);
 		$criteria->compare('USU_ID',$this->USU_ID);
 		$criteria->compare('USU_USU_ID',$this->USU_USU_ID);
 		$criteria->compare('COMFECHA',$this->COMFECHA,true);

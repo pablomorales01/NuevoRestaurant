@@ -15,11 +15,12 @@
 		'COM_ID',
 		'VENTA_ID',
 		'MENU_ID',
-		'MESA_ID',
+		'MESANUM',
 		'USU_ID',
 		'USU_USU_ID',
 		/*
 		'COMFECHA',
+		'COM_ESTADO',
 		*/
 		array(
 			'class'=>'CButtonColumn',

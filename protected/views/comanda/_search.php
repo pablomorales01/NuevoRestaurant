@@ -27,8 +27,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'MESA_ID'); ?>
-		<?php echo $form->textField($model,'MESA_ID'); ?>
+		<?php echo $form->label($model,'MESANUM'); ?>
+		<?php echo $form->textField($model,'MESANUM'); ?>
 	</div>
 
 	<div class="row">
@@ -44,6 +44,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'COMFECHA'); ?>
 		<?php echo $form->textField($model,'COMFECHA'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'COM_ESTADO'); ?>
+		<?php echo $form->textField($model,'COM_ESTADO',array('size'=>30,'maxlength'=>30)); ?>
 	</div>
 
 	<div class="row buttons">
