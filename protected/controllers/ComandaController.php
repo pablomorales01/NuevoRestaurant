@@ -63,19 +63,31 @@ class ComandaController extends Controller
 	public function actionCreate()
 	{
 		$model=new Comanda;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$mesas = Mesa::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT, 
+													'ESTADO'=>"Disponible"));
+		$menus = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
+	
 
 		if(isset($_POST['Comanda']))
 		{
-			$model->attributes=$_POST['Comanda'];
+			for ($i=0; $i < count($_POST['Comanda']['MENU_ID']); $i++){
+				$model = new Comanda;
+				$model->MENU_ID = $_POST['Comanda']['MENU_ID'][$i];
+				$model->USU_ID = Yii::app()->user->ID;
+				$model->MESANUM = $_POST['Comanda']['MESANUM'];
+				$model->COMFECHA = new CDbExpression('NOW()');
+				$model->COM_ESTADO = 'Enviada';
+				$model->COM_CANTIDAD = $_POST['Comanda']['COM_CANTIDAD'][$i];
+				$model->RESTO_ID = Yii::app()->user->RESTAURANT;
+			}
+
+			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->COM_ID));
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$model, 'mesas'=>$mesas, 'menus'=>$menus
 		));
 	}
 

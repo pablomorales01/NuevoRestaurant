@@ -4,6 +4,8 @@
 
 ?>
 
-<h1 align="center">Crear Comanda</h1>
+<h1 align="center">Nueva comanda <?php 
+	$nombre= Restaurant::model()->findByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT ));
+	echo $nombre->RESTONOMBRE?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'mesas'=>$mesas, 'menus'=>$menus)); ?>

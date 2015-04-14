@@ -25,41 +25,87 @@
 	//TABLA (PRODUCTO[DROPDOWN], CANTIDAD, PRECIO)
 	//ESTADO (DROPDOWN)
 	//TOTAL.-->
+	
 
+	<?php 
+		echo 'Nombre:';
+		echo Yii::app()->user->NOMBRES;
+		echo ' ';
+		echo Yii::app()->user->APELLIDOS;
+	 ?>
 	<div class="row">
-		<?php echo $form->textFieldControlGroup($model,'VENTA_ID'); ?>
-		<?php echo $form->error($model,'VENTA_ID'); ?>
+		<?php 
+			echo $form->DropdownListControlGroup($model, 'MESANUM', 
+				CHtml::listData($mesas, 'MESANUM', 'MESANUM'), 
+				array('prompt'=> 'Seleccione'));
+		 ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->textFieldControlGroup($model,'MENU_ID'); ?>
-		<?php echo $form->error($model,'MENU_ID'); ?>
-	</div>
+	<table class="linear" cellspacing="0" >
+	<?php
+	//Lo que va dentro de la tabla
+	$memberFormConfig = array(
+		  'elements'=>array(
 
-	<div class="row">
-		<?php echo $form->textFieldControlGroup($model,'MESANUM'); ?>
-		<?php echo $form->error($model,'MESANUM'); ?>
-	</div>
+              'MENU_ID'=>array(
+				'type'=>'dropdownlist',
+				//'value'=>$model()->MP_ID,
+				'items'=>CHtml::listData($menus, 'MENU_ID', 'MENUNOMBRE'),
+				'prompt'=>'seleccione',
+				//'placeholder'=>'Producto',
+			),
+              'COM_CANTIDAD'=>array(
+              	'type'=>'text',
+		  		'maxlength'=>40,
+		  		'placeholder'=>'Cantidad',
+              	),
 
-	<div class="row">
-		<?php echo $form->textFieldControlGroup($model,'USU_ID'); ?>
-		<?php echo $form->error($model,'USU_ID'); ?>
-	</div>
+			
+		));
 
-	<div class="row">
-		<?php echo $form->textFieldControlGroup($model,'USU_USU_ID'); ?>
-		<?php echo $form->error($model,'USU_USU_ID'); ?>
-	</div>
+   echo CHtml::script('function alertIds(newElem,sourceElem){alert(newElem.attr("id"));alert(sourceElem.attr("id"));}');
 
-	<div class="row">
-		<?php echo $form->textFieldControlGroup($model,'COMFECHA'); ?>
-		<?php echo $form->error($model,'COMFECHA'); ?>
-	</div>
+	$this->widget('ext.multimodelform.MultiModelForm',array(
+			'id' => 'id_member', //the unique widget id
+			'formConfig' => $memberFormConfig, //the form configuration array
+			'model' => $model, //instance of the form model
 
-	<div class="row">
-		<?php echo $form->textFieldControlGroup($model,'COM_ESTADO',array('size'=>30,'maxlength'=>30)); ?>
-		<?php echo $form->error($model,'COM_ESTADO'); ?>
-	</div>
+			//if submitted (not empty) from the controller,
+			//the form will be rendered with validation errors
+			//'validatedItems' => $validatedMembers,
+
+	        //array of member instances loaded from db
+            //only needed if validatedItems are empty (not in displaying validation errors mode)
+			/*'data' => empty($validatedItems) ? $model->findAll(
+                                             array('condition'=>'groupid=:groupId',
+                                                   'params'=>array(':groupId'=>$model->id),
+                                                   'order'=>'position', //see 'sortAttribute' below
+                                                   )) : null,*/
+
+            'sortAttribute' => 'position', //if assigned: sortable fieldsets is enabled
+            //'removeOnClick' => 'alert("test")',
+            'hideCopyTemplate'=>true,
+            'clearInputs'=>false,
+            'tableView' => true, //sortable will not work
+            //'jsAfterCloneCallback'=>'alertIds',
+            'showAddItemOnError' => false, //not allow add items when in validation error mode (default = true)
+
+            //------------ output style ----------------------
+           //'tableView' => true, //sortable will not work
+
+            //add position:relative because of embedded removeLinkWrapper with style position:absolute
+            'fieldsetWrapper' => array('tag' => 'div',
+                'htmlOptions' => array('class' => 'view','style'=>'position:relative;background:#EFEFEF;')
+            ),
+
+            'removeLinkWrapper' => array('tag' => 'div',
+                'htmlOptions' => array('style'=>'position:absolute; top:1em; right:1em;')
+            ),
+
+		));
+?>
+</table>
+
 
 	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>

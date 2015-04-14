@@ -12,6 +12,8 @@
  * @property integer $USU_USU_ID
  * @property string $COMFECHA
  * @property string $COM_ESTADO
+ * @property integer $RESTO_ID
+ * @property integer $COM_CANTIDAD
  */
 class Comanda extends CActiveRecord
 {
@@ -31,12 +33,13 @@ class Comanda extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('VENTA_ID, MENU_ID, MESANUM, USU_ID, USU_USU_ID', 'numerical', 'integerOnly'=>true),
+			array('MESANUM, RESTO_ID, COM_CANTIDAD', 'required'),
+			array('VENTA_ID, MENU_ID, MESANUM, USU_ID, USU_USU_ID, RESTO_ID, COM_CANTIDAD', 'numerical', 'integerOnly'=>true),
 			array('COM_ESTADO', 'length', 'max'=>30),
 			array('COMFECHA', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('COM_ID, VENTA_ID, MENU_ID, MESANUM, USU_ID, USU_USU_ID, COMFECHA, COM_ESTADO', 'safe', 'on'=>'search'),
+			array('COM_ID, VENTA_ID, MENU_ID, MESANUM, USU_ID, USU_USU_ID, COMFECHA, COM_ESTADO, RESTO_ID, COM_CANTIDAD', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,14 +60,16 @@ class Comanda extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'COM_ID' => 'id_comanda',
-			'VENTA_ID' => 'Venta_id',
-			'MENU_ID' => 'Menu_id',
-			'MESANUM' => 'N° Mesa',
-			'USU_ID' => 'Usu_id',
+			'COM_ID' => 'Com',
+			'VENTA_ID' => 'Venta',
+			'MENU_ID' => 'Menu',
+			'MESANUM' => 'Mesanum',
+			'USU_ID' => 'Usu',
 			'USU_USU_ID' => 'Usu Usu',
-			'COMFECHA' => 'Fecha',
-			'COM_ESTADO' => 'Estado',
+			'COMFECHA' => 'Comfecha',
+			'COM_ESTADO' => 'Com Estado',
+			'RESTO_ID' => 'Resto',
+			'COM_CANTIDAD' => 'Com Cantidad',
 		);
 	}
 
@@ -94,6 +99,8 @@ class Comanda extends CActiveRecord
 		$criteria->compare('USU_USU_ID',$this->USU_USU_ID);
 		$criteria->compare('COMFECHA',$this->COMFECHA,true);
 		$criteria->compare('COM_ESTADO',$this->COM_ESTADO,true);
+		$criteria->compare('RESTO_ID',$this->RESTO_ID);
+		$criteria->compare('COM_CANTIDAD',$this->COM_CANTIDAD);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
