@@ -66,10 +66,25 @@ class ComandaController extends Controller
 		$mesas = Mesa::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT, 
 													'ESTADO'=>"Disponible"));
 		$menus = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
-	
+		$cantidad = 0;
 
 		if(isset($_POST['Comanda']))
 		{
+			//SI INGRESA POST REPETIDOS
+			for ($i=0; $i < count($_POST['Comanda']['MENU_ID']); $i++){
+				for ($j=$i+1; $j < count($_POST['Comanda']['MENU_ID']); $j++){
+					$cantidad=0;
+					if($_POST['Comanda']['MENU_ID'][$i] == $_POST['Comanda']['MENU_ID'][$j])
+					{
+						$cantidad = $_POST['Comanda']['COM_CANTIDAD'][$j];
+						$_POST['Comanda']['COM_CANTIDAD'][$i] += $cantidad;
+						unset($_POST['Comanda']['MENU_ID'][$j]);
+
+					}
+			}
+		}
+
+
 			for ($i=0; $i < count($_POST['Comanda']['MENU_ID']); $i++){
 				$model = new Comanda;
 				$model->MENU_ID = $_POST['Comanda']['MENU_ID'][$i];
