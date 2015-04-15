@@ -29,6 +29,7 @@ class Mesa extends CActiveRecord
 		return array(
 			array('RESTO_ID, MESANUM, MESAPERSONAS, ESTADO', 'required'),
 			array('RESTO_ID, MESANUM, MESAPERSONAS', 'numerical', 'integerOnly'=>true),
+			array('MESANUM', 'validarCantidad'),
 			array('ESTADO', 'length', 'max'=>13),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -58,6 +59,11 @@ class Mesa extends CActiveRecord
 			'MESAPERSONAS' => '# Personas',
 			'ESTADO' => 'Estado',
 		);
+	}
+	public function validarCantidad(){
+		if($this->MESANUM < 1){
+			$this->addError('MESANUM', 'El número mínimo de una mesa es #1.');
+		}
 	}
 
 	/**

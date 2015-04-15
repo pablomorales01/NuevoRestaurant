@@ -173,13 +173,11 @@ class ComandaController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Comanda('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Comanda']))
-			$model->attributes=$_GET['Comanda'];
+		$comandas = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
+			'COM_ESTADO'=>'Enviada'));
 
 		$this->render('admin',array(
-			'model'=>$model,
+		'comandas'=>$comandas
 		));
 	}
 

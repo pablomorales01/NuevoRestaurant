@@ -2,6 +2,7 @@
 /* @var $this MesaController */
 /* @var $model Mesa */
 /* @var $form CActiveForm */
+
 ?>
 
 <div class="form">
@@ -17,7 +18,7 @@
 	
 	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+
 	<?php if(Yii::app()->user->hasFlash('error')):?>
     <div class="grabado_ok">
         <?php echo Yii::app()->user->getFlash('error'); ?>
@@ -26,7 +27,7 @@
 
 	<div class="row">
 		<?php echo $form->textFieldControlGroup($model,'MESANUM'); ?>
-		<?php echo $form->error($model,'MESANUM'); ?>
+		
 	</div>
 
 	<div class="row">
