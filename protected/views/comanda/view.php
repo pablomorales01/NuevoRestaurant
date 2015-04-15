@@ -18,3 +18,5 @@
 		'COM_ESTADO',
 	),
 )); ?>
+
+<h4 align="center"> <?php echo 'Total:'.$Total ?></h4>

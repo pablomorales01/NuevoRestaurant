@@ -49,11 +49,10 @@ class ComandaController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($id, $Total)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+			'model'=>$this->loadModel($id), 'Total'=>$Total));
 	}
 
 	/**
@@ -68,6 +67,9 @@ class ComandaController extends Controller
 		$menus = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
 		$cantidad = 0;
 
+	
+		//sumar los precio para total $menu->MENUPRECIO
+		$Total = 0;
 		if(isset($_POST['Comanda']))
 		{
 			//SI INGRESA POST REPETIDOS
@@ -88,6 +90,12 @@ class ComandaController extends Controller
 			for ($i=0; $i < count($_POST['Comanda']['MENU_ID']); $i++){
 				$model = new Comanda;
 				$model->MENU_ID = $_POST['Comanda']['MENU_ID'][$i];
+				foreach ($menus as $menu) {
+					if($model->MENU_ID == $menu->MENU_ID) //SI SON IGUALES LOS MENÚ
+					{
+						$Total = $Total + $menu->MENUPRECIO;
+					}
+				}
 				$model->USU_ID = Yii::app()->user->ID;
 				$model->MESANUM = $_POST['Comanda']['MESANUM'];
 				$model->COMFECHA = new CDbExpression('NOW()');
@@ -96,9 +104,13 @@ class ComandaController extends Controller
 				$model->RESTO_ID = Yii::app()->user->RESTAURANT;
 			}
 
+			$mesa = Mesa::model()->findByAttributes(array('MESANUM'=>$model->MESANUM));
+			$mesa->ESTADO = 'No disponible';
+			$mesa->save();
+
 			
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->COM_ID));
+				$this->redirect(array('view','id'=>$model->COM_ID, 'Total'=>$Total));
 		}
 
 		$this->render('create',array(
