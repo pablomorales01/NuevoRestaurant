@@ -62,22 +62,40 @@ class VentaController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Venta;
+		$mesas = Mesa::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT, 'ESTADO'=>'No disponible'));
+		$mesa = new Mesa;
+		$numero =0;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Venta']))
+		if(isset($_POST['Mesa']))
 		{
-			$model->attributes=$_POST['Venta'];
-			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->VENTA_ID));
+			$numero = $_POST['Mesa']['MESANUM'];
+			$comanda = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
+				'MESANUM'=>$numero, 'VENTA_ID'=>null));
+
+			$this->renderPartial('crearVenta', array('comanda'=>$comanda));
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'mesas'=>$mesas, 'mesa'=>$mesa
 		));
+	}
+
+	public function actionCrearVenta($comanda){
+
+		$model = new Venta;		
+
+		if($_POST['Venta'])
+		{
+
+		}
+		
+		$this->render('crearVenta',array(
+			'model'=>$model, 
+			'comanda'=>$comanda
+					));
 	}
 
 	/**
