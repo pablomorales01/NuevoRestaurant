@@ -9,13 +9,11 @@
 ?>
 <div class="row">
 <?php 
+     foreach ($comanda as $com) {
+         echo $com->COMFECHA;
+     }
 
-		foreach ($comanda as $model) {
-		
-		echo $form->textFieldControlGroup($model, 'COMFECHA');
-		break;
-}
 ?>
 </div>
-</div>
+
 <?php $this->endWidget(); ?>

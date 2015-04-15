@@ -36,7 +36,7 @@ class VentaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete', 'crearVenta'),
 				'users'=>array('Super administrador','Administrador','Cajero'),
 			),
 			array('deny',  // deny all users
@@ -72,10 +72,10 @@ class VentaController extends Controller
 		if(isset($_POST['Mesa']))
 		{
 			$numero = $_POST['Mesa']['MESANUM'];
-			$comanda = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
-				'MESANUM'=>$numero, 'VENTA_ID'=>null));
+			/*$comanda = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
+				'MESANUM'=>$numero, 'VENTA_ID'=>null));*/
 
-			$this->renderPartial('crearVenta', array('comanda'=>$comanda));
+			$this->redirect(array('crearVenta', 'numero'=>$numero));
 		}
 
 		$this->render('create',array(
@@ -83,14 +83,12 @@ class VentaController extends Controller
 		));
 	}
 
-	public function actionCrearVenta($comanda){
+	public function actionCrearVenta($numero){
 
 		$model = new Venta;		
 
-		if($_POST['Venta'])
-		{
-
-		}
+		$comanda = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
+			'MESANUM'=>$numero, 'VENTA_ID'=>null));
 		
 		$this->render('crearVenta',array(
 			'model'=>$model, 
