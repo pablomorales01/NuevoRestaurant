@@ -86,7 +86,7 @@ class ComandaController extends Controller
 			}
 		}
 
-
+			
 			for ($i=0; $i < count($_POST['Comanda']['MENU_ID']); $i++){
 				$model = new Comanda;
 				$model->MENU_ID = $_POST['Comanda']['MENU_ID'][$i];
@@ -102,6 +102,7 @@ class ComandaController extends Controller
 				$model->COM_ESTADO = 'Enviada';
 				$model->COM_CANTIDAD = $_POST['Comanda']['COM_CANTIDAD'][$i];
 				$model->RESTO_ID = Yii::app()->user->RESTAURANT;
+				$model->save();
 			}
 
 			$mesa = Mesa::model()->findByAttributes(array('MESANUM'=>$model->MESANUM));
