@@ -72,9 +72,7 @@ class VentaController extends Controller
 		if(isset($_POST['Mesa']))
 		{
 			$numero = $_POST['Mesa']['MESANUM'];
-			/*$comanda = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
-				'MESANUM'=>$numero, 'VENTA_ID'=>null));*/
-
+			//$numero = Número de la mesa
 			$this->redirect(array('crearVenta', 'numero'=>$numero));
 		}
 
@@ -85,14 +83,42 @@ class VentaController extends Controller
 
 	public function actionCrearVenta($numero){
 
+		//$numero = Número de la mesa
 		$model = new Venta;		
 
 		$comanda = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
 			'MESANUM'=>$numero, 'VENTA_ID'=>null));
-		
+
+		$mesa = Mesa::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
+			'ESTADO'=>'No disponible'));
+
+		$menu = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
+		$total=0;
+		foreach ($menu as $fila) {
+				$total = $total + $fila->MENUPRECIO;
+			}
+		if(isset($_POST['Venta']))
+		{
+			/*	Guardar forma de pago desde el form,
+			  	usuario id, venta fecha, venta total y resto_id 
+			*/
+
+			$model->attributes=$_POST['Venta'];
+			$model->USU_ID = Yii::app()->user->ID;
+			$model->VENTAFECHA= new CDbExpression('NOW()');
+			$model->VENTATOTAL = $total;
+			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
+			if($model->save())
+			{
+				$this->redirect('admin');
+			}
+		}
+
 		$this->render('crearVenta',array(
 			'model'=>$model, 
-			'comanda'=>$comanda
+			'comanda'=>$comanda,
+			'mesa' => $mesa,
+			'menu'=>$menu,
 					));
 	}
 

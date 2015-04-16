@@ -32,8 +32,9 @@ class Venta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('VENTAFORMADEPAGO', 'required'),
 			array('USU_ID, VENTATOTAL, RESTO_ID', 'numerical', 'integerOnly'=>true),
-			array('VENTAFORMADEPAGO', 'length', 'max'=>15),
+			array('VENTAFORMADEPAGO', 'length', 'max'=>8),
 			array('VENTAFECHA', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -59,12 +60,12 @@ class Venta extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'VENTA_ID' => 'id venta',
-			'USU_ID' => 'id usuario',
+			'VENTA_ID' => 'Venta',
+			'USU_ID' => 'Usu',
 			'VENTAFECHA' => 'Fecha',
 			'VENTATOTAL' => 'Total',
-			'VENTAFORMADEPAGO' => 'Forma de pago',
-			'RESTO_ID' => 'Resto id',
+			'VENTAFORMADEPAGO' => 'Forma de Pago',
+			'RESTO_ID' => 'Resto',
 		);
 	}
 
