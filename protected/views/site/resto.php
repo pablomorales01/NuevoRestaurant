@@ -2,6 +2,7 @@
 	$nombre = $_GET['nombre'];
 	
 	foreach ($resto as $resto) {
+		$menu = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>$resto->RESTO_ID));
 		// Si los nombres son iguales
 		if($resto->RESTONOMBRE == $nombre)
 		{
@@ -19,8 +20,27 @@
 				}
 			}
 			
-		}
+		}?>
+		<br>
+		<br>
+		<table>
+		<tr>
+						<th>Menú</th>
+						<th>Calorias</th>
+						<th>Precio</th>
+		</tr>
+		<?php  
+		foreach ($menu as $lista) {?>
+				
+					
+					<tr>
+							<td><?php echo $lista->MENUNOMBRE?></td>
+							<td><?php echo $lista->CALORIASTOTAL?></td>
+							<td><?php echo $lista->MENUPRECIO?></td>
+					</tr>
+				
 
+			<?php  }?>
+		</table>
 		
-	}
-?>
+	<?php }?>
