@@ -68,7 +68,7 @@ $repetido =0;
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-							<button type="button" class="btn btn-danger" onclick="location.href='<?php echo Yii::app()->createUrl("comanda/delete/$com->MESANUM"); ?>'">Eliminar </button>
+							<button type="button" class="btn btn-danger" onclick="location.href='<?php echo Yii::app()->createUrl("Comanda/delete/$com->MESANUM"); ?>'">Eliminar </button>
 						</div>
 					</div>
 				</div>

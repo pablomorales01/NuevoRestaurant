@@ -126,20 +126,108 @@ class ComandaController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$comandas = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
+			'MESANUM'=>$id));
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$model = new Comanda;
+		$mesas = Mesa::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
+			'ESTADO'=>'Disponible'));
+		$menus = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
+		$cantidad = 0;
+		$mx=0;
+		$MESA =0;
 
 		if(isset($_POST['Comanda']))
 		{
-			$model->attributes=$_POST['Comanda'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->COM_ID));
-		}
+			//primero revisar si los post estan repetidos, si es asi sumar
+			//SI INGRESA POST REPETIDOS
+			for ($i=0; $i < count($_POST['Comanda']['MENU_ID']); $i++){
+				for ($j=$i+1; $j < count($_POST['Comanda']['MENU_ID']); $j++){
+					$cantidad=0;
+					if($_POST['Comanda']['MENU_ID'][$i] == $_POST['Comanda']['MENU_ID'][$j])
+					{
+						$cantidad = $_POST['Comanda']['COM_CANTIDAD'][$j];
+						$_POST['Comanda']['COM_CANTIDAD'][$i] += $cantidad;
+						/*unset($_POST['Comanda']['MENU_ID'][$j]);
+						unset($_POST['Comanda']['COM_CANTIDAD'][$j]);*/
+						$_POST['Comanda']['MENU_ID'][$j]= null;
+						$_POST['Comanda']['COM_CANTIDAD'][$j]= null;					
 
-		$this->render('update',array(
-			'model'=>$model,
+					}
+				}
+			}
+			
+			//si se eliminó un meni_id
+			foreach ($comandas as $com) { //por cada precio producto en la bd...
+					$ban =0;
+					for ($i=0; $i < count($_POST['Comanda']['MENU_ID']); $i++) { //verifico si existe en post
+						if($com->MENU_ID == $_POST['Comanda']['MENU_ID'][$i]){
+							$ban = 1;
+						}
+					}
+					if($ban == 0){
+					 //ELIMINA SI NO ESTA
+					$aux =Comanda::model()->deleteAllByAttributes(array('COM_ID'=>$com->COM_ID));
+					}	
+			}
+
+			$ban =0;
+			//EDITAR O AÑADIR
+			for ($i=0; $i < count($_POST['Comanda']['MENU_ID']); $i++){
+				$ban=0;
+				foreach ($comandas as $com) {
+					$MESA = $com->MESANUM;
+					//LA MESA
+					if($_POST['Comanda']['MESANUM'] != $com->MESANUM)
+					{
+						$mx = $com->MESANUM;
+						//mesa anterior
+						$m = Mesa::model()->findByAttributes(array('MESANUM'=>$com->MESANUM));
+						//cambio de  estado
+						$m->ESTADO = 'Disponible';
+						$m->save();
+						//cambio de mesas
+						$com->MESANUM = $_POST['Comanda']['MESANUM'];
+						$com->save();
+						//mesa nueva
+						$aux_m = Mesa::model()->findByAttributes(array('MESANUM'=>$mx));
+						//cambio de estado mesa nueva
+						$aux_m->ESTADO = 'No disponible';
+						$aux_m->save();
+					}
+					//LA CANTIDAD DE MENUS
+					if($_POST['Comanda']['MENU_ID'][$i] == $com->MENU_ID 
+						&& $_POST['Comanda']['COM_CANTIDAD'][$i] != $com->COM_CANTIDAD){
+							
+							$aux = Comanda::model()->findByAttributes(array('COM_ID'=>$com->COM_ID));
+							$aux->COM_CANTIDAD = $_POST['Comanda']['COM_CANTIDAD'][$i];
+							$aux->save();
+						
+						$ban = 1;
+					}
+				}
+
+				//bandera es cero no existe en la bd
+				if($ban == 0){
+					$nuevo = new Comanda;
+					$nuevo->RESTO_ID = Yii::app()->user->RESTAURANT;
+					$nuevo->USU_ID = Yii::app()->user->ID;
+					$nuevo->COMFECHA = new CDbExpression('NOW()');
+					$nuevo->MENU_ID = $_POST['Comanda']['MENU_ID'][$i];
+					$nuevo->MESANUM = $MESA;
+					$nuevo->COM_ESTADO = 'Enviada';
+					$nuevo->COM_CANTIDAD = $_POST['Comanda']['COM_CANTIDAD'][$i];
+					
+					$nuevo->save();
+					
+				}
+			}
+
+			$this->redirect(array('admin'));
+		}
+		$this->render('editar',array(
+			'model'=>$model, 'comandas'=>$comandas,
+			'mesas'=>$mesas, 'menus'=>$menus
 		));
 	}
 
@@ -150,7 +238,11 @@ class ComandaController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		
+		$comandas = Comanda::model()->deleteAllByAttributes(
+			array('MESANUM'=>$id, 'RESTO_ID'=>Yii::app()->user->RESTAURANT,
+			'ESTADO'=>'Enviada'));
+
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

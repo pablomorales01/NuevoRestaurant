@@ -69,7 +69,7 @@ class Comanda extends CActiveRecord
 			'COMFECHA' => 'Comfecha',
 			'COM_ESTADO' => 'Com Estado',
 			'RESTO_ID' => 'Resto',
-			'COM_CANTIDAD' => 'Com Cantidad',
+			'COM_CANTIDAD' => 'Cantidad',
 		);
 	}
 
