@@ -65,6 +65,7 @@ class SiteController extends Controller
 	{
 		$resto = Restaurant::model()->findAll();
 		$imagen = Imagen::model()->findAll();
+
 		$this->render('resto', array('resto' => $resto, 'imagen' => $imagen));
 	}
 
