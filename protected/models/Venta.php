@@ -61,7 +61,7 @@ class Venta extends CActiveRecord
 	{
 		return array(
 			'VENTA_ID' => 'Venta',
-			'USU_ID' => 'Usu',
+			'USU_ID' => 'Nombre',
 			'VENTAFECHA' => 'Fecha',
 			'VENTATOTAL' => 'Total',
 			'VENTAFORMADEPAGO' => 'Forma de Pago',

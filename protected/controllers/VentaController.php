@@ -90,24 +90,26 @@ class VentaController extends Controller
 			'MESANUM'=>$numero, 'VENTA_ID'=>null));
 
 		$mesa = Mesa::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
-			'ESTADO'=>'No disponible'));
+			'ESTADO'=>'No disponible', 'MESANUM'=>$numero));
 
 		$menu = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
 		$total=0;
-		foreach ($menu as $fila) {
-				$total = $total + $fila->MENUPRECIO;
-			}
+		
+		foreach ($comanda as $com) {
+					$fila= ListaDePrecios::model()->findbyattributes(array('MENU_ID'=>$com->MENU_ID));
+					$total = $total + $fila->MENUPRECIO;
+				}		
+					
 		if(isset($_POST['Venta']))
 		{
 			/*	Guardar forma de pago desde el form,
 			  	usuario id, venta fecha, venta total y resto_id 
 			*/
-
-			$model->attributes=$_POST['Venta'];
 			$model->USU_ID = Yii::app()->user->ID;
-			$model->VENTAFECHA= new CDbExpression('NOW()');
+			$model->VENTAFECHA= new CDbExpression('NOW()');		
 			$model->VENTATOTAL = $total;
 			$model->RESTO_ID = Yii::app()->user->RESTAURANT;
+			$model->attributes=$_POST['Venta'];
 			if($model->save())
 			{
 				$this->redirect('admin');

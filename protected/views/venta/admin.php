@@ -12,7 +12,10 @@
 	'filter'=>$model,
 	'columns'=>array(
 		'VENTA_ID',
-		'uSU.USURUT',
+		array('name'=>'USU_ID',
+			  'value'=>'$data->uSU->USUNOMBRES'),
+		array('name'=>'USU_ID',
+			  'value'=>'$data->uSU->USUAPELLIDOS'),
 		'VENTAFECHA',
 		'VENTATOTAL',
 		'VENTAFORMADEPAGO',
