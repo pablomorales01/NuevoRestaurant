@@ -1,46 +1,71 @@
+<style type="text/css">
+	
+		.izquierda{
+			float: left;
+
+		}
+
+		.derecha{
+			float: left;
+			width: 700px;
+			margin-left: 40px;
+		}
+	
+</style>
+<div class="izquierda">
 <?php 
 	$nombre = $_GET['nombre'];
 	
-	foreach ($resto as $resto) {
-		$menu = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>$resto->RESTO_ID));
+	foreach ($resto as $rest) {
 		// Si los nombres son iguales
-		if($resto->RESTONOMBRE == $nombre)
+		if($rest->RESTONOMBRE == $nombre)
 		{
-			echo 'Restaurant: '.$resto->RESTONOMBRE;
-			echo '<br>Aqui va el Detalle de Restaurant: ';
+			echo '<b>Restaurant: '.$rest->RESTONOMBRE.'</b>';
+			echo '<br><b>Aqui va el Detalle de Restaurant: '.$rest->RESTODETALLE.'</b>';
 			echo '<br> Fotografias: <br>';
 			foreach ($imagen as $imagen) {
 				// Si los id de restaurant son iguales
-				if($imagen->RESTO_ID == $resto->RESTO_ID)
+				if($imagen->RESTO_ID == $rest->RESTO_ID)
 				{
 					//MUESTRALO TODO MADAFAKA
 					//CHtml::image(Yii::app()->baseUrl.'/images/subidas/'.$imagen->IMAGEN, 'imagen',array('width'=>200));
-					?><img src="<?php echo Yii::app()->request->baseUrl.'/images/subidas/'.$imagen->IMAGEN; ?>" width="500" height="500">
-				<?php  //echo '<br>';
+					?><img src="<?php echo Yii::app()->request->baseUrl.'/images/subidas/'.$imagen->IMAGEN; ?>" width="300" height="300">
+				<?php  echo '<br>';
 				}
 			}
-			
-		}?>
-		<br>
-		<br>
-		<table>
-		<tr>
-						<th>Menú</th>
-						<th>Calorias</th>
-						<th>Precio</th>
-		</tr>
-		<?php  
-		foreach ($menu as $lista) {?>
+			$menu = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>$rest->RESTO_ID));
+			?>
+			</div>
+			<div class="derecha">
+			<?php
+				$this->beginWidget('bootstrap.widgets.BsPanel', array(
+					'title' => 'Lista de Precios'));
+				?>
 				
-					
-					<tr>
+				
+			<table>
+				<tr>
+					<th>Menú</th>
+					<th>Calorias</th>
+					<th>Precio</th>
+				</tr>
+			<?php 
+			foreach ($menu as $lista) {?>
+				<tr>
 							<td><?php echo $lista->MENUNOMBRE?></td>
 							<td><?php echo $lista->CALORIASTOTAL?></td>
 							<td><?php echo $lista->MENUPRECIO?></td>
-					</tr>
-				
+				</tr>
+			<?php }?>
+			</table>
+			<?php
+				$this->endWidget();
+				?>
+			</div>
+		<?php }
+	}?>
 
-			<?php  }?>
-		</table>
+
 		
-	<?php }?>
+
+	
