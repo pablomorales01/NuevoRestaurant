@@ -10,6 +10,7 @@
         <li><a href="<?php echo Yii::app()->createUrl('venta/create'); ?>">Ingresar Venta</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('venta/admin'); ?>">Administrar Venta</a></li>
         <li><a href="<?php echo Yii::app()->createUrl('mesa/admin'); ?>">Mesas</a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('venta/promedios');?>">Precios promedio</a></li>
 
         <!-- prueba de bitches-->
   </ul>

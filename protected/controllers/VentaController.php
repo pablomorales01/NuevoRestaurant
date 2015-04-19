@@ -36,7 +36,7 @@ class VentaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'crearVenta'),
+				'actions'=>array('admin','delete', 'crearVenta', 'promedios'),
 				'users'=>array('Super administrador','Administrador','Cajero'),
 			),
 			array('deny',  // deny all users
@@ -201,6 +201,16 @@ class VentaController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
+	}
+
+	public function actionPromedios()
+	{
+		$model = new PrecioPromedio('search');
+		$model->unsetAttributes();
+		if(isset($_GET['PrecioPromedio']))
+			$model->attributes=$_GET['PrecioPromedio'];
+
+		$this->render('promedios', array('model'=>$model, ));
 	}
 
 	/**

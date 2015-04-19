@@ -1,29 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "registro_compras_mp".
+ * This is the model class for table "precio_promedio".
  *
- * The followings are the available columns in table 'registro_compras_mp':
- * @property integer $RCMP_ID
- * @property integer $PROV_ID
- * @property integer $MP_ID
- * @property integer $RCMPPRECIO_COMPRA
- * @property integer $RCMPCANTIDAD
- * @property string $RCMPFECHA
- * @property integer $RESTO_ID
- *
- * The followings are the available model relations:
- * @property MateriaPrima $mP
- * @property Proveedor $pROV
+ * The followings are the available columns in table 'precio_promedio':
+ * @property integer $producto
+ * @property string $precio
+ * @property integer $resto
  */
-class RegistroComprasMp extends CActiveRecord
+class PrecioPromedio extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'registro_compras_mp';
+		return 'precio_promedio';
 	}
 
 	/**
@@ -34,11 +26,11 @@ class RegistroComprasMp extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PROV_ID, MP_ID, RCMPPRECIO_COMPRA, RCMPCANTIDAD, RESTO_ID', 'numerical', 'integerOnly'=>true),
-			array('RCMPFECHA', 'safe'),
+			array('producto, resto', 'numerical', 'integerOnly'=>true),
+			array('precio', 'length', 'max'=>18),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RCMP_ID, PROV_ID, MP_ID, RCMPPRECIO_COMPRA, RCMPCANTIDAD, RCMPFECHA, RESTO_ID', 'safe', 'on'=>'search'),
+			array('producto, precio, resto', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,8 +42,6 @@ class RegistroComprasMp extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'mP' => array(self::BELONGS_TO, 'MateriaPrima', 'MP_ID'),
-			'pROV' => array(self::BELONGS_TO, 'Proveedor', 'PROV_ID'),
 		);
 	}
 
@@ -61,13 +51,9 @@ class RegistroComprasMp extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RCMP_ID' => 'id registro',
-			'PROV_ID' => 'id proveedor',
-			'MP_ID' => 'id materia prima',
-			'RCMPPRECIO_COMPRA' => 'Precio Compra TOTAL',
-			'RCMPCANTIDAD' => 'Cantidad',
-			'RCMPFECHA' => 'Fecha',
-			'RESTO_ID' => 'Resto id',
+			'producto' => 'Producto',
+			'precio' => 'Precio promedio unitario',
+			'resto' => 'Resto',
 		);
 	}
 
@@ -89,14 +75,10 @@ class RegistroComprasMp extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('RCMP_ID',$this->RCMP_ID);
-		$criteria->compare('PROV_ID',$this->PROV_ID);
-		$criteria->compare('MP_ID',$this->MP_ID);
-		$criteria->compare('RCMPPRECIO_COMPRA',$this->RCMPPRECIO_COMPRA);
-		$criteria->compare('RCMPCANTIDAD',$this->RCMPCANTIDAD);
-		$criteria->compare('RCMPFECHA',$this->RCMPFECHA,true);
-		$criteria->compare('RESTO_ID',$this->RESTO_ID);
-		$criteria->compare('RESTO_ID', Yii::app()->user->RESTAURANT);
+		$criteria->compare('producto',$this->producto);
+		$criteria->compare('precio',$this->precio,true);
+		$criteria->compare('resto',$this->resto);
+		$criteria->compare('resto', Yii::app()->user->RESTAURANT);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -107,7 +89,7 @@ class RegistroComprasMp extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return RegistroComprasMp the static model class
+	 * @return PrecioPromedio the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
