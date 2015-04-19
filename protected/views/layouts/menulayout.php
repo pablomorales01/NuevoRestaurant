@@ -7,7 +7,7 @@
   <div class="col-xs-6 col-md-4">
   <br>
     <ul class="nav nav-pills nav-stacked">
-    <li><a href="<?php echo Yii::app()->createUrl('precioProducto/create'); ?>">Nuevo Menú</a></li>
+    <li><a href="<?php echo Yii::app()->createUrl('precioProducto/create'); ?>">Nuevo precio - promoción</a></li>
     <li><a href="<?php echo Yii::app()->createUrl('precioProducto/admin'); ?>">Administrar Menú</a></li>
     <li><a href="<?php echo Yii::app()->createUrl('receta/create'); ?>">Ingresar Producto Elaborado</a></li>
     

@@ -3,6 +3,14 @@
 /* @var $model Restaurant */
 /* @var $form CActiveForm */
 ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //nombre del campo
+      $('#Restaurant_RESTO_RUT').Rut({
+      on_error: function(){ alert('Rut incorrecto'); }
+    });
+    })
+ </script>
 
 <div class="form">
 
@@ -34,6 +42,8 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		<?php echo $form->error($model,'RESTONOMBRE'); ?>
 	</div>
 
+	<?php echo $form->textFieldControlGroup($model, 'RESTO_RUT'); ?>
+	<?php echo $form->error($model, 'RESTO_RUT'); ?>
 	<div class="row">
 		<?php //echo $form->labelEx($model,'RESTOFECHACREACION'); ?>
 		<?php echo $form->textAreaControlGroup($model,'RESTODETALLE'); ?>

@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Administrar proveedores</h1>
+<h1 align="center">Administrar proveedores</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'proveedor-grid',

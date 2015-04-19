@@ -8,8 +8,10 @@
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'RESTO_ID',
+		//'RESTO_ID',
 		'RESTONOMBRE',
+		'RESTO_RUT',
 		'RESTOFECHACREACION',
+		'RESTODETALLE',
 	),
 )); ?>

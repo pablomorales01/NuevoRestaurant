@@ -11,9 +11,11 @@
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'RESTO_ID',
+		//'RESTO_ID',
 		'RESTONOMBRE',
+		'RESTO_RUT',
 		'RESTOFECHACREACION',
+		'RESTODETALLE',
 		array(
 			'class'=>'CButtonColumn',
 		),

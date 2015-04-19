@@ -62,7 +62,7 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Inicio', 'url' => array('/site/login'),
+                array('label' => 'Acceso a usuarios', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
@@ -102,7 +102,7 @@
                         ),
                 array('label' => 'Garzón', 'url' => array('/comanda/admin'), 'icon' => BsHtml::GLYPHICON_LIST_ALT
                         ),
-                array('label' => 'Proveedor', 'url' => array('/proveedor/admin'), 'icon' => BsHtml::GLYPHICON_BRIEFCASE
+                array('label' => 'Compras', 'url' => array('/proveedor/admin'), 'icon' => BsHtml::GLYPHICON_BRIEFCASE
                         ),
 
                 //Final del array items.
@@ -117,7 +117,7 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Inicio', 'url' => array('/site/login'),
+                array('label' => 'Acceso a usuarios', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
@@ -164,7 +164,7 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Inicio', 'url' => array('/site/login'),
+                array('label' => 'Acceso a usuarios', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
@@ -212,7 +212,7 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Inicio', 'url' => array('/site/login'),
+                array('label' => 'Acceso a usuarios', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
@@ -259,7 +259,7 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Inicio', 'url' => array('/site/login'),
+                array('label' => 'Acceso a usuarios', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
@@ -306,7 +306,7 @@
 
                 array('label' => 'Perfil', 'url' => array('/Usuario/perfil/'.Yii::app()->user->ID), 'icon' => BsHtml::GLYPHICON_USER
                         ),                
-                array('label' => 'Inicio', 'url' => array('/site/login'),
+                array('label' => 'Acceso a usuarios', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest
@@ -348,7 +348,7 @@
                 'activateParents' => true,
                 'items' => array(
                 
-                array('label' => 'Inicio', 'url' => array('/site/login'),
+                array('label' => 'Acceso a usuarios', 'url' => array('/site/login'),
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
                     'icon' => BsHtml::GLYPHICON_LOG_IN,
                     'visible' => Yii::app()->user->isGuest

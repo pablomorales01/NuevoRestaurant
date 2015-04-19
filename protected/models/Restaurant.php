@@ -8,6 +8,7 @@
  * @property string $RESTONOMBRE
  * @property string $RESTOFECHACREACION
  * @property string $RESTODETALLE
+ * @property string $RESTO_RUT
  *
  * The followings are the available model relations:
  * @property Imagen[] $imagens
@@ -31,12 +32,13 @@ class Restaurant extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('RESTODETALLE, RESTONOMBRE', 'required'),
+			array('RESTODETALLE, RESTO_RUT', 'required'),
 			array('RESTONOMBRE', 'length', 'max'=>25),
+			array('RESTO_RUT', 'length', 'max'=>20),
 			array('RESTOFECHACREACION', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RESTO_ID, RESTONOMBRE, RESTOFECHACREACION, RESTODETALLE', 'safe', 'on'=>'search'),
+			array('RESTO_ID, RESTONOMBRE, RESTOFECHACREACION, RESTODETALLE, RESTO_RUT', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +65,7 @@ class Restaurant extends CActiveRecord
 			'RESTONOMBRE' => 'Nombre',
 			'RESTOFECHACREACION' => 'Fecha de creación',
 			'RESTODETALLE' => 'Detalle',
+			'RESTO_RUT' => 'Rut',
 		);
 	}
 
@@ -88,6 +91,7 @@ class Restaurant extends CActiveRecord
 		$criteria->compare('RESTONOMBRE',$this->RESTONOMBRE,true);
 		$criteria->compare('RESTOFECHACREACION',$this->RESTOFECHACREACION,true);
 		$criteria->compare('RESTODETALLE',$this->RESTODETALLE,true);
+		$criteria->compare('RESTO_RUT',$this->RESTO_RUT,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
