@@ -14,6 +14,7 @@ else {?>
 <br>
 <?php
 				$this->beginWidget('bootstrap.widgets.BsPanel', array(
+					'title' => 'Comandas enviadas'));
 				?>
 <table >
 	<tr>
