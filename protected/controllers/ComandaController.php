@@ -15,7 +15,7 @@ class ComandaController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -241,7 +241,7 @@ class ComandaController extends Controller
 		
 		$comandas = Comanda::model()->deleteAllByAttributes(
 			array('MESANUM'=>$id, 'RESTO_ID'=>Yii::app()->user->RESTAURANT,
-			'ESTADO'=>'Enviada'));
+			'COM_ESTADO'=>'Enviada'));
 
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
