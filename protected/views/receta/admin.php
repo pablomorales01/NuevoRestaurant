@@ -32,7 +32,10 @@
 
 $ban = 0;
 ?>
-
+<?php if($receta == null){
+  echo '<h4> No existen registros. </h4>';
+} 
+else {?>
 <br>
  <table style="width:90%">
  <tr>
@@ -107,4 +110,5 @@ $ban = 0;
     </tr>
   <?php $ban = 0; } ?>
 </table> 
+<?php } ?>
 <?php $this->endWidget(); ?>

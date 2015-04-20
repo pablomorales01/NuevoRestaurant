@@ -6,6 +6,10 @@ $ban=0;
 ?>
 
 <h1 align="center">Administrar Menú</h1>
+<?php if($LP == null){
+	echo '<h4> No se encuentran registros. </h4>';
+	} 
+	else{ ?>
 
 	<table>
 	<tr>
@@ -79,3 +83,4 @@ $ban=0;
 		?>
 
 	</table>
+	<?php } ?>

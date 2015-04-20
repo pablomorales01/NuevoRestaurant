@@ -264,6 +264,7 @@ class PrecioProductoController extends Controller
 
 		$PP = PrecioProducto::model()->findAllByAttributes(array('RESTO_ID'=> Yii::app()->user->RESTAURANT));
 		$LP = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=> Yii::app()->user->RESTAURANT));
+		
 		$this->render('admin',array(
 			//'model'=>$model,
 			'PP' => $PP,

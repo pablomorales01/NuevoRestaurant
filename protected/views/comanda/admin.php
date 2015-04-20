@@ -7,6 +7,10 @@ $repetido =0;
 ?>
 
 <h1 align="center">Administrar Comandas</h1>
+<?php if ($comandas == null){
+	echo '<h4> No existen comandas registradas </h4>';
+}
+else {?>
 <br>
 <table >
 	<tr>
@@ -79,3 +83,4 @@ $repetido =0;
 		<!-- END FOREACH -->
 <?php }?>
 	</table>
+	<?php } ?>
