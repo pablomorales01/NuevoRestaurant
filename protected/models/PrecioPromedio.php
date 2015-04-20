@@ -53,6 +53,7 @@ class PrecioPromedio extends CActiveRecord
 	{
 		return array(
 			'producto' => 'Producto',
+			'precio' => 'Precio promedio unidad',
 			'resto' => 'Resto',
 		);
 	}
