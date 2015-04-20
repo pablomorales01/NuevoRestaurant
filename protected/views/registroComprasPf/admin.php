@@ -1,25 +1,6 @@
 <?php
 /* @var $this RegistroComprasPfController */
 /* @var $model RegistroComprasPf */
-
-
-$this->menu=array(
-	array('label'=>'List RegistroComprasPf', 'url'=>array('index')),
-	array('label'=>'Create RegistroComprasPf', 'url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#registro-compras-pf-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
 <h1 align="center">Compras producto final</h1>

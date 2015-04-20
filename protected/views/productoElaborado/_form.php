@@ -30,7 +30,13 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 	}
 	else{
 
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/validCampoFranz.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
+  $('#ProductoElaborado_PVENTANOMBRE').validCampoFranz(' abcdefghijklmnñopqrstuvwxyzáéíóú');
+  $('#ProductoElaborado_CALORIAS').validCampoFranz('1234567890');
+  $('#ProductoElaborado_GRAMOS').validCampoFranz('1234567890');
 
+");
 ?>
 	
 	

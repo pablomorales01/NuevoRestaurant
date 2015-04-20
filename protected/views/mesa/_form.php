@@ -14,7 +14,14 @@
     'htmlOptions' => array(
         'class' => 'bs-example'
     )
-)); ?>
+)); 
+
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/validCampoFranz.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
+  $('#Mesa_MESANUM').validCampoFranz('1234567890');
+  $('#Mesa_MESAPERSONAS').validCampoFranz('1234567890');
+");
+?>
 	
 	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 

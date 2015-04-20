@@ -62,9 +62,9 @@ class RegistroComprasMp extends CActiveRecord
 	{
 		return array(
 			'RCMP_ID' => 'id registro',
-			'PROV_ID' => 'id proveedor',
-			'MP_ID' => 'id materia prima',
-			'RCMPPRECIO_COMPRA' => 'Precio Compra TOTAL',
+			'PROV_ID' => 'Nombre',
+			'MP_ID' => 'Materia Prima',
+			'RCMPPRECIO_COMPRA' => 'Total Compra',
 			'RCMPCANTIDAD' => 'Cantidad',
 			'RCMPFECHA' => 'Fecha',
 			'RESTO_ID' => 'Resto id',

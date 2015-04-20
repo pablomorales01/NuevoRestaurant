@@ -18,7 +18,16 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'htmlOptions' => array(
         'class' => 'bs-example'
     )
-));?>
+));
+
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/validCampoFranz.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
+  $('#Proveedor_PROVNOMBRE').validCampoFranz(' abcdefghijklmnñopqrstuvwxyzáéíóú');
+  $('#Proveedor_PROVRUT').validCampoFranz('1234567890k-.k');
+  $('#Proveedor_PROVTELEFONO').validCampoFranz('1234567890');
+
+");
+?>
 
 	<p class="note" align="center">Campos con<span class="required">*</span> son requeridos.</p>
 

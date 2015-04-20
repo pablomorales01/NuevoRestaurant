@@ -20,7 +20,11 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     )
 ));
 
-
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/validCampoFranz.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
+  $('#RegistroComprasMp_RCMPPRECIO_COMPRA').validCampoFranz('1234567890');
+  $('#RegistroComprasMp_RCMPCANTIDAD').validCampoFranz('1234567890');
+");
 ?>
 
 
@@ -34,16 +38,19 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
       	CHtml::listData($prov, 'PROV_ID', 'PROVNOMBRE'),
       	array('prompt'=>'Seleccione')
       	); ?>
-
+	</div>
+	<div class="row">
       	<?php echo $form->dropDownListControlGroup($model,'MP_ID',
   			CHtml::listData($productos, 'MP_ID', 'MPNOMBRE'),
       array('prompt' => 'Seleccione')      
       ); ?> 
-		
+		</div>
+		<div class="row">
 		<?php echo $form->textFieldControlGroup($model,'RCMPPRECIO_COMPRA'); ?>
-		
+		</div>
+		<div class="row">
 		<?php echo $form->textFieldControlGroup($model,'RCMPCANTIDAD'); ?>
-		
+		</div>
 	
 
 		<div class="row"> 
@@ -59,14 +66,9 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 'selectOtherMonths'=>true, 'showAnim'=>'slide', 'showButtonPanel'=>true,
 
 'showOtherMonths'=>true, 'changeMonth' => 'true', 'changeYear' => 'true', ) )); ?>
-</div>
- <?php echo $form->error($model,'RCMPFECHA'); ?> </div>
-		
-		
 
-		
-		
-	</div>
+ <?php echo $form->error($model,'RCMPFECHA'); ?> </div>
+</div>		
 
 	<div class="row buttons" align="center">
 		<?php echo BsHtml::submitButton('Crear', array('color' => BsHtml::BUTTON_COLOR_SUCCESS));?>

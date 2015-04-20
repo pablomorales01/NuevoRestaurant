@@ -25,27 +25,35 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     )
 ));
 
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/validCampoFranz.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
+  $('#RegistroComprasPf_RPFPRECIO_COMPRA').validCampoFranz('1234567890');
+  $('#RegistroComprasPf_RPFPCANTIDAD').validCampoFranz('1234567890');
+");
 ?>
 
 	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="form" align="center">
     <div class="row">
   		<?php echo $form->dropDownListControlGroup($model,'PVENTA_ID',
   			CHtml::listData($productos, 'PVENTA_ID', 'PVENTANOMBRE'),
       array('prompt' => 'Seleccione')      
       ); ?> 
-
+      </div>
+      <div class="row">
       <?php echo $form->dropDownListControlGroup($model, 'PROV_ID', 
       	CHtml::listData($prov, 'PROV_ID', 'PROVNOMBRE'),
       	array('prompt'=>'Seleccione')
       	); ?>
-		
+		</div>
+		<div class="row">
 		<?php echo $form->textFieldControlGroup($model,'RPFPRECIO_COMPRA'); ?>
-		
+		</div>
+		<div class="row">
 		<?php echo $form->textFieldControlGroup($model,'RPFPCANTIDAD'); ?>
+		</div>
 
 		<div class="row"> 
 		<div class="column">
