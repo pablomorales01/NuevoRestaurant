@@ -30,6 +30,12 @@ else if($TMP == null)
             .'Por favor ingrese una' . BsHtml::alertLink(' Aquí.', array('url' => '../TipoMateriaPrima/create')));
     }
 else {
+
+  Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/validCampoFranz.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
+  $('#MateriaPrima_MPNOMBRE').validCampoFranz(' abcdefghijklmnñopqrstuvwxyzáéíóú');
+  $('#MateriaPrima_MPSTOCK').validCampoFranz('1234567890');
+");
 ?>
 
 	<p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>

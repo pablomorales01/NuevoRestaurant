@@ -2,13 +2,6 @@
 /* @var $this RegistroComprasMpController */
 /* @var $model RegistroComprasMp */
 
-
-
-$this->menu=array(
-	array('label'=>'List RegistroComprasMp', 'url'=>array('index')),
-	array('label'=>'Create RegistroComprasMp', 'url'=>array('create')),
-);
-
 ?>
 
 <h1>Compras de Materia Prima</h1>
