@@ -4,7 +4,7 @@
  * This is the model class for table "precio_promedio".
  *
  * The followings are the available columns in table 'precio_promedio':
- * @property integer $producto
+ * @property string $producto
  * @property string $precio
  * @property integer $resto
  */
@@ -26,8 +26,9 @@ class PrecioPromedio extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('producto, resto', 'numerical', 'integerOnly'=>true),
-			array('precio', 'length', 'max'=>18),
+			array('resto', 'numerical', 'integerOnly'=>true),
+			array('producto', 'length', 'max'=>20),
+			array('precio', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('producto, precio, resto', 'safe', 'on'=>'search'),
@@ -52,7 +53,6 @@ class PrecioPromedio extends CActiveRecord
 	{
 		return array(
 			'producto' => 'Producto',
-			'precio' => 'Precio promedio unitario',
 			'resto' => 'Resto',
 		);
 	}
@@ -75,7 +75,7 @@ class PrecioPromedio extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('producto',$this->producto);
+		$criteria->compare('producto',$this->producto,true);
 		$criteria->compare('precio',$this->precio,true);
 		$criteria->compare('resto',$this->resto);
 		$criteria->compare('resto', Yii::app()->user->RESTAURANT);

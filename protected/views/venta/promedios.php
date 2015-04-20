@@ -11,7 +11,7 @@
 		//REsto_id
 		'producto',
 		'precio',
-		'resto',
+		//'resto',
 		
 	),
 )); ?>
