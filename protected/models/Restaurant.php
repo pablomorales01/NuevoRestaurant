@@ -62,7 +62,7 @@ class Restaurant extends CActiveRecord
 	{
 		return array(
 			'RESTO_ID' => 'Id restaurant',
-			'RESTONOMBRE' => 'Nombre',
+			'RESTONOMBRE' => 'Restaurant',
 			'RESTOFECHACREACION' => 'Fecha de creación',
 			'RESTODETALLE' => 'Detalle',
 			'RESTO_RUT' => 'Rut',

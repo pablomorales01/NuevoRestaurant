@@ -37,6 +37,10 @@ $ban = 0;
 } 
 else {?>
 <br>
+<?php
+        $this->beginWidget('bootstrap.widgets.BsPanel', array(
+          'title' => 'Recetas'));
+        ?>
  <table style="width:90%">
  <tr>
     <th>Producto elaborado</th>
@@ -110,5 +114,8 @@ else {?>
     </tr>
   <?php $ban = 0; } ?>
 </table> 
+<?php
+        $this->endWidget();
+        ?>
 <?php } ?>
 <?php $this->endWidget(); ?>

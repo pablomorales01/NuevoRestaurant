@@ -12,6 +12,9 @@ $repetido =0;
 }
 else {?>
 <br>
+<?php
+				$this->beginWidget('bootstrap.widgets.BsPanel', array(
+				?>
 <table >
 	<tr>
 		<th>Mesa</th>
@@ -83,4 +86,7 @@ else {?>
 		<!-- END FOREACH -->
 <?php }?>
 	</table>
+	<?php
+				$this->endWidget();
+				?>
 	<?php } ?>

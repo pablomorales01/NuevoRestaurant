@@ -10,7 +10,10 @@ $ban=0;
 	echo '<h4> No se encuentran registros. </h4>';
 	} 
 	else{ ?>
-
+<?php
+				$this->beginWidget('bootstrap.widgets.BsPanel', array(
+					'title' => 'Lista de Precios'));
+				?>
 	<table>
 	<tr>
 		<th>Nombre</th>
@@ -83,4 +86,7 @@ $ban=0;
 		?>
 
 	</table>
+	<?php
+				$this->endWidget();
+				?>
 	<?php } ?>
