@@ -73,11 +73,11 @@ Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
 		  		'placeholder'=>'Cantidad',
 		  	),
 
-		  	'RECETAUNIDADMEDIDA'=>array(
+		  	/*'RECETAUNIDADMEDIDA'=>array(
 		  		'type'=>'text',
 		  		'maxlength'=>40,
 		  		'placeholder'=>'Unidad de Medida',
-		  	),
+		  	),*/
 			
 		));
 

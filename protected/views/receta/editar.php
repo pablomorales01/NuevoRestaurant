@@ -65,11 +65,11 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 		  		'placeholder'=>'Cantidad',
 		  	),
 
-		  	'RECETAUNIDADMEDIDA'=>array(
+		  /*	'RECETAUNIDADMEDIDA'=>array(
 		  		'type'=>'text',
 		  		'maxlength'=>40,
 		  		'placeholder'=>'Unidad de Medida',
-		  	),
+		  	),*/
 			
 		));
 
@@ -139,10 +139,9 @@ $variable.='</select>
 </td><td class="mmf_cell">
 <input maxlength="40" placeholder="Cantidad" name="Receta[RECETACANTIDADPRODUCTO][]" id="Receta_RECETACANTIDADPRODUCTO" type="text" value= '.$receta->RECETACANTIDADPRODUCTO.'>
 
-</td><td class="mmf_cell">
-<input maxlength="40" placeholder="Unidad de Medida" name="Receta[RECETAUNIDADMEDIDA][]" id="Receta_RECETAUNIDADMEDIDA" type="text" value= '.$receta->RECETAUNIDADMEDIDA.'>
+</td>
 
-</td><td class="mmf_cell"><a onclick="eliminar(this);" class="mmf_removelink" style="cursor: pointer">Eliminar</a></td></tr></tbody>';
+<td class="mmf_cell"><a onclick="eliminar(this);" class="mmf_removelink" style="cursor: pointer">Eliminar</a></td></tr></tbody>';
  echo $variable;
 	
 }
@@ -162,3 +161,8 @@ $variable.='</select>
 
 </div><!-- form -->
 <!--<option value="'.$materia->MP_ID.'">'.$materia->MPNOMBRE.'</option>-->
+
+<!--<td class="mmf_cell">
+<input maxlength="40" placeholder="Unidad de Medida" name="Receta[RECETAUNIDADMEDIDA][]" id="Receta_RECETAUNIDADMEDIDA" type="text" value= '.$receta->RECETAUNIDADMEDIDA.'>
+
+</td>-->
