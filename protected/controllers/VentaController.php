@@ -112,6 +112,19 @@ class VentaController extends Controller
 			$model->attributes=$_POST['Venta'];
 			if($model->save())
 			{
+				//Eliminar la comanda y cambiar la mesa a disponible
+				$comanda = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
+				'MESANUM'=>$numero));
+				foreach ($comanda as $com) {
+					$com->COM_ESTADO = 'Entregada';
+					$com->save();
+				}
+				$mesa = Mesa::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
+				'MESANUM'=>$numero));
+				foreach ($mesa as $mesita) {
+					$mesita->ESTADO = 'Disponible';
+					$mesita->save();
+				}				
 				$this->redirect('admin');
 			}
 		}
