@@ -20,13 +20,11 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
 </head>
-
 <body>
 
 <div class="container" id="page">
 	<div id="header">
 		<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logopenco.png" width="350" height="150">
-		
 	</div><!-- header -->
 
 	<!--Nuevo Menú-->
@@ -83,6 +81,8 @@
     }
     else if(Yii::app()->user->name == 'Administrador')
     {
+    $restaurant = Restaurant::model()->findByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT)); 
+    echo '<h1 align="right">Restaurant '.$restaurant->RESTONOMBRE.'</h1>';
     $this->widget('bootstrap.widgets.BsNavbar', array(
     'collapse' => true,
     'brandLabel' => BsHtml::icon(BsHtml::GLYPHICON_HOME),
@@ -138,6 +138,8 @@
     }
     else if(Yii::app()->user->name == 'Bodega')
     {
+    $restaurant = Restaurant::model()->findByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT)); 
+    echo '<h1 align="right">Restaurant '.$restaurant->RESTONOMBRE.'</h1>';
         $this->widget('bootstrap.widgets.BsNavbar', array(
     'collapse' => true,
     'brandLabel' => BsHtml::icon(BsHtml::GLYPHICON_HOME),
@@ -185,6 +187,8 @@
     }
     else if(Yii::app()->user->name == 'Cocina')
     {
+    $restaurant = Restaurant::model()->findByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT)); 
+    echo '<h1 align="right">Restaurant '.$restaurant->RESTONOMBRE.'</h1>';
         $this->widget('bootstrap.widgets.BsNavbar', array(
     'collapse' => true,
     'brandLabel' => BsHtml::icon(BsHtml::GLYPHICON_HOME),
@@ -233,7 +237,10 @@
     }
     else if(Yii::app()->user->name == 'Cajero')
     {
-        $this->widget('bootstrap.widgets.BsNavbar', array(
+    $restaurant = Restaurant::model()->findByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT)); 
+    echo '<h1 align="right">Restaurant '.$restaurant->RESTONOMBRE.'</h1>';
+
+    $this->widget('bootstrap.widgets.BsNavbar', array(
     'collapse' => true,
     'brandLabel' => BsHtml::icon(BsHtml::GLYPHICON_HOME),
     'brandUrl' => Yii::app()->homeUrl,
@@ -280,7 +287,10 @@
     }
     else if(Yii::app()->user->name == 'Garzón')
     {
-        $this->widget('bootstrap.widgets.BsNavbar', array(
+    $restaurant = Restaurant::model()->findByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT)); 
+    echo '<h1 align="right">Restaurant '.$restaurant->RESTONOMBRE.'</h1>';
+
+    $this->widget('bootstrap.widgets.BsNavbar', array(
     'collapse' => true,
     'brandLabel' => BsHtml::icon(BsHtml::GLYPHICON_HOME),
     'brandUrl' => Yii::app()->homeUrl,
