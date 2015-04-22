@@ -13,7 +13,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 <p class="note" align="center">Campos con <span class="required">*</span> son requeridos.</p>
 
 <div class="row">
-<?php echo '<div align="center"><b>Fecha: '.$comanda[0]['COMFECHA'].'</b></div>'; ?>
+<?php echo '<div align="center"><b>Fecha: '.$comanda[0]['COMFECHA'].'</b></div>';?>
 
 <table align="center">
     <tr>
