@@ -16,6 +16,9 @@
  */
 class Venta extends CActiveRecord
 {
+	public $fecha1; //desde
+	public $fecha2; //hasta
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -38,7 +41,7 @@ class Venta extends CActiveRecord
 			array('VENTAFECHA', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('VENTA_ID, USU_ID, VENTAFECHA, VENTATOTAL, VENTAFORMADEPAGO, RESTO_ID', 'safe', 'on'=>'search'),
+			array('fecha1, fecha2, VENTA_ID, USU_ID, VENTAFECHA, VENTATOTAL, VENTAFORMADEPAGO, RESTO_ID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,7 +92,9 @@ class Venta extends CActiveRecord
 
 		$criteria->compare('VENTA_ID',$this->VENTA_ID);
 		$criteria->compare('USU_ID',$this->USU_ID);
-		$criteria->compare('VENTAFECHA',$this->VENTAFECHA,true);
+		if((isset($this->fecha1) && trim($this->fecha1) != "") && (isset($this->fecha2) && trim($this->fecha2) != ""))
+ 		$criteria->addBetweenCondition('VENTAFECHA', ''.$this->fecha1.'', ''.$this->fecha2.'');
+		//$criteria->compare('VENTAFECHA',$this->VENTAFECHA,true);
 		$criteria->compare('VENTATOTAL',$this->VENTATOTAL);
 		$criteria->compare('VENTAFORMADEPAGO',$this->VENTAFORMADEPAGO,true);
 		$criteria->compare('RESTO_ID',$this->RESTO_ID);
