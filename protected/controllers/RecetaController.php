@@ -93,14 +93,12 @@ class RecetaController extends Controller
 				if($PE->save())
 				{
 
-					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) {
-						$unidad = MateriaPrima::model()->findByAttributes(array('MP_ID'=>$_POST['Receta']['MP_ID'][$i]));
+					for ($i=0; $i < count($_POST['Receta']['MP_ID']); $i++) { 
 						$model = new Receta;
 						$model->PVENTA_ID = $id;
 						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
 						$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
-						//$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
-						$model->RECETAUNIDADMEDIDA = $unidad->MPUNIDAD_MEDIDA;
+						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
 						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 						$model->save();
 					}
@@ -184,14 +182,14 @@ class RecetaController extends Controller
 							{
 								//preguntar si los demás atributos son iguales
 								if($_POST['Receta']['RECETACANTIDADPRODUCTO'][$i]== $receta->RECETACANTIDADPRODUCTO
-									/*AND $_POST['Receta']['RECETAUNIDADMEDIDA'][$i] == $receta->RECETAUNIDADMEDIDA*/)
+									AND $_POST['Receta']['RECETAUNIDADMEDIDA'][$i] == $receta->RECETAUNIDADMEDIDA)
 								{
 									//NO HAGO NADA Y PASO AL SIGUIENTE $_POST
 									$ban = 1;
 								}
 								//preguntar si los atributos son distintos a bd
 								if($_POST['Receta']['RECETACANTIDADPRODUCTO'][$i] != $receta->RECETACANTIDADPRODUCTO
-									/*|| $_POST['Receta']['RECETAUNIDADMEDIDA'][$i] != $receta->RECETAUNIDADMEDIDA*/)
+									|| $_POST['Receta']['RECETAUNIDADMEDIDA'][$i] != $receta->RECETAUNIDADMEDIDA)
 								{
 									//ACTUALIZO LA COSA
 									$aux =Receta::model()->deleteAllByAttributes(array('PVENTA_ID'=>$receta->PVENTA_ID, 'MP_ID'=>$receta->MP_ID));
@@ -199,7 +197,7 @@ class RecetaController extends Controller
 									$model->PVENTA_ID = $PE->PVENTA_ID;
 									$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
 									$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
-									//$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
+									$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
 									$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 									$model->save();
 									$ban=1;
@@ -210,13 +208,12 @@ class RecetaController extends Controller
 						}
 						//si no existe en bd guarda
 						if($ban == 0)
-						{	
-						$medida = MateriaPrima::model()->findByAttributes(array('MP_ID'=>$_POST['Receta']['MP_ID'][$i]));					
+						{						
 						$model = new Receta;
 						$model->PVENTA_ID = $PE->PVENTA_ID;
 						$model->MP_ID = $_POST['Receta']['MP_ID'][$i];
 						$model->RECETACANTIDADPRODUCTO = $_POST['Receta']['RECETACANTIDADPRODUCTO'][$i];
-						$model->RECETAUNIDADMEDIDA = $medida->MPUNIDAD_MEDIDA;
+						$model->RECETAUNIDADMEDIDA = $_POST['Receta']['RECETAUNIDADMEDIDA'][$i];
 						$model->RESTO_ID= Yii::app()->user->RESTAURANT;
 						$model->save();
 						}

@@ -58,10 +58,10 @@ Yii::app()->clientScript->registerScript('validarCamposEspeciales', "
 
 	 //PARA LA UNIDAD DE MEDIDA
         echo $form->dropDownListControlGroup($model, 'MPUNIDAD_MEDIDA', array(
-        'Gramos'=> 'Gramos', //lo que guarda => lo que muestro
-        'Kilogramos'=>'Kilogramos',
-        'Mililitros'=>'Mililitros',
-        'Litros'=>'Litros'),
+        'gr'=> 'Gramos', //lo que guarda => lo que muestro
+        'Kg'=>'Kilogramos',
+        'mL'=>'Mililitros',
+        'L'=>'Litros'),
          array('prompt' => 'Seleccione') 
       );
       
