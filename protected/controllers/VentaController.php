@@ -192,6 +192,13 @@ class VentaController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Venta('search');
+		
+		if(isset($_GET["excel"]))
+		{
+			$ventas = Venta::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT));
+			$content=$this->renderPartial("excel", array("ventas"=>$ventas), true);
+			Yii::app()->request->sendFile("ventas MP.xls", $content);
+		}
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Venta']))
 			$model->attributes=$_GET['Venta'];

@@ -2,9 +2,18 @@
 /* @var $this VentaController */
 /* @var $model Venta */
 ?>
-
+<script type="text/javascript">
+function imprimirSelec(nombre)
+{
+ var ficha = document.getElementById(nombre);//almacenamos en variable los datos del div a imprimir
+ var ventimp = window.open(' ', 'Impresion');//aqui se genera una pagina temporal 
+ ventimp.document.write( ficha.innerHTML );//aqui cargamos el contenido del div seleccionado
+ ventimp.document.close();//cerramos el documento
+ ventimp.print( );//enviamos los datos a la impresora
+ ventimp.close();//cerramos ventana temporal
+}
+</script>
 <h1 align="center">Administrar Ventas</h1>
-
 <?php
 // this is the date picker
 $dateisOn = $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -42,7 +51,9 @@ $dateisOn = $this->widget('zii.widgets.jui.CJuiDatePicker', array(
  ),true);
 ?>
 
-
+<a href="javascript:imprimirSelec('imprimir')" >Imprimir</a>
+<div id="imprimir">
+<?php //echo CHtml::link("Descargar", array("admin", "excel"=>1)); ?>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'venta-grid',
 	'dataProvider'=>$model->search(),
@@ -67,3 +78,4 @@ $dateisOn = $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 		),
 	),
 )); ?>
+</div>
