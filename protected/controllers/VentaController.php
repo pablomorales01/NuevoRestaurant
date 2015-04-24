@@ -15,7 +15,7 @@ class VentaController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -87,7 +87,7 @@ class VentaController extends Controller
 		$model = new Venta;		
 
 		$comanda = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
-			'MESANUM'=>$numero, 'VENTA_ID'=>null));
+			'MESANUM'=>$numero, 'VENTA_ID'=>null, 'COM_ESTADO'=>'Enviada'));
 
 		$mesa = Mesa::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
 			'ESTADO'=>'No disponible', 'MESANUM'=>$numero));
@@ -96,7 +96,7 @@ class VentaController extends Controller
 		$total=0;
 		
 		foreach ($comanda as $com) {
-					$fila= ListaDePrecios::model()->findbyattributes(array('MENU_ID'=>$com->MENU_ID));
+					$fila= ListaDePrecios::model()->findbyAttributes(array('MENU_ID'=>$com->MENU_ID));
 					$total = $total + $fila->MENUPRECIO;
 				}		
 					
