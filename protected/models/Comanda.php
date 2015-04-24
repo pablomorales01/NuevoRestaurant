@@ -51,6 +51,7 @@ class Comanda extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'usu'=>array(self::BELONGS_TO, 'Usuario', 'USU_ID'),
 		);
 	}
 
@@ -60,14 +61,14 @@ class Comanda extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'COM_ID' => 'Com',
+			'COM_ID' => 'id comanda',
 			'VENTA_ID' => 'Venta',
 			'MENU_ID' => 'Menu',
-			'MESANUM' => 'Mesanum',
+			'MESANUM' => 'Mesa',
 			'USU_ID' => 'Usu',
-			'USU_USU_ID' => 'Usu Usu',
-			'COMFECHA' => 'Comfecha',
-			'COM_ESTADO' => 'Com Estado',
+			'USU_USU_ID' => 'Entrega',
+			'COMFECHA' => 'Fecha',
+			'COM_ESTADO' => 'Estado',
 			'RESTO_ID' => 'Resto',
 			'COM_CANTIDAD' => 'Cantidad',
 		);
