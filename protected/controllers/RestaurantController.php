@@ -74,7 +74,7 @@ class RestaurantController extends Controller
 			$model->RESTOFECHACREACION= date('Y-m-d');
 
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->RESTO_ID));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('create',array('model'=>$model));
@@ -96,7 +96,7 @@ class RestaurantController extends Controller
 		{
 			$model->attributes=$_POST['Restaurant'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->RESTO_ID));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(

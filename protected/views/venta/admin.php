@@ -64,6 +64,7 @@ $dateisOn = $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 		'VENTAFORMADEPAGO',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view} {update}'
 		),
 	),
 )); ?>

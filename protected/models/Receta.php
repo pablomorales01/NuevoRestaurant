@@ -30,7 +30,7 @@ class Receta extends CActiveRecord
 		return array(
 			array('PVENTA_ID, MP_ID, RESTO_ID', 'required'),
 			array('RECETACANTIDADPRODUCTO, PVENTA_ID, MP_ID, RESTO_ID', 'numerical', 'integerOnly'=>true),
-			array('RECETAUNIDADMEDIDA', 'length', 'max'=>10),
+			array('RECETAUNIDADMEDIDA', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('RECETACANTIDADPRODUCTO, RECETAUNIDADMEDIDA, PVENTA_ID, MP_ID, RESTO_ID', 'safe', 'on'=>'search'),

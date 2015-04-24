@@ -116,7 +116,7 @@ class VentaController extends Controller
 				$comanda = Comanda::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,
 				'MESANUM'=>$numero));
 				foreach ($comanda as $com) {
-					$com->COM_ESTADO = 'Entregada';
+					$com->COM_ESTADO = 'Pagada';
 					$com->save();
 				}
 				$mesa = Mesa::model()->findAllByAttributes(array('RESTO_ID'=>Yii::app()->user->RESTAURANT,

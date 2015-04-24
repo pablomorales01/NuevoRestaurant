@@ -20,22 +20,24 @@
 		// Si los nombres son iguales
 		if($rest->RESTONOMBRE == $nombre)
 		{
-			echo '<b>Restaurant: '.$rest->RESTONOMBRE.'</b>';
-			echo '<br><b>Aqui va el Detalle de Restaurant: '.$rest->RESTODETALLE.'</b>';
-			echo '<br> Fotografias: <br>';
+			echo '<b>Restaurant: </b>'.$rest->RESTONOMBRE;
+			echo '<br><br><b>Descripción: </b>'.$rest->RESTODETALLE;
+			echo '<br><br>Fotografias: <br><br>';
 			foreach ($imagen as $imagen) {
 				// Si los id de restaurant son iguales
 				if($imagen->RESTO_ID == $rest->RESTO_ID)
 				{
 					//MUESTRALO TODO MADAFAKA
 					//CHtml::image(Yii::app()->baseUrl.'/images/subidas/'.$imagen->IMAGEN, 'imagen',array('width'=>200));
-					?><img src="<?php echo Yii::app()->request->baseUrl.'/images/subidas/'.$imagen->IMAGEN; ?>" width="300" height="300">
-				<?php  echo '<br>';
+					?>
+					<img src="<?php echo Yii::app()->request->baseUrl.'/images/subidas/'.$imagen->IMAGEN; ?>" width="300" height="300">
+				<?php  echo '<br><br>';
 				}
 			}
 			$menu = ListaDePrecios::model()->findAllByAttributes(array('RESTO_ID'=>$rest->RESTO_ID));
 			?>
 			</div>
+
 			<div class="derecha">
 			<?php
 				$this->beginWidget('bootstrap.widgets.BsPanel', array(

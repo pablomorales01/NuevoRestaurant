@@ -37,7 +37,7 @@ class MateriaPrima extends CActiveRecord
 		return array(
 			array('BODEGA_ID, TMP_ID, MPSTOCK', 'numerical', 'integerOnly'=>true),
 			array('MPNOMBRE', 'length', 'max'=>20),
-			array('MPUNIDAD_MEDIDA', 'length', 'max'=>2),
+			array('MPUNIDAD_MEDIDA', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('MP_ID, BODEGA_ID, TMP_ID, MPNOMBRE, MPUNIDAD_MEDIDA, MPSTOCK', 'safe', 'on'=>'search'),

@@ -39,15 +39,15 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 	<div class="row">
 		<?php //echo $form->labelEx($model,'RESTONOMBRE'); ?>
 		<?php echo $form->textFieldControlGroup($model,'RESTONOMBRE',array('size'=>25,'maxlength'=>25)); ?>
-		<?php echo $form->error($model,'RESTONOMBRE'); ?>
+		
 	</div>
 
 	<?php echo $form->textFieldControlGroup($model, 'RESTO_RUT'); ?>
-	<?php echo $form->error($model, 'RESTO_RUT'); ?>
+	
 	<div class="row">
 		<?php //echo $form->labelEx($model,'RESTOFECHACREACION'); ?>
 		<?php echo $form->textAreaControlGroup($model,'RESTODETALLE'); ?>
-		<?php echo $form->error($model,'RESTODETALLE'); ?>
+		
 	</div>
 
 	<!--

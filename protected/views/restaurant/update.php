@@ -4,6 +4,6 @@
 
 ?>
 
-<h1 align="center">Editar Restaurant <?php echo $model->RESTO_ID; ?></h1>
+<h1 align="center">Editar Restaurant</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
